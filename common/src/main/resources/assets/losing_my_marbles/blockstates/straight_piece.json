@@ -1,0 +1,116 @@
+{
+  "variants": {
+    "color=white,axis=z": {
+      "model": "losing_my_marbles:block/white_straight_piece"
+    },
+    "color=white,axis=x": {
+      "model": "losing_my_marbles:block/white_straight_piece",
+      "y": 90
+    },
+    "color=light_gray,axis=z": {
+      "model": "losing_my_marbles:block/light_gray_straight_piece"
+    },
+    "color=light_gray,axis=x": {
+      "model": "losing_my_marbles:block/light_gray_straight_piece",
+      "y": 90
+    },
+    "color=gray,axis=z": {
+      "model": "losing_my_marbles:block/gray_straight_piece"
+    },
+    "color=gray,axis=x": {
+      "model": "losing_my_marbles:block/gray_straight_piece",
+      "y": 90
+    },
+    "color=black,axis=z": {
+      "model": "losing_my_marbles:block/black_straight_piece"
+    },
+    "color=black,axis=x": {
+      "model": "losing_my_marbles:block/black_straight_piece",
+      "y": 90
+    },
+    "color=brown,axis=z": {
+      "model": "losing_my_marbles:block/brown_straight_piece"
+    },
+    "color=brown,axis=x": {
+      "model": "losing_my_marbles:block/brown_straight_piece",
+      "y": 90
+    },
+    "color=red,axis=z": {
+      "model": "losing_my_marbles:block/red_straight_piece"
+    },
+    "color=red,axis=x": {
+      "model": "losing_my_marbles:block/red_straight_piece",
+      "y": 90
+    },
+    "color=orange,axis=z": {
+      "model": "losing_my_marbles:block/orange_straight_piece"
+    },
+    "color=orange,axis=x": {
+      "model": "losing_my_marbles:block/orange_straight_piece",
+      "y": 90
+    },
+    "color=yellow,axis=z": {
+      "model": "losing_my_marbles:block/yellow_straight_piece"
+    },
+    "color=yellow,axis=x": {
+      "model": "losing_my_marbles:block/yellow_straight_piece",
+      "y": 90
+    },
+    "color=lime,axis=z": {
+      "model": "losing_my_marbles:block/lime_straight_piece"
+    },
+    "color=lime,axis=x": {
+      "model": "losing_my_marbles:block/lime_straight_piece",
+      "y": 90
+    },
+    "color=green,axis=z": {
+      "model": "losing_my_marbles:block/green_straight_piece"
+    },
+    "color=green,axis=x": {
+      "model": "losing_my_marbles:block/green_straight_piece",
+      "y": 90
+    },
+    "color=cyan,axis=z": {
+      "model": "losing_my_marbles:block/cyan_straight_piece"
+    },
+    "color=cyan,axis=x": {
+      "model": "losing_my_marbles:block/cyan_straight_piece",
+      "y": 90
+    },
+    "color=blue,axis=z": {
+      "model": "losing_my_marbles:block/blue_straight_piece"
+    },
+    "color=blue,axis=x": {
+      "model": "losing_my_marbles:block/blue_straight_piece",
+      "y": 90
+    },
+    "color=light_blue,axis=z": {
+      "model": "losing_my_marbles:block/light_blue_straight_piece"
+    },
+    "color=light_blue,axis=x": {
+      "model": "losing_my_marbles:block/light_blue_straight_piece",
+      "y": 90
+    },
+    "color=purple,axis=z": {
+      "model": "losing_my_marbles:block/purple_straight_piece"
+    },
+    "color=purple,axis=x": {
+      "model": "losing_my_marbles:block/purple_straight_piece",
+      "y": 90
+    },
+    "color=magenta,axis=z": {
+      "model": "losing_my_marbles:block/magenta_straight_piece"
+    },
+    "color=magenta,axis=x": {
+      "model": "losing_my_marbles:block/magenta_straight_piece",
+      "y": 90
+    },
+    "color=pink,axis=z": {
+      "model": "losing_my_marbles:block/pink_straight_piece"
+    },
+    "color=pink,axis=x": {
+      "model": "losing_my_marbles:block/pink_straight_piece",
+      "y": 90
+    }
+  }
+}
