@@ -1,88 +1,83 @@
-// versions
-val minecraftVersion = "1.21.8"
-val minecraftDep = "=1.21.8"
-// https://parchmentmc.org/docs/getting-started
-val parchmentVersion = "none"
-// https://fabricmc.net/develop
-val loaderVersion = "0.16.14"
-val fapiVersion = "0.130.0+1.21.8"
+// kinda gross, but this configuration needs to happen after plugins are loaded
+evaluationDependsOnChildren()
 
-// dev env mods
-// https://modrinth.com/mod/sodium/versions?l=fabric
-val sodiumVersion = "mc1.21.6-0.6.13-fabric"
-// https://modrinth.com/mod/modmenu/versions
-val modmenuVersion = "15.0.0-beta.3"
+subprojects {
+    // set the archive name to the mod ID
+    extensions.getByType<BasePluginExtension>().archivesName = "losing_my_marbles"
+    group = "one.devos.nautical"
 
-// buildscript
-plugins {
-	id("fabric-loom") version "1.11.+"
-	id("maven-publish")
-}
+    val buildNum = providers.environmentVariable("GITHUB_RUN_NUMBER")
+        .filter(String::isNotEmpty)
+        .map { "build.$it" }
+        .orElse("local")
+        .get()
 
-base.archivesName = "modid"
-group = "io.github.tropheusj"
+    // x.y.z+build.100-mc1.21.8-fabric
+    version = "$0.1.0+$buildNum-mc${libs.versions.minecraft.get()}-$name"
 
-val buildNum = providers.environmentVariable("GITHUB_RUN_NUMBER")
-    .filter(String::isNotEmpty)
-	.map { "build.$it" }
-    .orElse("local")
-    .get()
+    extensions.getByType<JavaPluginExtension>().run {
+        // enable the sources jar
+        withSourcesJar()
+        // and set java requirement
+        toolchain.languageVersion = JavaLanguageVersion.of(21)
+    }
 
-version = "0.1.0+$buildNum-mc$minecraftVersion"
+    if (name == "common") {
+        // further configuration is exclusive to loader projects
+        return@subprojects
+    }
 
-repositories {
-	maven("https://maven.parchmentmc.org")
-	maven("https://api.modrinth.com/maven")
-}
+    // expand properties in metadata
+    tasks.named<ProcessResources>("processResources") {
+        val properties: Map<String, Any> = mapOf(
+            "version" to version,
+            "loader_version" to libs.versions.fabric.loader.get(),
+            "fapi_version" to libs.versions.fabric.api.get(),
+            "minecraft_version" to libs.versions.minecraft.get()
+        )
 
-dependencies {
-	// dev environment
-	minecraft("com.mojang:minecraft:$minecraftVersion")
-	mappings(loom.officialMojangMappings())// { nameSyntheticMembers = false })
-	modImplementation("net.fabricmc:fabric-loader:$loaderVersion")
+        inputs.properties(properties)
 
-	// dependencies
-	modImplementation("net.fabricmc.fabric-api:fabric-api:$fapiVersion")
-
-	// dev env
-    modLocalRuntime("maven.modrinth:sodium:$sodiumVersion")
-    modLocalRuntime("maven.modrinth:modmenu:$modmenuVersion")
-}
-
-tasks.withType(ProcessResources::class) {
-	val properties: Map<String, Any> = mapOf(
-		"version" to version,
-		"loader_version" to loaderVersion,
-		"fapi_version" to fapiVersion,
-		"minecraft_dependency" to minecraftDep
-	)
-
-	inputs.properties(properties)
-
-	filesMatching("fabric.mod.json") {
-		expand(properties)
-	}
-}
-
-java {
-	withSourcesJar()
-}
-
-publishing {
-	publications {
-		register<MavenPublication>("mavenJava") {
-			from(components["java"])
-		}
-	}
-
-	repositories {
-		maven("https://mvn.devos.one/snapshots") {
-			name = "devOsSnapshots"
-			credentials(PasswordCredentials::class)
-		}
-        maven("https://mvn.devos.one/releases") {
-            name = "devOsReleases"
-            credentials(PasswordCredentials::class)
+        filesMatching(listOf("fabric.mod.json", "cichlid.mod.json")) {
+            expand(properties)
         }
-	}
+    }
+
+    // configurations used to include common code in built artifacts
+    val commonJava: Configuration by configurations.dependencyScope("commonJava")
+    val commonResources: Configuration by configurations.dependencyScope("commonResources")
+
+    val compileOnly: Configuration = configurations.getByName("compileOnly")
+
+    dependencies {
+        compileOnly(project(":common"))
+        commonJava(project(path = ":common", configuration = "commonJava"))
+        commonResources(project(path = ":common", configuration = "commonResources"))
+    }
+
+    // include common stuff in assembly tasks
+
+    val resolvableCommonJava: Configuration by configurations.resolvable("resolvableCommonJava") {
+        extendsFrom(commonJava)
+    }
+    val resolvableCommonResources: Configuration by configurations.resolvable("resolvableCommonResources") {
+        extendsFrom(commonResources)
+    }
+
+    tasks.named<JavaCompile>("compileJava") {
+        dependsOn(resolvableCommonJava)
+        source(resolvableCommonJava)
+    }
+
+    tasks.named<ProcessResources>("processResources") {
+        dependsOn(resolvableCommonResources)
+        from(resolvableCommonResources)
+    }
+
+    tasks.named<Jar>("sourcesJar") {
+        dependsOn(resolvableCommonJava)
+        from(resolvableCommonJava)
+        dependsOn(resolvableCommonResources)
+        from(resolvableCommonResources)
+    }
 }

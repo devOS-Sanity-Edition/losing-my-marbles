@@ -1,0 +1,33 @@
+[versions]
+cichlid_gradle = "0.1-SNAPSHOT"
+loom = "1.11.+"
+
+minecraft = "1.21.8"
+
+# fabric - https://fabricmc.net/develop
+fabric_loader = "0.16.4"
+fabric_api = "0.130.0+1.21.8"
+
+cichlid = "0.3.2"
+
+# fabric dev env mods
+# https://modrinth.com/mod/sodium/versions?l=fabric
+sodium = "mc1.21.6-0.6.13-fabric"
+# https://modrinth.com/mod/modmenu/versions
+mod_menu = "15.0.0-beta.3"
+
+[libraries]
+# the minecraft dependency for the fabric project only.
+fabric_minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+fabric_loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric_loader" }
+fabric_api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric_api" }
+sodium = { module = "maven.modrinth:sodium", version.ref = "sodium" }
+mod_menu = { module = "maven.modrinth:modmenu", version.ref = "mod_menu" }
+
+[bundles]
+fabric = [ "fabric_loader", "fabric_api" ]
+fabric_dev = [ "sodium", "mod_menu" ]
+
+[plugins]
+cichlid_gradle = { id = "fish.cichlidmc.cichlid-gradle", version.ref = "cichlid_gradle" }
+loom = { id = "fabric-loom", version.ref = "loom" }

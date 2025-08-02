@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "losing_my_marbles",
   "version": "${version}",
-  "name": "Example Mod",
+  "name": "Losing My Marbles!",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Tropheus Jay"
+    "devOS: Sanity Edition, Team Nautical"
   ],
   "contact": {
-    "sources": "https://github.com/TropheusJ/fabric-example-mod"
+    "sources": "https://github.com/devOS-Sanity-Edition/losing-my-marbles"
   },
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/losing_my_marbles/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.tropheusj.modid.ExampleMod"
+      "one.devos.nautical.losing_my_marbles.fabric.LosingMyMarblesFabric"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "losing_my_marbles.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": ">=${fapi_version}",
-    "minecraft": "${minecraft_dependency}"
+    "minecraft": "=${minecraft_version}"
   }
 }
