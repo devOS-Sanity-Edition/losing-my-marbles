@@ -1,20 +1,19 @@
 package one.devos.nautical.losing_my_marbles;
 
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlocks;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
 
 public final class LosingMyMarbles {
 	public static final String ID = "losing_my_marbles";
+	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 
 	public static void init() {
-		ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, id("test_item"));
-		Item.Properties properties = new Item.Properties().setId(key);
-		Item item = new Item(properties);
-		Registry.register(BuiltInRegistries.ITEM, key.location(), item);
+		LosingMyMarblesItems.init();
+		LosingMyMarblesBlocks.init();
 	}
 
 	public static ResourceLocation id(String path) {
