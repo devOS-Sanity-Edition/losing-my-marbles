@@ -6,6 +6,9 @@
   "mixins": [
   ],
   "client": [
+    "client.BlockElement_DeserializerMixin",
+    "client.BlockElementRotationMixin",
+    "client.FaceBakeryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
