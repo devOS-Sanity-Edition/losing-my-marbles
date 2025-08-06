@@ -6,7 +6,7 @@ import net.minecraft.world.phys.Vec3;
 import org.ode4j.math.DVector3C;
 import org.ode4j.ode.DBody;
 
-public record EntityEntry(Entity entity, DBody body, Vec3 offsetToCenterOfMass) {
+public record EntityEntry<T extends Entity & PhysicsEntity>(T entity, DBody body, Vec3 offsetToCenterOfMass) {
 	public void updateBody() {
 		Vec3 pos = this.entity.position();
 		this.body.setPosition(
@@ -24,13 +24,26 @@ public record EntityEntry(Entity entity, DBody body, Vec3 offsetToCenterOfMass) 
 			return;
 
 		DVector3C pos = this.body.getPosition();
-		this.entity.setPos(
+		this.entity.setNextTickPos(new Vec3(
 				pos.get0() - this.offsetToCenterOfMass.x,
 				pos.get1() - this.offsetToCenterOfMass.y,
 				pos.get2() - this.offsetToCenterOfMass.z
-		);
+		));
 
 		DVector3C vel = this.body.getLinearVel();
-		this.entity.setDeltaMovement(vel.get0(), vel.get1(), vel.get2());
+		Vec3 oldVel = this.entity.getDeltaMovement();
+		if (oldVel.x != vel.get0() || oldVel.y != vel.get1() || oldVel.z != vel.get2()) {
+			this.entity.setDeltaMovement(vel.get0(), vel.get1(), vel.get2());
+			this.entity.hasImpulse = true;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public static <T extends Entity & PhysicsEntity> EntityEntry<?> create(Entity entity, DBody body, Vec3 offset) {
+		if (!(entity instanceof PhysicsEntity)) {
+			throw new IllegalArgumentException("Entity is not a PhysicsEntity: " + entity);
+		}
+
+		return new EntityEntry<>((T) entity, body, offset);
 	}
 }

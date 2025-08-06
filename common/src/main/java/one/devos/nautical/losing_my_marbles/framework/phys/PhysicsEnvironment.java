@@ -14,7 +14,6 @@ import org.ode4j.ode.DContactBuffer;
 import org.ode4j.ode.DContactGeomBuffer;
 import org.ode4j.ode.DContactJoint;
 import org.ode4j.ode.DGeom;
-import org.ode4j.ode.DJoint;
 import org.ode4j.ode.DJointGroup;
 import org.ode4j.ode.DSpace;
 import org.ode4j.ode.DWorld;
@@ -28,19 +27,18 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 public final class PhysicsEnvironment {
-	// default value of the gravity attribute, times 20 since ODE operates in seconds.
-	public static final double GRAVITY = 0.08 * 20;
+	// for some reason this works best with the real gravity value, not in-game ones
+	public static final double GRAVITY = -9.81;
 	public static final int MAX_CONTACTS = 8;
 
 	private final DWorld world;
 	private final DSpace space;
 
-	private final Map<PhysicsEntity, EntityEntry> entities;
+	private final Map<PhysicsEntity, EntityEntry<?>> entities;
 
 	public PhysicsEnvironment(Level level) {
 		this.world = OdeHelper.createWorld();
-		this.world.setGravity(0, -GRAVITY, 0);
-		// this.world.setQuickStepNumIterations(100);
+		this.world.setGravity(0, GRAVITY, 0);
 		this.world.setDamping(0.01, 0.01);
 
 		this.space = OdeHelper.createHashSpace();
@@ -71,12 +69,12 @@ public final class PhysicsEnvironment {
 				bodyPos.get2() - entityPos.z
 		);
 
-		this.entities.put(physicsEntity, new EntityEntry(entity, body, offset));
+		this.entities.put(physicsEntity, EntityEntry.create(entity, body, offset));
 	}
 
 	public void entityRemoved(Entity entity) {
 		if (entity instanceof PhysicsEntity physicsEntity) {
-			EntityEntry entry = this.entities.remove(physicsEntity);
+			EntityEntry<?> entry = this.entities.remove(physicsEntity);
 			if (entry != null) {
 				entry.body().getGeomIterator().forEachRemaining(DGeom::destroy);
 			}
@@ -92,7 +90,7 @@ public final class PhysicsEnvironment {
 		// collect surrounding level collision and add it to the space temporarily
 		List<DGeom> levelCollision = new ArrayList<>();
 
-		for (EntityEntry entry : this.entities.values()) {
+		for (EntityEntry<?> entry : this.entities.values()) {
 			entry.updateBody();
 
 			this.collectLevelCollision(entry.entity(), levelCollision::add);
