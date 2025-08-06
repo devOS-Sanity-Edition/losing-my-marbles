@@ -1,0 +1,244 @@
+{
+  "variants": {
+    "color=white,facing=northwest": {
+      "model": "losing_my_marbles:block/white_corner_piece"
+    },
+    "color=white,facing=northeast": {
+      "model": "losing_my_marbles:block/white_corner_piece",
+      "y": 90
+    },
+    "color=white,facing=southeast": {
+      "model": "losing_my_marbles:block/white_corner_piece",
+      "y": 180
+    },
+    "color=white,facing=southwest": {
+      "model": "losing_my_marbles:block/white_corner_piece",
+      "y": 270
+    },
+    "color=light_gray,facing=northwest": {
+      "model": "losing_my_marbles:block/light_gray_corner_piece"
+    },
+    "color=light_gray,facing=northeast": {
+      "model": "losing_my_marbles:block/light_gray_corner_piece",
+      "y": 90
+    },
+    "color=light_gray,facing=southeast": {
+      "model": "losing_my_marbles:block/light_gray_corner_piece",
+      "y": 180
+    },
+    "color=light_gray,facing=southwest": {
+      "model": "losing_my_marbles:block/light_gray_corner_piece",
+      "y": 270
+    },
+    "color=gray,facing=northwest": {
+      "model": "losing_my_marbles:block/gray_corner_piece"
+    },
+    "color=gray,facing=northeast": {
+      "model": "losing_my_marbles:block/gray_corner_piece",
+      "y": 90
+    },
+    "color=gray,facing=southeast": {
+      "model": "losing_my_marbles:block/gray_corner_piece",
+      "y": 180
+    },
+    "color=gray,facing=southwest": {
+      "model": "losing_my_marbles:block/gray_corner_piece",
+      "y": 270
+    },
+    "color=black,facing=northwest": {
+      "model": "losing_my_marbles:block/black_corner_piece"
+    },
+    "color=black,facing=northeast": {
+      "model": "losing_my_marbles:block/black_corner_piece",
+      "y": 90
+    },
+    "color=black,facing=southeast": {
+      "model": "losing_my_marbles:block/black_corner_piece",
+      "y": 180
+    },
+    "color=black,facing=southwest": {
+      "model": "losing_my_marbles:block/black_corner_piece",
+      "y": 270
+    },
+    "color=brown,facing=northwest": {
+      "model": "losing_my_marbles:block/brown_corner_piece"
+    },
+    "color=brown,facing=northeast": {
+      "model": "losing_my_marbles:block/brown_corner_piece",
+      "y": 90
+    },
+    "color=brown,facing=southeast": {
+      "model": "losing_my_marbles:block/brown_corner_piece",
+      "y": 180
+    },
+    "color=brown,facing=southwest": {
+      "model": "losing_my_marbles:block/brown_corner_piece",
+      "y": 270
+    },
+    "color=red,facing=northwest": {
+      "model": "losing_my_marbles:block/red_corner_piece"
+    },
+    "color=red,facing=northeast": {
+      "model": "losing_my_marbles:block/red_corner_piece",
+      "y": 90
+    },
+    "color=red,facing=southeast": {
+      "model": "losing_my_marbles:block/red_corner_piece",
+      "y": 180
+    },
+    "color=red,facing=southwest": {
+      "model": "losing_my_marbles:block/red_corner_piece",
+      "y": 270
+    },
+    "color=orange,facing=northwest": {
+      "model": "losing_my_marbles:block/orange_corner_piece"
+    },
+    "color=orange,facing=northeast": {
+      "model": "losing_my_marbles:block/orange_corner_piece",
+      "y": 90
+    },
+    "color=orange,facing=southeast": {
+      "model": "losing_my_marbles:block/orange_corner_piece",
+      "y": 180
+    },
+    "color=orange,facing=southwest": {
+      "model": "losing_my_marbles:block/orange_corner_piece",
+      "y": 270
+    },
+    "color=yellow,facing=northwest": {
+      "model": "losing_my_marbles:block/yellow_corner_piece"
+    },
+    "color=yellow,facing=northeast": {
+      "model": "losing_my_marbles:block/yellow_corner_piece",
+      "y": 90
+    },
+    "color=yellow,facing=southeast": {
+      "model": "losing_my_marbles:block/yellow_corner_piece",
+      "y": 180
+    },
+    "color=yellow,facing=southwest": {
+      "model": "losing_my_marbles:block/yellow_corner_piece",
+      "y": 270
+    },
+    "color=lime,facing=northwest": {
+      "model": "losing_my_marbles:block/lime_corner_piece"
+    },
+    "color=lime,facing=northeast": {
+      "model": "losing_my_marbles:block/lime_corner_piece",
+      "y": 90
+    },
+    "color=lime,facing=southeast": {
+      "model": "losing_my_marbles:block/lime_corner_piece",
+      "y": 180
+    },
+    "color=lime,facing=southwest": {
+      "model": "losing_my_marbles:block/lime_corner_piece",
+      "y": 270
+    },
+    "color=green,facing=northwest": {
+      "model": "losing_my_marbles:block/green_corner_piece"
+    },
+    "color=green,facing=northeast": {
+      "model": "losing_my_marbles:block/green_corner_piece",
+      "y": 90
+    },
+    "color=green,facing=southeast": {
+      "model": "losing_my_marbles:block/green_corner_piece",
+      "y": 180
+    },
+    "color=green,facing=southwest": {
+      "model": "losing_my_marbles:block/green_corner_piece",
+      "y": 270
+    },
+    "color=cyan,facing=northwest": {
+      "model": "losing_my_marbles:block/cyan_corner_piece"
+    },
+    "color=cyan,facing=northeast": {
+      "model": "losing_my_marbles:block/cyan_corner_piece",
+      "y": 90
+    },
+    "color=cyan,facing=southeast": {
+      "model": "losing_my_marbles:block/cyan_corner_piece",
+      "y": 180
+    },
+    "color=cyan,facing=southwest": {
+      "model": "losing_my_marbles:block/cyan_corner_piece",
+      "y": 270
+    },
+    "color=blue,facing=northwest": {
+      "model": "losing_my_marbles:block/blue_corner_piece"
+    },
+    "color=blue,facing=northeast": {
+      "model": "losing_my_marbles:block/blue_corner_piece",
+      "y": 90
+    },
+    "color=blue,facing=southeast": {
+      "model": "losing_my_marbles:block/blue_corner_piece",
+      "y": 180
+    },
+    "color=blue,facing=southwest": {
+      "model": "losing_my_marbles:block/blue_corner_piece",
+      "y": 270
+    },
+    "color=light_blue,facing=northwest": {
+      "model": "losing_my_marbles:block/light_blue_corner_piece"
+    },
+    "color=light_blue,facing=northeast": {
+      "model": "losing_my_marbles:block/light_blue_corner_piece",
+      "y": 90
+    },
+    "color=light_blue,facing=southeast": {
+      "model": "losing_my_marbles:block/light_blue_corner_piece",
+      "y": 180
+    },
+    "color=light_blue,facing=southwest": {
+      "model": "losing_my_marbles:block/light_blue_corner_piece",
+      "y": 270
+    },
+    "color=purple,facing=northwest": {
+      "model": "losing_my_marbles:block/purple_corner_piece"
+    },
+    "color=purple,facing=northeast": {
+      "model": "losing_my_marbles:block/purple_corner_piece",
+      "y": 90
+    },
+    "color=purple,facing=southeast": {
+      "model": "losing_my_marbles:block/purple_corner_piece",
+      "y": 180
+    },
+    "color=purple,facing=southwest": {
+      "model": "losing_my_marbles:block/purple_corner_piece",
+      "y": 270
+    },
+    "color=magenta,facing=northwest": {
+      "model": "losing_my_marbles:block/magenta_corner_piece"
+    },
+    "color=magenta,facing=northeast": {
+      "model": "losing_my_marbles:block/magenta_corner_piece",
+      "y": 90
+    },
+    "color=magenta,facing=southeast": {
+      "model": "losing_my_marbles:block/magenta_corner_piece",
+      "y": 180
+    },
+    "color=magenta,facing=southwest": {
+      "model": "losing_my_marbles:block/magenta_corner_piece",
+      "y": 270
+    },
+    "color=pink,facing=northwest": {
+      "model": "losing_my_marbles:block/pink_corner_piece"
+    },
+    "color=pink,facing=northeast": {
+      "model": "losing_my_marbles:block/pink_corner_piece",
+      "y": 90
+    },
+    "color=pink,facing=southeast": {
+      "model": "losing_my_marbles:block/pink_corner_piece",
+      "y": 180
+    },
+    "color=pink,facing=southwest": {
+      "model": "losing_my_marbles:block/pink_corner_piece",
+      "y": 270
+    }
+  }
+}

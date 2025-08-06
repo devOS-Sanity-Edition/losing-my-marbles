@@ -1,6 +1,7 @@
 {
   "itemGroup.losing_my_marbles": "Losing My Marbles",
 
-  "block.losing_my_marbles.straight_piece": "Straight Marble Track Piece"
+  "block.losing_my_marbles.straight_piece": "Straight Marble Track Piece",
+  "block.losing_my_marbles.corner_piece": "Corner Marble Track Piece"
 
 }

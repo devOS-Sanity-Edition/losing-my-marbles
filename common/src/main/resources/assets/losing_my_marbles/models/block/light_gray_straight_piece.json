@@ -1,6 +1,6 @@
 {
   "parent": "losing_my_marbles:block/template_straight_piece",
   "textures": {
-    "straight": "losing_my_marbles:block/light_gray_straight_piece"
+    "straight": "losing_my_marbles:block/light_gray_track_pieces"
   }
 }
