@@ -8,7 +8,7 @@ import org.ode4j.ode.DBody;
 
 public record EntityEntry(Entity entity, DBody body, Vec3 offsetToCenterOfMass) {
 	public void updateBody() {
-		Vec3 pos = this.entity.position().add(this.offsetToCenterOfMass);
+		Vec3 pos = this.entity.position();
 		this.body.setPosition(
 				pos.x + this.offsetToCenterOfMass.x,
 				pos.y + this.offsetToCenterOfMass.y,

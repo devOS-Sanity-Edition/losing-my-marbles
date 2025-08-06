@@ -7,11 +7,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public abstract class PieceBlock extends Block {
-	/**
-	 * Typical radius for tube-like pieces. 2 pixels across, 4 pixel diameter.
-	 */
-	public static final double RADIUS = 2 / 16d;
-
 	public static final EnumProperty<DyeColor> COLOR = EnumProperty.create("color", DyeColor.class);
 
 	protected PieceBlock(Properties properties) {

@@ -11,8 +11,8 @@ import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEnvironment;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEventListeners;
 
 public final class LosingMyMarblesFabric implements ModInitializer {
-	public static final AttachmentType<PhysicsEnvironment> PHYSICS_ENV_ATTACHMENT = AttachmentRegistry.createDefaulted(
-			LosingMyMarbles.id("physics_environment"), PhysicsEnvironment::new
+	public static final AttachmentType<PhysicsEnvironment> PHYSICS_ENV_ATTACHMENT = AttachmentRegistry.create(
+			LosingMyMarbles.id("physics_environment")
 	);
 
 	@Override

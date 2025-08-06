@@ -15,6 +15,6 @@ public class FabricPlatformHelper implements PlatformHelper {
 
 	@Override
 	public PhysicsEnvironment getPhysicsEnvironment(Level level) {
-		return level.getAttachedOrCreate(LosingMyMarblesFabric.PHYSICS_ENV_ATTACHMENT);
+		return level.getAttachedOrCreate(LosingMyMarblesFabric.PHYSICS_ENV_ATTACHMENT, () -> new PhysicsEnvironment(level));
 	}
 }

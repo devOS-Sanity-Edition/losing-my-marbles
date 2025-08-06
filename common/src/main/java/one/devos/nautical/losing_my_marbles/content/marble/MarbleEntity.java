@@ -12,11 +12,12 @@ import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEntity;
 
 import org.ode4j.ode.DBody;
+import org.ode4j.ode.DMass;
 import org.ode4j.ode.DSphere;
 import org.ode4j.ode.OdeHelper;
 
 public final class MarbleEntity extends Entity implements PhysicsEntity {
-	public static final float RADIUS = 2 / 16f;
+	public static final float RADIUS = 3 / 16f;
 	public static final float DIAMETER = RADIUS * 2;
 
 	public MarbleEntity(EntityType<?> type, Level level) {
@@ -31,6 +32,10 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	public void buildBody(DBody body) {
 		DSphere geometry = OdeHelper.createSphere(RADIUS);
 		geometry.setBody(body);
+
+		DMass mass = OdeHelper.createMass();
+		mass.setSphereTotal(10, RADIUS);
+		body.setMass(mass);
 
 		body.setPosition(this.getX(), this.getY() + RADIUS, this.getZ());
 		Vec3 vel = this.getDeltaMovement();

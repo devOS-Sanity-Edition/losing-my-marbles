@@ -18,6 +18,7 @@ import org.ode4j.ode.DJoint;
 import org.ode4j.ode.DJointGroup;
 import org.ode4j.ode.DSpace;
 import org.ode4j.ode.DWorld;
+import org.ode4j.ode.OdeConstants;
 import org.ode4j.ode.OdeHelper;
 
 import java.util.ArrayList;
@@ -29,19 +30,22 @@ import java.util.function.Consumer;
 public final class PhysicsEnvironment {
 	// default value of the gravity attribute, times 20 since ODE operates in seconds.
 	public static final double GRAVITY = 0.08 * 20;
-	public static final int MAX_CONTACTS = 5;
+	public static final int MAX_CONTACTS = 8;
 
 	private final DWorld world;
 	private final DSpace space;
 
 	private final Map<PhysicsEntity, EntityEntry> entities;
 
-	public PhysicsEnvironment() {
+	public PhysicsEnvironment(Level level) {
 		this.world = OdeHelper.createWorld();
 		this.world.setGravity(0, -GRAVITY, 0);
-		this.world.setQuickStepNumIterations(100);
+		// this.world.setQuickStepNumIterations(100);
+		this.world.setDamping(0.01, 0.01);
 
 		this.space = OdeHelper.createHashSpace();
+		// constructor registers it
+		// new LevelGeom(level, this.space);
 
 		this.entities = new IdentityHashMap<>();
 	}
@@ -91,10 +95,7 @@ public final class PhysicsEnvironment {
 		for (EntityEntry entry : this.entities.values()) {
 			entry.updateBody();
 
-			this.collectLevelCollision(entry.entity(), geometry -> {
-				levelCollision.add(geometry);
-				this.space.add(geometry);
-			});
+			this.collectLevelCollision(entry.entity(), levelCollision::add);
 		}
 
 		// find collisions
@@ -107,8 +108,14 @@ public final class PhysicsEnvironment {
 			for (int i = 0; i < contactCount; i++) {
 				DContact contact = contacts.get(i);
 
+				contact.surface.mode = OdeConstants.dContactBounce;
+				contact.surface.mu = 50;
+				contact.surface.soft_erp = 0.96;
+				contact.surface.soft_cfm = 2;
+				contact.surface.bounce = 0.5;
+
 				DContactJoint joint = OdeHelper.createContactJoint(this.world, group, contact);
-				joint.attach(g1.getBody(), g2.getBody());
+				joint.attach(contact.geom.g1.getBody(), contact.geom.g2.getBody());
 			}
 		});
 
@@ -123,7 +130,6 @@ public final class PhysicsEnvironment {
 	}
 
 	private void collectLevelCollision(Entity entity, Consumer<DGeom> output) {
-		// if (true) return;
 		AABB area = entity.getBoundingBox().expandTowards(entity.getDeltaMovement());
 
 		entity.level().getCollisions(entity, area).forEach(shape -> {
@@ -134,7 +140,7 @@ public final class PhysicsEnvironment {
 				// ignore external forces
 				boxBody.setKinematic();
 
-				DBox dBox = OdeHelper.createBox(box.getXsize(), box.getYsize(), box.getZsize());
+				DBox dBox = OdeHelper.createBox(this.space, box.getXsize(), box.getYsize(), box.getZsize());
 				dBox.setBody(boxBody);
 
 				// position in ODE is the center of the box
