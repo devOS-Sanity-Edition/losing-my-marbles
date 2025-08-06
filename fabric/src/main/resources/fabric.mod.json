@@ -16,6 +16,9 @@
   "entrypoints": {
     "main": [
       "one.devos.nautical.losing_my_marbles.fabric.LosingMyMarblesFabric"
+    ],
+    "client": [
+      "one.devos.nautical.losing_my_marbles.fabric.LosingMyMarblesFabricClient"
     ]
   },
   "mixins": [

@@ -20,6 +20,7 @@ val mc by minecraft.creating {
 
 dependencies {
     implementation(mc.dependency)
+    implementation(libs.bundles.common)
 }
 
 // outgoing configurations for loader projects

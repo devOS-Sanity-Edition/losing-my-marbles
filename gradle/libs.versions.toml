@@ -10,6 +10,9 @@ fabric_api = "0.130.0+1.21.8"
 
 cichlid = "0.3.2"
 
+# ode4j - https://github.com/tzaeschke/ode4j
+ode4j = "0.5.4"
+
 # fabric dev env mods
 # https://modrinth.com/mod/sodium/versions?l=fabric
 sodium = "mc1.21.6-0.6.13-fabric"
@@ -23,10 +26,12 @@ fabric_loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric_l
 fabric_api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric_api" }
 sodium = { module = "maven.modrinth:sodium", version.ref = "sodium" }
 mod_menu = { module = "maven.modrinth:modmenu", version.ref = "mod_menu" }
+ode4j = { module = "org.ode4j:core", version.ref = "ode4j" }
 
 [bundles]
 fabric = [ "fabric_loader", "fabric_api" ]
 fabric_dev = [ "sodium", "mod_menu" ]
+common = [ "ode4j" ]
 
 [plugins]
 cichlid_gradle = { id = "fish.cichlidmc.cichlid-gradle", version.ref = "cichlid_gradle" }

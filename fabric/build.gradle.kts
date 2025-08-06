@@ -11,6 +11,9 @@ dependencies {
 	mappings(loom.officialMojangMappings())
     modImplementation(libs.bundles.fabric)
     modLocalRuntime(libs.bundles.fabric.dev)
+
+    implementation(libs.bundles.common)
+    include(libs.bundles.common)
 }
 
 loom.runs {
