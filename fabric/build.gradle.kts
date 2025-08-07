@@ -12,8 +12,22 @@ dependencies {
     modImplementation(libs.bundles.fabric)
     modLocalRuntime(libs.bundles.fabric.dev)
 
-    implementation(libs.bundles.common)
-    include(libs.bundles.common)
+    modLocalRuntime(variantOf(jolt.runtime) {
+        classifier("DebugDp")
+    })
+
+    // this is stupid but a bundle can't be used here. I tried for an hour.
+    include(release(jolt.natives.windows64))
+    include(release(jolt.natives.linux64))
+    include(release(jolt.natives.linux.arm64))
+    include(release(jolt.natives.macosx64))
+    include(release(jolt.natives.macosx.arm64))
+}
+
+fun DependencyHandler.release(native: Provider<MinimalExternalModuleDependency>): Provider<MinimalExternalModuleDependency> {
+    return this.variantOf(native) {
+        classifier("ReleaseDp")
+    }
 }
 
 loom.runs {
