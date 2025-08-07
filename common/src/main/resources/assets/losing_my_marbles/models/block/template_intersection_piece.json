@@ -150,39 +150,35 @@
 			}
 		},
 		{
-			"from": [8.67862, 6.8839, 10],
-			"to": [11.60362, 6.8839, 16],
-			"rotation": {"angle": -90, "axis": "x", "origin": [8, 9.02503, 8]},
-			"rotated": [-90, -45, 90],
+			"from": [0, 6.8839, 8.67862],
+			"to": [6, 6.8839, 11.60362],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 9.02503, 8]},
 			"faces": {
-				"up": {"uv": [9.75, 6.0375, 11.25, 7.5], "rotation": 90, "texture": "#intersection"}
+				"up": {"uv": [9.75, 6, 11.25, 7.4625], "rotation": 180, "texture": "#intersection"}
 			}
 		},
 		{
-			"from": [4.39638, 6.8839, 10],
-			"to": [7.32138, 6.8839, 16],
-			"rotation": {"angle": 90, "axis": "x", "origin": [8, 9.02503, 8]},
-			"rotated": [90, -45, -90],
+			"from": [0, 6.8839, 4.39638],
+			"to": [6, 6.8839, 7.32138],
+			"rotation": {"angle": 45, "axis": "x", "origin": [8, 9.02503, 8]},
 			"faces": {
-				"up": {"uv": [9.75, 7.5, 11.25, 6.0375], "rotation": 90, "texture": "#intersection"}
+				"up": {"uv": [9.75, 7.4625, 11.25, 6], "rotation": 180, "texture": "#intersection"}
 			}
 		},
 		{
-			"from": [4.39638, 6.8839, 0],
-			"to": [7.32138, 6.8839, 6],
-			"rotation": {"angle": 90, "axis": "x", "origin": [8, 9.02503, 8]},
-			"rotated": [90, -45, -90],
+			"from": [10, 6.8839, 4.39638],
+			"to": [16, 6.8839, 7.32138],
+			"rotation": {"angle": 45, "axis": "x", "origin": [8, 9.02503, 8]},
 			"faces": {
-				"up": {"uv": [8, 7.4625, 9.5, 6], "rotation": 90, "texture": "#intersection"}
+				"up": {"uv": [8, 7.5, 9.5, 6.0375], "rotation": 180, "texture": "#intersection"}
 			}
 		},
 		{
-			"from": [8.67862, 6.8839, 0],
-			"to": [11.60362, 6.8839, 6],
-			"rotation": {"angle": -90, "axis": "x", "origin": [8, 9.02503, 8]},
-			"rotated": [-90, -45, 90],
+			"from": [10, 6.8839, 8.67862],
+			"to": [16, 6.8839, 11.60362],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 9.02503, 8]},
 			"faces": {
-				"up": {"uv": [8, 6, 9.5, 7.4625], "rotation": 90, "texture": "#intersection"}
+				"up": {"uv": [8, 6.0375, 9.5, 7.5], "rotation": 180, "texture": "#intersection"}
 			}
 		},
 		{
