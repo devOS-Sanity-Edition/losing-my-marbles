@@ -1,9 +1,20 @@
 package one.devos.nautical.losing_my_marbles.framework.phys;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySelector;
+import net.minecraft.world.level.BlockCollisions;
 import net.minecraft.world.level.Level;
+
+import net.minecraft.world.phys.AABB;
+
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import org.ode4j.ode.DAABB;
 import org.ode4j.ode.DAABBC;
+import org.ode4j.ode.DBox;
 import org.ode4j.ode.DContactGeomBuffer;
 import org.ode4j.ode.DGeom;
 import org.ode4j.ode.DSpace;
@@ -40,13 +51,63 @@ public final class LevelGeom extends DxGeom {
 			throw new IllegalArgumentException("maxContacts must be >0");
 		}
 
-		Level level = levelGeom.level;
+		DAABBC sphereBounds = sphere.getAABB();
+		AABB area = new AABB(
+				sphereBounds.getMin0(), sphereBounds.getMin1(), sphereBounds.getMin2(),
+				sphereBounds.getMax0(), sphereBounds.getMax1(), sphereBounds.getMax2()
+		);
 
-		// h
-		return 0;
+		int contactCount = 0;
+		DBox reusableBox = OdeHelper.createBox(0, 0, 0);
+
+		for (Block block : collidingBlocks(levelGeom.level, area)) {
+			for (AABB aabb : block.shape.toAabbs()) {
+				updateBox(reusableBox, aabb);
+				DContactGeomBuffer subBuffer = contacts.createView(contactCount);
+
+				contactCount += OdeHelper.collide(sphere, reusableBox, 1, subBuffer);
+
+				if (contactCount >= maxContacts) {
+					return contactCount;
+				}
+			}
+		}
+
+		for (Entity entity : levelGeom.level.getEntities((Entity) null, area, EntitySelector.CAN_BE_COLLIDED_WITH)) {
+			updateBox(reusableBox, entity.getBoundingBox());
+			DContactGeomBuffer subBuffer = contacts.createView(contactCount);
+
+			contactCount += OdeHelper.collide(sphere, reusableBox, 1, subBuffer);
+
+			if (contactCount >= maxContacts) {
+				return contactCount;
+			}
+		}
+
+		return contactCount;
 	}
 
 	public static void init() {
 		OdeHelper.setColliderOverride(dSphereClass, CLASS, LevelGeom::collide);
+	}
+
+	private static Iterable<Block> collidingBlocks(Level level, AABB area) {
+		Block holder = new Block();
+		return () -> new BlockCollisions<>(level, CollisionContext.empty(), area, false, (pos, shape) -> {
+			holder.pos = pos;
+			holder.shape = shape;
+			return holder;
+		});
+	}
+
+	private static void updateBox(DBox box, AABB aabb) {
+		box.setLengths(aabb.getXsize(), aabb.getYsize(), aabb.getZsize());
+		Vec3 center = aabb.getCenter();
+		box.setPosition(center.x, center.y, center.z);
+	}
+
+	private static final class Block {
+		private BlockPos.MutableBlockPos pos;
+		private VoxelShape shape;
 	}
 }
