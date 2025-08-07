@@ -61,12 +61,12 @@
 			}
 		},
 		{
-			"from": [4, 8, 0],
-			"to": [12, 10, 16],
-			"rotation": {"angle": -90, "axis": "y", "origin": [8, 9, 8]},
+			"from": [0, 8, 4],
+			"to": [16, 10, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9, 8]},
 			"faces": {
-				"north": {"uv": [5, 3, 7, 4], "texture": "#intersection", "cullface": "north"},
-				"south": {"uv": [5, 3, 7, 4], "texture": "#intersection", "cullface": "south"}
+				"east": {"uv": [5, 3, 7, 4], "texture": "#intersection", "cullface": "east"},
+				"west": {"uv": [5, 3, 7, 4], "texture": "#intersection", "cullface": "west"}
 			}
 		},
 		{
