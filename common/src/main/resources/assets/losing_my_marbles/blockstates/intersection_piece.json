@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "color=white": {
+      "model": "losing_my_marbles:block/white_intersection_piece"
+    },
+    "color=light_gray": {
+      "model": "losing_my_marbles:block/light_gray_intersection_piece"
+    },
+    "color=gray": {
+      "model": "losing_my_marbles:block/gray_intersection_piece"
+    },
+    "color=black": {
+      "model": "losing_my_marbles:block/black_intersection_piece"
+    },
+    "color=brown": {
+      "model": "losing_my_marbles:block/brown_intersection_piece"
+    },
+    "color=red": {
+      "model": "losing_my_marbles:block/red_intersection_piece"
+    },
+    "color=orange": {
+      "model": "losing_my_marbles:block/orange_intersection_piece"
+    },
+    "color=yellow": {
+      "model": "losing_my_marbles:block/yellow_intersection_piece"
+    },
+    "color=lime": {
+      "model": "losing_my_marbles:block/lime_intersection_piece"
+    },
+    "color=green": {
+      "model": "losing_my_marbles:block/green_intersection_piece"
+    },
+    "color=cyan": {
+      "model": "losing_my_marbles:block/cyan_intersection_piece"
+    },
+    "color=blue": {
+      "model": "losing_my_marbles:block/blue_intersection_piece"
+    },
+    "color=light_blue": {
+      "model": "losing_my_marbles:block/light_blue_intersection_piece"
+    },
+    "color=purple": {
+      "model": "losing_my_marbles:block/purple_intersection_piece"
+    },
+    "color=magenta": {
+      "model": "losing_my_marbles:block/magenta_intersection_piece"
+    },
+    "color=pink": {
+      "model": "losing_my_marbles:block/pink_intersection_piece"
+    }
+  }
+}

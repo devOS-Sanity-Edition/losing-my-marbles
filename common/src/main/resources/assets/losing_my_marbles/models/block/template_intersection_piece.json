@@ -1,0 +1,357 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made by Cart3r using Blockbench.",
+	"texture_size": [64, 32],
+	"textures": {
+		"particle": "#intersection",
+		"intersection": "#intersection"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [4, 3, 4],
+			"faces": {
+				"north": {"uv": [0, 6.5, 1, 8], "texture": "#intersection", "cullface": "north"},
+				"east": {"uv": [0, 6.5, 1, 8], "texture": "#intersection"},
+				"south": {"uv": [0, 6.5, 1, 8], "texture": "#intersection"},
+				"west": {"uv": [0, 6.5, 1, 8], "texture": "#intersection", "cullface": "west"}
+			}
+		},
+		{
+			"from": [0, 0, 12],
+			"to": [4, 3, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 12]},
+			"faces": {
+				"north": {"uv": [0, 6.5, 1, 8], "texture": "#intersection"},
+				"east": {"uv": [0, 6.5, 1, 8], "texture": "#intersection"},
+				"south": {"uv": [0, 6.5, 1, 8], "texture": "#intersection", "cullface": "south"},
+				"west": {"uv": [0, 6.5, 1, 8], "texture": "#intersection", "cullface": "west"}
+			}
+		},
+		{
+			"from": [12, 0, 12],
+			"to": [16, 3, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [12, 0, 12]},
+			"faces": {
+				"north": {"uv": [0, 6.5, 1, 8], "texture": "#intersection"},
+				"east": {"uv": [0, 6.5, 1, 8], "texture": "#intersection", "cullface": "east"},
+				"south": {"uv": [0, 6.5, 1, 8], "texture": "#intersection", "cullface": "south"},
+				"west": {"uv": [0, 6.5, 1, 8], "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [0, 3, 0],
+			"to": [16, 8, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [12, 4, 12]},
+			"faces": {
+				"north": {"uv": [4, 4, 8, 6.5], "texture": "#intersection", "cullface": "north"},
+				"east": {"uv": [0, 4, 4, 6.5], "texture": "#intersection", "cullface": "east"},
+				"south": {"uv": [4, 4, 8, 6.5], "texture": "#intersection", "cullface": "south"},
+				"west": {"uv": [0, 4, 4, 6.5], "texture": "#intersection", "cullface": "west"},
+				"down": {"uv": [4, 8, 8, 16], "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [4, 8, 0],
+			"to": [12, 10, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [12, 6, 12]},
+			"faces": {
+				"north": {"uv": [5, 3, 7, 4], "texture": "#intersection", "cullface": "north"},
+				"south": {"uv": [5, 3, 7, 4], "texture": "#intersection", "cullface": "south"}
+			}
+		},
+		{
+			"from": [4, 8, 0],
+			"to": [12, 10, 16],
+			"rotation": {"angle": -90, "axis": "y", "origin": [8, 9, 8]},
+			"faces": {
+				"north": {"uv": [5, 3, 7, 4], "texture": "#intersection", "cullface": "north"},
+				"south": {"uv": [5, 3, 7, 4], "texture": "#intersection", "cullface": "south"}
+			}
+		},
+		{
+			"from": [12, 8, 0],
+			"to": [16, 16, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 12, 2]},
+			"faces": {
+				"north": {"uv": [4, 0, 5, 4], "texture": "#intersection", "cullface": "north"},
+				"east": {"uv": [7, 0, 8, 4], "texture": "#intersection", "cullface": "east"},
+				"south": {"uv": [3, 0, 4, 4], "texture": "#intersection"},
+				"west": {"uv": [0, 0, 1, 4], "texture": "#intersection"},
+				"up": {"uv": [2, 14.5, 3, 12.5], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [0, 8, 0],
+			"to": [4, 16, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 12, 2]},
+			"faces": {
+				"north": {"uv": [7, 0, 8, 4], "texture": "#intersection", "cullface": "north"},
+				"east": {"uv": [3, 0, 4, 4], "texture": "#intersection"},
+				"south": {"uv": [0, 0, 1, 4], "texture": "#intersection"},
+				"west": {"uv": [4, 0, 5, 4], "texture": "#intersection", "cullface": "west"},
+				"up": {"uv": [2, 14.5, 3, 12.5], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [0, 8, 12],
+			"to": [4, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 12, 14]},
+			"faces": {
+				"north": {"uv": [3, 0, 4, 4], "texture": "#intersection"},
+				"east": {"uv": [0, 0, 1, 4], "texture": "#intersection"},
+				"south": {"uv": [4, 0, 5, 4], "texture": "#intersection", "cullface": "south"},
+				"west": {"uv": [7, 0, 8, 4], "texture": "#intersection", "cullface": "west"},
+				"up": {"uv": [2, 14.5, 3, 12.5], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [12, 8, 12],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [20, 12, 14]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 4], "texture": "#intersection"},
+				"east": {"uv": [4, 0, 5, 4], "texture": "#intersection", "cullface": "east"},
+				"south": {"uv": [7, 0, 8, 4], "texture": "#intersection", "cullface": "south"},
+				"west": {"uv": [3, 0, 4, 4], "texture": "#intersection"},
+				"up": {"uv": [2, 14.5, 3, 12.5], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [8.67862, 6.8839, 0],
+			"to": [11.60362, 6.8839, 6],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 9.02503, 8]},
+			"faces": {
+				"up": {"uv": [11.25, 6.0375, 9.75, 7.5], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [4.39638, 6.8839, 0],
+			"to": [7.32138, 6.8839, 6],
+			"rotation": {"angle": -45, "axis": "z", "origin": [8, 9.02503, 8]},
+			"faces": {
+				"up": {"uv": [11.25, 7.5, 9.75, 6.0375], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [8.67862, 6.8839, 10],
+			"to": [11.60362, 6.8839, 16],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, 9.02503, 8]},
+			"faces": {
+				"up": {"uv": [9.5, 6, 8, 7.4625], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [4.39638, 6.8839, 10],
+			"to": [7.32138, 6.8839, 16],
+			"rotation": {"angle": -45, "axis": "z", "origin": [8, 9.02503, 8]},
+			"faces": {
+				"up": {"uv": [9.5, 7.4625, 8, 6], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [8.67862, 6.8839, 10],
+			"to": [11.60362, 6.8839, 16],
+			"rotation": {"angle": -90, "axis": "x", "origin": [8, 9.02503, 8]},
+			"rotated": [-90, -45, 90],
+			"faces": {
+				"up": {"uv": [9.75, 6.0375, 11.25, 7.5], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [4.39638, 6.8839, 10],
+			"to": [7.32138, 6.8839, 16],
+			"rotation": {"angle": 90, "axis": "x", "origin": [8, 9.02503, 8]},
+			"rotated": [90, -45, -90],
+			"faces": {
+				"up": {"uv": [9.75, 7.5, 11.25, 6.0375], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [4.39638, 6.8839, 0],
+			"to": [7.32138, 6.8839, 6],
+			"rotation": {"angle": 90, "axis": "x", "origin": [8, 9.02503, 8]},
+			"rotated": [90, -45, -90],
+			"faces": {
+				"up": {"uv": [8, 7.4625, 9.5, 6], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [8.67862, 6.8839, 0],
+			"to": [11.60362, 6.8839, 6],
+			"rotation": {"angle": -90, "axis": "x", "origin": [8, 9.02503, 8]},
+			"rotated": [-90, -45, 90],
+			"faces": {
+				"up": {"uv": [8, 6, 9.5, 7.4625], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [12, 0, 0],
+			"to": [16, 3, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [12, 0, 0]},
+			"faces": {
+				"north": {"uv": [0, 6.5, 1, 8], "texture": "#intersection", "cullface": "north"},
+				"east": {"uv": [0, 6.5, 1, 8], "texture": "#intersection", "cullface": "east"},
+				"south": {"uv": [0, 6.5, 1, 8], "texture": "#intersection"},
+				"west": {"uv": [0, 6.5, 1, 8], "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [0.5, 16, 12.5],
+			"to": [3.5, 18, 15.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-0.5, 16, 12.5]},
+			"faces": {
+				"north": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"east": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"south": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"west": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"up": {"uv": [0, 12.5, 0.75, 14], "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [0.5, 16, 0.5],
+			"to": [3.5, 18, 3.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-0.5, 16, -0.5]},
+			"faces": {
+				"north": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"east": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"south": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"west": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"up": {"uv": [0, 12.5, 0.75, 14], "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [12.5, 16, 0.5],
+			"to": [15.5, 18, 3.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [12.5, 16, -0.5]},
+			"faces": {
+				"north": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"east": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"south": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"west": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"up": {"uv": [0, 12.5, 0.75, 14], "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [12.5, 16, 12.5],
+			"to": [15.5, 18, 15.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [12.5, 16, 12.5]},
+			"faces": {
+				"north": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"east": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"south": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"west": {"uv": [1, 12.5, 1.75, 13.5], "texture": "#intersection"},
+				"up": {"uv": [0, 12.5, 0.75, 14], "texture": "#intersection"}
+			}
+		},
+		{
+			"name": "cube_outline",
+			"from": [4, 3, 4],
+			"to": [0.1, 0, 0.1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 1.5, 2]},
+			"faces": {
+				"north": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"},
+				"east": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection", "cullface": "down"},
+				"south": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"},
+				"west": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"}
+			}
+		},
+		{
+			"name": "cube_outline",
+			"from": [4, 3, 15.9],
+			"to": [0.1, 0, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 1.5, 14]},
+			"faces": {
+				"north": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"},
+				"east": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"},
+				"south": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"},
+				"west": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"}
+			}
+		},
+		{
+			"name": "cube_outline",
+			"from": [15.9, 3, 15.9],
+			"to": [12, 0, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 1.5, 14]},
+			"faces": {
+				"north": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"},
+				"east": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection", "cullface": "down"},
+				"south": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"},
+				"west": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"}
+			}
+		},
+		{
+			"name": "cube_outline",
+			"from": [15.9, 3, 4],
+			"to": [12, 0, 0.1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 1.5, 2]},
+			"faces": {
+				"north": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"},
+				"east": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection", "cullface": "down"},
+				"south": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"},
+				"west": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [6, 8, 0],
+			"to": [10, 8, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"up": {"uv": [0, 10, 4, 12], "rotation": 90, "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [0, 8, 6],
+			"to": [6, 8, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"up": {"uv": [4, 11, 5.5, 13], "texture": "#intersection"}
+			}
+		},
+		{
+			"from": [10, 8, 6],
+			"to": [16, 8, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [18, 8, 8]},
+			"faces": {
+				"up": {"uv": [6.5, 11, 8, 13], "texture": "#intersection"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, 45, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -45, 0],
+			"translation": [0, 1.75, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -45, 0],
+			"translation": [0, 1.75, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, -135, 0],
+			"translation": [0, -0.5, 0],
+			"scale": [0.58, 0.58, 0.58]
+		},
+		"head": {
+			"translation": [0, 11.5, 0]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}
