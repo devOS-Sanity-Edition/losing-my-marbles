@@ -13,17 +13,13 @@ import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEntity;
 
 import org.jetbrains.annotations.Nullable;
-import org.ode4j.ode.DBody;
-import org.ode4j.ode.DMass;
-import org.ode4j.ode.DSphere;
-import org.ode4j.ode.OdeHelper;
 
 public final class MarbleEntity extends Entity implements PhysicsEntity {
 	public static final float RADIUS = 3 / 16f;
 	public static final float DIAMETER = RADIUS * 2;
 
-	@Nullable
-	private DBody body;
+	// @Nullable
+	// private DBody body;
 	@Nullable
 	private Vec3 nextTickPos;
 
@@ -45,21 +41,21 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 		}
 	}
 
-	@Override
-	public void buildBody(DBody body) {
-		DSphere geometry = OdeHelper.createSphere(RADIUS);
-		geometry.setBody(body);
-
-		DMass mass = OdeHelper.createMass();
-		mass.setSphereTotal(10, RADIUS);
-		body.setMass(mass);
-
-		body.setPosition(this.getX(), this.getY() + RADIUS, this.getZ());
-		Vec3 vel = this.getDeltaMovement();
-		body.setLinearVel(vel.x, vel.y, vel.z);
-
-		this.body = body;
-	}
+	// @Override
+	// public void buildBody(DBody body) {
+	// 	DSphere geometry = OdeHelper.createSphere(RADIUS);
+	// 	geometry.setBody(body);
+	//
+	// 	DMass mass = OdeHelper.createMass();
+	// 	mass.setSphereTotal(10, RADIUS);
+	// 	body.setMass(mass);
+	//
+	// 	body.setPosition(this.getX(), this.getY() + RADIUS, this.getZ());
+	// 	Vec3 vel = this.getDeltaMovement();
+	// 	body.setLinearVel(vel.x, vel.y, vel.z);
+	//
+	// 	this.body = body;
+	// }
 
 	@Override
 	public void setNextTickPos(Vec3 pos) {
@@ -85,24 +81,24 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 
 	@Override
 	public boolean hurtServer(ServerLevel level, DamageSource source, float amount) {
-		if (source.getDirectEntity() instanceof Player player && player.isSecondaryUseActive()) {
-			// TODO: store and check for owner, drop item
-			this.discard();
+		// if (source.getDirectEntity() instanceof Player player && player.isSecondaryUseActive()) {
+		// 	// TODO: store and check for owner, drop item
+		// 	this.discard();
 			return true;
-		}
+		// }
 
 		// apply knockback
 
-		if (this.body == null)
-			return false;
-
-		Vec3 pos = source.getSourcePosition();
-		if (pos == null) {
-			return false;
-		}
-
-		Vec3 force = pos.vectorTo(this.center()).normalize().scale(500);
-		this.body.addForce(force.x, force.y, force.z);
-		return true;
+		// if (this.body == null)
+		// 	return false;
+		//
+		// Vec3 pos = source.getSourcePosition();
+		// if (pos == null) {
+		// 	return false;
+		// }
+		//
+		// Vec3 force = pos.vectorTo(this.center()).normalize().scale(500);
+		// this.body.addForce(force.x, force.y, force.z);
+		// return true;
 	}
 }

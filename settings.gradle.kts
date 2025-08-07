@@ -48,8 +48,8 @@ dependencyResolutionManagement {
     versionCatalogs {
         register("jolt") {
             version("jolt", "2.1.0")
-            library("compile", "com.github.stephengold", "jolt-jni-Windows64").versionRef("jolt")
-            library("runtime", "com.github.stephengold", "jolt-jni-${JoltPlatform.current().module}").versionRef("jolt")
+            library("jvm", "com.github.stephengold", "jolt-jni-Windows64").versionRef("jolt")
+            library("native", "com.github.stephengold", "jolt-jni-${JoltPlatform.current().module}").versionRef("jolt")
 
             JoltPlatform.values().forEach {
                 val alias = "natives_${it.module.lowercase(java.util.Locale.ROOT)}"

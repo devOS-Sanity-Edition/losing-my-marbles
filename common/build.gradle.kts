@@ -20,7 +20,7 @@ val mc by minecraft.creating {
 
 dependencies {
     implementation(mc.dependency)
-    compileOnly(jolt.compile)
+    implementation(jolt.jvm)
 }
 
 // outgoing configurations for loader projects

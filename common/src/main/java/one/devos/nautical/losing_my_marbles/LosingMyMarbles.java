@@ -1,10 +1,11 @@
 package one.devos.nautical.losing_my_marbles;
 
+import com.github.stephengold.joltjni.JoltPhysicsObject;
+
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntities;
 
-import one.devos.nautical.losing_my_marbles.framework.phys.LevelGeom;
+import one.devos.nautical.losing_my_marbles.framework.phys.JoltNatives;
 
-import org.ode4j.ode.OdeHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,12 +18,12 @@ public final class LosingMyMarbles {
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 
 	public static void init() {
+		JoltNatives.load();
+		JoltPhysicsObject.startCleaner();
+
 		LosingMyMarblesItems.init();
 		LosingMyMarblesBlocks.init();
 		LosingMyMarblesEntities.init();
-
-		OdeHelper.initODE2(0);
-		LevelGeom.init();
 	}
 
 	public static ResourceLocation id(String path) {

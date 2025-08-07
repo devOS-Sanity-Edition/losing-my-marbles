@@ -6,22 +6,25 @@ repositories {
 	maven("https://api.modrinth.com/maven")
 }
 
+val joltNative: Configuration by configurations.dependencyScope("joltNative")
+
 dependencies {
 	minecraft(libs.fabric.minecraft)
 	mappings(loom.officialMojangMappings())
     modImplementation(libs.bundles.fabric)
     modLocalRuntime(libs.bundles.fabric.dev)
 
-    modLocalRuntime(variantOf(jolt.runtime) {
+    implementation(jolt.jvm)
+    modLocalRuntime(variantOf(jolt.native) {
         classifier("DebugDp")
     })
 
     // this is stupid but a bundle can't be used here. I tried for an hour.
-    include(release(jolt.natives.windows64))
-    include(release(jolt.natives.linux64))
-    include(release(jolt.natives.linux.arm64))
-    include(release(jolt.natives.macosx64))
-    include(release(jolt.natives.macosx.arm64))
+    joltNative(release(jolt.natives.windows64))
+    joltNative(release(jolt.natives.linux64))
+    joltNative(release(jolt.natives.linux.arm64))
+    joltNative(release(jolt.natives.macosx64))
+    joltNative(release(jolt.natives.macosx.arm64))
 }
 
 fun DependencyHandler.release(native: Provider<MinimalExternalModuleDependency>): Provider<MinimalExternalModuleDependency> {
@@ -43,5 +46,26 @@ loom.runs {
         isIdeConfigGenerated = true
         // no need
         appendProjectPathToConfigName = false
+    }
+}
+
+val resolvableJoltNatives: Configuration by configurations.resolvable("resolvableJoltNatives") {
+    extendsFrom(joltNative)
+}
+
+tasks.named<ProcessResources>("processResources") {
+    dependsOn(resolvableJoltNatives)
+
+    resolvableJoltNatives.forEach { jar ->
+        val platform = jar.name.substring("jolt-jni-".length).substringBefore("-")
+        zipTree(jar).forEach { entry ->
+            from(entry) {
+                into("jolt_natives")
+                rename { platform }
+                include("**/*.dll")
+                include("**/*.so")
+                include("**/*.dylib")
+            }
+        }
     }
 }

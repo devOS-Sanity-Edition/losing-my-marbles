@@ -13,7 +13,7 @@ subprojects {
         .get()
 
     // x.y.z+build.100-mc1.21.8-fabric
-    version = "$0.1.0+$buildNum-mc${libs.versions.minecraft.get()}-$name"
+    version = "0.1.0+$buildNum-mc${libs.versions.minecraft.get()}-$name"
 
     extensions.getByType<JavaPluginExtension>().run {
         // enable the sources jar
