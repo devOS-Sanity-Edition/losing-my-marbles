@@ -8,6 +8,32 @@
 	},
 	"elements": [
 		{
+			"from": [6, 8, 0],
+			"to": [10, 8, 16],
+			"faces": {
+				"up": {"uv": [4, 10, 0, 12], "rotation": 90, "texture": "#straight"},
+				"down": {"uv": [4, 10, 0, 12], "rotation": 90, "texture": "#straight"}
+			}
+		},
+		{
+			"from": [10.075, 9.205, 0],
+			"to": [13, 9.205, 16],
+			"rotation": {"angle": 45, "axis": "z", "origin": [11.5, 8.5, 8]},
+			"faces": {
+				"up": {"uv": [4, 10, 0, 11.5], "rotation": 90, "texture": "#straight"},
+				"down": {"uv": [4, 10, 0, 11.5], "rotation": 90, "texture": "#straight"}
+			}
+		},
+		{
+			"from": [3, 9.205, 0],
+			"to": [5.925, 9.205, 16],
+			"rotation": {"angle": -45, "axis": "z", "origin": [4.5, 8.5, 8]},
+			"faces": {
+				"up": {"uv": [4, 10, 0, 11.5], "rotation": 90, "texture": "#straight"},
+				"down": {"uv": [4, 10, 0, 11.5], "rotation": 90, "texture": "#straight"}
+			}
+		},
+		{
 			"from": [0, 0, 0],
 			"to": [4, 3, 4],
 			"faces": {
@@ -82,22 +108,6 @@
 				"south": {"uv": [4, 0, 5, 4], "texture": "#straight", "cullface": "south"},
 				"west": {"uv": [0, 0, 4, 4], "texture": "#straight", "cullface": "west"},
 				"up": {"uv": [0, 10, 4, 8], "rotation": 90, "texture": "#straight"}
-			}
-		},
-		{
-			"from": [10.075, 9.205, 0],
-			"to": [13, 9.205, 16],
-			"rotation": {"angle": 45, "axis": "z", "origin": [11.5, 8.5, 8]},
-			"faces": {
-				"up": {"uv": [4, 14.5, 0, 16], "rotation": 90, "texture": "#straight"}
-			}
-		},
-		{
-			"from": [3, 9.205, 0],
-			"to": [5.925, 9.205, 16],
-			"rotation": {"angle": -45, "axis": "z", "origin": [4.5, 8.5, 8]},
-			"faces": {
-				"up": {"uv": [4, 14.5, 0, 16], "rotation": 90, "texture": "#straight"}
 			}
 		},
 		{
@@ -206,13 +216,6 @@
 				"south": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#straight"},
 				"west": {"uv": [3, 6.5, 4, 8], "rotation": 180, "texture": "#straight"}
 			}
-		},
-		{
-			"from": [6, 8, 0],
-			"to": [10, 8, 16],
-			"faces": {
-				"up": {"uv": [4, 10, 0, 12], "rotation": 90, "texture": "#straight"}
-			}
 		}
 	],
 	"display": {
@@ -251,5 +254,19 @@
 		"fixed": {
 			"scale": [0.5, 0.5, 0.5]
 		}
-	}
+	},
+	"groups": [
+		{
+			"name": "path",
+			"origin": [4.5, 8.5, 8],
+			"color": 0,
+			"children": [0, 1, 2]
+		},
+		{
+			"name": "shell",
+			"origin": [14, 1.5, 2],
+			"color": 0,
+			"children": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+		}
+	]
 }
