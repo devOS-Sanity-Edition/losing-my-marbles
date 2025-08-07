@@ -46,6 +46,8 @@ loom.runs {
         isIdeConfigGenerated = true
         // no need
         appendProjectPathToConfigName = false
+        // enable assertions in Jolt
+        vmArg("-ea")
     }
 }
 

@@ -9,12 +9,12 @@ import net.minecraft.world.phys.Vec3;
  */
 public interface PhysicsEntity {
 	/**
-	 * Modify the given body to match this entity.
+	 * Create this entity's physics body.
 	 * Should set geometry, position, velocity, and anything else important.
 	 * <p>
-	 * It is safe to hold on to the given body to apply interactions.
+	 * The created body can be saved for later to apply interactions.
 	 */
-	// void buildBody(DBody body);
+	void createBody(BodyAccess.Factory factory);
 
 	/**
 	 * Set the position that the entity should move to the next time it ticks.

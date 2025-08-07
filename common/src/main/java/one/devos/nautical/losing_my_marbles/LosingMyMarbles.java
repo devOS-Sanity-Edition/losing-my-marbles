@@ -1,10 +1,8 @@
 package one.devos.nautical.losing_my_marbles;
 
-import com.github.stephengold.joltjni.JoltPhysicsObject;
-
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntities;
 
-import one.devos.nautical.losing_my_marbles.framework.phys.JoltNatives;
+import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +16,7 @@ public final class LosingMyMarbles {
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 
 	public static void init() {
-		JoltNatives.load();
-		JoltPhysicsObject.startCleaner();
-
+		JoltIntegration.setup();
 		LosingMyMarblesItems.init();
 		LosingMyMarblesBlocks.init();
 		LosingMyMarblesEntities.init();

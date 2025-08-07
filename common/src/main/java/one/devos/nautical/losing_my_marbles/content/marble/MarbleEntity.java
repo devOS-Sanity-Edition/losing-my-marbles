@@ -1,5 +1,13 @@
 package one.devos.nautical.losing_my_marbles.content.marble;
 
+import com.github.stephengold.joltjni.BodyCreationSettings;
+
+import com.github.stephengold.joltjni.SphereShape;
+
+import com.github.stephengold.joltjni.enumerate.EMotionQuality;
+import com.github.stephengold.joltjni.enumerate.EOverrideMassProperties;
+import com.github.stephengold.joltjni.readonly.Vec3Arg;
+
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,7 +18,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
+import one.devos.nautical.losing_my_marbles.framework.phys.BodyAccess;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEntity;
+
+import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -18,8 +29,8 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	public static final float RADIUS = 3 / 16f;
 	public static final float DIAMETER = RADIUS * 2;
 
-	// @Nullable
-	// private DBody body;
+	@Nullable
+	private BodyAccess body;
 	@Nullable
 	private Vec3 nextTickPos;
 
@@ -41,21 +52,26 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 		}
 	}
 
-	// @Override
-	// public void buildBody(DBody body) {
-	// 	DSphere geometry = OdeHelper.createSphere(RADIUS);
-	// 	geometry.setBody(body);
-	//
-	// 	DMass mass = OdeHelper.createMass();
-	// 	mass.setSphereTotal(10, RADIUS);
-	// 	body.setMass(mass);
-	//
-	// 	body.setPosition(this.getX(), this.getY() + RADIUS, this.getZ());
-	// 	Vec3 vel = this.getDeltaMovement();
-	// 	body.setLinearVel(vel.x, vel.y, vel.z);
-	//
-	// 	this.body = body;
-	// }
+	@Override
+	public void createBody(BodyAccess.Factory factory) {
+		BodyCreationSettings settings = new BodyCreationSettings();
+		settings.setShape(new SphereShape(RADIUS));
+
+		settings.setPosition(this.getX(), this.getY() + RADIUS, this.getZ());
+
+		Vec3 vel = this.getDeltaMovement();
+		settings.setLinearVelocity((float) vel.x, (float) vel.y, (float) vel.z);
+
+		// 10kg, calculate inertia from mass + shape
+		settings.getMassPropertiesOverride().setMass(10);
+		settings.setOverrideMassProperties(EOverrideMassProperties.CalculateInertia);
+		// 50% bouncy
+		settings.setRestitution(0.5f);
+		// prevent tunneling
+		settings.setMotionQuality(EMotionQuality.LinearCast);
+
+		this.body = factory.create(settings);
+	}
 
 	@Override
 	public void setNextTickPos(Vec3 pos) {
@@ -81,24 +97,24 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 
 	@Override
 	public boolean hurtServer(ServerLevel level, DamageSource source, float amount) {
-		// if (source.getDirectEntity() instanceof Player player && player.isSecondaryUseActive()) {
-		// 	// TODO: store and check for owner, drop item
-		// 	this.discard();
+		if (source.getDirectEntity() instanceof Player player && player.isSecondaryUseActive()) {
+			// TODO: store and check for owner, drop item
+			this.discard();
 			return true;
-		// }
+		}
 
 		// apply knockback
 
-		// if (this.body == null)
-		// 	return false;
-		//
-		// Vec3 pos = source.getSourcePosition();
-		// if (pos == null) {
-		// 	return false;
-		// }
-		//
-		// Vec3 force = pos.vectorTo(this.center()).normalize().scale(500);
-		// this.body.addForce(force.x, force.y, force.z);
-		// return true;
+		if (this.body == null)
+			return false;
+
+		Vec3 pos = source.getSourcePosition();
+		if (pos == null) {
+			return false;
+		}
+
+		Vec3Arg force = JoltIntegration.convertF(pos.vectorTo(this.center()).normalize().scale(1));
+		this.body.getBody().addForce(force);
+		return true;
 	}
 }

@@ -1,4 +1,4 @@
-package one.devos.nautical.losing_my_marbles.framework.phys;
+package one.devos.nautical.losing_my_marbles.framework.phys.core;
 
 import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 
