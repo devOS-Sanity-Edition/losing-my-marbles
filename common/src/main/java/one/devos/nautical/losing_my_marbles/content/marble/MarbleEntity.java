@@ -23,6 +23,8 @@ import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEntity;
 
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 
+import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
+
 import org.jetbrains.annotations.Nullable;
 
 public final class MarbleEntity extends Entity implements PhysicsEntity {
@@ -55,6 +57,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	@Override
 	public void createBody(BodyAccess.Factory factory) {
 		BodyCreationSettings settings = new BodyCreationSettings();
+		settings.setObjectLayer(ObjectLayers.MOVING);
 		settings.setShape(new SphereShape(RADIUS));
 
 		settings.setPosition(this.getX(), this.getY() + RADIUS, this.getZ());
@@ -113,7 +116,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 			return false;
 		}
 
-		Vec3Arg force = JoltIntegration.convertF(pos.vectorTo(this.center()).normalize().scale(1));
+		Vec3Arg force = JoltIntegration.convertF(pos.vectorTo(this.center()).normalize().scale(500));
 		this.body.getBody().addForce(force);
 		return true;
 	}

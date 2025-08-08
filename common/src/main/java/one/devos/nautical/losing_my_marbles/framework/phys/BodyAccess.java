@@ -12,6 +12,8 @@ import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 
 public sealed interface BodyAccess {
+	int id();
+
 	Body getBody();
 
 	void setPos(Vec3 pos);

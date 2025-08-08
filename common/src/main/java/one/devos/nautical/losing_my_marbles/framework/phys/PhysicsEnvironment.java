@@ -2,10 +2,13 @@ package one.devos.nautical.losing_my_marbles.framework.phys;
 
 import com.github.stephengold.joltjni.AaBox;
 import com.github.stephengold.joltjni.Body;
+import com.github.stephengold.joltjni.BodyCreationSettings;
 import com.github.stephengold.joltjni.BodyInterface;
+import com.github.stephengold.joltjni.BoxShape;
 import com.github.stephengold.joltjni.BroadPhaseLayerFilter;
 import com.github.stephengold.joltjni.JobSystem;
 import com.github.stephengold.joltjni.JobSystemSingleThreaded;
+import com.github.stephengold.joltjni.MassProperties;
 import com.github.stephengold.joltjni.ObjectLayerFilter;
 import com.github.stephengold.joltjni.PhysicsSystem;
 
@@ -14,6 +17,7 @@ import com.github.stephengold.joltjni.TempAllocator;
 import com.github.stephengold.joltjni.TempAllocatorMalloc;
 import com.github.stephengold.joltjni.enumerate.EActivation;
 
+import com.github.stephengold.joltjni.enumerate.EMotionType;
 import com.github.stephengold.joltjni.enumerate.EPhysicsUpdateError;
 
 import com.github.stephengold.joltjni.readonly.Vec3Arg;
@@ -22,6 +26,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
+import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.TerrainCollision;
 import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 
 import org.apache.commons.lang3.mutable.MutableObject;
@@ -43,18 +49,15 @@ public final class PhysicsEnvironment {
 	public static final BroadPhaseLayerFilter DUMMY_BROAD_PHASE_FILTER = new BroadPhaseLayerFilter();
 	public static final ObjectLayerFilter DUMMY_OBJECT_LAYER_FILTER = new ObjectLayerFilter();
 
-	private final Level level;
-
 	private final TempAllocator tempAllocator;
 	private final JobSystem jobSystem;
 	private final PhysicsSystem system;
 	private final BodyInterface bodies;
+	private final TerrainCollision terrainCollision;
 
 	private final Map<PhysicsEntity, EntityEntry<?>> entities;
 
 	public PhysicsEnvironment(Level level) {
-		this.level = level;
-
 		this.tempAllocator = new TempAllocatorMalloc();
 		this.jobSystem = new JobSystemSingleThreaded(2048);
 
@@ -62,6 +65,23 @@ public final class PhysicsEnvironment {
 		this.system.setGravity(0, GRAVITY, 0);
 
 		this.bodies = this.system.getBodyInterfaceNoLock();
+
+		BodyCreationSettings debug = new BodyCreationSettings();
+		debug.setMotionType(EMotionType.Static);
+		debug.setShape(new BoxShape(1 / 2f, 3 / 16f / 2f, 1 / 2f));
+		debug.setPosition(0, -50, 0);
+		debug.setAllowSleeping(false);
+		debug.setObjectLayer(ObjectLayers.STATIC);
+		MassProperties mass = new MassProperties();
+		mass.setMassAndInertiaOfSolidBox(new com.github.stephengold.joltjni.Vec3(1, 1, 1), 10);
+		debug.setMassPropertiesOverride(mass);
+		this.bodies.createAndAddBody(debug, EActivation.Activate);
+
+		this.terrainCollision = new TerrainCollision(level, settings -> {
+			Body body = this.bodies.createBody(settings);
+			// don't add the body here, that's batched
+			return new BodyAccess.Impl(body, this.bodies);
+		});
 
 		this.entities = new IdentityHashMap<>();
 	}
@@ -124,14 +144,28 @@ public final class PhysicsEnvironment {
 			return;
 		}
 
-		this.entities.values().forEach(EntityEntry::updateBody);
+		this.entities.values().forEach(entry -> {
+			// sync each body with its entity
+			entry.updateBody();
+			// ensure all nearby terrain is added to the system
+			this.terrainCollision.stepArea(entry.terrainBounds());
+		});
+
+		// commit terrain body additions
+		this.terrainCollision.forNewBodies((size, ids) -> {
+			long handle = this.bodies.addBodiesPrepare(ids, size);
+			this.bodies.addBodiesFinalize(ids, size, handle, EActivation.Activate);
+		});
 
 		int errors = this.system.update(TIME_STEP, 1, this.tempAllocator, this.jobSystem);
 		if (errors != 0) {
 			throw new RuntimeException("Error(s) occurred while updating physics: " + Error.setOf(errors));
 		}
 
+		// sync updated bodies back to their entities
 		this.entities.values().forEach(EntityEntry::updateEntity);
+		// prepare terrain for the next step
+		this.terrainCollision.postStep();
 	}
 
 	private enum Error {

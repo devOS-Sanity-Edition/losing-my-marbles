@@ -5,9 +5,17 @@ import com.github.stephengold.joltjni.RVec3;
 import com.github.stephengold.joltjni.readonly.Vec3Arg;
 
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public record EntityEntry<T extends Entity & PhysicsEntity>(T entity, BodyAccess body, Vec3 offsetToCenterOfMass) {
+	/**
+	 * Area around this entity where terrain should be added to the system.
+	 */
+	public AABB terrainBounds() {
+		return this.entity.getBoundingBox().expandTowards(this.entity.getDeltaMovement());
+	}
+
 	public void updateBody() {
 		Vec3 pos = this.entity.position();
 		this.body.setPos(pos.add(this.offsetToCenterOfMass));
