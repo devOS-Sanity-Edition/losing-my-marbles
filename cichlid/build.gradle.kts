@@ -31,6 +31,7 @@ val mc by minecraft.creating {
 
 dependencies {
     implementation(mc.dependency)
+    implementation(jolt.jvm)
 
     compileOnly(cichlid.api(libs.versions.cichlid.asProvider().get()))
     cichlidRuntime(cichlid.runtime(libs.versions.cichlid.asProvider().get()))

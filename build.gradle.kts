@@ -1,7 +1,11 @@
+import one.devos.nautical.losing_my_marbles.plugin.*
+
 // kinda gross, but this configuration needs to happen after plugins are loaded
 evaluationDependsOnChildren()
 
 subprojects {
+    apply<LosingMyMarblesBuildPlugin>()
+
     // set the archive name to the mod ID
     extensions.getByType<BasePluginExtension>().archivesName = "losing_my_marbles"
     group = "one.devos.nautical"
@@ -20,6 +24,14 @@ subprojects {
         withSourcesJar()
         // and set java requirement
         toolchain.languageVersion = JavaLanguageVersion.of(21)
+    }
+
+    tasks.named<JavaCompile>("compileJava") {
+        // :)
+        options.compilerArgs.add("--enable-preview")
+        doLast {
+            PreviewStatusStripper.run(destinationDirectory.asFile.get())
+        }
     }
 
     if (name == "common") {
