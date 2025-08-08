@@ -26,14 +26,6 @@ subprojects {
         toolchain.languageVersion = JavaLanguageVersion.of(21)
     }
 
-    tasks.named<JavaCompile>("compileJava") {
-        // :)
-        options.compilerArgs.add("--enable-preview")
-        doLast {
-            PreviewStatusStripper.run(destinationDirectory.asFile.get())
-        }
-    }
-
     if (name == "common") {
         // further configuration is exclusive to loader projects
         return@subprojects
