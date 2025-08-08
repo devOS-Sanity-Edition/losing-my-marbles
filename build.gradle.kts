@@ -1,11 +1,7 @@
-import one.devos.nautical.losing_my_marbles.plugin.*
-
 // kinda gross, but this configuration needs to happen after plugins are loaded
 evaluationDependsOnChildren()
 
 subprojects {
-    apply<LosingMyMarblesBuildPlugin>()
-
     // set the archive name to the mod ID
     extensions.getByType<BasePluginExtension>().archivesName = "losing_my_marbles"
     group = "one.devos.nautical"
