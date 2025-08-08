@@ -9,16 +9,14 @@ import java.util.Locale;
 
 public final class JoltNatives {
 	public static final String FOLDER = "jolt_natives";
-	public static final String EXTRACTED_FOLDER = "losing_my_marbles_jolt_natives";
+	public static final String EXTRACTED_PREFIX = "losing_my_marbles__jolt__";
 
 	public static void load() {
-		Path extracted = PlatformHelper.INSTANCE.getGameDir().resolve(EXTRACTED_FOLDER);
 		Platform platform = Platform.current();
-		Path lib = extracted.resolve(platform.filename);
-		ensureExtracted(platform, lib);
-
-		String pathString = lib.toAbsolutePath().toString();
-		System.load(pathString);
+		// on windows, the dll must be in the working directory.
+		Path extracted = PlatformHelper.INSTANCE.getGameDir().resolve(EXTRACTED_PREFIX + platform.filename);
+		ensureExtracted(platform, extracted);
+		System.load(extracted.toAbsolutePath().toString());
 	}
 
 	private static void ensureExtracted(Platform platform, Path dest) {
