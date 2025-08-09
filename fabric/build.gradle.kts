@@ -48,6 +48,8 @@ loom.runs {
         appendProjectPathToConfigName = false
         // enable assertions in Jolt
         vmArg("-ea")
+
+        property("mixin.debug.export", "true")
     }
 }
 
@@ -59,14 +61,23 @@ tasks.named<ProcessResources>("processResources") {
     dependsOn(resolvableJoltNatives)
 
     resolvableJoltNatives.forEach { jar ->
-        val platform = jar.name.substring("jolt-jni-".length).substringBefore("-")
-        zipTree(jar).forEach { entry ->
-            from(entry) {
-                into("jolt_natives")
-                rename { platform }
-                include("**/*.dll")
-                include("**/*.so")
-                include("**/*.dylib")
+        val platform = jar.name.substring("jolt-jni-".length).substringBefore("-")!!
+        zipTree(jar!!).forEach { entry ->
+            if (entry.name.endsWith(".dll")) {
+                from(entry) {
+                    into("jolt_natives")
+                    rename { "$platform.dll" }
+                }
+            } else if (entry.name.endsWith(".so")) {
+                from(entry) {
+                    into("jolt_natives")
+                    rename { "$platform.so" }
+                }
+            } else if (entry.name.endsWith(".dylib")) {
+                from(entry) {
+                    into("jolt_natives")
+                    rename { "$platform.dylib" }
+                }
             }
         }
     }

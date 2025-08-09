@@ -4,11 +4,9 @@ import com.github.stephengold.joltjni.AaBox;
 import com.github.stephengold.joltjni.Body;
 import com.github.stephengold.joltjni.BodyCreationSettings;
 import com.github.stephengold.joltjni.BodyInterface;
-import com.github.stephengold.joltjni.BoxShape;
 import com.github.stephengold.joltjni.BroadPhaseLayerFilter;
 import com.github.stephengold.joltjni.JobSystem;
 import com.github.stephengold.joltjni.JobSystemSingleThreaded;
-import com.github.stephengold.joltjni.MassProperties;
 import com.github.stephengold.joltjni.ObjectLayerFilter;
 import com.github.stephengold.joltjni.PhysicsSystem;
 
@@ -20,22 +18,44 @@ import com.github.stephengold.joltjni.enumerate.EActivation;
 import com.github.stephengold.joltjni.enumerate.EMotionType;
 import com.github.stephengold.joltjni.enumerate.EPhysicsUpdateError;
 
+import com.github.stephengold.joltjni.readonly.ConstAaBox;
 import com.github.stephengold.joltjni.readonly.Vec3Arg;
 
+import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.SectionPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
-import one.devos.nautical.losing_my_marbles.framework.phys.terrain.TerrainCollision;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.BoxCache;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.CompileTask;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.CompiledSection;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.SectionShapeCompiler;
 import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 
 import org.apache.commons.lang3.mutable.MutableObject;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 public final class PhysicsEnvironment {
 	// this can be constant, since changing tick rate changes how often the method is called
@@ -49,15 +69,25 @@ public final class PhysicsEnvironment {
 	public static final BroadPhaseLayerFilter DUMMY_BROAD_PHASE_FILTER = new BroadPhaseLayerFilter();
 	public static final ObjectLayerFilter DUMMY_OBJECT_LAYER_FILTER = new ObjectLayerFilter();
 
+	private final Level level;
+	private final Executor executor;
+
 	private final TempAllocator tempAllocator;
 	private final JobSystem jobSystem;
 	private final PhysicsSystem system;
 	private final BodyInterface bodies;
-	private final TerrainCollision terrainCollision;
+
+	private final BoxCache boxCache;
+	private final Long2ObjectMap<List<BodyAccess>> chunkSectionBodies;
+	private final Long2ObjectMap<CompileTask> compilingSections;
 
 	private final Map<PhysicsEntity, EntityEntry<?>> entities;
 
 	public PhysicsEnvironment(Level level) {
+		this.level = level;
+		ResourceLocation dim = level.dimension().location();
+		this.executor = Util.backgroundExecutor().forName("PhysicsEnvironment/" + dim);
+
 		this.tempAllocator = new TempAllocatorMalloc();
 		this.jobSystem = new JobSystemSingleThreaded(2048);
 
@@ -66,22 +96,9 @@ public final class PhysicsEnvironment {
 
 		this.bodies = this.system.getBodyInterfaceNoLock();
 
-		BodyCreationSettings debug = new BodyCreationSettings();
-		debug.setMotionType(EMotionType.Static);
-		debug.setShape(new BoxShape(1 / 2f, 3 / 16f / 2f, 1 / 2f));
-		debug.setPosition(0, -50, 0);
-		debug.setAllowSleeping(false);
-		debug.setObjectLayer(ObjectLayers.STATIC);
-		MassProperties mass = new MassProperties();
-		mass.setMassAndInertiaOfSolidBox(new com.github.stephengold.joltjni.Vec3(1, 1, 1), 10);
-		debug.setMassPropertiesOverride(mass);
-		this.bodies.createAndAddBody(debug, EActivation.Activate);
-
-		this.terrainCollision = new TerrainCollision(level, settings -> {
-			Body body = this.bodies.createBody(settings);
-			// don't add the body here, that's batched
-			return new BodyAccess.Impl(body, this.bodies);
-		});
+		this.boxCache = new BoxCache();
+		this.chunkSectionBodies = new Long2ObjectOpenHashMap<>();
+		this.compilingSections = new Long2ObjectOpenHashMap<>();
 
 		this.entities = new IdentityHashMap<>();
 	}
@@ -132,30 +149,26 @@ public final class PhysicsEnvironment {
 				bounds.expandBy(REACTIVATION_EXPANSION);
 
 				entry.body().discard();
-
-				this.bodies.activateBodiesInAaBox(bounds, DUMMY_BROAD_PHASE_FILTER, DUMMY_OBJECT_LAYER_FILTER);
+				this.wakeWithin(bounds);
 			}
 		}
 	}
 
 	public void tick() {
+		// TODO: do we need to simulate on the client?
+		if (this.level.isClientSide)
+			return;
+
+		// add any chunk sections that have finished compiling off-thread
+		this.pollSectionCompiles();
+
 		if (this.entities.isEmpty()) {
-			// nothing to do.
+			// nothing else to do.
 			return;
 		}
 
-		this.entities.values().forEach(entry -> {
-			// sync each body with its entity
-			entry.updateBody();
-			// ensure all nearby terrain is added to the system
-			this.terrainCollision.stepArea(entry.terrainBounds());
-		});
-
-		// commit terrain body additions
-		this.terrainCollision.forNewBodies((size, ids) -> {
-			long handle = this.bodies.addBodiesPrepare(ids, size);
-			this.bodies.addBodiesFinalize(ids, size, handle, EActivation.Activate);
-		});
+		// sync each body with its entity
+		this.entities.values().forEach(EntityEntry::updateBody);
 
 		int errors = this.system.update(TIME_STEP, 1, this.tempAllocator, this.jobSystem);
 		if (errors != 0) {
@@ -164,8 +177,127 @@ public final class PhysicsEnvironment {
 
 		// sync updated bodies back to their entities
 		this.entities.values().forEach(EntityEntry::updateEntity);
-		// prepare terrain for the next step
-		this.terrainCollision.postStep();
+	}
+
+	private void pollSectionCompiles() {
+		if (this.compilingSections.isEmpty())
+			return;
+
+		List<BodyAccess> newSectionBodies = new ArrayList<>();
+		ObjectIterator<Long2ObjectMap.Entry<CompileTask>> itr = this.compilingSections.long2ObjectEntrySet().iterator();
+
+		while (itr.hasNext()) {
+			Long2ObjectMap.Entry<CompileTask> entry = itr.next();
+			CompileTask task = entry.getValue();
+
+			if (!task.future().isDone())
+				continue;
+
+			CompiledSection compiled = task.future().join();
+
+			long pos = entry.getLongKey();
+			int posX = SectionPos.sectionToBlockCoord(SectionPos.x(pos));
+			int posY = SectionPos.sectionToBlockCoord(SectionPos.y(pos));
+			int posZ = SectionPos.sectionToBlockCoord(SectionPos.z(pos));
+
+			List<BodyAccess> bodies = compiled.shapes().stream().map(shape -> {
+				BodyCreationSettings settings = new BodyCreationSettings();
+				shape.configure(settings);
+				settings.setObjectLayer(ObjectLayers.STATIC);
+				settings.setEnhancedInternalEdgeRemoval(true);
+				settings.setMotionType(EMotionType.Static);
+				settings.setPosition(posX, posY, posZ);
+
+				Body body = this.bodies.createBody(settings);
+				// this cast is stupid
+				return (BodyAccess) new BodyAccess.Impl(body, this.bodies);
+			}).toList();
+
+			newSectionBodies.addAll(bodies);
+			List<BodyAccess> oldBodies = this.chunkSectionBodies.put(pos, bodies);
+			if (oldBodies != null) {
+				oldBodies.forEach(BodyAccess::discard);
+			}
+
+			for (BlockPos trigger : compiled.triggers()) {
+				this.wakeTriggered(trigger);
+			}
+
+			itr.remove();
+		}
+
+		if (!newSectionBodies.isEmpty()) {
+			for (BodyAccess body : newSectionBodies) {
+				this.bodies.addBody(body.id(), EActivation.Activate);
+			}
+		}
+	}
+
+	public void chunkLoaded(LevelChunk chunk) {
+		LevelChunkSection[] sections = chunk.getSections();
+		for (int i = 0; i < sections.length; i++) {
+			LevelChunkSection section = sections[i];
+			long pos = sectionPos(chunk, i);
+			this.tryCompile(section, pos, null);
+		}
+	}
+
+	public void chunkUnloaded(LevelChunk chunk) {
+		LevelChunkSection[] sections = chunk.getSections();
+		for (int i = 0; i < sections.length; i++) {
+			long pos = sectionPos(chunk, i);
+			this.compilingSections.remove(pos);
+			List<BodyAccess> bodies = this.chunkSectionBodies.remove(pos);
+			if (bodies != null) {
+				bodies.forEach(BodyAccess::discard);
+			}
+		}
+	}
+
+	public void blockShapeChanged(BlockPos pos) {
+		long sectionPos = SectionPos.blockToSection(pos.asLong());
+
+		// don't remove the current bodies yet. they'll get replaced when the compile finishes.
+		// no need to do anything here if there's no collision for this position
+		if (!this.chunkSectionBodies.containsKey(sectionPos) && !this.compilingSections.containsKey(sectionPos))
+			return;
+
+		ChunkAccess chunk = this.level.getChunk(pos);
+		int index = chunk.getSectionIndexFromSectionY(SectionPos.y(sectionPos));
+		LevelChunkSection section = chunk.getSection(index);
+
+		this.tryCompile(section, sectionPos, pos);
+	}
+
+	private void tryCompile(LevelChunkSection section, long pos, @Nullable BlockPos changed) {
+		// remove here so even if there's no new compilation, the potential old one is discarded
+		CompileTask replaced = this.compilingSections.remove(pos);
+		SectionShapeCompiler compiler = SectionShapeCompiler.create(this.boxCache, section, replaced, changed);
+
+		if (compiler != null) {
+			CompletableFuture<CompiledSection> future = CompletableFuture.supplyAsync(compiler, this.executor);
+			CompileTask task = new CompileTask(compiler, future);
+			this.compilingSections.put(pos, task);
+		}
+	}
+
+	private void wakeWithin(ConstAaBox box) {
+		this.bodies.activateBodiesInAaBox(box, DUMMY_BROAD_PHASE_FILTER, DUMMY_OBJECT_LAYER_FILTER);
+	}
+
+	private void wakeTriggered(BlockPos trigger) {
+		this.wakeWithin(new AaBox(
+				new RVec3(trigger.getX() - 1, trigger.getY() - 1, trigger.getZ() - 1),
+				new RVec3(trigger.getX() + 1, trigger.getY() + 1, trigger.getZ() + 1)
+		));
+	}
+
+	public static VoxelShape getPhysicsVisibleShape(BlockState state) {
+		return state.getCollisionShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO);
+	}
+
+	private static long sectionPos(LevelChunk chunk, int sectionIndex) {
+		return SectionPos.asLong(chunk.getPos().x, chunk.getSectionYFromSectionIndex(sectionIndex), chunk.getPos().z);
 	}
 
 	private enum Error {

@@ -4,6 +4,7 @@
   "package": "one.devos.nautical.losing_my_marbles.fabric.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "LevelMixin"
   ],
   "client": [
     "client.BlockElement_DeserializerMixin",

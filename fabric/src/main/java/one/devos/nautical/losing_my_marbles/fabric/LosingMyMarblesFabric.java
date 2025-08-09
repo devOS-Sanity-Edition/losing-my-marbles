@@ -3,6 +3,7 @@ package one.devos.nautical.losing_my_marbles.fabric;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
@@ -21,5 +22,8 @@ public final class LosingMyMarblesFabric implements ModInitializer {
 		ServerTickEvents.START_WORLD_TICK.register(PhysicsEventListeners::tick);
 		ServerEntityEvents.ENTITY_LOAD.register(PhysicsEventListeners::entityLoaded);
 		ServerEntityEvents.ENTITY_UNLOAD.register(PhysicsEventListeners::entityUnloaded);
+		ServerChunkEvents.CHUNK_LEVEL_TYPE_CHANGE.register(
+				(level, chunk, oldStatus, newStatus) -> PhysicsEventListeners.chunkStatusChanged(chunk, oldStatus, newStatus)
+		);
 	}
 }

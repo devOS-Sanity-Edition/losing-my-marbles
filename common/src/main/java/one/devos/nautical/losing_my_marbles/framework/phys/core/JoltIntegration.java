@@ -13,8 +13,8 @@ import net.minecraft.world.phys.Vec3;
 
 public final class JoltIntegration {
 	public static final int MAX_BODIES = Short.MAX_VALUE;
-	public static final int MAX_PAIRS = 1024;
-	public static final int MAX_CONTACTS = 2048;
+	public static final int MAX_PAIRS = 4096;
+	public static final int MAX_CONTACTS = 16384; // 2^14
 
 	public static void setup() {
 		JoltNatives.load();

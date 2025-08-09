@@ -9,7 +9,7 @@ import java.util.Locale;
 
 public final class JoltNatives {
 	public static final String FOLDER = "jolt_natives";
-	public static final String EXTRACTED_PREFIX = "losing_my_marbles__jolt__";
+	public static final String EXTRACTED_PREFIX = "losing_my_marbles__Jolt_";
 
 	public static void load() {
 		Platform platform = Platform.current();
@@ -41,11 +41,11 @@ public final class JoltNatives {
 	}
 
 	private enum Platform {
-		WINDOWS_64("Windows64"),
-		LINUX_64("Linux64"),
-		LINUX_ARM("Linux_ARM64"),
-		MAC_64("MacOSX64"),
-		MAC_ARM64("MacOSX_ARM64");
+		WINDOWS_64("Windows64.dll"),
+		LINUX_64("Linux64.so"),
+		LINUX_ARM("Linux_ARM64.so"),
+		MAC_64("MacOSX64.dylib"),
+		MAC_ARM64("MacOSX_ARM64.dylib");
 
 		private final String filename;
 
