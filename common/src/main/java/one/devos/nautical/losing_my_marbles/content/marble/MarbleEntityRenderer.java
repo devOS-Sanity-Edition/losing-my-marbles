@@ -10,9 +10,13 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.state.HitboxRenderState;
 import net.minecraft.client.renderer.entity.state.HitboxesRenderState;
 import net.minecraft.client.renderer.entity.state.ServerHitboxesRenderState;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.server.IntegratedServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.phys.AABB;
 
 import net.minecraft.world.phys.Vec3;
@@ -28,6 +32,24 @@ public final class MarbleEntityRenderer extends EntityRenderer<MarbleEntity, Mar
 	public void extractRenderState(MarbleEntity marble, MarbleEntityRenderState state, float partialTicks) {
 		super.extractRenderState(marble, state, partialTicks);
 		state.serverHitboxesRenderState = getServerHitboxes(marble);
+	}
+
+	@Override
+	public void render(MarbleEntityRenderState state, PoseStack matrices, MultiBufferSource vertices, int light) {
+		super.render(state, matrices, vertices, light);
+
+		ItemStack stack = new ItemStack(Items.SNOWBALL);
+
+		matrices.pushPose();
+
+		matrices.translate(0, 0.05, 0);
+		matrices.mulPose(Minecraft.getInstance().getEntityRenderDispatcher().cameraOrientation());
+
+		Minecraft.getInstance().getItemRenderer().renderStatic(
+				stack, ItemDisplayContext.GROUND, light, OverlayTexture.NO_OVERLAY, matrices, vertices, null, 0
+		);
+
+		matrices.popPose();
 	}
 
 	@Override
