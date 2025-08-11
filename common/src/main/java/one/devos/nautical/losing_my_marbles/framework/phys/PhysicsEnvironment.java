@@ -3,6 +3,7 @@ package one.devos.nautical.losing_my_marbles.framework.phys;
 import com.github.stephengold.joltjni.AaBox;
 import com.github.stephengold.joltjni.Body;
 import com.github.stephengold.joltjni.BodyCreationSettings;
+import com.github.stephengold.joltjni.BodyIdArray;
 import com.github.stephengold.joltjni.BodyInterface;
 import com.github.stephengold.joltjni.BroadPhaseLayerFilter;
 import com.github.stephengold.joltjni.JobSystem;
@@ -226,11 +227,16 @@ public final class PhysicsEnvironment {
 			itr.remove();
 		}
 
-		if (!newSectionBodies.isEmpty()) {
-			for (BodyAccess body : newSectionBodies) {
-				this.bodies.addBody(body.id(), EActivation.Activate);
-			}
+		if (newSectionBodies.isEmpty())
+			return;
+
+		BodyIdArray ids = new BodyIdArray(newSectionBodies.size());
+		for (int i = 0; i < newSectionBodies.size(); i++) {
+			ids.set(i, newSectionBodies.get(i).id());
 		}
+
+		long handle = this.bodies.addBodiesPrepare(ids, newSectionBodies.size());
+		this.bodies.addBodiesFinalize(ids, newSectionBodies.size(), handle, EActivation.Activate);
 	}
 
 	public void chunkLoaded(LevelChunk chunk) {

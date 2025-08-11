@@ -47,7 +47,7 @@ enum class JoltPlatform(val module: String) {
 dependencyResolutionManagement {
     versionCatalogs {
         register("jolt") {
-            version("jolt", "2.1.0")
+            version("jolt", "2.2.0")
             library("jvm", "com.github.stephengold", "jolt-jni-Windows64").versionRef("jolt")
             library("native", "com.github.stephengold", "jolt-jni-${JoltPlatform.current().module}").versionRef("jolt")
 
