@@ -50,6 +50,7 @@ import org.apache.commons.lang3.mutable.MutableObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumSet;
 import java.util.IdentityHashMap;
 import java.util.List;
@@ -108,6 +109,21 @@ public final class PhysicsEnvironment {
 		return PlatformHelper.INSTANCE.getPhysicsEnvironment(level);
 	}
 
+	public void close() {
+		this.chunkSectionBodies.values().stream()
+				.flatMap(Collection::stream)
+				.forEach(BodyAccess::discard);
+
+		this.compilingSections.values().forEach(CompileTask::discardResult);
+
+		this.entities.values().forEach(EntityEntry::close);
+
+		this.system.close();
+		this.tempAllocator.close();
+		this.jobSystem.close();
+		this.boxCache.close();
+	}
+
 	public void entityAdded(Entity entity) {
 		if (!(entity instanceof PhysicsEntity physicsEntity))
 			return;
@@ -145,12 +161,13 @@ public final class PhysicsEnvironment {
 			EntityEntry<?> entry = this.entities.remove(physicsEntity);
 			if (entry != null) {
 				// need to reactivate any adjacent objects, that's not automatic
-				// no reason to make a copy, it's a fresh object, save an allocation
-				AaBox bounds = (AaBox) entry.body().getBody().getWorldSpaceBounds();
-				bounds.expandBy(REACTIVATION_EXPANSION);
+				ConstAaBox bounds = entry.body().getBody().getWorldSpaceBounds();
+				try (AaBox copy = new AaBox(bounds)) {
+					copy.expandBy(REACTIVATION_EXPANSION);
 
-				entry.body().discard();
-				this.wakeWithin(bounds);
+					entry.body().discard();
+					this.wakeWithin(bounds);
+				}
 			}
 		}
 	}
@@ -198,16 +215,17 @@ public final class PhysicsEnvironment {
 			int posZ = SectionPos.sectionToBlockCoord(SectionPos.z(pos));
 
 			List<BodyAccess> bodies = compiled.shapes().stream().map(shape -> {
-				BodyCreationSettings settings = new BodyCreationSettings();
-				shape.configure(settings);
-				settings.setObjectLayer(ObjectLayers.STATIC);
-				settings.setEnhancedInternalEdgeRemoval(true);
-				settings.setMotionType(EMotionType.Static);
-				settings.setPosition(posX, posY, posZ);
+				try (BodyCreationSettings settings = new BodyCreationSettings()) {
+					shape.configure(settings);
+					settings.setObjectLayer(ObjectLayers.STATIC);
+					settings.setEnhancedInternalEdgeRemoval(true);
+					settings.setMotionType(EMotionType.Static);
+					settings.setPosition(posX, posY, posZ);
 
-				Body body = this.bodies.createBody(settings);
-				// this cast is stupid
-				return (BodyAccess) new BodyAccess.Impl(body, this.bodies);
+					Body body = this.bodies.createBody(settings);
+					// this cast is stupid
+					return (BodyAccess) new BodyAccess.Impl(body, this.bodies);
+				}
 			}).toList();
 
 			newSectionBodies.addAll(bodies);
@@ -226,13 +244,14 @@ public final class PhysicsEnvironment {
 		if (newSectionBodies.isEmpty())
 			return;
 
-		BodyIdArray ids = new BodyIdArray(newSectionBodies.size());
-		for (int i = 0; i < newSectionBodies.size(); i++) {
-			ids.set(i, newSectionBodies.get(i).id());
-		}
+		try (BodyIdArray ids = new BodyIdArray(newSectionBodies.size())) {
+			for (int i = 0; i < newSectionBodies.size(); i++) {
+				ids.set(i, newSectionBodies.get(i).id());
+			}
 
-		long handle = this.bodies.addBodiesPrepare(ids, newSectionBodies.size());
-		this.bodies.addBodiesFinalize(ids, newSectionBodies.size(), handle, EActivation.Activate);
+			long handle = this.bodies.addBodiesPrepare(ids, newSectionBodies.size());
+			this.bodies.addBodiesFinalize(ids, newSectionBodies.size(), handle, EActivation.Activate);
+		}
 	}
 
 	public void chunkLoaded(LevelChunk chunk) {
@@ -248,7 +267,12 @@ public final class PhysicsEnvironment {
 		LevelChunkSection[] sections = chunk.getSections();
 		for (int i = 0; i < sections.length; i++) {
 			long pos = sectionPos(chunk, i);
-			this.compilingSections.remove(pos);
+
+			CompileTask task = this.compilingSections.remove(pos);
+			if (task != null) {
+				task.discardResult();
+			}
+
 			List<BodyAccess> bodies = this.chunkSectionBodies.remove(pos);
 			if (bodies != null) {
 				bodies.forEach(BodyAccess::discard);
@@ -274,6 +298,11 @@ public final class PhysicsEnvironment {
 	private void tryCompile(LevelChunkSection section, long pos, @Nullable BlockPos changed) {
 		// remove here so even if there's no new compilation, the potential old one is discarded
 		CompileTask replaced = this.compilingSections.remove(pos);
+
+		if (replaced != null) {
+			replaced.discardResult();
+		}
+
 		SectionShapeCompiler compiler = SectionShapeCompiler.create(this.boxCache, section, replaced, changed);
 
 		if (compiler != null) {
@@ -288,10 +317,12 @@ public final class PhysicsEnvironment {
 	}
 
 	private void wakeTriggered(BlockPos trigger) {
-		this.wakeWithin(new AaBox(
+		try (AaBox box = new AaBox(
 				new RVec3(trigger.getX() - 1, trigger.getY() - 1, trigger.getZ() - 1),
 				new RVec3(trigger.getX() + 1, trigger.getY() + 1, trigger.getZ() + 1)
-		));
+		)) {
+			this.wakeWithin(box);
+		}
 	}
 
 	public static VoxelShape getPhysicsVisibleShape(BlockState state) {

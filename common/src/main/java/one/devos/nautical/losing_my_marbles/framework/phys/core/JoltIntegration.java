@@ -18,7 +18,6 @@ public final class JoltIntegration {
 
 	public static void setup() {
 		JoltNatives.load();
-		JoltPhysicsObject.startCleaner();
 		Jolt.registerDefaultAllocator();
 		Jolt.installDefaultAssertCallback();
 		Jolt.installDefaultTraceCallback();

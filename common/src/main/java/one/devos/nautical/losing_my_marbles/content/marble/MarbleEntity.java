@@ -68,24 +68,25 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 
 	@Override
 	public void createBody(BodyAccess.Factory factory) {
-		BodyCreationSettings settings = new BodyCreationSettings();
-		settings.setObjectLayer(ObjectLayers.MOVING);
-		settings.setShape(new SphereShape(RADIUS));
+		try (BodyCreationSettings settings = new BodyCreationSettings()) {
+			settings.setObjectLayer(ObjectLayers.MOVING);
+			settings.setShape(new SphereShape(RADIUS));
 
-		settings.setPosition(this.getX(), this.getY() + RADIUS, this.getZ());
+			settings.setPosition(this.getX(), this.getY() + RADIUS, this.getZ());
 
-		Vec3 vel = this.getDeltaMovement();
-		settings.setLinearVelocity((float) vel.x, (float) vel.y, (float) vel.z);
+			Vec3 vel = this.getDeltaMovement();
+			settings.setLinearVelocity((float) vel.x, (float) vel.y, (float) vel.z);
 
-		// 10kg, calculate inertia from mass + shape
-		settings.getMassPropertiesOverride().setMass(10);
-		settings.setOverrideMassProperties(EOverrideMassProperties.CalculateInertia);
-		// 50% bouncy
-		settings.setRestitution(0.5f);
-		// prevent tunneling
-		settings.setMotionQuality(EMotionQuality.LinearCast);
+			// 10kg, calculate inertia from mass + shape
+			settings.getMassPropertiesOverride().setMass(10);
+			settings.setOverrideMassProperties(EOverrideMassProperties.CalculateInertia);
+			// 50% bouncy
+			settings.setRestitution(0.5f);
+			// prevent tunneling
+			settings.setMotionQuality(EMotionQuality.LinearCast);
 
-		this.body = factory.create(settings);
+			this.body = factory.create(settings);
+		}
 	}
 
 	@Override

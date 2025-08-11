@@ -43,6 +43,10 @@ public record EntityEntry<T extends Entity & PhysicsEntity>(T entity, BodyAccess
 		}
 	}
 
+	public void close() {
+		this.body.discard();
+	}
+
 	@SuppressWarnings("unchecked")
 	public static <T extends Entity & PhysicsEntity> EntityEntry<?> create(Entity entity, BodyAccess body, Vec3 offset) {
 		if (!(entity instanceof PhysicsEntity)) {

@@ -8,6 +8,8 @@ import com.github.stephengold.joltjni.enumerate.EActivation;
 
 import com.github.stephengold.joltjni.readonly.ConstBodyCreationSettings;
 
+import com.github.stephengold.joltjni.readonly.ConstShape;
+
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 
@@ -20,9 +22,17 @@ public sealed interface BodyAccess {
 
 	void setVelocity(Vec3 velocity);
 
+	/**
+	 * Remove, destroy, and free this body.
+	 * This will also free the body's shape.
+	 */
 	void discard();
 
 	interface Factory {
+		/**
+		 * Create a new body based on the given settings.
+		 * It is the caller's responsibility to both create and close settings objects.
+		 */
 		BodyAccess create(ConstBodyCreationSettings settings);
 	}
 
@@ -51,6 +61,13 @@ public sealed interface BodyAccess {
 		public void discard() {
 			this.bodies.removeBody(this.id);
 			this.bodies.destroyBody(this.id);
+
+			ConstShape shape = this.body.getShape();
+			if (shape != null) {
+				shape.close();
+			}
+
+			this.body.close();
 		}
 	}
 }

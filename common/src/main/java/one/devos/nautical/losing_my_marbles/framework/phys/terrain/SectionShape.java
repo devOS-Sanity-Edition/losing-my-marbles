@@ -1,6 +1,7 @@
 package one.devos.nautical.losing_my_marbles.framework.phys.terrain;
 
 import com.github.stephengold.joltjni.BodyCreationSettings;
+import com.github.stephengold.joltjni.ShapeRefC;
 import com.github.stephengold.joltjni.ShapeResult;
 import com.github.stephengold.joltjni.StaticCompoundShapeSettings;
 import com.github.stephengold.joltjni.readonly.ConstShape;
@@ -58,7 +59,12 @@ public record SectionShape(ConstShape shape, Properties properties) {
 				throw new RuntimeException("Failed to build shape for section: " + result.getError());
 			}
 
-			return new SectionShape(result.get(), this.properties);
+			ShapeRefC shape = result.get();
+
+			this.settings.close();
+			result.close();
+
+			return new SectionShape(shape, this.properties);
 		}
 	}
 }

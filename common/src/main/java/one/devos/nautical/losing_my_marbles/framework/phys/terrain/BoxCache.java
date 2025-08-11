@@ -30,6 +30,16 @@ public final class BoxCache {
 		return created;
 	}
 
+	public void close() {
+		this.cache.values().stream()
+				.flatMap(map -> map.values().stream())
+				.flatMap(map -> map.values().stream())
+				.flatMap(map -> map.values().stream())
+				.flatMap(map -> map.values().stream())
+				.flatMap(map -> map.values().stream())
+				.forEach(ConstShape::close);
+	}
+
 	private static ConstShape create(double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
 		double extent = (maxX - minX) / 2;
 		double eytent = (maxY - minY) / 2;
