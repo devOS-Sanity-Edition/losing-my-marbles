@@ -15,14 +15,11 @@ public final class JoltNatives {
 		Platform platform = Platform.current();
 		// on windows, the dll must be in the working directory.
 		Path extracted = PlatformHelper.INSTANCE.getGameDir().resolve(EXTRACTED_PREFIX + platform.filename);
-		ensureExtracted(platform, extracted);
+		extract(platform, extracted);
 		System.load(extracted.toAbsolutePath().toString());
 	}
 
-	private static void ensureExtracted(Platform platform, Path dest) {
-		if (Files.exists(dest))
-			return;
-
+	private static void extract(Platform platform, Path dest) {
 		Path natives = PlatformHelper.INSTANCE.findPath(FOLDER).orElseThrow(
 				() -> new IllegalStateException("Jolt natives are missing from the jar")
 		);
@@ -33,6 +30,8 @@ public final class JoltNatives {
 		}
 
 		try {
+			// delete it if it exists already to make sure the correct version is loaded
+			Files.deleteIfExists(dest);
 			Files.createDirectories(dest.getParent());
 			Files.copy(src, dest);
 		} catch (IOException e) {
