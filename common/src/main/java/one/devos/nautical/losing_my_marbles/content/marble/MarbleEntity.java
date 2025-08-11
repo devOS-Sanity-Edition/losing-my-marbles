@@ -13,6 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.InterpolationHandler;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
@@ -31,6 +32,8 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	public static final float RADIUS = 3 / 16f;
 	public static final float DIAMETER = RADIUS * 2;
 
+	private final InterpolationHandler interpolator;
+
 	@Nullable
 	private BodyAccess body;
 	@Nullable
@@ -39,6 +42,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	public MarbleEntity(EntityType<?> type, Level level) {
 		super(type, level);
 		this.blocksBuilding = true;
+		this.interpolator = new InterpolationHandler(this);
 	}
 
 	@Override
@@ -48,10 +52,18 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	@Override
 	public void tick() {
 		super.tick();
+		this.interpolator.interpolate();
+
 		if (this.nextTickPos != null) {
 			this.setPos(this.nextTickPos);
 			this.nextTickPos = null;
 		}
+	}
+
+	@Nullable
+	@Override
+	public InterpolationHandler getInterpolation() {
+		return this.interpolator;
 	}
 
 	@Override

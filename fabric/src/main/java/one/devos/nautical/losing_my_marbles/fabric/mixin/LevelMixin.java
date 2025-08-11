@@ -3,6 +3,7 @@ package one.devos.nautical.losing_my_marbles.fabric.mixin;
 import com.llamalad7.mixinextras.sugar.Local;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,6 +28,8 @@ public class LevelMixin {
 							   @Local(argsOnly = true) BlockPos pos,
 							   @Local(argsOnly = true) BlockState newState,
 							   @Local(ordinal = 1) BlockState oldState) {
-		PhysicsEventListeners.blockChanged((Level) (Object) this, pos, oldState, newState);
+		if ((Object) this instanceof ServerLevel serverLevel) {
+			PhysicsEventListeners.blockChanged(serverLevel, pos, oldState, newState);
+		}
 	}
 }

@@ -29,9 +29,9 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.SectionPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.EmptyBlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.LevelChunk;
@@ -70,7 +70,7 @@ public final class PhysicsEnvironment {
 	public static final BroadPhaseLayerFilter DUMMY_BROAD_PHASE_FILTER = new BroadPhaseLayerFilter();
 	public static final ObjectLayerFilter DUMMY_OBJECT_LAYER_FILTER = new ObjectLayerFilter();
 
-	private final Level level;
+	private final ServerLevel level;
 	private final Executor executor;
 
 	private final TempAllocator tempAllocator;
@@ -84,7 +84,7 @@ public final class PhysicsEnvironment {
 
 	private final Map<PhysicsEntity, EntityEntry<?>> entities;
 
-	public PhysicsEnvironment(Level level) {
+	public PhysicsEnvironment(ServerLevel level) {
 		this.level = level;
 		ResourceLocation dim = level.dimension().location();
 		this.executor = Util.backgroundExecutor().forName("PhysicsEnvironment/" + dim);
@@ -104,7 +104,7 @@ public final class PhysicsEnvironment {
 		this.entities = new IdentityHashMap<>();
 	}
 
-	public static PhysicsEnvironment get(Level level) {
+	public static PhysicsEnvironment get(ServerLevel level) {
 		return PlatformHelper.INSTANCE.getPhysicsEnvironment(level);
 	}
 
@@ -156,10 +156,6 @@ public final class PhysicsEnvironment {
 	}
 
 	public void tick() {
-		// TODO: do we need to simulate on the client?
-		if (this.level.isClientSide)
-			return;
-
 		// add any chunk sections that have finished compiling off-thread
 		this.pollSectionCompiles();
 

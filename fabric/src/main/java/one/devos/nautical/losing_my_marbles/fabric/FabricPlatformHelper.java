@@ -2,7 +2,7 @@ package one.devos.nautical.losing_my_marbles.fabric;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEnvironment;
 import one.devos.nautical.losing_my_marbles.framework.platform.Env;
@@ -28,7 +28,7 @@ public class FabricPlatformHelper implements PlatformHelper {
 	}
 
 	@Override
-	public PhysicsEnvironment getPhysicsEnvironment(Level level) {
+	public PhysicsEnvironment getPhysicsEnvironment(ServerLevel level) {
 		return level.getAttachedOrCreate(LosingMyMarblesFabric.PHYSICS_ENV_ATTACHMENT, () -> new PhysicsEnvironment(level));
 	}
 }

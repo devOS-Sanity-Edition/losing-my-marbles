@@ -1,6 +1,6 @@
 package one.devos.nautical.losing_my_marbles.framework.platform;
 
-import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEnvironment;
 
@@ -16,5 +16,5 @@ public interface PlatformHelper {
 
 	Optional<Path> findPath(String name);
 
-	PhysicsEnvironment getPhysicsEnvironment(Level level);
+	PhysicsEnvironment getPhysicsEnvironment(ServerLevel level);
 }
