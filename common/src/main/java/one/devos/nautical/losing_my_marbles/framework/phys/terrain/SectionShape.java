@@ -42,9 +42,9 @@ public record SectionShape(ConstShape shape, Properties properties) {
 		}
 
 		public void add(int x, int y, int z, double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
-			float centerX = (float) Mth.lerp(minX, maxX, 0.5);
-			float centerY = (float) Mth.lerp(minY, maxY, 0.5);
-			float centerZ = (float) Mth.lerp(minZ, maxZ, 0.5);
+			float centerX = (float) Mth.lerp(0.5, minX, maxX);
+			float centerY = (float) Mth.lerp(0.5, minY, maxY);
+			float centerZ = (float) Mth.lerp(0.5, minZ, maxZ);
 
 			this.settings.addShape(
 					x + centerX, y + centerY, z + centerZ,
