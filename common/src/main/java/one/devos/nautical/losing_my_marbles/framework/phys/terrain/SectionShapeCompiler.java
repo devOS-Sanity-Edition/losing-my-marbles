@@ -2,13 +2,13 @@ package one.devos.nautical.losing_my_marbles.framework.phys.terrain;
 
 import net.minecraft.client.renderer.chunk.SectionCompiler;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Cursor3D;
 import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 
 import net.minecraft.world.level.chunk.PalettedContainer;
 
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import org.jetbrains.annotations.Nullable;
@@ -40,23 +40,19 @@ public final class SectionShapeCompiler implements Supplier<CompiledSection> {
 	public CompiledSection get() {
 		Map<SectionShape.Properties, SectionShape.Builder> builders = new HashMap<>();
 
-		for (int x = 0; x < SIZE; x++) {
-			for (int z = 0; z < SIZE; z++) {
-				for (int y = 0; y < SIZE; y++) {
-					BlockState state = this.states.get(x, y, z);
+		Cursor3D cursor = new Cursor3D(0, 0, 0, SIZE - 1, SIZE - 1, SIZE - 1);
 
-					VoxelShape shape = state.getCollisionShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO);
-					if (shape.isEmpty())
-						continue;
+		while (cursor.advance()) {
+			BlockState state = this.states.get(cursor.nextX(), cursor.nextY(), cursor.nextZ());
 
-					SectionShape.Properties properties = SectionShape.Properties.of(state);
-					SectionShape.Builder builder = builders.computeIfAbsent(properties, this::newBuilder);
+			VoxelShape shape = state.getCollisionShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO);
+			if (shape.isEmpty())
+				continue;
 
-					for (AABB aabb : shape.toAabbs()) {
-						builder.add(x, y, z, aabb);
-					}
-				}
-			}
+			SectionShape.Properties properties = SectionShape.Properties.of(state);
+			SectionShape.Builder builder = builders.computeIfAbsent(properties, this::newBuilder);
+
+			shape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> builder.add(cursor, minX, minY, minZ, maxX, maxY, maxZ));
 		}
 
 		return new CompiledSection(

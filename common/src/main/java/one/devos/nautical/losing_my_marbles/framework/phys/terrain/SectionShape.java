@@ -5,9 +5,9 @@ import com.github.stephengold.joltjni.ShapeResult;
 import com.github.stephengold.joltjni.StaticCompoundShapeSettings;
 import com.github.stephengold.joltjni.readonly.ConstShape;
 
+import net.minecraft.core.Cursor3D;
+import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 
 public record SectionShape(ConstShape shape, Properties properties) {
 	public void configure(BodyCreationSettings settings) {
@@ -37,12 +37,18 @@ public record SectionShape(ConstShape shape, Properties properties) {
 			this.settings = new StaticCompoundShapeSettings();
 		}
 
-		public void add(int x, int y, int z, AABB box) {
-			Vec3 center = box.getCenter();
+		public void add(Cursor3D cursor, double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
+			this.add(cursor.nextX(), cursor.nextY(), cursor.nextZ(), minX, minY, minZ, maxX, maxY, maxZ);
+		}
+
+		public void add(int x, int y, int z, double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
+			float centerX = (float) Mth.lerp(minX, maxX, 0.5);
+			float centerY = (float) Mth.lerp(minY, maxY, 0.5);
+			float centerZ = (float) Mth.lerp(minZ, maxZ, 0.5);
 
 			this.settings.addShape(
-					(float) (x + center.x), (float) (y + center.y), (float) (z + center.z),
-					this.boxCache.get(box)
+					x + centerX, y + centerY, z + centerZ,
+					this.boxCache.get(minX, minY, minZ, maxX, maxY, maxZ)
 			);
 		}
 
