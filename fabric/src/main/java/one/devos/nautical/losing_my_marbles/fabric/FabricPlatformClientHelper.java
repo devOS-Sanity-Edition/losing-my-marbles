@@ -11,8 +11,8 @@ import one.devos.nautical.losing_my_marbles.framework.platform.PlatformClientHel
 
 public class FabricPlatformClientHelper implements PlatformClientHelper {
 	@Override
-	public void setBlockRenderLayer(Block block, ChunkSectionLayer layer) {
-		BlockRenderLayerMap.putBlock(block, layer);
+	public void setBlockRenderLayer(ChunkSectionLayer layer, Block... blocks) {
+		BlockRenderLayerMap.putBlocks(layer, blocks);
 	}
 
 	@Override

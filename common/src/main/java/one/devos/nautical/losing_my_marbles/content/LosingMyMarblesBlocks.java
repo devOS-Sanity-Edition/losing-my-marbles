@@ -12,15 +12,27 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
+import one.devos.nautical.losing_my_marbles.content.piece.CornerPieceBlock;
+import one.devos.nautical.losing_my_marbles.content.piece.IntersectionPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.StraightPieceBlock;
 import one.devos.nautical.losing_my_marbles.framework.platform.Env;
 import one.devos.nautical.losing_my_marbles.framework.platform.PlatformClientHelper;
 import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 
 public class LosingMyMarblesBlocks {
-	public static final StraightPieceBlock STRAIGHT_PIECE = register("straight_piece", StraightPieceBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS));
+	public static final StraightPieceBlock STRAIGHT_PIECE = register("straight_piece", StraightPieceBlock::new, pieceProperties());
+	public static final IntersectionPieceBlock INTERSECTION_PIECE = register("intersection_piece", IntersectionPieceBlock::new, pieceProperties());
+	public static final CornerPieceBlock CORNER_PIECE = register("corner_piece", CornerPieceBlock::new, pieceProperties());
+
+	private static BlockBehaviour.Properties pieceProperties() {
+		return BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
+				.sound(SoundType.RESIN_BRICKS)
+				.instrument(NoteBlockInstrument.BASEDRUM);
+	}
 
 	static <T extends Block> T register(String name, Function<BlockBehaviour.Properties, T> factory, BlockBehaviour.Properties properties) {
 		ResourceLocation id = LosingMyMarbles.id(name);
@@ -34,7 +46,11 @@ public class LosingMyMarblesBlocks {
 
 	public static void init() {
 		if (PlatformHelper.INSTANCE.getEnvironment() == Env.CLIENT) {
-			PlatformClientHelper.INSTANCE.setBlockRenderLayer(STRAIGHT_PIECE, ChunkSectionLayer.TRANSLUCENT);
+			PlatformClientHelper.INSTANCE.setBlockRenderLayer(ChunkSectionLayer.TRANSLUCENT,
+					STRAIGHT_PIECE,
+					INTERSECTION_PIECE,
+					CORNER_PIECE
+			);
 		}
 	}
 }
