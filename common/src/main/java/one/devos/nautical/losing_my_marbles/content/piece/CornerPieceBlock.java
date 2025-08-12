@@ -77,18 +77,21 @@ public class CornerPieceBlock extends PieceBlock {
 		}
 
 		public static Facing fromDirections(Direction[] directions) {
-			Direction.AxisDirection zDir = Direction.AxisDirection.NEGATIVE;
-			Direction.AxisDirection xDir = Direction.AxisDirection.NEGATIVE;
+			Direction.AxisDirection zDir = null;
+			Direction.AxisDirection xDir = null;
 
 			for (Direction direction : directions) {
 				Direction.Axis axis = direction.getAxis();
 				Direction.AxisDirection axisDirection = direction.getAxisDirection();
-				if (axis == Direction.Axis.Z) {
-					zDir = axisDirection;
-				} else if (axis == Direction.Axis.X) {
-					xDir = axisDirection;
+				if (axis == Direction.Axis.Z && zDir == null) {
+					zDir = axisDirection.opposite();
+				} else if (axis == Direction.Axis.X && xDir == null) {
+					xDir = axisDirection.opposite();
 				}
 			}
+
+			if (xDir == null || zDir == null)
+				return NORTHWEST;
 
 			return switch (zDir) {
 				case POSITIVE -> switch (xDir) {
