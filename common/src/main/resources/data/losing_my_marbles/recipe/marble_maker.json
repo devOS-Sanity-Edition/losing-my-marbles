@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:obsidian",
+    "X": "minecraft:smooth_stone",
+    "Y": "minecraft:lever"
+  },
+  "pattern": [
+    "#X ",
+    "# Y",
+    "XXX"
+  ],
+  "result": {
+    "count": 1,
+    "id": "losing_my_marbles:marble_maker"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_obsidian": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:obsidian"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "losing_my_marbles:marble_maker"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_obsidian"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "losing_my_marbles:marble_maker"
+    ]
+  }
+}

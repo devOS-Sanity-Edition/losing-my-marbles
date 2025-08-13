@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:glass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "losing_my_marbles:straight_piece",
+      "losing_my_marbles:corner_piece",
+      "losing_my_marbles:intersection_piece"
+    ]
+  }
+}

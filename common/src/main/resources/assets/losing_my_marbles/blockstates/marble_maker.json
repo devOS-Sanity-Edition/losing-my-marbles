@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "active=false,facing=north": {
+      "model": "losing_my_marbles:block/marble_maker"
+    },
+    "active=false,facing=east": {
+      "model": "losing_my_marbles:block/marble_maker",
+      "y": 90
+    },
+    "active=false,facing=south": {
+      "model": "losing_my_marbles:block/marble_maker",
+      "y": 180
+    },
+    "active=false,facing=west": {
+      "model": "losing_my_marbles:block/marble_maker",
+      "y": 270
+    },
+    "active=true,facing=north": {
+      "model": "losing_my_marbles:block/marble_maker_active"
+    },
+    "active=true,facing=east": {
+      "model": "losing_my_marbles:block/marble_maker_active",
+      "y": 90
+    },
+    "active=true,facing=south": {
+      "model": "losing_my_marbles:block/marble_maker_active",
+      "y": 180
+    },
+    "active=true,facing=west": {
+      "model": "losing_my_marbles:block/marble_maker_active",
+      "y": 270
+    }
+  }
+}

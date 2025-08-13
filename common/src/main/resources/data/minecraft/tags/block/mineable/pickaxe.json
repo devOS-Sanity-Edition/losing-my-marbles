@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#losing_my_marbles:track_pieces"
+    "#losing_my_marbles:track_pieces",
+    "losing_my_marbles:marble_maker"
   ]
 }
