@@ -8,19 +8,23 @@ import com.github.stephengold.joltjni.ShapeRefC;
 import com.github.stephengold.joltjni.ShapeResult;
 import com.github.stephengold.joltjni.VertexList;
 
+import it.unimi.dsi.fastutil.floats.FloatUnaryOperator;
+
 public final class TriStripBuilder {
+	private final FloatUnaryOperator scaler;
 	private final VertexList vertices;
 	private final IndexedTriangleList triangles;
 
 	private boolean flip;
 
-	public TriStripBuilder() {
+	public TriStripBuilder(FloatUnaryOperator scaler) {
+		this.scaler = scaler;
 		this.vertices = new VertexList();
 		this.triangles = new IndexedTriangleList();
 	}
 
 	public TriStripBuilder then(float x, float y, float z) {
-		this.vertices.pushBack(new Float3(x, y, z));
+		this.vertices.pushBack(new Float3(this.scaler.apply(x), this.scaler.apply(y), this.scaler.apply(z)));
 
 		if (this.vertices.size() >= 3) {
 			int v3 = this.vertices.size() - 1;

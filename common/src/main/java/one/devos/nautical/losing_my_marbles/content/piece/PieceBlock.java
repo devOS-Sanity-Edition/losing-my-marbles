@@ -70,4 +70,8 @@ public abstract class PieceBlock extends TransparentBlock {
 		vec.scaleInPlace(1 / 16f);
 		return vec;
 	}
+
+	public static float pixelsToBlocks(float pixels) {
+		return pixels / 16;
+	}
 }

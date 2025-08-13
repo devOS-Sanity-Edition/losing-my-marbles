@@ -65,7 +65,7 @@ public class CornerPieceBlock extends PieceBlock {
 	}
 
 	public static void additionalCollision(BlockState state, PhysicsCollision.Provider.Output output) {
-		ShapeRefC outer = new TriStripBuilder()
+		ShapeRefC outer = new TriStripBuilder(PieceBlock::pixelsToBlocks)
 				.then(2, 0, -8)
 				.then(4, 2, -8)
 				.then(2, 0, -4)
@@ -76,7 +76,7 @@ public class CornerPieceBlock extends PieceBlock {
 				.then(-8, 2, 4)
 				.build();
 
-		ShapeRefC inner = new TriStripBuilder()
+		ShapeRefC inner = new TriStripBuilder(PieceBlock::pixelsToBlocks)
 				.then(-2, 0, -8)
 				.then(-4, 2, -8)
 				.then(-2, 0, -4)
