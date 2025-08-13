@@ -1,31 +1,33 @@
 package one.devos.nautical.losing_my_marbles.framework.phys.terrain;
 
 import com.github.stephengold.joltjni.BoxShapeSettings;
-
+import com.github.stephengold.joltjni.ShapeRefC;
 import com.github.stephengold.joltjni.ShapeResult;
 import com.github.stephengold.joltjni.Vec3;
-import com.github.stephengold.joltjni.readonly.ConstShape;
 
 import it.unimi.dsi.fastutil.doubles.Double2ObjectMap;
 import it.unimi.dsi.fastutil.doubles.Double2ObjectMaps;
 import it.unimi.dsi.fastutil.doubles.Double2ObjectOpenHashMap;
 
+/**
+ * Caches Jolt versions of AABBs to minimize allocations
+ */
 public final class BoxCache {
 	// I think someone needs to kill me for this. it saves a lot of AABB allocations though.
-	private final Double2ObjectMap<Double2ObjectMap<Double2ObjectMap<Double2ObjectMap<Double2ObjectMap<Double2ObjectMap<ConstShape>>>>>> cache = newMap();
+	private final Double2ObjectMap<Double2ObjectMap<Double2ObjectMap<Double2ObjectMap<Double2ObjectMap<Double2ObjectMap<ShapeRefC>>>>>> cache = newMap();
 
-	public ConstShape get(double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
-		Double2ObjectMap<ConstShape> innermostMap = this.cache.computeIfAbsent(minX, BoxCache::newMap)
+	public ShapeRefC get(double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
+		Double2ObjectMap<ShapeRefC> innermostMap = this.cache.computeIfAbsent(minX, BoxCache::newMap)
 				.computeIfAbsent(minY, BoxCache::newMap)
 				.computeIfAbsent(minZ, BoxCache::newMap)
 				.computeIfAbsent(maxX, BoxCache::newMap)
 				.computeIfAbsent(maxY, BoxCache::newMap);
 
-		ConstShape shape = innermostMap.get(maxZ);
+		ShapeRefC shape = innermostMap.get(maxZ);
 		if (shape != null)
 			return shape;
 
-		ConstShape created = create(minX, minY, minZ, maxX, maxY, maxZ);
+		ShapeRefC created = create(minX, minY, minZ, maxX, maxY, maxZ);
 		innermostMap.put(maxZ, created);
 		return created;
 	}
@@ -37,19 +39,22 @@ public final class BoxCache {
 				.flatMap(map -> map.values().stream())
 				.flatMap(map -> map.values().stream())
 				.flatMap(map -> map.values().stream())
-				.forEach(ConstShape::close);
+				.forEach(ShapeRefC::close);
 	}
 
-	private static ConstShape create(double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
+	private static ShapeRefC create(double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
 		double extent = (maxX - minX) / 2;
 		double eytent = (maxY - minY) / 2;
 		double eztent = (maxZ - minZ) / 2;
 
-		try (BoxShapeSettings settings = new BoxShapeSettings()) {
-			settings.setHalfExtent(new Vec3(extent, eytent, eztent));
-			settings.setConvexRadius(0);
+		BoxShapeSettings settings = new BoxShapeSettings();
 
-			ShapeResult result = settings.create();
+		settings.setHalfExtent(new Vec3(extent, eytent, eztent));
+		settings.setConvexRadius(0);
+
+		try (ShapeResult result = settings.create()) {
+			settings.toRef().close();
+
 			if (result.hasError()) {
 				throw new RuntimeException("Failed to create BoxShape: " + result.getError());
 			}
