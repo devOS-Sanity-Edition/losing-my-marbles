@@ -12,7 +12,7 @@ import com.github.stephengold.joltjni.readonly.Vec3Arg;
 import net.minecraft.world.phys.Vec3;
 
 public final class JoltIntegration {
-	public static final int MAX_BODIES = Short.MAX_VALUE;
+	public static final int MAX_BODIES = 65536; // 2^16
 	public static final int MAX_PAIRS = 4096;
 	public static final int MAX_CONTACTS = 16384; // 2^14
 
