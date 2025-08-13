@@ -8,8 +8,6 @@ import com.github.stephengold.joltjni.enumerate.EActivation;
 
 import com.github.stephengold.joltjni.readonly.ConstBodyCreationSettings;
 
-import com.github.stephengold.joltjni.readonly.ConstShape;
-
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 
@@ -60,14 +58,8 @@ public sealed interface BodyAccess {
 		@Override
 		public void discard() {
 			this.bodies.removeBody(this.id);
+			// this is the equivalent of closing both the body and its shape, close() is a no-op
 			this.bodies.destroyBody(this.id);
-
-			ConstShape shape = this.body.getShape();
-			if (shape != null) {
-				shape.close();
-			}
-
-			this.body.close();
 		}
 	}
 }

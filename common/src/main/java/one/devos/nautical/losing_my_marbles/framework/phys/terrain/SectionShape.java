@@ -4,15 +4,17 @@ import com.github.stephengold.joltjni.BodyCreationSettings;
 import com.github.stephengold.joltjni.ShapeRefC;
 import com.github.stephengold.joltjni.ShapeResult;
 import com.github.stephengold.joltjni.StaticCompoundShapeSettings;
-import com.github.stephengold.joltjni.readonly.ConstShape;
 
 import net.minecraft.core.Cursor3D;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.state.BlockState;
 
-public record SectionShape(ConstShape shape, Properties properties) {
+public record SectionShape(ShapeRefC shape, Properties properties) {
 	public void configure(BodyCreationSettings settings) {
 		settings.setShape(this.shape);
+		// setShape creates a new reference to the shape, close this one now that we're done with it
+		this.shape.close();
+
 		this.properties.configure(settings);
 	}
 
@@ -54,17 +56,17 @@ public record SectionShape(ConstShape shape, Properties properties) {
 		}
 
 		public SectionShape build() {
-			ShapeResult result = this.settings.create();
-			if (result.hasError()) {
-				throw new RuntimeException("Failed to build shape for section: " + result.getError());
+			try (ShapeResult result = this.settings.create()) {
+				// close the settings now that we're done with them.
+				// it's ref-counted, so we need to create and close a reference.
+				this.settings.toRef().close();
+
+				if (result.hasError()) {
+					throw new RuntimeException("Failed to build shape for section: " + result.getError());
+				}
+
+				return new SectionShape(result.get(), this.properties);
 			}
-
-			ShapeRefC shape = result.get();
-
-			this.settings.close();
-			result.close();
-
-			return new SectionShape(shape, this.properties);
 		}
 	}
 }
