@@ -1,9 +1,9 @@
 package one.devos.nautical.losing_my_marbles.content.marble;
 
+import org.jetbrains.annotations.Nullable;
+
 import com.github.stephengold.joltjni.BodyCreationSettings;
-
 import com.github.stephengold.joltjni.SphereShape;
-
 import com.github.stephengold.joltjni.enumerate.EMotionQuality;
 import com.github.stephengold.joltjni.enumerate.EOverrideMassProperties;
 import com.github.stephengold.joltjni.readonly.Vec3Arg;
@@ -21,12 +21,8 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.framework.phys.BodyAccess;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEntity;
-
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
-
 import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
-
-import org.jetbrains.annotations.Nullable;
 
 public final class MarbleEntity extends Entity implements PhysicsEntity {
 	public static final float RADIUS = 3 / 16f;
@@ -42,7 +38,8 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	public MarbleEntity(EntityType<?> type, Level level) {
 		super(type, level);
 		this.blocksBuilding = true;
-		this.interpolator = new InterpolationHandler(this);
+		// 1 tick: minimal latency for maximum detail
+		this.interpolator = new InterpolationHandler(this, 1);
 	}
 
 	@Override
