@@ -1,11 +1,8 @@
 package one.devos.nautical.losing_my_marbles.framework.phys;
 
 import com.github.stephengold.joltjni.Body;
-
 import com.github.stephengold.joltjni.BodyInterface;
-
 import com.github.stephengold.joltjni.enumerate.EActivation;
-
 import com.github.stephengold.joltjni.readonly.ConstBodyCreationSettings;
 
 import net.minecraft.world.phys.Vec3;
@@ -36,7 +33,7 @@ public sealed interface BodyAccess {
 
 	// getId is not cached, that's a lot of JNI!
 	record Impl(int id, Body body, BodyInterface bodies) implements BodyAccess {
-		Impl(Body body, BodyInterface bodies) {
+		public Impl(Body body, BodyInterface bodies) {
 			this(body.getId(), body, bodies);
 		}
 
