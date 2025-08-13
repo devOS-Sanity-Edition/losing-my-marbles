@@ -2,6 +2,8 @@ package one.devos.nautical.losing_my_marbles.content.piece;
 
 import java.util.Arrays;
 
+import com.github.stephengold.joltjni.Vec3;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -62,5 +64,10 @@ public abstract class PieceBlock extends TransparentBlock {
 			}
 		}
 		return InteractionResult.PASS;
+	}
+
+	public static Vec3 pixelsToBlocks(Vec3 vec) {
+		vec.scaleInPlace(1 / 16f);
+		return vec;
 	}
 }

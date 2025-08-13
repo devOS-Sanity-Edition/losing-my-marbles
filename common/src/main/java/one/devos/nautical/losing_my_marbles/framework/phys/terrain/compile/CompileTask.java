@@ -1,4 +1,4 @@
-package one.devos.nautical.losing_my_marbles.framework.phys.terrain;
+package one.devos.nautical.losing_my_marbles.framework.phys.terrain.compile;
 
 import java.util.concurrent.CompletableFuture;
 

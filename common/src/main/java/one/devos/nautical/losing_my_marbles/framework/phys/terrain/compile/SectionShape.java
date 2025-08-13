@@ -1,13 +1,16 @@
-package one.devos.nautical.losing_my_marbles.framework.phys.terrain;
+package one.devos.nautical.losing_my_marbles.framework.phys.terrain.compile;
 
 import com.github.stephengold.joltjni.BodyCreationSettings;
 import com.github.stephengold.joltjni.ShapeRefC;
 import com.github.stephengold.joltjni.ShapeResult;
 import com.github.stephengold.joltjni.StaticCompoundShapeSettings;
+import com.github.stephengold.joltjni.readonly.ConstShape;
+import com.github.stephengold.joltjni.readonly.QuatArg;
+import com.github.stephengold.joltjni.readonly.Vec3Arg;
 
-import net.minecraft.core.Cursor3D;
 import net.minecraft.util.Mth;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import one.devos.nautical.losing_my_marbles.framework.phys.util.BoxCache;
 
 public record SectionShape(ShapeRefC shape, Properties properties) {
 	public void configure(BodyCreationSettings settings) {
@@ -23,10 +26,6 @@ public record SectionShape(ShapeRefC shape, Properties properties) {
 			settings.setFriction(this.friction);
 			settings.setRestitution(this.restitution);
 		}
-
-		public static Properties of(BlockState state) {
-			return new Properties(state.getBlock().getFriction(), 0.5f);
-		}
 	}
 
 	public static final class Builder {
@@ -40,8 +39,8 @@ public record SectionShape(ShapeRefC shape, Properties properties) {
 			this.settings = new StaticCompoundShapeSettings();
 		}
 
-		public void add(Cursor3D cursor, double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
-			this.add(cursor.nextX(), cursor.nextY(), cursor.nextZ(), minX, minY, minZ, maxX, maxY, maxZ);
+		public void add(int x, int y, int z, VoxelShape shape) {
+			shape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> this.add(x, y, z, minX, minY, minZ, maxX, maxY, maxZ));
 		}
 
 		public void add(int x, int y, int z, double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
@@ -53,6 +52,10 @@ public record SectionShape(ShapeRefC shape, Properties properties) {
 					x + centerX, y + centerY, z + centerZ,
 					this.boxCache.get(minX, minY, minZ, maxX, maxY, maxZ)
 			);
+		}
+
+		public void add(Vec3Arg offset, QuatArg rotation, ConstShape shape) {
+			this.settings.addShape(offset, rotation, shape);
 		}
 
 		public SectionShape build() {

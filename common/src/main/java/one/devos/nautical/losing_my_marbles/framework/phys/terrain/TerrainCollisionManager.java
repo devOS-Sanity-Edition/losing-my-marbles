@@ -29,6 +29,10 @@ import net.minecraft.world.level.chunk.LevelChunkSection;
 import one.devos.nautical.losing_my_marbles.framework.phys.BodyAccess;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEnvironment;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.compile.CompileTask;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.compile.CompiledSection;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.compile.SectionShapeCompiler;
+import one.devos.nautical.losing_my_marbles.framework.phys.util.BoxCache;
 
 public final class TerrainCollisionManager {
 	private final PhysicsEnvironment environment;

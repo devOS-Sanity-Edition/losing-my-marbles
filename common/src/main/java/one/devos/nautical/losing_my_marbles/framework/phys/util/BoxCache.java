@@ -1,4 +1,4 @@
-package one.devos.nautical.losing_my_marbles.framework.phys.terrain;
+package one.devos.nautical.losing_my_marbles.framework.phys.util;
 
 import com.github.stephengold.joltjni.BoxShapeSettings;
 import com.github.stephengold.joltjni.ShapeRefC;
