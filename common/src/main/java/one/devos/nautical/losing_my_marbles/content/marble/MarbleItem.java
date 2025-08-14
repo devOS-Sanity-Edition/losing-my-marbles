@@ -1,5 +1,7 @@
 package one.devos.nautical.losing_my_marbles.content.marble;
 
+import java.util.Optional;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
@@ -9,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
+import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
 
 public final class MarbleItem extends Item {
 	public MarbleItem(Properties properties) {
@@ -29,11 +32,16 @@ public final class MarbleItem extends Item {
 		if (!level.noCollision(new AABB(pos)))
 			return InteractionResult.FAIL;
 
+		Optional<MarbleInstance> instance = marble.get(level.registryAccess());
+		if (instance.isEmpty()) {
+			return InteractionResult.FAIL;
+		}
+
 		if (level.isClientSide()) {
 			return InteractionResult.SUCCESS;
 		}
 
-		MarbleEntity entity = new MarbleEntity(level, marble.get(level.registryAccess()));
+		MarbleEntity entity = new MarbleEntity(level, instance.get());
 		entity.setPos(Vec3.atCenterOf(pos));
 		level.addFreshEntity(entity);
 

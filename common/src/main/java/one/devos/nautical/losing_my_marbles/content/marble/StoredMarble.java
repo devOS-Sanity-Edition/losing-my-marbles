@@ -1,6 +1,7 @@
 package one.devos.nautical.losing_my_marbles.content.marble;
 
 import java.util.Locale;
+import java.util.Optional;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -21,7 +22,7 @@ public sealed interface StoredMarble {
 	Codec<StoredMarble> CODEC = StorageType.CODEC.dispatch(StoredMarble::type, type -> type.codec);
 	StreamCodec<RegistryFriendlyByteBuf, StoredMarble> STREAM_CODEC = StorageType.STREAM_CODEC.dispatch(StoredMarble::type, type -> type.streamCodec);
 
-	MarbleInstance get(HolderLookup.Provider registries);
+	Optional<MarbleInstance> get(HolderLookup.Provider registries);
 
 	StorageType type();
 
@@ -40,10 +41,8 @@ public sealed interface StoredMarble {
 		}
 
 		@Override
-		public MarbleInstance get(HolderLookup.Provider registries) {
-			return this.holder.unwrap(registries).map(MarbleInstance::new).orElseGet(
-					() -> MarbleInstance.getDefault(registries)
-			);
+		public Optional<MarbleInstance> get(HolderLookup.Provider registries) {
+			return this.holder.unwrap(registries).map(MarbleInstance::new);
 		}
 
 		@Override
@@ -63,8 +62,8 @@ public sealed interface StoredMarble {
 		);
 
 		@Override
-		public MarbleInstance get(HolderLookup.Provider registries) {
-			return this.instance.copy();
+		public Optional<MarbleInstance> get(HolderLookup.Provider registries) {
+			return Optional.of(this.instance.copy());
 		}
 
 		@Override
