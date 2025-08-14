@@ -5,9 +5,13 @@ import org.slf4j.LoggerFactory;
 
 import net.minecraft.resources.ResourceLocation;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlocks;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntities;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesMarbleShapeTypes;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesMarbleTextures;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesPayloads;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 
 public final class LosingMyMarbles {
@@ -16,10 +20,14 @@ public final class LosingMyMarbles {
 
 	public static void init() {
 		JoltIntegration.setup();
+		LosingMyMarblesRegistries.init();
 		LosingMyMarblesItems.init();
 		LosingMyMarblesBlocks.init();
 		LosingMyMarblesEntities.init();
 		LosingMyMarblesPayloads.init();
+		LosingMyMarblesDataComponents.init();
+		LosingMyMarblesMarbleShapeTypes.init();
+		LosingMyMarblesMarbleTextures.init();
 	}
 
 	public static ResourceLocation id(String path) {

@@ -1,0 +1,22 @@
+{
+  "components": {
+    "losing_my_marbles:friction": 0.6,
+    "losing_my_marbles:restitution": 0.9,
+    "losing_my_marbles:bounce_sound": "block.slime_block.fall",
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:texture": {
+      "type": "losing_my_marbles:stepped",
+      "distance_per_step": 0.2,
+      "textures": [
+        "losing_my_marbles:slime_marble_1",
+        "losing_my_marbles:slime_marble_2",
+        "losing_my_marbles:slime_marble_3",
+        "losing_my_marbles:slime_marble_4",
+        "losing_my_marbles:slime_marble_5"
+      ]
+    }
+  }
+}
