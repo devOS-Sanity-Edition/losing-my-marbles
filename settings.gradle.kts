@@ -35,7 +35,7 @@ enum class JoltPlatform(val module: String) {
             val arch = System.getProperty("os.arch").lowercase(java.util.Locale.ROOT)
             val isArm = arch.startsWith("arm") || arch.startsWith("aarch64")
 
-            return if (arch.contains("mac")) {
+            return if (os.contains("mac")) {
                 if (isArm) MAC_ARM64 else MAC_64
             } else {
                 if (isArm) LINUX_ARM else LINUX_64
