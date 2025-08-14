@@ -85,17 +85,22 @@ public final class TerrainCollisionManager {
 		for (int i = 0; i < sections.length; i++) {
 			long pos = sectionPos(chunk, i);
 
+			boolean wasLoaded = false;
 			CompileTask task = this.compilingSections.remove(pos);
 			if (task != null) {
 				task.discardResult();
+				wasLoaded = true;
 			}
 
 			SectionEntry entry = this.sectionEntries.remove(pos);
 			if (entry != null) {
 				entry.discard();
+				wasLoaded = true;
 			}
 
-			this.awaitingChunkSections.add(pos);
+			if (wasLoaded) {
+				this.awaitingChunkSections.add(pos);
+			}
 		}
 	}
 
