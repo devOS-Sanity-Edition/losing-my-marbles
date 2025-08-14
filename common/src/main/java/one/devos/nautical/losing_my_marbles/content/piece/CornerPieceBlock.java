@@ -5,8 +5,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import org.jetbrains.annotations.Nullable;
-
 import com.github.stephengold.joltjni.Quat;
 import com.github.stephengold.joltjni.ShapeRefC;
 import com.google.common.collect.Sets;
@@ -54,10 +52,9 @@ public class CornerPieceBlock extends PieceBlock {
 		return SHAPES.get(state.getValue(FACING));
 	}
 
-	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(FACING, Facing.fromDirections(context.getNearestLookingDirections()));
+		return super.getStateForPlacement(context).setValue(FACING, Facing.fromDirections(context.getNearestLookingDirections()));
 	}
 
 	@Override

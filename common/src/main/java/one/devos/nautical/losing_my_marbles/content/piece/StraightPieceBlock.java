@@ -2,7 +2,6 @@ package one.devos.nautical.losing_my_marbles.content.piece;
 
 import java.util.Map;
 
-import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
 
 import com.github.stephengold.joltjni.Quat;
@@ -46,10 +45,9 @@ public class StraightPieceBlock extends PieceBlock {
 		return SHAPES.get(state.getValue(AXIS));
 	}
 
-	@Nullable
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return this.defaultBlockState().setValue(AXIS, context.getHorizontalDirection().getAxis());
+		return super.getStateForPlacement(context).setValue(AXIS, context.getHorizontalDirection().getAxis());
 	}
 
 	@Override
