@@ -1,5 +1,6 @@
 package one.devos.nautical.losing_my_marbles.framework.phys.terrain;
 
+import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,12 +13,15 @@ import com.github.stephengold.joltjni.AaBox;
 import com.github.stephengold.joltjni.Body;
 import com.github.stephengold.joltjni.BodyCreationSettings;
 import com.github.stephengold.joltjni.BodyIdArray;
+import com.github.stephengold.joltjni.Jolt;
 import com.github.stephengold.joltjni.RVec3;
+import com.github.stephengold.joltjni.TransformedShape;
 import com.github.stephengold.joltjni.enumerate.EActivation;
 import com.github.stephengold.joltjni.enumerate.EMotionType;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.longs.LongConsumer;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -26,9 +30,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
+import net.minecraft.world.phys.AABB;
 import one.devos.nautical.losing_my_marbles.framework.phys.BodyAccess;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEnvironment;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
+import one.devos.nautical.losing_my_marbles.framework.phys.debug.DebugGeometryOutput;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.compile.CompileTask;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.compile.CompiledSection;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.compile.SectionShapeCompiler;
@@ -164,6 +170,23 @@ public final class TerrainCollisionManager {
 		}
 	}
 
+	public void collectDebugGeometry(AABB area, DebugGeometryOutput output) {
+		forEachSectionInBox(area, pos -> {
+			List<BodyAccess> bodies = this.chunkSectionBodies.get(pos);
+			if (bodies == null)
+				return;
+
+			for (BodyAccess body : bodies) {
+				try (TransformedShape shape = body.getBody().getTransformedShape()) {
+					int triangles = shape.countDebugTriangles();
+					FloatBuffer buffer = Jolt.newDirectFloatBuffer(triangles * 3 * 3);
+					shape.copyDebugTriangles(buffer);
+					output.accept(buffer);
+				}
+			}
+		});
+	}
+
 	private void tryCompile(LevelChunkSection section, long pos, @Nullable BlockPos changed) {
 		// remove here so even if there's no new compilation, the potential old one is discarded
 		CompileTask replaced = this.compilingSections.remove(pos);
@@ -196,5 +219,26 @@ public final class TerrainCollisionManager {
 
 	private static long sectionPos(LevelChunk chunk, int sectionIndex) {
 		return SectionPos.asLong(chunk.getPos().x, chunk.getSectionYFromSectionIndex(sectionIndex), chunk.getPos().z);
+	}
+
+	private static void forEachSectionInBox(AABB box, LongConsumer consumer) {
+		forEachSectionInBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, consumer);
+	}
+
+	private static void forEachSectionInBox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, LongConsumer consumer) {
+		int minSectionX = SectionPos.blockToSectionCoord(minX);
+		int minSectionY = SectionPos.blockToSectionCoord(minY);
+		int minSectionZ = SectionPos.blockToSectionCoord(minZ);
+		int maxSectionX = SectionPos.blockToSectionCoord(maxX);
+		int maxSectionY = SectionPos.blockToSectionCoord(maxY);
+		int maxSectionZ = SectionPos.blockToSectionCoord(maxZ);
+
+		for (int x = minSectionX; x <= maxSectionX; x++) {
+			for (int y = minSectionY; y <= maxSectionY; y++) {
+				for (int z = minSectionZ; z <= maxSectionZ; z++) {
+					consumer.accept(SectionPos.asLong(x, y, z));
+				}
+			}
+		}
 	}
 }

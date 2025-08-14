@@ -29,9 +29,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
+import one.devos.nautical.losing_my_marbles.framework.phys.debug.DebugGeometryOutput;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.TerrainCollisionManager;
 import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 
@@ -168,6 +170,10 @@ public final class PhysicsEnvironment {
 
 	public void wakeWithin(ConstAaBox box) {
 		this.bodies.activateBodiesInAaBox(box, DUMMY_BROAD_PHASE_FILTER, DUMMY_OBJECT_LAYER_FILTER);
+	}
+
+	public void collectDebugGeometry(AABB area, DebugGeometryOutput output) {
+		this.terrain.collectDebugGeometry(area, output);
 	}
 
 	public static VoxelShape getPhysicsVisibleShape(BlockState state) {
