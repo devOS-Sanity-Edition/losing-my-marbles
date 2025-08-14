@@ -43,6 +43,21 @@ public final class LosingMyMarblesStreamCodecs {
 		}
 	});
 
+	public static <B extends ByteBuf, T extends Enum<T>> StreamCodec<B, T> ofEnum(Class<? extends T> clazz) {
+		T[] values = clazz.getEnumConstants();
+		return new StreamCodec<>() {
+			@Override
+			public T decode(B buf) {
+				return values[VarInt.read(buf)];
+			}
+
+			@Override
+			public void encode(B buf, T value) {
+				VarInt.write(buf, value.ordinal());
+			}
+		};
+	}
+
 	public static StreamCodec<ByteBuf, Float> floatRange(float minInclusive, float maxInclusive) {
 		return validate(ByteBufCodecs.FLOAT, value -> {
 					if (value < minInclusive || value > maxInclusive) {

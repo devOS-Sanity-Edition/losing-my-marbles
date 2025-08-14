@@ -1,7 +1,7 @@
 {
   "components": {
     "losing_my_marbles:friction": 0.6,
-    "losing_my_marbles:restitution": 0.9,
+    "losing_my_marbles:restitution": 0.8,
     "losing_my_marbles:bounce_sound": "block.slime_block.fall",
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:sphere",

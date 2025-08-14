@@ -13,8 +13,8 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerPlayer;
-import one.devos.nautical.losing_my_marbles.content.packet.DebugGeometryPayload;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEnvironment;
+import one.devos.nautical.losing_my_marbles.framework.phys.debug.DebugGeometryPayload;
 
 public final class RequestGeometryCommand {
 	public static final Component NO_GEOMETRY = Component.literal("No geometry to send.");

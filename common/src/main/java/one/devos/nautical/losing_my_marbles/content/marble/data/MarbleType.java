@@ -9,9 +9,14 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.RegistryFileCodec;
+import net.minecraft.resources.ResourceKey;
+import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
 
 public record MarbleType(DataComponentMap components) {
+	// TODO: change when more are implemented
+	public static final ResourceKey<MarbleType> DEFAULT = ResourceKey.create(LosingMyMarblesRegistries.MARBLE_TYPE, LosingMyMarbles.id("slime"));
+
 	public static final Codec<MarbleType> DIRECT_CODEC = RecordCodecBuilder.create(i -> i.group(
 			DataComponentMap.CODEC.fieldOf("components").forGetter(MarbleType::components)
 	).apply(i, MarbleType::new));

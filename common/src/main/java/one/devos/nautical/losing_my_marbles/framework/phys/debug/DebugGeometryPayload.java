@@ -1,4 +1,4 @@
-package one.devos.nautical.losing_my_marbles.content.packet;
+package one.devos.nautical.losing_my_marbles.framework.phys.debug;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;

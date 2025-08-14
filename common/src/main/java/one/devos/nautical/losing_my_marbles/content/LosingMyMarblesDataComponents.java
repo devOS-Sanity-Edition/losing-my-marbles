@@ -11,7 +11,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
-import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
+import one.devos.nautical.losing_my_marbles.content.marble.StoredMarble;
 import one.devos.nautical.losing_my_marbles.content.marble.data.shape.MarbleShape;
 import one.devos.nautical.losing_my_marbles.content.marble.data.texture.MarbleTexture;
 import one.devos.nautical.losing_my_marbles.framework.data.LosingMyMarblesCodecs;
@@ -19,8 +19,8 @@ import one.devos.nautical.losing_my_marbles.framework.network.LosingMyMarblesStr
 
 public final class LosingMyMarblesDataComponents {
 	// for items
-	public static final DataComponentType<MarbleInstance> MARBLE = register(
-			"marble", MarbleInstance.CODEC, MarbleInstance.STREAM_CODEC
+	public static final DataComponentType<StoredMarble> MARBLE = register(
+			"marble", StoredMarble.CODEC, StoredMarble.STREAM_CODEC
 	);
 	// for marbles
 	public static final DataComponentType<Float> FRICTION = register(
@@ -28,6 +28,9 @@ public final class LosingMyMarblesDataComponents {
 	);
 	public static final DataComponentType<Float> RESTITUTION = register(
 			"restitution", LosingMyMarblesCodecs.NORMALIZED_FLOAT, LosingMyMarblesStreamCodecs.NORMALIZED_FLOAT
+	);
+	public static final DataComponentType<Float> MASS = register(
+			"mass", Codec.floatRange(0, Float.MAX_VALUE), LosingMyMarblesStreamCodecs.floatRange(0, Float.MAX_VALUE)
 	);
 	public static final DataComponentType<Float> SCALE = register(
 			"scale", Codec.floatRange(1 / 16f, 2), LosingMyMarblesStreamCodecs.floatRange(1 / 16f, 2)

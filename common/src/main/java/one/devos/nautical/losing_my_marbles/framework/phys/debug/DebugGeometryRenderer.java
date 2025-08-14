@@ -9,7 +9,6 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.phys.Vec3;
-import one.devos.nautical.losing_my_marbles.content.packet.DebugGeometryPayload;
 
 public final class DebugGeometryRenderer {
 	private static float[] vertices;

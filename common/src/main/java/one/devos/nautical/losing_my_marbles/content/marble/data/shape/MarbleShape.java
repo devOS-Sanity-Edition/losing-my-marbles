@@ -1,6 +1,7 @@
 package one.devos.nautical.losing_my_marbles.content.marble.data.shape;
 
 import com.github.stephengold.joltjni.ShapeRefC;
+import com.github.stephengold.joltjni.Vec3;
 import com.github.stephengold.joltjni.readonly.ConstShape;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -16,7 +17,10 @@ public interface MarbleShape {
 	StreamCodec<RegistryFriendlyByteBuf, MarbleShape> STREAM_CODEC = ByteBufCodecs.registry(LosingMyMarblesRegistries.MARBLE_SHAPE_TYPE.key())
 			.dispatch(MarbleShape::type, Type::streamCodec);
 
-	CreatedShape createJoltShape();
+	/**
+	 * @param scale an additional scaling factor to apply to the shape, >0
+	 */
+	CreatedShape createJoltShape(float scale);
 
 	Type<?> type();
 
@@ -24,15 +28,21 @@ public interface MarbleShape {
 	}
 
 	/**
+	 * @param offset an offset from an entity's position to the shape's position
 	 * @param afterAssign runnable invoked after the shape has been assigned to a body
 	 */
-	record CreatedShape(ConstShape shape, Runnable afterAssign) {
-		public CreatedShape(ConstShape shape) {
-			this(shape, () -> {});
+	record CreatedShape(ConstShape shape, Vec3 offset, Runnable afterAssign) implements AutoCloseable {
+		public CreatedShape(ConstShape shape, Vec3 offset) {
+			this(shape, offset, () -> {});
 		}
 
-		public CreatedShape(ShapeRefC ref) {
-			this(ref, ref::close);
+		public CreatedShape(ShapeRefC ref, Vec3 offset) {
+			this(ref, offset, ref::close);
+		}
+
+		@Override
+		public void close() {
+			this.afterAssign.run();
 		}
 	}
 }
