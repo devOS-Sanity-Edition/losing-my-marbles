@@ -62,7 +62,7 @@ public final class JoltNatives {
 			String arch = System.getProperty("os.arch").toLowerCase(Locale.ROOT);
 			boolean isArm = arch.startsWith("arm") || arch.startsWith("aarch64");
 
-			if (arch.contains("mac")) {
+			if (os.contains("mac")) {
 				return isArm ? MAC_ARM64 : MAC_64;
 			} else {
 				return isArm ? LINUX_ARM : LINUX_64;
