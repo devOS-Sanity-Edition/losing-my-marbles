@@ -132,7 +132,7 @@ public class CornerPieceBlock extends PieceBlock {
 				}
 			}
 
-			if (xDir == null || zDir == null)
+			if (zDir == null || xDir == null)
 				return NORTHWEST;
 
 			return switch (zDir) {

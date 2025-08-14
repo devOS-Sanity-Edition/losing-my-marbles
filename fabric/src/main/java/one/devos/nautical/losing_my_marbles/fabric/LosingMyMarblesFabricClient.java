@@ -7,6 +7,7 @@ import one.devos.nautical.losing_my_marbles.framework.phys.debug.DebugGeometryRe
 public final class LosingMyMarblesFabricClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		WorldRenderEvents.AFTER_ENTITIES.register(context -> DebugGeometryRenderer.render(context.matrixStack(), context.consumers()));
+		WorldRenderEvents.AFTER_ENTITIES.register(context ->
+				DebugGeometryRenderer.render(context.matrixStack(), context.camera().position(), context.consumers()));
 	}
 }
