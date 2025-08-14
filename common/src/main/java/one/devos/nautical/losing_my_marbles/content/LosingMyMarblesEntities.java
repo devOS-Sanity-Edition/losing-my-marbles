@@ -17,8 +17,7 @@ import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 public final class LosingMyMarblesEntities {
 	public static final EntityType<MarbleEntity> MARBLE = register(
 			"marble",
-			EntityType.Builder.<MarbleEntity>of(MarbleEntity::new, MobCategory.MISC)
-					.sized(MarbleEntity.DIAMETER, MarbleEntity.DIAMETER)
+			EntityType.Builder.of(MarbleEntity::new, MobCategory.MISC)
 	);
 
 	private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {

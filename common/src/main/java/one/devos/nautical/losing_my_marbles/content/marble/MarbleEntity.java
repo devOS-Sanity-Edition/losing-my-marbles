@@ -1,7 +1,10 @@
 package one.devos.nautical.losing_my_marbles.content.marble;
 
+import java.util.Objects;
+
 import org.jetbrains.annotations.Nullable;
 
+import com.github.stephengold.joltjni.AaBox;
 import com.github.stephengold.joltjni.BodyCreationSettings;
 import com.github.stephengold.joltjni.enumerate.EMotionQuality;
 import com.github.stephengold.joltjni.enumerate.EOverrideMassProperties;
@@ -17,8 +20,10 @@ import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.InterpolationHandler;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
@@ -35,9 +40,6 @@ import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
 
 public final class MarbleEntity extends Entity implements PhysicsEntity {
-	// TODO: this is h
-	public static final float DIAMETER = SphereMarbleShape.DEFAULT.radius();
-
 	private final InterpolationHandler interpolator;
 
 	private MarbleInstance marble;
@@ -57,6 +59,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 		// 1 tick: minimal latency for maximum detail
 		this.interpolator = new InterpolationHandler(this, 1);
 		this.marble = marble;
+		this.refreshDimensions();
 	}
 
 	public MarbleEntity(Level level, MarbleInstance marble) {
@@ -64,11 +67,12 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	}
 
 	public MarbleInstance marble() {
-		return this.marble;
+		return Objects.requireNonNull(this.marble, "marble() called too early");
 	}
 
 	public void setMarble(MarbleInstance marble) {
 		this.marble = marble;
+		this.refreshDimensions();
 
 		if (this.level() instanceof ServerLevel level) {
 			CustomPacketPayload payload = new UpdateMarbleEntityPayload(this.getId(), marble);
@@ -108,6 +112,17 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	}
 
 	@Override
+	public EntityDimensions getDimensions(Pose pose) {
+		try (MarbleShape.CreatedShape shape = this.createShape()) {
+			try (AaBox box = shape.shape().getLocalBounds()) {
+				com.github.stephengold.joltjni.Vec3 size = box.getSize();
+				float width = Math.max(size.getX(), size.getZ());
+				return EntityDimensions.fixed(width, size.getY());
+			}
+		}
+	}
+
+	@Override
 	public void createBody(BodyAccess.Factory factory) {
 		try (BodyCreationSettings settings = new BodyCreationSettings()) {
 			settings.setObjectLayer(ObjectLayers.MOVING);
@@ -119,9 +134,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 			// prevent tunneling
 			settings.setMotionQuality(EMotionQuality.LinearCast);
 
-			float scale = this.marble.getOrDefault(LosingMyMarblesDataComponents.SCALE, 1f);
-			MarbleShape shape = this.marble.getOrDefault(LosingMyMarblesDataComponents.SHAPE, SphereMarbleShape.DEFAULT);
-			try (MarbleShape.CreatedShape created = shape.createJoltShape(scale)) {
+			try (MarbleShape.CreatedShape created = this.createShape()) {
 				settings.setShape(created.shape());
 				settings.setPosition(
 						this.getX() + created.offset().getX(),
@@ -185,5 +198,11 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 		Vec3Arg force = JoltIntegration.convertF(pos.vectorTo(this.position()).normalize().scale(500));
 		this.body.getBody().addForce(force);
 		return true;
+	}
+
+	private MarbleShape.CreatedShape createShape() {
+		float scale = this.marble.getOrDefault(LosingMyMarblesDataComponents.SCALE, 1f);
+		MarbleShape shape = this.marble.getOrDefault(LosingMyMarblesDataComponents.SHAPE, SphereMarbleShape.DEFAULT);
+		return shape.createJoltShape(scale);
 	}
 }
