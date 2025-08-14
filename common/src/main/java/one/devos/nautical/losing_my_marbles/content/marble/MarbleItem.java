@@ -1,11 +1,15 @@
 package one.devos.nautical.losing_my_marbles.content.marble;
 
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -46,5 +50,11 @@ public final class MarbleItem extends Item {
 		level.addFreshEntity(entity);
 
 		return InteractionResult.SUCCESS_SERVER;
+	}
+
+	@Override
+	@SuppressWarnings("deprecation") // this method
+	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> output, TooltipFlag flag) {
+		stack.addToTooltip(LosingMyMarblesDataComponents.MARBLE, context, display, output, flag);
 	}
 }

@@ -2,29 +2,48 @@ package one.devos.nautical.losing_my_marbles.content.marble;
 
 import java.util.Locale;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.EitherHolder;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipProvider;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
 import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
 import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleType;
 import one.devos.nautical.losing_my_marbles.framework.network.LosingMyMarblesStreamCodecs;
 
-public sealed interface StoredMarble {
+public sealed interface StoredMarble extends TooltipProvider {
 	Codec<StoredMarble> CODEC = StorageType.CODEC.dispatch(StoredMarble::type, type -> type.codec);
 	StreamCodec<RegistryFriendlyByteBuf, StoredMarble> STREAM_CODEC = StorageType.STREAM_CODEC.dispatch(StoredMarble::type, type -> type.streamCodec);
 
+	Component TOOLTIP_HEADER = Component.translatable("item.losing_my_marbles.stored_marble.tooltip").withStyle(ChatFormatting.GRAY);
+	String INVALID_KEY = "item.losing_my_marbles.stored_marble.invalid";
+
 	Optional<MarbleInstance> get(HolderLookup.Provider registries);
 
+	Component nameForTooltip(HolderLookup.Provider registries);
+
 	StorageType type();
+
+	@Override
+	default void addToTooltip(Item.TooltipContext context, Consumer<Component> output, TooltipFlag flag, DataComponentGetter components) {
+		output.accept(TOOLTIP_HEADER);
+		output.accept(CommonComponents.space().append(this.nameForTooltip(context.registries())));
+	}
 
 	record Type(EitherHolder<MarbleType> holder) implements StoredMarble {
 		public static final MapCodec<Type> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
@@ -46,6 +65,16 @@ public sealed interface StoredMarble {
 		}
 
 		@Override
+		public Component nameForTooltip(HolderLookup.Provider registries) {
+			return this.holder.contents().map(
+					holder -> holder.value().name(),
+					key -> registries.get(key)
+							.map(holder -> holder.value().name())
+							.orElseGet(() -> Component.translatable(INVALID_KEY).withStyle(ChatFormatting.RED))
+			);
+		}
+
+		@Override
 		public StorageType type() {
 			return StorageType.TYPE;
 		}
@@ -64,6 +93,11 @@ public sealed interface StoredMarble {
 		@Override
 		public Optional<MarbleInstance> get(HolderLookup.Provider registries) {
 			return Optional.of(this.instance.copy());
+		}
+
+		@Override
+		public Component nameForTooltip(HolderLookup.Provider registries) {
+			return this.instance.type().name();
 		}
 
 		@Override

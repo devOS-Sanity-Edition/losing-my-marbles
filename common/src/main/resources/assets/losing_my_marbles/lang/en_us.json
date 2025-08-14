@@ -8,6 +8,12 @@
 
   "block.losing_my_marbles.straight_piece": "Straight Marble Track Piece",
   "block.losing_my_marbles.corner_piece": "Corner Marble Track Piece",
-  "block.losing_my_marbles.intersection_piece": "Intersection Marble Track Piece"
+  "block.losing_my_marbles.intersection_piece": "Intersection Marble Track Piece",
 
+  "item.losing_my_marbles.marble": "Marble",
+
+  "item.losing_my_marbles.stored_marble.tooltip": "Type: ",
+  "item.losing_my_marbles.stored_marble.invalid": "Invalid: %s",
+
+  "marble_type.losing_my_marbles.slime": "Slime"
 }
