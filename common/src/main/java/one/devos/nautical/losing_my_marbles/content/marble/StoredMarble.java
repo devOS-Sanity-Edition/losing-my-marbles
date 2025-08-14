@@ -9,6 +9,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -57,6 +58,10 @@ public sealed interface StoredMarble extends TooltipProvider {
 
 		public Type(ResourceKey<MarbleType> key) {
 			this(new EitherHolder<>(key));
+		}
+
+		public Type(Holder<MarbleType> holder) {
+			this(new EitherHolder<>(holder));
 		}
 
 		@Override

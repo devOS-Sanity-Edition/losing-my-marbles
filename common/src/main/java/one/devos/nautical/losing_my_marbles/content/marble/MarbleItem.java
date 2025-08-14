@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
 import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
 
 public final class MarbleItem extends Item {
@@ -56,5 +57,11 @@ public final class MarbleItem extends Item {
 	@SuppressWarnings("deprecation") // this method
 	public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> output, TooltipFlag flag) {
 		stack.addToTooltip(LosingMyMarblesDataComponents.MARBLE, context, display, output, flag);
+	}
+
+	public static ItemStack of(StoredMarble marble) {
+		ItemStack stack = new ItemStack(LosingMyMarblesItems.MARBLE);
+		stack.set(LosingMyMarblesDataComponents.MARBLE, marble);
+		return stack;
 	}
 }

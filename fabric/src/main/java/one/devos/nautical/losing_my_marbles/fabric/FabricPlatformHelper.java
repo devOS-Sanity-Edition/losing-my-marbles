@@ -11,6 +11,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
@@ -21,6 +22,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.CreativeModeTab;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.framework.network.ServerPlayPayloadHandler;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEnvironment;
@@ -76,5 +78,10 @@ public class FabricPlatformHelper implements PlatformHelper {
 	@Override
 	public <T> void registerDynamicRegistry(ResourceKey<Registry<T>> key, Codec<T> codec) {
 		DynamicRegistries.registerSynced(key, codec);
+	}
+
+	@Override
+	public CreativeModeTab.Builder newCreativeTab() {
+		return FabricItemGroup.builder();
 	}
 }
