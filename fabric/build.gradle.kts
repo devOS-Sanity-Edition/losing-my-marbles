@@ -15,6 +15,7 @@ dependencies {
     modLocalRuntime(libs.bundles.fabric.dev)
 
     implementation(jolt.jvm)
+    include(jolt.jvm)
     modLocalRuntime(variantOf(jolt.native) {
         classifier("DebugDp")
     })
