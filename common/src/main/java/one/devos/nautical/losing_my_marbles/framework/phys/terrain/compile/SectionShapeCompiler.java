@@ -1,23 +1,23 @@
-package one.devos.nautical.losing_my_marbles.framework.phys.terrain;
+package one.devos.nautical.losing_my_marbles.framework.phys.terrain.compile;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Supplier;
+
+import org.jetbrains.annotations.Nullable;
+
+import com.github.stephengold.joltjni.Vec3;
 
 import net.minecraft.client.renderer.chunk.SectionCompiler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Cursor3D;
-import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunkSection;
-
 import net.minecraft.world.level.chunk.PalettedContainer;
-
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import org.jetbrains.annotations.Nullable;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.DefaultCollisionSource;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.PhysicsCollision;
+import one.devos.nautical.losing_my_marbles.framework.phys.util.BoxCache;
 
 /**
  * @see SectionCompiler
@@ -38,27 +38,32 @@ public final class SectionShapeCompiler implements Supplier<CompiledSection> {
 
 	@Override
 	public CompiledSection get() {
-		Map<SectionShape.Properties, SectionShape.Builder> builders = new HashMap<>();
+		SectionShapeBuilders builders = new SectionShapeBuilders(this::newBuilder);
 
 		Cursor3D cursor = new Cursor3D(0, 0, 0, SIZE - 1, SIZE - 1, SIZE - 1);
 
 		while (cursor.advance()) {
 			BlockState state = this.states.get(cursor.nextX(), cursor.nextY(), cursor.nextZ());
 
-			VoxelShape shape = state.getCollisionShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO);
-			if (shape.isEmpty())
-				continue;
+			PhysicsCollision collision = PhysicsCollision.of(state.getBlock());
 
-			SectionShape.Properties properties = SectionShape.Properties.of(state);
-			SectionShape.Builder builder = builders.computeIfAbsent(properties, this::newBuilder);
+			if (collision.defaultCollision().isPresent()) {
+				DefaultCollisionSource defaultCollision = collision.defaultCollision().get();
+				VoxelShape shape = defaultCollision.get(state);
+				if (!shape.isEmpty()) {
+					builders.get(state).add(cursor.nextX(), cursor.nextY(), cursor.nextZ(), shape);
+				}
+			}
 
-			shape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> builder.add(cursor, minX, minY, minZ, maxX, maxY, maxZ));
+			collision.provider().build(state, (offset, rotation, shape) -> {
+				SectionShape.Builder builder = builders.get(state);
+				Vec3 fullOffset = new Vec3(offset);
+				fullOffset.addInPlace(cursor.nextX() + 0.5f, cursor.nextY() + 0.5f, cursor.nextZ() + 0.5f);
+				builder.add(fullOffset, rotation, shape);
+			});
 		}
 
-		return new CompiledSection(
-				builders.values().stream().map(SectionShape.Builder::build).toList(),
-				this.triggers
-		);
+		return new CompiledSection(builders.buildAll(), this.triggers);
 	}
 
 	private SectionShape.Builder newBuilder(SectionShape.Properties properties) {

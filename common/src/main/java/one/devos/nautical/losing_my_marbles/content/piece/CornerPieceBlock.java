@@ -7,6 +7,8 @@ import java.util.Set;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.github.stephengold.joltjni.Quat;
+import com.github.stephengold.joltjni.ShapeRefC;
 import com.google.common.collect.Sets;
 import com.mojang.math.OctahedralGroup;
 import com.mojang.math.Quadrant;
@@ -24,6 +26,8 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.PhysicsCollision;
+import one.devos.nautical.losing_my_marbles.framework.phys.util.TriStripBuilder;
 
 public class CornerPieceBlock extends PieceBlock {
 	public static final EnumProperty<Facing> FACING = EnumProperty.create("facing", Facing.class);
@@ -58,6 +62,44 @@ public class CornerPieceBlock extends PieceBlock {
 	@Override
 	protected boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
 		return super.skipRendering(state, adjacentBlockState, side) && state.getValue(FACING).directions.contains(side);
+	}
+
+	public static void additionalCollision(BlockState state, PhysicsCollision.Provider.Output output) {
+		ShapeRefC outer = new TriStripBuilder(PieceBlock::pixelsToBlocks)
+				.then(2, 0, -8)
+				.then(4, 2, -8)
+				.then(2, 0, -4)
+				.then(4, 2, -4)
+				.then(-4, 0, 2)
+				.then(-4, 2, 4)
+				.then(-8, 0, 2)
+				.then(-8, 2, 4)
+				.build();
+
+		ShapeRefC inner = new TriStripBuilder(PieceBlock::pixelsToBlocks)
+				.then(-2, 0, -8)
+				.then(-4, 2, -8)
+				.then(-2, 0, -4)
+				.then(-4, 2, -4)
+				.then(-4, 0, -2)
+				.then(-4, 2, -4)
+				.then(-8, 0, -2)
+				.then(-8, 2, -4)
+				.build();
+
+		float yRot = switch (state.getValue(FACING)) {
+			case NORTHWEST -> 0;
+			case SOUTHWEST -> 90;
+			case SOUTHEAST -> 180;
+			case NORTHEAST -> 270;
+		};
+
+		Quat rotation = Quat.sEulerAngles(0, yRot, 0);
+
+		output.accept(0, 0, 0, rotation, outer);
+		outer.close();
+		output.accept(0, 0, 0, rotation, inner);
+		inner.close();
 	}
 
 	public enum Facing implements StringRepresentable {
