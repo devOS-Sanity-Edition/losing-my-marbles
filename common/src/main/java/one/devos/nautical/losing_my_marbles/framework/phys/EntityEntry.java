@@ -1,7 +1,6 @@
 package one.devos.nautical.losing_my_marbles.framework.phys;
 
 import com.github.stephengold.joltjni.RVec3;
-
 import com.github.stephengold.joltjni.readonly.Vec3Arg;
 
 import net.minecraft.world.entity.Entity;
@@ -13,7 +12,7 @@ public record EntityEntry<T extends Entity & PhysicsEntity>(T entity, BodyAccess
 	 * Area around this entity where terrain should be added to the system.
 	 */
 	public AABB terrainBounds() {
-		return this.entity.getBoundingBox().expandTowards(this.entity.getDeltaMovement());
+		return this.entity.getBoundingBox().expandTowards(this.entity.getDeltaMovement().scale(5));
 	}
 
 	public void updateBody() {

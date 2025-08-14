@@ -137,15 +137,20 @@ public final class PhysicsEnvironment {
 	}
 
 	public void tick() {
+		this.entities.values().forEach(entry -> {
+			// sync each body with its entity
+			entry.updateBody();
+			// the area around the entity should have collision loaded
+			this.terrain.prepareArea(entry.terrainBounds());
+		});
+
+		// terrain must tick even when no bodies are present
 		this.terrain.tick();
 
 		if (this.entities.isEmpty()) {
 			// nothing else to do.
 			return;
 		}
-
-		// sync each body with its entity
-		this.entities.values().forEach(EntityEntry::updateBody);
 
 		int errors = this.system.update(TIME_STEP, 1, this.tempAllocator, this.jobSystem);
 		if (errors != 0) {
