@@ -3,11 +3,15 @@ package one.devos.nautical.losing_my_marbles.content.piece;
 import java.util.Map;
 
 import org.jetbrains.annotations.Nullable;
+import org.joml.Quaternionf;
 
+import com.github.stephengold.joltjni.Quat;
+import com.github.stephengold.joltjni.ShapeRefC;
 import com.github.stephengold.joltjni.Vec3;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -54,21 +58,29 @@ public class StraightPieceBlock extends PieceBlock {
 	}
 
 	public static void additionalCollision(BlockState state, PhysicsCollision.Provider.Output output) {
-		Direction.Axis axis = state.getValue(AXIS);
+		Quaternionf rotation = new Quaternionf();
 
-		output.accept(-8, -8, -8, PhysUtils.quad(
-				rotate(axis, pixelsToBlocks(new Vec3(7, 8, 0))),
-				rotate(axis, pixelsToBlocks(new Vec3(7, 8, 16))),
-				rotate(axis, pixelsToBlocks(new Vec3(5, 10, 16))),
-				rotate(axis, pixelsToBlocks(new Vec3(5, 10, 0)))
-		));
+		if (state.getValue(AXIS) == Direction.Axis.X) {
+			rotation.rotateY(Mth.DEG_TO_RAD * 90);
+		}
 
-		output.accept(-8, -8, -8, PhysUtils.quad(
-				rotate(axis, pixelsToBlocks(new Vec3(11, 8, 16))),
-				rotate(axis, pixelsToBlocks(new Vec3(11, 8, 0))),
-				rotate(axis, pixelsToBlocks(new Vec3(13, 10, 0))),
-				rotate(axis, pixelsToBlocks(new Vec3(13, 10, 16)))
-		));
+		Quat joltRotation = new Quat(rotation.x, rotation.y, rotation.z, rotation.w);
+
+		ShapeRefC leftSlope = PhysUtils.quad(
+				pixelsToBlocks(new Vec3(1, 0, -8)),
+				pixelsToBlocks(new Vec3(1, 0, 8)),
+				pixelsToBlocks(new Vec3(4, 2, 8)),
+				pixelsToBlocks(new Vec3(4, 2, -8))
+		);
+
+		output.accept(joltRotation, leftSlope);
+
+		rotation.rotateY(Mth.DEG_TO_RAD * 180);
+		joltRotation.set(rotation.x, rotation.y, rotation.z, rotation.w);
+
+		output.accept(joltRotation, leftSlope);
+
+		leftSlope.close();
 	}
 
 	private static Vec3 rotate(Direction.Axis axis, Vec3 vec) {

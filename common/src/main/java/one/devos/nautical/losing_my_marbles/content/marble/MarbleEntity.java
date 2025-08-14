@@ -68,6 +68,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 		try (BodyCreationSettings settings = new BodyCreationSettings()) {
 			settings.setObjectLayer(ObjectLayers.MOVING);
 			settings.setShape(new SphereShape(RADIUS));
+			settings.setLinearDamping(0.2f);
 
 			settings.setPosition(this.getX(), this.getY() + RADIUS, this.getZ());
 

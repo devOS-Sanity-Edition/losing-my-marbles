@@ -179,6 +179,9 @@ public final class PhysicsEnvironment {
 
 	public void collectDebugGeometry(AABB area, DebugGeometryOutput output) {
 		this.terrain.collectDebugGeometry(area, output);
+		for (EntityEntry<?> entry : this.entities.values()) {
+			output.accept(entry.body().getBody());
+		}
 	}
 
 	public static VoxelShape getPhysicsVisibleShape(BlockState state) {

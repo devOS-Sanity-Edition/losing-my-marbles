@@ -23,6 +23,7 @@ public record PhysicsCollision(Optional<DefaultCollisionSource> defaultCollision
 	public static final PhysicsCollision DEFAULT = new PhysicsCollision(DefaultCollisionSource.COLLISION_SHAPE, Provider.NONE);
 	public static final PhysicsCollision DEFAULT_BASE = new PhysicsCollision(DefaultCollisionSource.BASE_SHAPE, Provider.NONE);
 
+	private static final Vec3Arg noOffset = new Vec3(0, 0, 0);
 	private static final QuatArg noRotation = new Quat(0, 0, 0, 1);
 
 	public PhysicsCollision(@Nullable DefaultCollisionSource defaultCollision, Provider provider) {
@@ -59,6 +60,10 @@ public record PhysicsCollision(Optional<DefaultCollisionSource> defaultCollision
 
 			default void accept(float xOffset, float yOffset, float zOffset, QuatArg rotation, ConstShape shape) {
 				this.accept(new Vec3(xOffset, yOffset, zOffset), rotation, shape);
+			}
+
+			default void accept(QuatArg rotation, ConstShape shape) {
+				this.accept(noOffset, rotation, shape);
 			}
 
 			default void accept(ConstShape shape) {

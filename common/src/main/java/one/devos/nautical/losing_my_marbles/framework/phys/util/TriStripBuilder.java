@@ -23,6 +23,14 @@ public final class TriStripBuilder {
 		this.triangles = new IndexedTriangleList();
 	}
 
+	/**
+	 * Flip the normals of all triangles going forward. Only the front of a triangle is solid.
+	 */
+	public TriStripBuilder flip() {
+		this.flip = !this.flip;
+		return this;
+	}
+
 	public TriStripBuilder then(float x, float y, float z) {
 		this.vertices.pushBack(new Float3(this.scaler.apply(x), this.scaler.apply(y), this.scaler.apply(z)));
 
@@ -38,7 +46,7 @@ public final class TriStripBuilder {
 			}
 
 			this.triangles.pushBack(new IndexedTriangle(v1, v2, v3));
-			this.flip = !this.flip;
+			this.flip();
 		}
 
 		return this;

@@ -1,6 +1,5 @@
 package one.devos.nautical.losing_my_marbles.framework.phys.terrain;
 
-import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -12,9 +11,7 @@ import com.github.stephengold.joltjni.AaBox;
 import com.github.stephengold.joltjni.Body;
 import com.github.stephengold.joltjni.BodyCreationSettings;
 import com.github.stephengold.joltjni.BodyIdArray;
-import com.github.stephengold.joltjni.Jolt;
 import com.github.stephengold.joltjni.RVec3;
-import com.github.stephengold.joltjni.TransformedShape;
 import com.github.stephengold.joltjni.enumerate.EActivation;
 import com.github.stephengold.joltjni.enumerate.EMotionType;
 
@@ -221,12 +218,7 @@ public final class TerrainCollisionManager {
 				return;
 
 			for (BodyAccess body : entry.bodies) {
-				try (TransformedShape shape = body.getBody().getTransformedShape()) {
-					int triangles = shape.countDebugTriangles();
-					FloatBuffer buffer = Jolt.newDirectFloatBuffer(triangles * 3 * 3);
-					shape.copyDebugTriangles(buffer);
-					output.accept(buffer);
-				}
+				output.accept(body.getBody());
 			}
 		});
 	}

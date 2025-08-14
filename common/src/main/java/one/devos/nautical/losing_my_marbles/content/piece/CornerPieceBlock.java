@@ -16,6 +16,7 @@ import com.mojang.math.Quadrant;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -65,25 +66,49 @@ public class CornerPieceBlock extends PieceBlock {
 	}
 
 	public static void additionalCollision(BlockState state, PhysicsCollision.Provider.Output output) {
-		ShapeRefC outer = new TriStripBuilder(PieceBlock::pixelsToBlocks)
-				.then(2, 0, -8)
+		TriStripBuilder outer = new TriStripBuilder(PieceBlock::pixelsToBlocks).flip()
+				// entrance
+				.then(1, 0, -8)
 				.then(4, 2, -8)
-				.then(2, 0, -4)
-				.then(4, 2, -4)
-				.then(-4, 0, 2)
+				.then(1, 0, -4)
+				.then(4, 2, -4);
+
+		TriStripBuilder inner = new TriStripBuilder(PieceBlock::pixelsToBlocks)
+				// entrance
+				.then(-1, 0, -8)
+				.then(-4, 2, -8)
+				.then(-1, 0, -4)
+				.then(-4, 2, -4);
+
+		final int steps = 4;
+		for (int i = 0; i < steps; i++) {
+			float progress = (1f / steps) * i;
+			float theta = Mth.lerp(progress, Mth.PI, Mth.HALF_PI);
+			float cos = -Mth.cos(theta) * 2;
+			float sin = Mth.sin(theta) * 2;
+
+			float midX = cos - 2;
+			float midY = sin - 2;
+
+			float outerX = cos * 2;
+			float outerY = sin * 2;
+
+			outer.then(midX + 1, 0, midY + 1).then(outerX, 2, outerY);
+			inner.then(midX - 1, 0, midY - 1).then(-4, 2, -4);
+		}
+
+		// exit
+		ShapeRefC outerShape = outer
+				.then(-4, 0, 1)
 				.then(-4, 2, 4)
-				.then(-8, 0, 2)
+				.then(-8, 0, 1)
 				.then(-8, 2, 4)
 				.build();
 
-		ShapeRefC inner = new TriStripBuilder(PieceBlock::pixelsToBlocks)
-				.then(-2, 0, -8)
-				.then(-4, 2, -8)
-				.then(-2, 0, -4)
+		ShapeRefC innerShape = inner
+				.then(-4, 0, -1)
 				.then(-4, 2, -4)
-				.then(-4, 0, -2)
-				.then(-4, 2, -4)
-				.then(-8, 0, -2)
+				.then(-8, 0, -1)
 				.then(-8, 2, -4)
 				.build();
 
@@ -94,12 +119,12 @@ public class CornerPieceBlock extends PieceBlock {
 			case NORTHEAST -> 270;
 		};
 
-		Quat rotation = Quat.sEulerAngles(0, yRot, 0);
+		Quat rotation = Quat.sEulerAngles(0, Mth.DEG_TO_RAD * yRot, 0);
 
-		output.accept(0, 0, 0, rotation, outer);
-		outer.close();
-		output.accept(0, 0, 0, rotation, inner);
-		inner.close();
+		output.accept(rotation, outerShape);
+		output.accept(rotation, innerShape);
+		outerShape.close();
+		innerShape.close();
 	}
 
 	public enum Facing implements StringRepresentable {
