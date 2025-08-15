@@ -1,0 +1,19 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.amethyst_marble",
+    "color": "#b38ef3"
+  },
+  "components": {
+    "losing_my_marbles:friction": 0.2,
+    "losing_my_marbles:restitution": 0.2,
+    "losing_my_marbles:bounce_sound": "minecraft:block.amethyst_block.resonate",
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:texture": {
+      "type": "losing_my_marbles:static",
+      "id": "losing_my_marbles:marble/amethyst/amethyst_marble"
+    }
+  }
+}

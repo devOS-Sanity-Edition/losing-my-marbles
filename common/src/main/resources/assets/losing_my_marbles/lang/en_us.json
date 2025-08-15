@@ -16,9 +16,11 @@
   "item.losing_my_marbles.stored_marble.invalid": "Invalid: %s",
 
   "marble_type.losing_my_marbles.terracotta_marble": "Terracotta Marble",
+  "marble_type.losing_my_marbles.amethyst_marble": "Amethyst Marble",
   "marble_type.losing_my_marbles.cactus_marble": "Cactus Marble",
   "marble_type.losing_my_marbles.ender_pearl_marble": "Ender Pearl Marble",
   "marble_type.losing_my_marbles.eye_of_ender_marble": "Eye of Ender Marble",
+  "marble_type.losing_my_marbles.capsule_marble": "Capsule Marble",
   "marble_type.losing_my_marbles.dense_marble": "Dense Marble",
   "marble_type.losing_my_marbles.slime_marble": "Slime Marble"
 }

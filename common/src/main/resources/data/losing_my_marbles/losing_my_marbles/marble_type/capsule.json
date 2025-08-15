@@ -1,0 +1,29 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.capsule_marble",
+    "color": "#ce73e1"
+  },
+  "components": {
+    "losing_my_marbles:friction": 0.3,
+    "losing_my_marbles:restitution": 0.4,
+    "losing_my_marbles:bounce_sound": "minecraft:block.sniffer_egg.plop",
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:texture": {
+      "type": "losing_my_marbles:stepped",
+      "distance_per_step": 0.1,
+      "textures": [
+        "losing_my_marbles:marble/capsule/capsule_marble_1",
+        "losing_my_marbles:marble/capsule/capsule_marble_2",
+        "losing_my_marbles:marble/capsule/capsule_marble_3",
+        "losing_my_marbles:marble/capsule/capsule_marble_4",
+        "losing_my_marbles:marble/capsule/capsule_marble_5",
+        "losing_my_marbles:marble/capsule/capsule_marble_6",
+        "losing_my_marbles:marble/capsule/capsule_marble_7",
+        "losing_my_marbles:marble/capsule/capsule_marble_8"
+      ]
+    }
+  }
+}
