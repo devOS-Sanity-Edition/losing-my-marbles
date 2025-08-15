@@ -1,6 +1,7 @@
 package one.devos.nautical.losing_my_marbles.content.piece;
 
 import java.util.Map;
+import java.util.function.Function;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -18,11 +19,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class StraightPieceBlock extends PieceBlock {
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
-	private static final Map<Direction.Axis, VoxelShape> SHAPES = Shapes.rotateHorizontalAxis(PieceBlock.makeShape(Block.column(8, 16, 8, 16)));
+	private static final Map<Direction.Axis, VoxelShape> HOLES = Shapes.rotateHorizontalAxis(Block.column(8, 16, 8, 16));
+
+	private final Function<BlockState, VoxelShape> shapes;
 
 	public StraightPieceBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(AXIS, Direction.Axis.X));
+		this.shapes = this.getShapeForEachState(shapeFactory(state -> HOLES.get(state.getValue(AXIS))));
 	}
 
 	@Override
@@ -33,7 +37,7 @@ public class StraightPieceBlock extends PieceBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return SHAPES.get(state.getValue(AXIS));
+		return this.shapes.apply(state);
 	}
 
 	@Override

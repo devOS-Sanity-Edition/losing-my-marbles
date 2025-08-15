@@ -1,10 +1,8 @@
 package one.devos.nautical.losing_my_marbles.content.piece;
 
-import java.util.Arrays;
+import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
-
-import com.github.stephengold.joltjni.Vec3;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -41,11 +39,8 @@ public abstract class PieceBlock extends TransparentBlock {
 	public static final BooleanProperty TOP_CONNECTIONS = BooleanProperty.create("top_connections");
 	public static final BooleanProperty BOTTOM_CONNECTIONS = BooleanProperty.create("bottom_connections");
 
-	protected static final VoxelShape LEG_EXCLUSION_SHAPE = Shapes.or(Block.column(16, 8, 0, 3), Block.column(8, 16, 0, 3));
-
-	protected static VoxelShape makeShape(VoxelShape... shapes) {
-		return Shapes.join(Shapes.block(), Arrays.stream(shapes).reduce(LEG_EXCLUSION_SHAPE, Shapes::or), BooleanOp.ONLY_FIRST);
-	}
+	protected static final VoxelShape BOTTOM_CUT = box(0, 0, 0, 16, 3, 16);
+	protected static final VoxelShape BOTTOM_WITH_LEGS_CUT = Shapes.or(Block.column(16, 8, 0, 3), Block.column(8, 16, 0, 3));
 
 	protected PieceBlock(Properties properties) {
 		super(properties);
@@ -118,12 +113,16 @@ public abstract class PieceBlock extends TransparentBlock {
 		return state.is(LosingMyMarblesBlockTags.PIECES_BELOW_CONNECT);
 	}
 
-	public static Vec3 pixelsToBlocks(Vec3 vec) {
-		vec.scaleInPlace(1 / 16f);
-		return vec;
-	}
-
 	public static float pixelsToBlocks(float pixels) {
 		return pixels / 16;
+	}
+
+	protected static Function<BlockState, VoxelShape> shapeFactory(Function<BlockState, VoxelShape> holeProvider) {
+		return state -> {
+			VoxelShape hole = holeProvider.apply(state);
+			VoxelShape bottomCut = state.getValue(BOTTOM_CONNECTIONS) ? BOTTOM_WITH_LEGS_CUT : BOTTOM_CUT;
+			VoxelShape wholeCut = Shapes.or(hole, bottomCut);
+			return Shapes.join(Shapes.block(), wholeCut, BooleanOp.ONLY_FIRST);
+		};
 	}
 }

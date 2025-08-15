@@ -4,9 +4,11 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
 
 import com.github.stephengold.joltjni.Quat;
 import com.github.stephengold.joltjni.ShapeRefC;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import com.mojang.math.OctahedralGroup;
 import com.mojang.math.Quadrant;
@@ -32,22 +34,25 @@ import one.devos.nautical.losing_my_marbles.framework.phys.util.TriStripBuilder;
 public class CornerPieceBlock extends PieceBlock {
 	public static final EnumProperty<Facing> FACING = EnumProperty.create("facing", Facing.class);
 
-	private static final Map<Facing, CornerShapes> SHAPES = Util.makeEnumMap(Facing.class, facing -> new CornerShapes(
-			Shapes.rotate(
-					PieceBlock.makeShape(Block.box(4, 8, 0, 12, 16, 12), Block.box(0, 8, 4, 12, 16, 12)),
-					facing.rotation
+	private static final Map<Facing, VoxelShape> NORMAL_HOLES = Util.makeEnumMap(Facing.class, facing -> Shapes.rotate(
+			Shapes.or(
+					Block.box(4, 8, 0, 12, 16, 12),
+					Block.box(0, 8, 4, 12, 16, 12)
 			),
-			Shapes.rotate(
-					PieceBlock.makeShape(Block.box(0, 8, 0, 12, 16, 12)),
-					facing.rotation
-			)
+			facing.rotation
+	));
+	private static final Map<Facing, VoxelShape> CORNERLESS_HOLES = Util.makeEnumMap(Facing.class, facing -> Shapes.rotate(
+			Block.box(0, 8, 0, 12, 16, 12), facing.rotation
 	));
 
-
+	private final Function<BlockState, VoxelShape> normalShapes;
+	private final Function<BlockState, VoxelShape> cornerlessShapes;
 
 	public CornerPieceBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Facing.NORTHWEST));
+		this.normalShapes = this.getShapeForEachState(shapeFactory(state -> NORMAL_HOLES.get(state.getValue(FACING))));
+		this.cornerlessShapes = this.getShapeForEachState(shapeFactory(state -> CORNERLESS_HOLES.get(state.getValue(FACING))));
 	}
 
 	@Override
@@ -58,8 +63,8 @@ public class CornerPieceBlock extends PieceBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		CornerShapes shapes = SHAPES.get(state.getValue(FACING));
-		return context instanceof PhysicsCollisionContext ? shapes.cornerless : shapes.normal;
+		Function<BlockState, VoxelShape> function = context instanceof PhysicsCollisionContext ? this.cornerlessShapes : this.normalShapes;
+		return function.apply(state);
 	}
 
 	@Override
@@ -124,6 +129,10 @@ public class CornerPieceBlock extends PieceBlock {
 		}
 	}
 
+	private <T> Function<BlockState, T> forEachState(Function<BlockState, T> function) {
+		return (this.stateDefinition.getPossibleStates().stream().collect(ImmutableMap.toImmutableMap(Function.identity(), function)))::get;
+	}
+
 	public enum Facing implements StringRepresentable {
 		SOUTHEAST(OctahedralGroup.fromXYAngles(Quadrant.R0, Quadrant.R180), Direction.SOUTH, Direction.EAST),
 		SOUTHWEST(OctahedralGroup.fromXYAngles(Quadrant.R0, Quadrant.R270), Direction.SOUTH, Direction.WEST),
@@ -173,8 +182,5 @@ public class CornerPieceBlock extends PieceBlock {
 		public String getSerializedName() {
 			return this.name;
 		}
-	}
-
-	private record CornerShapes(VoxelShape normal, VoxelShape cornerless) {
 	}
 }
