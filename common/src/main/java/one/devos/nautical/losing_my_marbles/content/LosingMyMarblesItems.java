@@ -16,7 +16,7 @@ import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleType;
 public class LosingMyMarblesItems {
 	public static final Item MARBLE = register(
 			"marble", MarbleItem::new, new Item.Properties()
-					.stacksTo(1)
+					.stacksTo(16)
 					.component(LosingMyMarblesDataComponents.MARBLE, new StoredMarble.Type(MarbleType.DEFAULT))
 	);
 
