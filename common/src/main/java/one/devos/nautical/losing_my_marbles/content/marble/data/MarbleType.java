@@ -17,8 +17,7 @@ import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
 
 public record MarbleType(Component name, DataComponentMap components) implements DataComponentHolder {
-	// TODO: change when more are implemented
-	public static final ResourceKey<MarbleType> DEFAULT = ResourceKey.create(LosingMyMarblesRegistries.MARBLE_TYPE, LosingMyMarbles.id("slime"));
+	public static final ResourceKey<MarbleType> DEFAULT = ResourceKey.create(LosingMyMarblesRegistries.MARBLE_TYPE, LosingMyMarbles.id("terracotta"));
 
 	public static final Codec<MarbleType> DIRECT_CODEC = RecordCodecBuilder.create(i -> i.group(
 			ComponentSerialization.CODEC.fieldOf("name").forGetter(MarbleType::name),
