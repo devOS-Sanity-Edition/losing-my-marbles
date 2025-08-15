@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_straight_piece_top_nubs",
+  "textures": {
+    "straight": "losing_my_marbles:block/yellow_track_pieces"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_corner_piece_no_nubs",
+  "textures": {
+    "corner": "losing_my_marbles:block/cyan_track_pieces"
+  }
+}

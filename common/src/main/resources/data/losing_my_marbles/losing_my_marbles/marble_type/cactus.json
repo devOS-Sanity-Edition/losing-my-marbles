@@ -1,0 +1,29 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.cactus_marble",
+    "color": "#5eb159"
+  },
+  "components": {
+    "losing_my_marbles:friction": 0.5,
+    "losing_my_marbles:restitution": 0.25,
+    "losing_my_marbles:bounce_sound": "block.stone.fall",
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:texture": {
+      "type": "losing_my_marbles:stepped",
+      "distance_per_step": 0.1,
+      "textures": [
+        "losing_my_marbles:marble/cactus/cactus_marble_1",
+        "losing_my_marbles:marble/cactus/cactus_marble_2",
+        "losing_my_marbles:marble/cactus/cactus_marble_3",
+        "losing_my_marbles:marble/cactus/cactus_marble_4",
+        "losing_my_marbles:marble/cactus/cactus_marble_5",
+        "losing_my_marbles:marble/cactus/cactus_marble_6",
+        "losing_my_marbles:marble/cactus/cactus_marble_7",
+        "losing_my_marbles:marble/cactus/cactus_marble_8"
+      ]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_intersection_piece_top_nubs",
+  "textures": {
+    "intersection": "losing_my_marbles:block/lime_track_pieces"
+  }
+}

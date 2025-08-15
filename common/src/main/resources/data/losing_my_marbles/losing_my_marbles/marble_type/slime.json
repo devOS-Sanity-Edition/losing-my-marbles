@@ -1,6 +1,7 @@
 {
   "name": {
-    "translate": "marble_type.losing_my_marbles.slime"
+    "translate": "marble_type.losing_my_marbles.slime_marble",
+    "color": "#97ce83"
   },
   "components": {
     "losing_my_marbles:friction": 0.6,
@@ -11,15 +12,8 @@
       "radius": 0.1875
     },
     "losing_my_marbles:texture": {
-      "type": "losing_my_marbles:stepped",
-      "distance_per_step": 0.2,
-      "textures": [
-        "losing_my_marbles:slime_marble_1",
-        "losing_my_marbles:slime_marble_2",
-        "losing_my_marbles:slime_marble_3",
-        "losing_my_marbles:slime_marble_4",
-        "losing_my_marbles:slime_marble_5"
-      ]
+      "type": "losing_my_marbles:static",
+      "id": "losing_my_marbles:marble/slime/slime_marble"
     }
   }
 }

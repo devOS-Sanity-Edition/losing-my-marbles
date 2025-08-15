@@ -19,6 +19,9 @@ public final class LosingMyMarblesCreativeTabs {
 	public static final CreativeModeTab MAIN = register("main", builder -> builder
 			.icon(() -> MarbleItem.of(new StoredMarble.Type(MarbleType.DEFAULT)))
 			.displayItems((parameters, output) -> {
+				output.accept(LosingMyMarblesBlocks.STRAIGHT_PIECE);
+				output.accept(LosingMyMarblesBlocks.CORNER_PIECE);
+				output.accept(LosingMyMarblesBlocks.INTERSECTION_PIECE);
 				HolderLookup.RegistryLookup<MarbleType> typeRegistry = parameters.holders().lookupOrThrow(LosingMyMarblesRegistries.MARBLE_TYPE);
 				typeRegistry.listElements().forEach(holder -> {
 					ItemStack stack = MarbleItem.of(new StoredMarble.Type(holder));

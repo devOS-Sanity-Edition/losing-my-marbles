@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "losing_my_marbles:block/white_corner_piece"
+    "model": "losing_my_marbles:block/white_corner_piece_all_nubs"
   }
 }

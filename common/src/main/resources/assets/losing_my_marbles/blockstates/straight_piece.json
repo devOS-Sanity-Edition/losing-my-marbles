@@ -1,116 +1,163 @@
 {
   "variants": {
-    "color=white,axis=z": {
-      "model": "losing_my_marbles:block/white_straight_piece"
-    },
-    "color=white,axis=x": {
-      "model": "losing_my_marbles:block/white_straight_piece",
-      "y": 90
-    },
-    "color=light_gray,axis=z": {
-      "model": "losing_my_marbles:block/light_gray_straight_piece"
-    },
-    "color=light_gray,axis=x": {
-      "model": "losing_my_marbles:block/light_gray_straight_piece",
-      "y": 90
-    },
-    "color=gray,axis=z": {
-      "model": "losing_my_marbles:block/gray_straight_piece"
-    },
-    "color=gray,axis=x": {
-      "model": "losing_my_marbles:block/gray_straight_piece",
-      "y": 90
-    },
-    "color=black,axis=z": {
-      "model": "losing_my_marbles:block/black_straight_piece"
-    },
-    "color=black,axis=x": {
-      "model": "losing_my_marbles:block/black_straight_piece",
-      "y": 90
-    },
-    "color=brown,axis=z": {
-      "model": "losing_my_marbles:block/brown_straight_piece"
-    },
-    "color=brown,axis=x": {
-      "model": "losing_my_marbles:block/brown_straight_piece",
-      "y": 90
-    },
-    "color=red,axis=z": {
-      "model": "losing_my_marbles:block/red_straight_piece"
-    },
-    "color=red,axis=x": {
-      "model": "losing_my_marbles:block/red_straight_piece",
-      "y": 90
-    },
-    "color=orange,axis=z": {
-      "model": "losing_my_marbles:block/orange_straight_piece"
-    },
-    "color=orange,axis=x": {
-      "model": "losing_my_marbles:block/orange_straight_piece",
-      "y": 90
-    },
-    "color=yellow,axis=z": {
-      "model": "losing_my_marbles:block/yellow_straight_piece"
-    },
-    "color=yellow,axis=x": {
-      "model": "losing_my_marbles:block/yellow_straight_piece",
-      "y": 90
-    },
-    "color=lime,axis=z": {
-      "model": "losing_my_marbles:block/lime_straight_piece"
-    },
-    "color=lime,axis=x": {
-      "model": "losing_my_marbles:block/lime_straight_piece",
-      "y": 90
-    },
-    "color=green,axis=z": {
-      "model": "losing_my_marbles:block/green_straight_piece"
-    },
-    "color=green,axis=x": {
-      "model": "losing_my_marbles:block/green_straight_piece",
-      "y": 90
-    },
-    "color=cyan,axis=z": {
-      "model": "losing_my_marbles:block/cyan_straight_piece"
-    },
-    "color=cyan,axis=x": {
-      "model": "losing_my_marbles:block/cyan_straight_piece",
-      "y": 90
-    },
-    "color=blue,axis=z": {
-      "model": "losing_my_marbles:block/blue_straight_piece"
-    },
-    "color=blue,axis=x": {
-      "model": "losing_my_marbles:block/blue_straight_piece",
-      "y": 90
-    },
-    "color=light_blue,axis=z": {
-      "model": "losing_my_marbles:block/light_blue_straight_piece"
-    },
-    "color=light_blue,axis=x": {
-      "model": "losing_my_marbles:block/light_blue_straight_piece",
-      "y": 90
-    },
-    "color=purple,axis=z": {
-      "model": "losing_my_marbles:block/purple_straight_piece"
-    },
-    "color=purple,axis=x": {
-      "model": "losing_my_marbles:block/purple_straight_piece",
-      "y": 90
-    },
-    "color=magenta,axis=z": {
-      "model": "losing_my_marbles:block/magenta_straight_piece"
-    },
-    "color=magenta,axis=x": {
-      "model": "losing_my_marbles:block/magenta_straight_piece",
-      "y": 90
-    },
-    "color=pink,axis=z": {
-      "model": "losing_my_marbles:block/pink_straight_piece"
-    },
-    "color=pink,axis=x": {
-      "model": "losing_my_marbles:block/pink_straight_piece",
-      "y": 90
-    }
+    "axis=z,color=white,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/white_straight_piece_all_nubs"},
+    "axis=z,color=white,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/white_straight_piece_bottom_nubs"},
+    "axis=z,color=white,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/white_straight_piece_no_nubs"},
+    "axis=z,color=white,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/white_straight_piece_top_nubs"},
+
+    "axis=z,color=light_gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_straight_piece_all_nubs"},
+    "axis=z,color=light_gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_straight_piece_bottom_nubs"},
+    "axis=z,color=light_gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_straight_piece_no_nubs"},
+    "axis=z,color=light_gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_straight_piece_top_nubs"},
+
+    "axis=z,color=gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/gray_straight_piece_all_nubs"},
+    "axis=z,color=gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/gray_straight_piece_bottom_nubs"},
+    "axis=z,color=gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/gray_straight_piece_no_nubs"},
+    "axis=z,color=gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/gray_straight_piece_top_nubs"},
+
+    "axis=z,color=black,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/black_straight_piece_all_nubs"},
+    "axis=z,color=black,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/black_straight_piece_bottom_nubs"},
+    "axis=z,color=black,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/black_straight_piece_no_nubs"},
+    "axis=z,color=black,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/black_straight_piece_top_nubs"},
+
+    "axis=z,color=brown,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/brown_straight_piece_all_nubs"},
+    "axis=z,color=brown,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/brown_straight_piece_bottom_nubs"},
+    "axis=z,color=brown,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/brown_straight_piece_no_nubs"},
+    "axis=z,color=brown,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/brown_straight_piece_top_nubs"},
+
+    "axis=z,color=red,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/red_straight_piece_all_nubs"},
+    "axis=z,color=red,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/red_straight_piece_bottom_nubs"},
+    "axis=z,color=red,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/red_straight_piece_no_nubs"},
+    "axis=z,color=red,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/red_straight_piece_top_nubs"},
+
+    "axis=z,color=orange,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/orange_straight_piece_all_nubs"},
+    "axis=z,color=orange,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/orange_straight_piece_bottom_nubs"},
+    "axis=z,color=orange,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/orange_straight_piece_no_nubs"},
+    "axis=z,color=orange,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/orange_straight_piece_top_nubs"},
+
+    "axis=z,color=yellow,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_straight_piece_all_nubs"},
+    "axis=z,color=yellow,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_straight_piece_bottom_nubs"},
+    "axis=z,color=yellow,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_straight_piece_no_nubs"},
+    "axis=z,color=yellow,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_straight_piece_top_nubs"},
+
+    "axis=z,color=lime,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/lime_straight_piece_all_nubs"},
+    "axis=z,color=lime,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/lime_straight_piece_bottom_nubs"},
+    "axis=z,color=lime,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/lime_straight_piece_no_nubs"},
+    "axis=z,color=lime,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/lime_straight_piece_top_nubs"},
+
+    "axis=z,color=green,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/green_straight_piece_all_nubs"},
+    "axis=z,color=green,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/green_straight_piece_bottom_nubs"},
+    "axis=z,color=green,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/green_straight_piece_no_nubs"},
+    "axis=z,color=green,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/green_straight_piece_top_nubs"},
+
+    "axis=z,color=cyan,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_straight_piece_all_nubs"},
+    "axis=z,color=cyan,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_straight_piece_bottom_nubs"},
+    "axis=z,color=cyan,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_straight_piece_no_nubs"},
+    "axis=z,color=cyan,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_straight_piece_top_nubs"},
+
+    "axis=z,color=blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/blue_straight_piece_all_nubs"},
+    "axis=z,color=blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/blue_straight_piece_bottom_nubs"},
+    "axis=z,color=blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/blue_straight_piece_no_nubs"},
+    "axis=z,color=blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/blue_straight_piece_top_nubs"},
+
+    "axis=z,color=light_blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_straight_piece_all_nubs"},
+    "axis=z,color=light_blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_straight_piece_bottom_nubs"},
+    "axis=z,color=light_blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_straight_piece_no_nubs"},
+    "axis=z,color=light_blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_straight_piece_top_nubs"},
+
+    "axis=z,color=purple,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/purple_straight_piece_all_nubs"},
+    "axis=z,color=purple,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/purple_straight_piece_bottom_nubs"},
+    "axis=z,color=purple,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/purple_straight_piece_no_nubs"},
+    "axis=z,color=purple,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/purple_straight_piece_top_nubs"},
+
+    "axis=z,color=magenta,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_straight_piece_all_nubs"},
+    "axis=z,color=magenta,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_straight_piece_bottom_nubs"},
+    "axis=z,color=magenta,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_straight_piece_no_nubs"},
+    "axis=z,color=magenta,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_straight_piece_top_nubs"},
+
+    "axis=z,color=pink,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/pink_straight_piece_all_nubs"},
+    "axis=z,color=pink,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/pink_straight_piece_bottom_nubs"},
+    "axis=z,color=pink,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/pink_straight_piece_no_nubs"},
+    "axis=z,color=pink,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/pink_straight_piece_top_nubs"},
+
+    "axis=x,color=white,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/white_straight_piece_all_nubs","y":90},
+    "axis=x,color=white,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/white_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=white,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/white_straight_piece_no_nubs","y":90},
+    "axis=x,color=white,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/white_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=light_gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_straight_piece_all_nubs","y":90},
+    "axis=x,color=light_gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=light_gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_straight_piece_no_nubs","y":90},
+    "axis=x,color=light_gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/gray_straight_piece_all_nubs","y":90},
+    "axis=x,color=gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/gray_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/gray_straight_piece_no_nubs","y":90},
+    "axis=x,color=gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/gray_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=black,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/black_straight_piece_all_nubs","y":90},
+    "axis=x,color=black,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/black_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=black,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/black_straight_piece_no_nubs","y":90},
+    "axis=x,color=black,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/black_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=brown,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/brown_straight_piece_all_nubs","y":90},
+    "axis=x,color=brown,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/brown_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=brown,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/brown_straight_piece_no_nubs","y":90},
+    "axis=x,color=brown,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/brown_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=red,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/red_straight_piece_all_nubs","y":90},
+    "axis=x,color=red,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/red_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=red,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/red_straight_piece_no_nubs","y":90},
+    "axis=x,color=red,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/red_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=orange,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/orange_straight_piece_all_nubs","y":90},
+    "axis=x,color=orange,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/orange_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=orange,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/orange_straight_piece_no_nubs","y":90},
+    "axis=x,color=orange,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/orange_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=yellow,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_straight_piece_all_nubs","y":90},
+    "axis=x,color=yellow,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=yellow,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_straight_piece_no_nubs","y":90},
+    "axis=x,color=yellow,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=lime,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/lime_straight_piece_all_nubs","y":90},
+    "axis=x,color=lime,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/lime_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=lime,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/lime_straight_piece_no_nubs","y":90},
+    "axis=x,color=lime,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/lime_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=green,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/green_straight_piece_all_nubs","y":90},
+    "axis=x,color=green,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/green_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=green,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/green_straight_piece_no_nubs","y":90},
+    "axis=x,color=green,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/green_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=cyan,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_straight_piece_all_nubs","y":90},
+    "axis=x,color=cyan,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=cyan,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_straight_piece_no_nubs","y":90},
+    "axis=x,color=cyan,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/blue_straight_piece_all_nubs","y":90},
+    "axis=x,color=blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/blue_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/blue_straight_piece_no_nubs","y":90},
+    "axis=x,color=blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/blue_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=light_blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_straight_piece_all_nubs","y":90},
+    "axis=x,color=light_blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=light_blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_straight_piece_no_nubs","y":90},
+    "axis=x,color=light_blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=purple,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/purple_straight_piece_all_nubs","y":90},
+    "axis=x,color=purple,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/purple_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=purple,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/purple_straight_piece_no_nubs","y":90},
+    "axis=x,color=purple,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/purple_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=magenta,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_straight_piece_all_nubs","y":90},
+    "axis=x,color=magenta,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=magenta,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_straight_piece_no_nubs","y":90},
+    "axis=x,color=magenta,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_straight_piece_top_nubs","y":90},
+
+    "axis=x,color=pink,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/pink_straight_piece_all_nubs","y":90},
+    "axis=x,color=pink,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/pink_straight_piece_bottom_nubs","y":90},
+    "axis=x,color=pink,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/pink_straight_piece_no_nubs","y":90},
+    "axis=x,color=pink,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/pink_straight_piece_top_nubs","y":90}
   }
 }

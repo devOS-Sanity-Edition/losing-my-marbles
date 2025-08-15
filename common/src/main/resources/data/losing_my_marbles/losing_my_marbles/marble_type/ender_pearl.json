@@ -1,0 +1,19 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.ender_pearl_marble",
+    "color": "#4abfac"
+  },
+  "components": {
+    "losing_my_marbles:friction": 0.2,
+    "losing_my_marbles:restitution": 0.1,
+    "losing_my_marbles:bounce_sound": "block.end_portal_frame.fill",
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:texture": {
+      "type": "losing_my_marbles:static",
+      "id": "losing_my_marbles:marble/ender_pearl/ender_pearl_marble"
+    }
+  }
+}
