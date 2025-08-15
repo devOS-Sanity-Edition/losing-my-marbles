@@ -7,6 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.PhysicsCollision;
 
 public final class PhysicsEventListeners {
 	public static void tick(ServerLevel level) {
@@ -36,8 +37,8 @@ public final class PhysicsEventListeners {
 	}
 
 	public static void blockChanged(ServerLevel level, BlockPos pos, BlockState oldState, BlockState newState) {
-		VoxelShape oldShape = PhysicsEnvironment.getPhysicsVisibleShape(oldState);
-		VoxelShape newShape = PhysicsEnvironment.getPhysicsVisibleShape(newState);
+		VoxelShape oldShape = PhysicsCollision.voxelShapeOf(oldState);
+		VoxelShape newShape = PhysicsCollision.voxelShapeOf(newState);
 
 		if (oldShape != newShape) {
 			PhysicsEnvironment.get(level).blockShapeChanged(pos);

@@ -26,12 +26,9 @@ import com.github.stephengold.joltjni.readonly.Vec3Arg;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.EmptyBlockGetter;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 import one.devos.nautical.losing_my_marbles.framework.phys.debug.DebugGeometryOutput;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.TerrainCollisionManager;
@@ -182,10 +179,6 @@ public final class PhysicsEnvironment {
 		for (EntityEntry<?> entry : this.entities.values()) {
 			output.accept(entry.body().getBody());
 		}
-	}
-
-	public static VoxelShape getPhysicsVisibleShape(BlockState state) {
-		return state.getCollisionShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO);
 	}
 
 	private enum Error {

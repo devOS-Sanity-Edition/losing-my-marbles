@@ -12,6 +12,8 @@ import com.github.stephengold.joltjni.readonly.Vec3Arg;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlockTags;
 
 /**
@@ -37,6 +39,11 @@ public record PhysicsCollision(Optional<DefaultCollisionSource> defaultCollision
 			return custom;
 
 		return block.builtInRegistryHolder().is(LosingMyMarblesBlockTags.PHYSICS_USES_BASE_SHAPE) ? DEFAULT_BASE : DEFAULT;
+	}
+
+	public static VoxelShape voxelShapeOf(BlockState state) {
+		Optional<DefaultCollisionSource> collision = PhysicsCollision.of(state.getBlock()).defaultCollision();
+		return collision.isEmpty() ? Shapes.empty() : collision.get().get(state);
 	}
 
 	/**

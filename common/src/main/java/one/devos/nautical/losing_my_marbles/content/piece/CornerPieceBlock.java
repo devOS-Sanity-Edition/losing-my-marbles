@@ -26,15 +26,24 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.PhysicsCollision;
+import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.PhysicsCollisionContext;
 import one.devos.nautical.losing_my_marbles.framework.phys.util.TriStripBuilder;
 
 public class CornerPieceBlock extends PieceBlock {
 	public static final EnumProperty<Facing> FACING = EnumProperty.create("facing", Facing.class);
 
-	private static final Map<Facing, VoxelShape> SHAPES = Util.makeEnumMap(Facing.class, facing -> Shapes.rotate(
-			PieceBlock.makeShape(Block.box(4, 8, 0, 12, 16, 12), Block.box(0, 8, 4, 12, 16, 12)),
-			facing.rotation
+	private static final Map<Facing, CornerShapes> SHAPES = Util.makeEnumMap(Facing.class, facing -> new CornerShapes(
+			Shapes.rotate(
+					PieceBlock.makeShape(Block.box(4, 8, 0, 12, 16, 12), Block.box(0, 8, 4, 12, 16, 12)),
+					facing.rotation
+			),
+			Shapes.rotate(
+					PieceBlock.makeShape(Block.box(0, 8, 0, 12, 16, 12)),
+					facing.rotation
+			)
 	));
+
+
 
 	public CornerPieceBlock(Properties properties) {
 		super(properties);
@@ -49,7 +58,14 @@ public class CornerPieceBlock extends PieceBlock {
 
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return SHAPES.get(state.getValue(FACING));
+		CornerShapes shapes = SHAPES.get(state.getValue(FACING));
+		return context instanceof PhysicsCollisionContext ? shapes.cornerless : shapes.normal;
+	}
+
+	@Override
+	protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		// super method loses the context
+		return this.getShape(state, level, pos, context);
 	}
 
 	@Override
@@ -63,51 +79,24 @@ public class CornerPieceBlock extends PieceBlock {
 	}
 
 	public static void additionalCollision(BlockState state, PhysicsCollision.Provider.Output output) {
-		TriStripBuilder outer = new TriStripBuilder(PieceBlock::pixelsToBlocks).flip()
-				// entrance
-				.then(1, 0, -8)
-				.then(4, 2, -8)
-				.then(1, 0, -4)
-				.then(4, 2, -4);
-
-		TriStripBuilder inner = new TriStripBuilder(PieceBlock::pixelsToBlocks)
-				// entrance
-				.then(-1, 0, -8)
-				.then(-4, 2, -8)
-				.then(-1, 0, -4)
-				.then(-4, 2, -4);
+		TriStripBuilder outerBottom = new TriStripBuilder(PieceBlock::pixelsToBlocks).flip();
+		TriStripBuilder outerTop = new TriStripBuilder(PieceBlock::pixelsToBlocks).flip();
 
 		final int steps = 4;
-		for (int i = 0; i < steps; i++) {
+		final int centerX = -4;
+		final int centerZ = -4;
+		final int outerRadius = 8;
+
+		for (int i = 0; i <= steps; i++) {
 			float progress = (1f / steps) * i;
 			float theta = Mth.lerp(progress, Mth.PI, Mth.HALF_PI);
-			float cos = -Mth.cos(theta) * 2;
-			float sin = Mth.sin(theta) * 2;
 
-			float midX = cos - 2;
-			float midY = sin - 2;
+			float outerX = -Mth.cos(theta) * outerRadius + centerX;
+			float outerZ = Mth.sin(theta) * outerRadius + centerZ;
 
-			float outerX = cos * 2;
-			float outerY = sin * 2;
-
-			outer.then(midX + 1, 0, midY + 1).then(outerX, 2, outerY);
-			inner.then(midX - 1, 0, midY - 1).then(-4, 2, -4);
+			outerBottom.then(outerX, 0, outerZ).then(outerX, 4, outerZ);
+			outerTop.then(outerX, 4, outerZ).then(4, 8, 4);
 		}
-
-		// exit
-		ShapeRefC outerShape = outer
-				.then(-4, 0, 1)
-				.then(-4, 2, 4)
-				.then(-8, 0, 1)
-				.then(-8, 2, 4)
-				.build();
-
-		ShapeRefC innerShape = inner
-				.then(-4, 0, -1)
-				.then(-4, 2, -4)
-				.then(-8, 0, -1)
-				.then(-8, 2, -4)
-				.build();
 
 		float yRot = switch (state.getValue(FACING)) {
 			case NORTHWEST -> 0;
@@ -118,10 +107,21 @@ public class CornerPieceBlock extends PieceBlock {
 
 		Quat rotation = Quat.sEulerAngles(0, Mth.DEG_TO_RAD * yRot, 0);
 
-		output.accept(rotation, outerShape);
-		output.accept(rotation, innerShape);
-		outerShape.close();
-		innerShape.close();
+		try (ShapeRefC outerBottomShape = outerBottom.build(); ShapeRefC outerTopShape = outerTop.build()) {
+			output.accept(rotation, outerBottomShape);
+			output.accept(rotation, outerTopShape);
+		}
+
+		TriStripBuilder inner = new TriStripBuilder(PieceBlock::pixelsToBlocks)
+				.then(-4, 0, -8)
+				.then(-8, 0, -4)
+				.then(-4, 8, -8)
+				.then(-8, 8, -4)
+				.then(-8, 8, -8);
+
+		try (ShapeRefC innerShape = inner.build()) {
+			output.accept(rotation, innerShape);
+		}
 	}
 
 	public enum Facing implements StringRepresentable {
@@ -173,5 +173,8 @@ public class CornerPieceBlock extends PieceBlock {
 		public String getSerializedName() {
 			return this.name;
 		}
+	}
+
+	private record CornerShapes(VoxelShape normal, VoxelShape cornerless) {
 	}
 }

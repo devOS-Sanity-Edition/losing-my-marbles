@@ -28,7 +28,7 @@ import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 public class LosingMyMarblesBlocks {
 	public static final StraightPieceBlock STRAIGHT_PIECE = register("straight_piece", StraightPieceBlock::new, pieceProperties());
 	public static final IntersectionPieceBlock INTERSECTION_PIECE = register("intersection_piece", IntersectionPieceBlock::new, pieceProperties());
-	public static final CornerPieceBlock CORNER_PIECE = register("corner_piece", CornerPieceBlock::new, pieceProperties());
+	public static final CornerPieceBlock CORNER_PIECE = register("corner_piece", CornerPieceBlock::new, pieceProperties().dynamicShape());
 
 	private static BlockBehaviour.Properties pieceProperties() {
 		return BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
@@ -47,10 +47,7 @@ public class LosingMyMarblesBlocks {
 	}
 
 	public static void init() {
-		CustomPhysicsCollisionRegistry.register(STRAIGHT_PIECE, DefaultCollisionSource.COLLISION_SHAPE, StraightPieceBlock::additionalCollision);
-		CustomPhysicsCollisionRegistry.register(INTERSECTION_PIECE, DefaultCollisionSource.COLLISION_SHAPE, IntersectionPieceBlock::additionalCollision);
 		CustomPhysicsCollisionRegistry.register(CORNER_PIECE, DefaultCollisionSource.COLLISION_SHAPE, CornerPieceBlock::additionalCollision);
-
 
 		if (PlatformHelper.INSTANCE.getEnvironment() == Env.CLIENT) {
 			PlatformClientHelper.INSTANCE.setBlockRenderLayer(ChunkSectionLayer.TRANSLUCENT,

@@ -12,13 +12,13 @@ public enum DefaultCollisionSource {
 	COLLISION_SHAPE {
 		@Override
 		public VoxelShape get(BlockState state) {
-			return state.getCollisionShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO);
+			return state.getCollisionShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO, PhysicsCollisionContext.INSTANCE);
 		}
 	},
 	BASE_SHAPE {
 		@Override
 		public VoxelShape get(BlockState state) {
-			return state.getShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO);
+			return state.getShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO, PhysicsCollisionContext.INSTANCE);
 		}
 	};
 

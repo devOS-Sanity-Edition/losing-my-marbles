@@ -20,7 +20,7 @@ public final class SectionShapeBuilders {
 
 	public SectionShape.Builder get(BlockState state) {
 		float friction = state.getBlock().getFriction();
-		float restitution = 0.5f;// TODO: custom restitution values
+		float restitution = 0f;// TODO: custom restitution values
 		return this.builders.computeIfAbsent(friction, $ -> new Float2ObjectOpenHashMap<>())
 				.computeIfAbsent(restitution, $ -> this.builderFactory.apply(new SectionShape.Properties(friction, restitution)));
 	}
