@@ -63,6 +63,11 @@ public abstract class PieceBlock extends TransparentBlock {
 	}
 
 	@Override
+	protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
+		return Shapes.block();
+	}
+
+	@Override
 	@NotNull
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		BlockState state = this.defaultBlockState();
