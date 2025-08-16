@@ -2,6 +2,7 @@ package one.devos.nautical.losing_my_marbles.framework.phys;
 
 import java.util.EnumSet;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -155,7 +156,8 @@ public final class PhysicsEnvironment {
 		}
 
 		// sync updated bodies back to their entities
-		this.entities.values().forEach(EntityEntry::updateEntity);
+		// make a copy here since updateEntity calls onBounce which may remove the entity
+		List.copyOf(this.entities.values()).forEach(EntityEntry::updateEntity);
 	}
 
 	public void chunkLoaded(LevelChunk chunk) {
