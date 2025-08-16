@@ -37,13 +37,10 @@
     },
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:tapered_capsule",
-      "top_radius": 0.075,
-      "bottom_radius": 0.075,
-      "height": 0.075
+      "top_radius": 0.09,
+      "bottom_radius": 0.18,
+      "height": 0.18
     },
-    "losing_my_marbles:texture": {
-      "type": "losing_my_marbles:static",
-      "id": "losing_my_marbles:marble/egg/egg_marble"
-    }
+    "losing_my_marbles:asset": "losing_my_marbles:egg"
   }
 }

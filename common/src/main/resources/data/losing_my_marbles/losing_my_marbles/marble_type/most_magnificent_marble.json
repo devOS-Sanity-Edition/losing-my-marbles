@@ -15,9 +15,6 @@
       "type": "losing_my_marbles:cube",
       "side_length": 0.3750
     },
-    "losing_my_marbles:texture": {
-      "type": "losing_my_marbles:static",
-      "id": "losing_my_marbles:marble/most_magnificent_marble/most_magnificent_marble"
-    }
+    "losing_my_marbles:asset": "losing_my_marbles:most_magnificent_marble"
   }
 }
