@@ -26,7 +26,7 @@ public record SpawnEntity(CompoundTag data) implements BounceEffect {
 		try (ProblemReporter.ScopedCollector reporter = new ProblemReporter.ScopedCollector(LosingMyMarbles.LOGGER)) {
 			ValueInput input = TagValueInput.create(reporter, level.registryAccess(), this.data);
 			EntityType.create(input, level, EntitySpawnReason.SPAWN_ITEM_USE).ifPresent(created -> {
-				created.setPos(entity.position());
+				created.setPos(entity.getBoundingBox().getCenter());
 				level.addFreshEntity(created);
 			});
 		}
