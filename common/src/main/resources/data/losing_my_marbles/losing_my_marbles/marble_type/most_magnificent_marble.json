@@ -1,0 +1,23 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.most_magnificent_marble",
+    "color": "#e33ef9"
+  },
+  "components": {
+    "losing_my_marbles:friction": 1.0,
+    "losing_my_marbles:mass": 20,
+    "losing_my_marbles:restitution": 0.0,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:play_sound",
+      "sound": "minecraft:block.netherite_block.break"
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:cube",
+      "side_length": 0.3750
+    },
+    "losing_my_marbles:texture": {
+      "type": "losing_my_marbles:static",
+      "id": "losing_my_marbles:marble/most_magnificent_marble/most_magnificent_marble"
+    }
+  }
+}

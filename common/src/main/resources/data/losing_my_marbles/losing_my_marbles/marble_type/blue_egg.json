@@ -1,11 +1,11 @@
 {
   "name": {
-    "translate": "marble_type.losing_my_marbles.ender_pearl_marble",
-    "color": "#4abfac"
+    "translate": "marble_type.losing_my_marbles.blue_egg_marble",
+    "color": "#c7e5d4"
   },
   "components": {
     "losing_my_marbles:friction": 0.2,
-    "losing_my_marbles:restitution": 0.1,
+    "losing_my_marbles:restitution": 0.3,
     "losing_my_marbles:bounce_effect": {
       "type": "losing_my_marbles:compound",
       "effects": [
@@ -14,17 +14,16 @@
           "when_broken": {
               "type": "losing_my_marbles:compound",
               "effects": [
-              {
-                "type": "losing_my_marbles:teleport_owner"
-              },
-              {
-                "type": "losing_my_marbles:chanced",
-                "chance": 0.05,
-                "effect": {
+   	            {
+  	              "type": "losing_my_marbles:play_sound",
+ 	                "sound": "block.sniffer_egg.hatch"
+ 	              },
+	              {
                   "type": "losing_my_marbles:spawn_entity",
                   "data": {
-                    "id": "endermite"
-                  }
+                  "id": "chicken",
+                  "Age": -24000,
+                  "variant": "cold"
                 }
               }
             ]
@@ -32,17 +31,19 @@
         },
         {
           "type": "losing_my_marbles:play_sound",
-          "sound": "block.end_portal_frame.fill"
+          "sound": "block.sniffer_egg.crack"
         }
       ]
     },
     "losing_my_marbles:shape": {
-      "type": "losing_my_marbles:sphere",
-      "radius": 0.1875
+      "type": "losing_my_marbles:tapered_capsule",
+      "top_radius": 0.075,
+      "bottom_radius": 0.075,
+      "height": 0.075
     },
     "losing_my_marbles:texture": {
       "type": "losing_my_marbles:static",
-      "id": "losing_my_marbles:marble/ender_pearl/ender_pearl_marble"
+      "id": "losing_my_marbles:marble/egg/blue_egg_marble"
     }
   }
 }
