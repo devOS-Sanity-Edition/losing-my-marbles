@@ -25,7 +25,9 @@ public record SphereMarbleShape(float radius) implements MarbleShape {
 	@Override
 	public CreatedShape createJoltShape(float scale) {
 		float actualRadius = this.radius * scale;
-		return new CreatedShape(new SphereShape(actualRadius), new Vec3(0, actualRadius, 0));
+		SphereShape sphere = new SphereShape(actualRadius);
+		sphere.setDensity(DENSITY);
+		return new CreatedShape(sphere, new Vec3(0, actualRadius, 0));
 	}
 
 	@Override

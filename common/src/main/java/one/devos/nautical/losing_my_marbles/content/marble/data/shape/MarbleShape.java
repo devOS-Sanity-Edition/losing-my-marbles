@@ -18,6 +18,11 @@ public interface MarbleShape {
 			.dispatch(MarbleShape::type, Type::streamCodec);
 
 	/**
+	 * Default density value shapes should set. Based on a sphere with radius 0.1875 weighing 10kg.
+	 */
+	float DENSITY = 362.2f;
+
+	/**
 	 * @param scale an additional scaling factor to apply to the shape, >0
 	 */
 	CreatedShape createJoltShape(float scale);

@@ -1,7 +1,12 @@
 package one.devos.nautical.losing_my_marbles.framework.phys;
 
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
+
+import com.github.stephengold.joltjni.Quat;
 import com.github.stephengold.joltjni.RVec3;
 
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.AABB;
@@ -50,6 +55,13 @@ public record EntityEntry<T extends Entity & PhysicsEntity>(T entity, BodyAccess
 				this.entity.onBounce(oldVel, newVel);
 			}
 		}
+
+		// one-directional, for debugging
+		Quat quat = this.body.getBody().getRotation();
+		Quaternionf rotation = new Quaternionf(quat.getX(), quat.getY(), quat.getZ(), quat.getW());
+		Vector3f facing = rotation.transform(new Vector3f(0, 0, 1));
+		Vec3 target = this.entity.position().add(facing.x, facing.y, facing.z);
+		this.entity.lookAt(EntityAnchorArgument.Anchor.EYES, target);
 	}
 
 	public void close() {

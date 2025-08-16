@@ -22,7 +22,9 @@ public record CubeMarbleShape(float sideLength) implements MarbleShape {
 	@Override
 	public CreatedShape createJoltShape(float scale) {
 		float halfExtent = (this.sideLength / 2) * scale;
-		return new CreatedShape(new BoxShape(halfExtent), new Vec3(0, halfExtent, 0));
+		BoxShape cube = new BoxShape(halfExtent);
+		cube.setDensity(DENSITY);
+		return new CreatedShape(cube, new Vec3(0, halfExtent, 0));
 	}
 
 	@Override

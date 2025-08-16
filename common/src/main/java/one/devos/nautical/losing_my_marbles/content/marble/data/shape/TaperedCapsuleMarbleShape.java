@@ -33,6 +33,7 @@ public record TaperedCapsuleMarbleShape(float bottomRadius, float topRadius, flo
 		settings.setBottomRadius(this.bottomRadius * scale);
 		settings.setTopRadius(this.topRadius * scale);
 		settings.setHalfHeightOfTaperedCylinder(this.height / 2 * scale);
+		settings.setDensity(DENSITY);
 
 		try (ShapeResult result = settings.create()) {
 			settings.toRef().close();

@@ -215,10 +215,10 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 			return false;
 		}
 
-		double force = 750;
+		double force = 350;
 		ItemStack weapon = source.getWeaponItem();
 		if (weapon != null && weapon.is(LosingMyMarblesItemTags.EXTRA_MARBLE_KNOCKBACK)) {
-			force *= 4;
+			force *= 2;
 		}
 
 		Vec3Arg forceVec = JoltIntegration.convertF(pos.vectorTo(this.position()).normalize().scale(force));
