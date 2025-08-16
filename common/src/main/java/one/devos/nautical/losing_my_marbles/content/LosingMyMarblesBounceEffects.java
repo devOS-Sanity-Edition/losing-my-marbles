@@ -21,7 +21,7 @@ public final class LosingMyMarblesBounceEffects {
 	public static void init() {
 		register("break", Break.CODEC);
 		register("chanced", Chanced.CODEC);
-		register("compound", Compound.CODEC);
+		register("compound", Compound.MAP_CODEC);
 		register("explode", Explode.CODEC);
 		register("patch_components", PatchComponents.CODEC);
 		register("place_block", PlaceBlock.CODEC);
