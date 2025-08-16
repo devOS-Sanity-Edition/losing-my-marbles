@@ -20,4 +20,10 @@ public interface PhysicsEntity {
 	 * Set the position that the entity should move to the next time it ticks.
 	 */
 	void setNextTickPos(Vec3 pos);
+
+	/**
+	 * Called when this entity's body bounces, which is defined as a significant change in velocity.
+	 */
+	default void onBounce(Vec3 velocityChange) {
+	}
 }

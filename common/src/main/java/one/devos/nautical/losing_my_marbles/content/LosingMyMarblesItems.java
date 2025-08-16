@@ -17,7 +17,7 @@ public class LosingMyMarblesItems {
 	public static final Item MARBLE = register(
 			"marble", MarbleItem::new, new Item.Properties()
 					.stacksTo(16)
-					.component(LosingMyMarblesDataComponents.MARBLE, new StoredMarble.Type(MarbleType.DEFAULT))
+					.component(LosingMyMarblesDataComponents.MARBLE, StoredMarble.of(MarbleType.DEFAULT))
 	);
 
 	static <T extends Item> T register(String name, Function<Item.Properties, T> factory, Item.Properties properties) {

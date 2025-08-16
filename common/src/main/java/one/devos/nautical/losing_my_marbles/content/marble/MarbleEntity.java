@@ -163,8 +163,23 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	}
 
 	@Override
+	public void onBounce(Vec3 velocityChange) {
+		this.marble.getOptional(LosingMyMarblesDataComponents.BOUNCE_SOUND).ifPresent(sound -> {
+			float scale = Math.clamp((float) velocityChange.length(), 0.1f, 1f);
+			float pitch = 1 / scale;
+			float volume = scale / 2;
+			this.playSound(sound.value(), volume, pitch);
+		});
+	}
+
+	@Override
 	public boolean isPickable() {
 		return !this.isRemoved();
+	}
+
+	@Override
+	public ItemStack getPickResult() {
+		return MarbleItem.of(StoredMarble.of(this.marble()));
 	}
 
 	@Override

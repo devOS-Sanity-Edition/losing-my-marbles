@@ -255,7 +255,10 @@ public final class TerrainCollisionManager {
 			return null;
 
 		int index = chunk.getSectionIndexFromSectionY(SectionPos.y(pos));
-		return index < 0 ? null : chunk.getSection(index);
+		if (index < 0 || index > chunk.getHighestFilledSectionIndex())
+			return null;
+
+		return chunk.getSection(index);
 	}
 
 	private static AaBox boxAround(BlockPos pos) {

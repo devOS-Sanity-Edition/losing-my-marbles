@@ -46,6 +46,18 @@ public sealed interface StoredMarble extends TooltipProvider {
 		output.accept(CommonComponents.space().append(this.nameForTooltip(context.registries())));
 	}
 
+	static StoredMarble of(MarbleInstance marble) {
+		return new Instance(marble);
+	}
+
+	static StoredMarble of(ResourceKey<MarbleType> typeKey) {
+		return new Type(new EitherHolder<>(typeKey));
+	}
+
+	static StoredMarble of(Holder<MarbleType> type) {
+		return new Type(new EitherHolder<>(type));
+	}
+
 	record Type(EitherHolder<MarbleType> holder) implements StoredMarble {
 		public static final MapCodec<Type> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
 				EitherHolder.codec(LosingMyMarblesRegistries.MARBLE_TYPE, MarbleType.CODEC).fieldOf("holder").forGetter(Type::holder)
@@ -55,14 +67,6 @@ public sealed interface StoredMarble extends TooltipProvider {
 				EitherHolder.streamCodec(LosingMyMarblesRegistries.MARBLE_TYPE, MarbleType.STREAM_CODEC), Type::holder,
 				Type::new
 		);
-
-		public Type(ResourceKey<MarbleType> key) {
-			this(new EitherHolder<>(key));
-		}
-
-		public Type(Holder<MarbleType> holder) {
-			this(new EitherHolder<>(holder));
-		}
 
 		@Override
 		public Optional<MarbleInstance> get(HolderLookup.Provider registries) {
