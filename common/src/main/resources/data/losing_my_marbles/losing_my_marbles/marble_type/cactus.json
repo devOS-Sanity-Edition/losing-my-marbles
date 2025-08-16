@@ -6,7 +6,10 @@
   "components": {
     "losing_my_marbles:friction": 0.5,
     "losing_my_marbles:restitution": 0.25,
-    "losing_my_marbles:bounce_sound": "block.stone.fall",
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:play_sound",
+      "sound": "block.stone.fall"
+    },
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875

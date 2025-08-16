@@ -24,6 +24,6 @@ public interface PhysicsEntity {
 	/**
 	 * Called when this entity's body bounces, which is defined as a significant change in velocity.
 	 */
-	default void onBounce(Vec3 velocityChange) {
+	default void onBounce(Vec3 oldVel, Vec3 newVel) {
 	}
 }

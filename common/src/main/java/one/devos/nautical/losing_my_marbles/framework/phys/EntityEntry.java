@@ -47,7 +47,7 @@ public record EntityEntry<T extends Entity & PhysicsEntity>(T entity, BodyAccess
 			this.entity.hasImpulse = true;
 
 			if (oldVel.lengthSqr() > 0.01 && angleBetween(oldVel, newVel) > 20) {
-				this.entity.onBounce(oldVel.vectorTo(newVel));
+				this.entity.onBounce(oldVel, newVel);
 			}
 		}
 	}

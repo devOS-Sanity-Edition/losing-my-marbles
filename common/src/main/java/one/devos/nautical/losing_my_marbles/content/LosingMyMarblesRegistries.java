@@ -1,17 +1,21 @@
 package one.devos.nautical.losing_my_marbles.content;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleType;
 import one.devos.nautical.losing_my_marbles.content.marble.data.shape.MarbleShape;
 import one.devos.nautical.losing_my_marbles.content.marble.data.texture.MarbleTexture;
+import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.BounceEffect;
 import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 
 public final class LosingMyMarblesRegistries {
 	// static
 	public static final Registry<MarbleShape.Type<?>> MARBLE_SHAPE_TYPE = create("marble_shape_type");
 	public static final Registry<MarbleTexture.Type<?>> MARBLE_TEXTURE_TYPE = create("marble_texture_type");
+	public static final Registry<MapCodec<? extends BounceEffect>> BOUNCE_EFFECT_TYPE = create("bounce_effect_type");
 	// dynamic
 	public static final ResourceKey<Registry<MarbleType>> MARBLE_TYPE = key("marble_type");
 

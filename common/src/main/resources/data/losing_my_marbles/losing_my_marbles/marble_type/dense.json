@@ -7,7 +7,10 @@
     "losing_my_marbles:friction": 0.7,
     "losing_my_marbles:mass": 40,
     "losing_my_marbles:restitution": 0.1,
-    "losing_my_marbles:bounce_sound": "item.mace.smash_ground",
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:play_sound",
+      "sound": "item.mace.smash_ground"
+    },
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875

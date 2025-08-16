@@ -6,7 +6,10 @@
   "components": {
     "losing_my_marbles:friction": 0.3,
     "losing_my_marbles:restitution": 0.4,
-    "losing_my_marbles:bounce_sound": "minecraft:block.sniffer_egg.plop",
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:play_sound",
+      "sound": "minecraft:block.sniffer_egg.plop"
+    },
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875

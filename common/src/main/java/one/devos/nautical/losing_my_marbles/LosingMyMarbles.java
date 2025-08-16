@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import net.minecraft.resources.ResourceLocation;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlocks;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBounceEffects;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesCreativeTabs;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntities;
@@ -30,6 +31,7 @@ public final class LosingMyMarbles {
 		LosingMyMarblesDataComponents.init();
 		LosingMyMarblesMarbleShapeTypes.init();
 		LosingMyMarblesMarbleTextures.init();
+		LosingMyMarblesBounceEffects.init();
 	}
 
 	public static ResourceLocation id(String path) {
