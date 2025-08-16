@@ -14,6 +14,7 @@ import one.devos.nautical.losing_my_marbles.content.marble.StoredMarble;
 import one.devos.nautical.losing_my_marbles.content.marble.asset.MarbleAsset;
 import one.devos.nautical.losing_my_marbles.content.marble.data.shape.MarbleShape;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.BounceEffect;
+import one.devos.nautical.losing_my_marbles.content.marble.effect.contact.entity.EntityContactEffect;
 import one.devos.nautical.losing_my_marbles.framework.data.LosingMyMarblesCodecs;
 import one.devos.nautical.losing_my_marbles.framework.network.LosingMyMarblesStreamCodecs;
 
@@ -43,6 +44,9 @@ public final class LosingMyMarblesDataComponents {
 	);
 	public static final DataComponentType<BounceEffect> BOUNCE_EFFECT = register(
 			"bounce_effect", BounceEffect.CODEC, BounceEffect.STREAM_CODEC
+	);
+	public static final DataComponentType<EntityContactEffect> ENTITY_CONTACT_EFFECT = register(
+			"entity_contact_effect", EntityContactEffect.CODEC, EntityContactEffect.STREAM_CODEC
 	);
 
 	public static void init() {

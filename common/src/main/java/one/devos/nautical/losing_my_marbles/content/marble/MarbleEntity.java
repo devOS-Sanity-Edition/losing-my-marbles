@@ -22,6 +22,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityReference;
+import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.InterpolationHandler;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,6 +31,7 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
@@ -103,7 +105,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 	@SuppressWarnings("unchecked")
 	public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity serverEntity) {
 		return (Packet<ClientGamePacketListener>) (Object) new ClientboundCustomPayloadPacket(new SpawnMarblePayload(
-				new ClientboundAddEntityPacket(this, serverEntity), this.marble
+				new ClientboundAddEntityPacket(this, serverEntity), this.marble()
 		));
 	}
 
@@ -117,6 +119,17 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 			this.setPos(this.nextTickPos);
 			this.nextTickPos = null;
 		}
+
+		this.marble().getOptional(LosingMyMarblesDataComponents.ENTITY_CONTACT_EFFECT).ifPresent(effect -> {
+			for (Entity entity : this.level().getEntities(this, this.getBoundingBox(), EntitySelector.CAN_BE_PICKED)) {
+				effect.apply(this, entity);
+			}
+		});
+	}
+
+	@Override
+	protected void onInsideBlock(BlockState $$0) {
+		super.onInsideBlock($$0);
 	}
 
 	@Nullable
@@ -163,10 +176,10 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 				);
 			}
 
-			this.marble.getOptional(LosingMyMarblesDataComponents.FRICTION).ifPresent(settings::setFriction);
-			this.marble.getOptional(LosingMyMarblesDataComponents.RESTITUTION).ifPresent(settings::setRestitution);
+			this.marble().getOptional(LosingMyMarblesDataComponents.FRICTION).ifPresent(settings::setFriction);
+			this.marble().getOptional(LosingMyMarblesDataComponents.RESTITUTION).ifPresent(settings::setRestitution);
 
-			this.marble.getOptional(LosingMyMarblesDataComponents.MASS).ifPresent(mass -> {
+			this.marble().getOptional(LosingMyMarblesDataComponents.MASS).ifPresent(mass -> {
 				settings.getMassPropertiesOverride().setMass(mass);
 				settings.setOverrideMassProperties(EOverrideMassProperties.CalculateInertia);
 			});
@@ -182,7 +195,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 
 	@Override
 	public void onBounce(Vec3 oldVel, Vec3 newVel) {
-		this.marble.getOptional(LosingMyMarblesDataComponents.BOUNCE_EFFECT).ifPresent(
+		this.marble().getOptional(LosingMyMarblesDataComponents.BOUNCE_EFFECT).ifPresent(
 				effect -> effect.apply(this, oldVel, newVel)
 		);
 	}
@@ -199,15 +212,15 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 
 	@Override
 	protected void readAdditionalSaveData(ValueInput input) {
-		this.marble = input.read("marble", MarbleInstance.CODEC).orElseGet(
+		this.setMarble(input.read("marble", MarbleInstance.CODEC).orElseGet(
 				() -> MarbleInstance.getDefault(this.level().registryAccess())
-		);
+		));
 		this.owner = EntityReference.read(input, "owner");
 	}
 
 	@Override
 	protected void addAdditionalSaveData(ValueOutput output) {
-		output.store("marble", MarbleInstance.CODEC, this.marble);
+		output.store("marble", MarbleInstance.CODEC, this.marble());
 		EntityReference.store(this.owner, output, "owner");
 	}
 
@@ -244,8 +257,8 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 	}
 
 	private MarbleShape.CreatedShape createShape() {
-		float scale = this.marble.getOrDefault(LosingMyMarblesDataComponents.SCALE, 1f);
-		MarbleShape shape = this.marble.getOrDefault(LosingMyMarblesDataComponents.SHAPE, SphereMarbleShape.DEFAULT);
+		float scale = this.marble().getOrDefault(LosingMyMarblesDataComponents.SCALE, 1f);
+		MarbleShape shape = this.marble().getOrDefault(LosingMyMarblesDataComponents.SHAPE, SphereMarbleShape.DEFAULT);
 		return shape.createJoltShape(scale);
 	}
 }

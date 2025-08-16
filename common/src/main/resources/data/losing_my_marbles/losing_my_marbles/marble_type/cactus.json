@@ -10,6 +10,11 @@
       "type": "losing_my_marbles:play_sound",
       "sound": "block.stone.fall"
     },
+    "losing_my_marbles:entity_contact_effect": {
+      "type": "losing_my_marbles:damage",
+      "damage_type": "cactus",
+      "amount": 1
+    },
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875

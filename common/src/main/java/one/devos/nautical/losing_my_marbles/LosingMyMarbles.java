@@ -9,6 +9,7 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBounceEffects
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesCreativeTabs;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntities;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntityContactEffects;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesMarbleShapeTypes;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesPayloads;
@@ -30,6 +31,7 @@ public final class LosingMyMarbles {
 		LosingMyMarblesDataComponents.init();
 		LosingMyMarblesMarbleShapeTypes.init();
 		LosingMyMarblesBounceEffects.init();
+		LosingMyMarblesEntityContactEffects.init();
 	}
 
 	public static ResourceLocation id(String path) {
