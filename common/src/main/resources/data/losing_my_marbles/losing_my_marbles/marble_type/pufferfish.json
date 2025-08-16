@@ -12,9 +12,23 @@
       "sound": "minecraft:entity.puffer_fish.flop"
     },
     "losing_my_marbles:entity_contact_effect": {
-      "type": "losing_my_marbles:damage",
-      "damage_type": "mob_attack",
-      "amount": 1
+      "type": "losing_my_marbles:compound",
+      "effects": [
+        {
+          "type": "losing_my_marbles:effect",
+          "effects": [
+            {
+            "id": "minecraft:poison",
+            "duration": 60
+            }
+          ]
+        },
+        {
+          "type": "losing_my_marbles:damage",
+          "damage_type": "minecraft:mob_attack",
+          "amount": 1
+        }
+      ]
     },
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:sphere",
