@@ -1,0 +1,21 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.real_scale_marble",
+    "color": "#b1b1b1"
+  },
+  "item_model": "losing_my_marbles:real_scale_marble",
+  "components": {
+    "losing_my_marbles:friction": 0.05,
+    "losing_my_marbles:mass": 20,
+    "losing_my_marbles:restitution": 0.35,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:play_sound",
+      "sound": "minecraft:block.stone.hit"
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.0625
+    },
+    "losing_my_marbles:asset": "losing_my_marbles:real_scale"
+  }
+}
