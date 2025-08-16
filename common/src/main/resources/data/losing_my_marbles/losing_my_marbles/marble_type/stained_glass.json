@@ -1,0 +1,33 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.glass_marble",
+    "color": "#a8d0d9"
+  },
+  "item_model": "losing_my_marbles:stained_glass_marble",
+  "components": {
+    "losing_my_marbles:friction": 0.2,
+    "losing_my_marbles:restitution": 0.2,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:compound",
+      "effects": [
+        {
+          "type": "losing_my_marbles:break",
+          "threshold": 0.3,
+          "when_broken": {
+     	    "type": "losing_my_marbles:play_sound",
+   	    "sound": "minecraft:block.glass.break"
+  	  }
+        },
+        {
+          "type": "losing_my_marbles:play_sound",
+          "sound": "minecraft:block.glass.hit"
+        }
+      ]
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:asset": "losing_my_marbles:stained_glass"
+  }
+}
