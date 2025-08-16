@@ -1,0 +1,14 @@
+{
+  "type": "losing_my_marbles:marble",
+  "material": "minecraft:phantom_membrane",
+  "result": {
+    "id": "losing_my_marbles:marble",
+    "components": {
+      "losing_my_marbles:marble": {
+        "type": "type",
+        "holder": "losing_my_marbles:phantom"
+      }
+    },
+    "count": 1
+  }
+}

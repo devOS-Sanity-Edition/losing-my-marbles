@@ -1,0 +1,15 @@
+{
+  "type": "losing_my_marbles:marble",
+  "material": "minecraft:beef",
+  "addition": "minecraft:leather",
+  "result": {
+    "id": "losing_my_marbles:marble",
+    "components": {
+      "losing_my_marbles:marble": {
+        "type": "type",
+        "holder": "losing_my_marbles:spherical_cow"
+      }
+    },
+    "count": 1
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "losing_my_marbles:marble",
+  "material": "minecraft:glass",
+  "result": {
+    "id": "losing_my_marbles:marble",
+    "components": {
+      "losing_my_marbles:marble": {
+        "type": "type",
+        "holder": "losing_my_marbles:glass"
+      }
+    },
+    "count": 1
+  }
+}

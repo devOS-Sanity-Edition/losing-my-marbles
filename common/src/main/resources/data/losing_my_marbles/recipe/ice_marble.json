@@ -1,0 +1,14 @@
+{
+  "type": "losing_my_marbles:marble",
+  "material": "#losing_my_marbles:ice",
+  "result": {
+    "id": "losing_my_marbles:marble",
+    "components": {
+      "losing_my_marbles:marble": {
+        "type": "type",
+        "holder": "losing_my_marbles:ice"
+      }
+    },
+    "count": 1
+  }
+}

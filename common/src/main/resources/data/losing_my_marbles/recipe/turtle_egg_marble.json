@@ -1,0 +1,14 @@
+{
+  "type": "losing_my_marbles:marble",
+  "material": "minecraft:turtle_egg",
+  "result": {
+    "id": "losing_my_marbles:marble",
+    "components": {
+      "losing_my_marbles:marble": {
+        "type": "type",
+        "holder": "losing_my_marbles:turtle_egg"
+      }
+    },
+    "count": 1
+  }
+}
