@@ -50,6 +50,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	private BodyAccess body;
 	@Nullable
 	private Vec3 nextTickPos;
+	private double distanceTraveled;
 
 	public MarbleEntity(EntityType<?> type, Level level) {
 		this(type, level, MarbleInstance.getDefault(level.registryAccess()));
@@ -83,6 +84,10 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 		}
 	}
 
+	public double distanceTraveled() {
+		return this.distanceTraveled;
+	}
+
 	@Override
 	protected void defineSynchedData(SynchedEntityData.Builder builder) {
 	}
@@ -100,6 +105,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	public void tick() {
 		super.tick();
 		this.interpolator.interpolate();
+		this.distanceTraveled += this.oldPosition().distanceTo(this.position());
 
 		if (this.nextTickPos != null) {
 			this.setPos(this.nextTickPos);

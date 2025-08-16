@@ -14,9 +14,6 @@
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875
     },
-    "losing_my_marbles:texture": {
-      "type": "losing_my_marbles:static",
-      "id": "losing_my_marbles:marble/eye_of_ender/eye_of_ender_marble"
-    }
+    "losing_my_marbles:asset": "losing_my_marbles:eye_of_ender"
   }
 }

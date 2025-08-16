@@ -7,11 +7,12 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.marble.StoredMarble;
+import one.devos.nautical.losing_my_marbles.content.marble.asset.MarbleAsset;
 import one.devos.nautical.losing_my_marbles.content.marble.data.shape.MarbleShape;
-import one.devos.nautical.losing_my_marbles.content.marble.data.texture.MarbleTexture;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.BounceEffect;
 import one.devos.nautical.losing_my_marbles.framework.data.LosingMyMarblesCodecs;
 import one.devos.nautical.losing_my_marbles.framework.network.LosingMyMarblesStreamCodecs;
@@ -37,8 +38,8 @@ public final class LosingMyMarblesDataComponents {
 	public static final DataComponentType<MarbleShape> SHAPE = register(
 			"shape", MarbleShape.CODEC, MarbleShape.STREAM_CODEC
 	);
-	public static final DataComponentType<MarbleTexture> TEXTURE = register(
-			"texture", MarbleTexture.CODEC, MarbleTexture.STREAM_CODEC
+	public static final DataComponentType<ResourceKey<MarbleAsset>> ASSET = register(
+			"asset", ResourceKey.codec(MarbleAsset.REGISTRY_KEY), ResourceKey.streamCodec(MarbleAsset.REGISTRY_KEY)
 	);
 	public static final DataComponentType<BounceEffect> BOUNCE_EFFECT = register(
 			"bounce_effect", BounceEffect.CODEC, BounceEffect.STREAM_CODEC

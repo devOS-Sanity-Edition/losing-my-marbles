@@ -14,15 +14,6 @@
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875
     },
-    "losing_my_marbles:texture": {
-      "type": "losing_my_marbles:stepped",
-      "distance_per_step": 0.2,
-      "textures": [
-        "losing_my_marbles:marble/terracotta/terracotta_marble_1",
-        "losing_my_marbles:marble/terracotta/terracotta_marble_2",
-        "losing_my_marbles:marble/terracotta/terracotta_marble_3",
-        "losing_my_marbles:marble/terracotta/terracotta_marble_4"
-      ]
-    }
+    "losing_my_marbles:asset": "losing_my_marbles:terracotta"
   }
 }

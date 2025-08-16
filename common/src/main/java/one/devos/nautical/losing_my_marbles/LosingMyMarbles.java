@@ -11,7 +11,6 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponent
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntities;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesMarbleShapeTypes;
-import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesMarbleTextures;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesPayloads;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
@@ -30,7 +29,6 @@ public final class LosingMyMarbles {
 		LosingMyMarblesPayloads.init();
 		LosingMyMarblesDataComponents.init();
 		LosingMyMarblesMarbleShapeTypes.init();
-		LosingMyMarblesMarbleTextures.init();
 		LosingMyMarblesBounceEffects.init();
 	}
 
