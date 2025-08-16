@@ -3,6 +3,7 @@
     "translate": "marble_type.losing_my_marbles.turtle_egg_marble",
     "color": "#fff3cc"
   },
+  "item_model": "losing_my_marbles:amethyst_marble",
   "components": {
     "losing_my_marbles:friction": 0.2,
     "losing_my_marbles:restitution": 0.3,

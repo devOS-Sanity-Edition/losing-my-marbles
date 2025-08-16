@@ -13,14 +13,16 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
 
-public record MarbleType(Component name, DataComponentMap components) implements DataComponentHolder {
+public record MarbleType(Component name, ResourceLocation itemModel, DataComponentMap components) implements DataComponentHolder {
 	public static final ResourceKey<MarbleType> DEFAULT = ResourceKey.create(LosingMyMarblesRegistries.MARBLE_TYPE, LosingMyMarbles.id("terracotta"));
 
 	public static final Codec<MarbleType> DIRECT_CODEC = RecordCodecBuilder.create(i -> i.group(
 			ComponentSerialization.CODEC.fieldOf("name").forGetter(MarbleType::name),
+			ResourceLocation.CODEC.fieldOf("item_model").forGetter(MarbleType::itemModel),
 			DataComponentMap.CODEC.fieldOf("components").forGetter(MarbleType::components)
 	).apply(i, MarbleType::new));
 

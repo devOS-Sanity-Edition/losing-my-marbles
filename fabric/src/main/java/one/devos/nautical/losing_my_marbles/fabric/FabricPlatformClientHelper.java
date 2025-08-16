@@ -1,11 +1,16 @@
 package one.devos.nautical.losing_my_marbles.fabric;
 
+import com.mojang.serialization.MapCodec;
+
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.client.renderer.item.ItemModels;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
@@ -26,5 +31,10 @@ public class FabricPlatformClientHelper implements PlatformClientHelper {
 	@Override
 	public <T extends CustomPacketPayload> void registerPlayPayloadHandler(CustomPacketPayload.Type<T> type, ClientPlayPayloadHandler<T> handler) {
 		ClientPlayNetworking.registerGlobalReceiver(type, (payload, context) -> handler.handle(payload, context.player()));
+	}
+
+	@Override
+	public void registerItemModel(ResourceLocation id, MapCodec<? extends ItemModel.Unbaked> type) {
+		ItemModels.ID_MAPPER.put(id, type);
 	}
 }

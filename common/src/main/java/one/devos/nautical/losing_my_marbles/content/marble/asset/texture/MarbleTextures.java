@@ -13,8 +13,8 @@ public final class MarbleTextures {
 	private static final ExtraCodecs.LateBoundIdMapper<ResourceLocation, MapCodec<? extends MarbleTexture>> ID_MAPPER = new ExtraCodecs.LateBoundIdMapper<>();
 	public static final Codec<MarbleTexture> CODEC = ID_MAPPER.codec(ResourceLocation.CODEC).dispatch(MarbleTexture::type, Function.identity());
 
-	static {
-		ID_MAPPER.put(LosingMyMarbles.id("stepped"), SteppedMarbleTexture.CODEC);
-		ID_MAPPER.put(LosingMyMarbles.id("static"), StaticMarbleTexture.CODEC);
+	public static void init() {
+		ID_MAPPER.put(LosingMyMarbles.id("stepped"), Stepped.CODEC);
+		ID_MAPPER.put(LosingMyMarbles.id("static"), Static.CODEC);
 	}
 }

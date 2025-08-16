@@ -3,6 +3,7 @@
     "translate": "marble_type.losing_my_marbles.most_magnificent_marble",
     "color": "#e33ef9"
   },
+  "item_model": "losing_my_marbles:amethyst_marble",
   "components": {
     "losing_my_marbles:friction": 1.0,
     "losing_my_marbles:mass": 20,

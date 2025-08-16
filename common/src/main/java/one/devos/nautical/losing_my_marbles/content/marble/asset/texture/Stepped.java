@@ -10,11 +10,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import one.devos.nautical.losing_my_marbles.framework.data.LosingMyMarblesCodecs;
 
-public record SteppedMarbleTexture(float distancePerStep, List<ResourceLocation> assets) implements MarbleTexture {
-	public static final MapCodec<SteppedMarbleTexture> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-			LosingMyMarblesCodecs.POSITIVE_FLOAT.fieldOf("distance_per_step").forGetter(SteppedMarbleTexture::distancePerStep),
-			Codec.list(ResourceLocation.CODEC, 2, Integer.MAX_VALUE).fieldOf("assets").forGetter(SteppedMarbleTexture::assets)
-	).apply(i, SteppedMarbleTexture::new));
+public record Stepped(float distancePerStep, List<ResourceLocation> assets) implements MarbleTexture {
+	public static final MapCodec<Stepped> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			LosingMyMarblesCodecs.POSITIVE_FLOAT.fieldOf("distance_per_step").forGetter(Stepped::distancePerStep),
+			Codec.list(ResourceLocation.CODEC, 2, Integer.MAX_VALUE).fieldOf("assets").forGetter(Stepped::assets)
+	).apply(i, Stepped::new));
 
 	@Override
 	public ResourceLocation get(Context context) {

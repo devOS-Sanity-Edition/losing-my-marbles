@@ -14,7 +14,12 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesMarbleShapeTypes;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesPayloads;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
+import one.devos.nautical.losing_my_marbles.content.marble.MarbleItemModel;
+import one.devos.nautical.losing_my_marbles.content.marble.asset.texture.MarbleTextures;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
+import one.devos.nautical.losing_my_marbles.framework.platform.Env;
+import one.devos.nautical.losing_my_marbles.framework.platform.PlatformClientHelper;
+import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 
 public final class LosingMyMarbles {
 	public static final String ID = "losing_my_marbles";
@@ -32,6 +37,11 @@ public final class LosingMyMarbles {
 		LosingMyMarblesMarbleShapeTypes.init();
 		LosingMyMarblesBounceEffects.init();
 		LosingMyMarblesEntityContactEffects.init();
+
+		if (PlatformHelper.INSTANCE.getEnvironment() == Env.CLIENT) {
+			MarbleTextures.init();
+			PlatformClientHelper.INSTANCE.registerItemModel(id("marble"), MarbleItemModel.Unbaked.CODEC);
+		}
 	}
 
 	public static ResourceLocation id(String path) {

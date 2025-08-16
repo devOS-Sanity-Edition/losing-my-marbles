@@ -3,6 +3,7 @@
     "translate": "marble_type.losing_my_marbles.eye_of_ender_marble",
     "color": "#82d3b4"
   },
+  "item_model": "losing_my_marbles:amethyst_marble",
   "components": {
     "losing_my_marbles:friction": 0.4,
     "losing_my_marbles:restitution": 0.1,

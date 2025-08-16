@@ -5,10 +5,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.resources.ResourceLocation;
 
-public record StaticMarbleTexture(ResourceLocation assetId) implements MarbleTexture {
-	public static final MapCodec<StaticMarbleTexture> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-			ResourceLocation.CODEC.fieldOf("asset_id").forGetter(StaticMarbleTexture::assetId)
-	).apply(i, StaticMarbleTexture::new));
+public record Static(ResourceLocation assetId) implements MarbleTexture {
+	public static final MapCodec<Static> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			ResourceLocation.CODEC.fieldOf("asset_id").forGetter(Static::assetId)
+	).apply(i, Static::new));
 
 	@Override
 	public ResourceLocation get(Context context) {
