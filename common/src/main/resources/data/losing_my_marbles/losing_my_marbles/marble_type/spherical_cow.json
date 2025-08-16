@@ -1,0 +1,20 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.spherical_cow_marble",
+    "color": "#f7afaf"
+  },
+  "item_model": "losing_my_marbles:spherical_cow_marble",
+  "components": {
+    "losing_my_marbles:friction": 0.0,
+    "losing_my_marbles:restitution": 0.2,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:play_sound",
+      "sound": "minecraft:entity.cow.ambient"
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:asset": "losing_my_marbles:spherical_cow"
+  }
+}

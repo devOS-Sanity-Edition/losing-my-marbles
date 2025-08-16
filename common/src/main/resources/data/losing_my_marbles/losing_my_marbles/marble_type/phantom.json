@@ -1,0 +1,21 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.phantom_marble",
+    "color": "#7e627b"
+  },
+  "item_model": "losing_my_marbles:phantom_marble",
+  "components": {
+    "losing_my_marbles:mass": 5,
+    "losing_my_marbles:friction": 0.2,
+    "losing_my_marbles:restitution": 0.3,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:play_sound",
+      "sound": "minecraft:entity.phantom.flap"
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:asset": "losing_my_marbles:phantom"
+  }
+}

@@ -5,7 +5,7 @@
   },
   "item_model": "losing_my_marbles:amethyst_marble",
   "components": {
-    "losing_my_marbles:friction": 0.2,
+    "losing_my_marbles:friction": 0.05,
     "losing_my_marbles:restitution": 0.2,
     "losing_my_marbles:bounce_effect": {
       "type": "losing_my_marbles:play_sound",

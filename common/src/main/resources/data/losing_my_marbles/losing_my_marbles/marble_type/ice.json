@@ -1,0 +1,50 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.ice_marble",
+    "color": "#a1c3ff"
+  },
+  "item_model": "losing_my_marbles:ice_marble",
+  "components": {
+    "losing_my_marbles:friction": 0.05,
+    "losing_my_marbles:restitution": 0.25,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:compound",
+      "effects": [
+        {
+          "type": "losing_my_marbles:break",
+          "threshold": 0.6,
+          "when_broken": {
+            "type": "losing_my_marbles:compound",
+            "effects": [
+              {
+                "type": "losing_my_marbles:play_sound",
+                "sound": "minecraft:block.glass.break"
+              },
+              {
+                "state": {
+                  "state": {
+  		   "Properties": {
+ 		    "level": "8"
+     		   },
+                    "Name": "minecraft:water"
+                  },
+                  "type": "minecraft:simple_state_provider"
+                },
+                "type": "losing_my_marbles:place_block"
+              }
+            ]
+          }
+        },
+        {
+          "type": "losing_my_marbles:play_sound",
+          "sound": "minecraft:block.glass.hit"
+        }
+      ]
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:asset": "losing_my_marbles:ice"
+  }
+}

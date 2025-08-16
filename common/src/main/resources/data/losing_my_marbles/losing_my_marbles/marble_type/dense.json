@@ -3,7 +3,7 @@
     "translate": "marble_type.losing_my_marbles.dense_marble",
     "color": "#9299ab"
   },
-  "item_model": "losing_my_marbles:amethyst_marble",
+  "item_model": "losing_my_marbles:dense_marble",
   "components": {
     "losing_my_marbles:friction": 0.7,
     "losing_my_marbles:mass": 40,

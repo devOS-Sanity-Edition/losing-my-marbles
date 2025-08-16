@@ -3,7 +3,7 @@
     "translate": "marble_type.losing_my_marbles.slime_marble",
     "color": "#97ce83"
   },
-  "item_model": "losing_my_marbles:amethyst_marble",
+  "item_model": "losing_my_marbles:slime_marble",
   "components": {
     "losing_my_marbles:friction": 0.6,
     "losing_my_marbles:restitution": 0.8,

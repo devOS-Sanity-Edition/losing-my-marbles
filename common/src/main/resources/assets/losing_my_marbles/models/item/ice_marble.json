@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "losing_my_marbles:marble/ice/ice_marble"
+  }
+}

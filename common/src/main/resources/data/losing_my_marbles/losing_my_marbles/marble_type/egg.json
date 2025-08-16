@@ -3,7 +3,7 @@
     "translate": "marble_type.losing_my_marbles.egg_marble",
     "color": "#dfce9b"
   },
-  "item_model": "losing_my_marbles:amethyst_marble",
+  "item_model": "losing_my_marbles:egg_marble",
   "components": {
     "losing_my_marbles:friction": 0.2,
     "losing_my_marbles:restitution": 0.3,
@@ -12,6 +12,7 @@
       "effects": [
         {
           "type": "losing_my_marbles:break",
+          "threshold": 0.15,
           "when_broken": {
               "type": "losing_my_marbles:compound",
               "effects": [

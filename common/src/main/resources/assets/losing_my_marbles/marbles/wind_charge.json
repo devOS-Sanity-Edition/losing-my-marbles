@@ -1,0 +1,25 @@
+{
+  "texture": {
+    "type": "losing_my_marbles:stepped",
+    "distance_per_step": 0.15,
+    "assets": [
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_1",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_1",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_1",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_1",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_1",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_1",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_2",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_3",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_4",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_5",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_6",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_7",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_8",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_9",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_10",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_11",
+      "losing_my_marbles:marble/wind_charge/wind_charge_marble_12"
+    ]
+  }
+}
