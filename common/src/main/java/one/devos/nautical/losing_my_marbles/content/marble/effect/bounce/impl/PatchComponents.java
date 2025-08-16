@@ -13,6 +13,9 @@ public record PatchComponents(DataComponentPatch patch) implements BounceEffect 
 
 	@Override
 	public void apply(MarbleEntity entity, Vec3 oldVel, Vec3 newVel) {
+		if (entity.level().isClientSide())
+			return;
+
 		MarbleInstance marble = entity.marble().copy();
 		marble.components().applyPatch(this.patch);
 		entity.setMarble(marble);
