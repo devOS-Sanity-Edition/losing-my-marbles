@@ -1,8 +1,8 @@
 {
   "values": [
-    "#buttons",
-    "#walls",
-    "#fences",
-    "#fence_gates"
+    "#minecraft:buttons",
+    "#minecraft:walls",
+    "#minecraft:fences",
+    "#minecraft:fence_gates"
   ]
 }

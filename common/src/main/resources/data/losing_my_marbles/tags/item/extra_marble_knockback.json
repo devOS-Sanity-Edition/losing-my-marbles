@@ -1,7 +1,8 @@
 {
   "values": [
-    "stick",
-    "blaze_rod",
-    "breeze_rod"
+    "#minecraft:swords",
+    "minecraft:stick",
+    "minecraft:blaze_rod",
+    "minecraft:breeze_rod"
   ]
 }

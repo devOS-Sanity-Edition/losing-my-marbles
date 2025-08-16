@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_slope_piece_top_no_nubs",
+  "textures": {
+    "slope": "losing_my_marbles:block/magenta_track_pieces"
+  }
+}
