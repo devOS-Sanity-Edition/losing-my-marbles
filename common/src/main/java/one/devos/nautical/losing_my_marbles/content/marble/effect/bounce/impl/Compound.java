@@ -8,11 +8,11 @@ import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.content.marble.MarbleEntity;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.BounceEffect;
 
-public record CompoundBounceEffect(List<BounceEffect> effects) implements BounceEffect {
-	public static final MapCodec<CompoundBounceEffect> CODEC = BounceEffect.CODEC
+public record Compound(List<BounceEffect> effects) implements BounceEffect {
+	public static final MapCodec<Compound> CODEC = BounceEffect.CODEC
 			.listOf(2, Integer.MAX_VALUE)
 			.fieldOf("effects")
-			.xmap(CompoundBounceEffect::new, CompoundBounceEffect::effects);
+			.xmap(Compound::new, Compound::effects);
 
 	@Override
 	public void apply(MarbleEntity entity, Vec3 oldVel, Vec3 newVel) {

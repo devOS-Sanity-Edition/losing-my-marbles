@@ -8,11 +8,11 @@ import one.devos.nautical.losing_my_marbles.content.marble.MarbleEntity;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.BounceEffect;
 import one.devos.nautical.losing_my_marbles.framework.data.LosingMyMarblesCodecs;
 
-public record ChancedBounceEffect(BounceEffect effect, float chance) implements BounceEffect {
-	public static final MapCodec<ChancedBounceEffect> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
-			BounceEffect.CODEC.fieldOf("effect").forGetter(ChancedBounceEffect::effect),
-			LosingMyMarblesCodecs.OPEN_NORMALIZED_FLOAT.fieldOf("chance").forGetter(ChancedBounceEffect::chance)
-	).apply(i, ChancedBounceEffect::new));
+public record Chanced(BounceEffect effect, float chance) implements BounceEffect {
+	public static final MapCodec<Chanced> CODEC = RecordCodecBuilder.mapCodec(i -> i.group(
+			BounceEffect.CODEC.fieldOf("effect").forGetter(Chanced::effect),
+			LosingMyMarblesCodecs.OPEN_NORMALIZED_FLOAT.fieldOf("chance").forGetter(Chanced::chance)
+	).apply(i, Chanced::new));
 
 	@Override
 	public void apply(MarbleEntity entity, Vec3 oldVel, Vec3 newVel) {
