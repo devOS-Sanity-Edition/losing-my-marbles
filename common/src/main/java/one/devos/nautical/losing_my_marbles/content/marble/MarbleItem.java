@@ -46,7 +46,7 @@ public final class MarbleItem extends Item {
 			return InteractionResult.SUCCESS;
 		}
 
-		MarbleEntity entity = new MarbleEntity(level, instance.get());
+		MarbleEntity entity = new MarbleEntity(level, instance.get(), context.getPlayer());
 		entity.setPos(Vec3.atCenterOf(pos));
 		level.addFreshEntity(entity);
 

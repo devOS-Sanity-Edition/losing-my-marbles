@@ -35,8 +35,7 @@ public record Explode(FloatProvider radius, boolean fire, ExplosionInteraction i
 		if (level.isClientSide())
 			return;
 
-		// TODO: replace null with owner
-		DamageSource source = level.damageSources().explosion(entity, null);
+		DamageSource source = level.damageSources().explosion(entity, entity.getOwner());
 		ExplosionDamageCalculator calculator = new EntityBasedExplosionDamageCalculator(entity);
 		Vec3 pos = entity.getBoundingBox().getCenter();
 

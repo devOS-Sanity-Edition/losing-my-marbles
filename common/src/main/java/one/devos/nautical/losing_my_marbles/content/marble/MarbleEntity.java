@@ -21,8 +21,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityReference;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.InterpolationHandler;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -41,10 +44,13 @@ import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEntity;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
 
-public final class MarbleEntity extends Entity implements PhysicsEntity {
+public final class MarbleEntity extends Entity implements PhysicsEntity, OwnableEntity {
 	private final InterpolationHandler interpolator;
 
 	private MarbleInstance marble;
+
+	@Nullable
+	private EntityReference<LivingEntity> owner;
 
 	@Nullable
 	private BodyAccess body;
@@ -65,8 +71,9 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 		this.refreshDimensions();
 	}
 
-	public MarbleEntity(Level level, MarbleInstance marble) {
+	public MarbleEntity(Level level, MarbleInstance marble, @Nullable LivingEntity owner) {
 		this(LosingMyMarblesEntities.MARBLE, level, marble);
+		this.owner = owner == null ? null : new EntityReference<>(owner);
 	}
 
 	public MarbleInstance marble() {
@@ -96,8 +103,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	@SuppressWarnings("unchecked")
 	public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity serverEntity) {
 		return (Packet<ClientGamePacketListener>) (Object) new ClientboundCustomPayloadPacket(new SpawnMarblePayload(
-				new ClientboundAddEntityPacket(this, serverEntity),
-				this.marble
+				new ClientboundAddEntityPacket(this, serverEntity), this.marble
 		));
 	}
 
@@ -117,6 +123,12 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 	@Override
 	public InterpolationHandler getInterpolation() {
 		return this.interpolator;
+	}
+
+	@Nullable
+	@Override
+	public EntityReference<LivingEntity> getOwnerReference() {
+		return this.owner;
 	}
 
 	@Override
@@ -190,19 +202,24 @@ public final class MarbleEntity extends Entity implements PhysicsEntity {
 		this.marble = input.read("marble", MarbleInstance.CODEC).orElseGet(
 				() -> MarbleInstance.getDefault(this.level().registryAccess())
 		);
+		this.owner = EntityReference.read(input, "owner");
 	}
 
 	@Override
 	protected void addAdditionalSaveData(ValueOutput output) {
 		output.store("marble", MarbleInstance.CODEC, this.marble);
+		EntityReference.store(this.owner, output, "owner");
 	}
 
 	@Override
 	public boolean hurtServer(ServerLevel level, DamageSource source, float amount) {
 		if (source.getDirectEntity() instanceof Player player && player.isSecondaryUseActive()) {
-			// TODO: store and check for owner, drop item
-			this.discard();
-			return true;
+			LivingEntity owner = this.getOwner();
+			if (owner == null || player == owner) {
+				// TODO: drop item
+				this.discard();
+				return true;
+			}
 		}
 
 		// apply knockback

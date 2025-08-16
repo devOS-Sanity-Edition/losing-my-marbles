@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.valueproviders.ConstantFloat;
 import net.minecraft.util.valueproviders.FloatProvider;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Relative;
 import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.Vec3;
@@ -29,9 +30,7 @@ public record TeleportOwner(FloatProvider damage) implements BounceEffect {
 		if (damage <= 0)
 			return;
 
-		// TODO: track owner
-		Entity owner = null;
-
+		LivingEntity owner = entity.getOwner();
 		if (owner == null)
 			return;
 
