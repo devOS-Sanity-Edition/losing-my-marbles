@@ -13,6 +13,9 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntityContact
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesMarbleShapeTypes;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesPayloads;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeDisplays;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeSerializers;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeTypes;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
 import one.devos.nautical.losing_my_marbles.content.marble.MarbleItemModel;
 import one.devos.nautical.losing_my_marbles.content.marble.asset.texture.MarbleTextures;
@@ -34,6 +37,9 @@ public final class LosingMyMarbles {
 		LosingMyMarblesCreativeTabs.init();
 		LosingMyMarblesPayloads.init();
 		LosingMyMarblesDataComponents.init();
+		LosingMyMarblesRecipeDisplays.init();
+		LosingMyMarblesRecipeSerializers.init();
+		LosingMyMarblesRecipeTypes.init();
 		LosingMyMarblesMarbleShapeTypes.init();
 		LosingMyMarblesBounceEffects.init();
 		LosingMyMarblesEntityContactEffects.init();
