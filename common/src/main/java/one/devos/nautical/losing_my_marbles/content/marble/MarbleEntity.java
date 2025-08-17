@@ -224,6 +224,23 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 	}
 
 	@Override
+	public boolean isPushable() {
+		return true;
+	}
+
+	@Override
+	public void push(double x, double y, double z) {
+		if (this.body == null) {
+			super.push(x, y, z);
+			return;
+		}
+
+		com.github.stephengold.joltjni.Vec3 force = new com.github.stephengold.joltjni.Vec3(x, y, z);
+		force.scaleInPlace(1000);
+		this.body.getBody().addForce(force);
+	}
+
+	@Override
 	public ItemStack getPickResult() {
 		return MarbleItem.of(StoredMarble.of(this.marble()));
 	}
