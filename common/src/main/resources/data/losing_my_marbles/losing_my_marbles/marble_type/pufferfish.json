@@ -11,7 +11,7 @@
       "type": "losing_my_marbles:play_sound",
       "sound": "minecraft:entity.puffer_fish.flop"
     },
-    "losing_my_marbles:entity_contact_effect": {
+    "losing_my_marbles:contact_effect/entity": {
       "type": "losing_my_marbles:compound",
       "effects": [
         {

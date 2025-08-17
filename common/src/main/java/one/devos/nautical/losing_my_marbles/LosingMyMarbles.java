@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.minecraft.resources.ResourceLocation;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlockContactEffects;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlocks;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBounceEffects;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesCreativeTabs;
@@ -42,6 +43,7 @@ public final class LosingMyMarbles {
 		LosingMyMarblesRecipeTypes.init();
 		LosingMyMarblesMarbleShapeTypes.init();
 		LosingMyMarblesBounceEffects.init();
+		LosingMyMarblesBlockContactEffects.init();
 		LosingMyMarblesEntityContactEffects.init();
 
 		if (PlatformHelper.INSTANCE.getEnvironment() == Env.CLIENT) {

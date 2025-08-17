@@ -11,7 +11,7 @@
       "type": "losing_my_marbles:play_sound",
       "sound": "block.stone.fall"
     },
-    "losing_my_marbles:entity_contact_effect": {
+    "losing_my_marbles:contact_effect/entity": {
       "type": "losing_my_marbles:damage",
       "damage_type": "cactus",
       "amount": 1

@@ -10,6 +10,7 @@ import com.github.stephengold.joltjni.enumerate.EMotionQuality;
 import com.github.stephengold.joltjni.enumerate.EOverrideMassProperties;
 import com.github.stephengold.joltjni.readonly.Vec3Arg;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -33,6 +34,7 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
@@ -132,6 +134,12 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 			}
 		}
 
+		this.marble().getOptional(LosingMyMarblesDataComponents.BLOCK_CONTACT_EFFECT).ifPresent(effect -> {
+			for (BlockPos pos : BlockPos.betweenClosed(this.getBoundingBox())) {
+				BlockState state = this.level().getBlockState(pos);
+				effect.apply(this, state, pos);
+			}
+		});
 
 		this.marble().getOptional(LosingMyMarblesDataComponents.ENTITY_CONTACT_EFFECT).ifPresent(effect -> {
 			for (Entity entity : this.level().getEntities(this, this.getBoundingBox(), EntitySelector.CAN_BE_PICKED)) {
