@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "id": "losing_my_marbles:marble_maker"
+    },
+    "title": {
+      "translate": "advancement.losing_my_marbles.marble_maker.title"
+    },
+    "description": {
+      "translate": "advancement.losing_my_marbles.marble_maker.description"
+    },
+    "background": "minecraft:block/terracotta",
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "the_funny": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:marble_maker"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.snowball_marble",
+    "color": "#d0f1f1"
+  },
+  "item_model": "losing_my_marbles:snowball_marble",
+  "components": {
+    "losing_my_marbles:mass": 10,
+    "losing_my_marbles:friction": 0.1,
+    "losing_my_marbles:restitution": 0.3,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:play_sound",
+      "sound": "minecraft:block.snow.hit"
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:asset": "losing_my_marbles:snowball",
+    "losing_my_marbles:accumulates_mass": [
+      "minecraft:snow",
+      "minecraft:powder_snow",
+      "minecraft:snow_block"
+    ]
+  }
+}

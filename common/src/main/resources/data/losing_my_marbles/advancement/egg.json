@@ -1,0 +1,56 @@
+{
+  "display": {
+    "icon": {
+      "id": "losing_my_marbles:marble",
+      "components": {
+        "losing_my_marbles:marble": {
+          "type": "type",
+          "holder": "losing_my_marbles:egg/blue"
+        }
+      }
+    },
+    "title": {
+      "translate": "advancement.losing_my_marbles.egg.title"
+    },
+    "description": {
+      "translate": "advancement.losing_my_marbles.egg.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "losing_my_marbles:peak_friction",
+  "criteria": {
+    "the_funny": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:egg_marble"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "the_funny2": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:blue_egg_marble"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "the_funny3": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:brown_egg_marble"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "the_funny4": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:sniffer_egg_marble"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "the_funny5": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:turtle_egg_marble"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  }
+}

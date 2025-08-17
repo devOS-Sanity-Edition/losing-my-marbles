@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "id": "losing_my_marbles:marble",
+      "components": {
+        "losing_my_marbles:marble": {
+          "type": "type",
+          "holder": "losing_my_marbles:dense"
+        }
+      }
+    },
+    "title": {
+      "translate": "advancement.losing_my_marbles.dense.title"
+    },
+    "description": {
+      "translate": "advancement.losing_my_marbles.dense.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "losing_my_marbles:up_and_away",
+  "criteria": {
+    "the_funny": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:dense_marble"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  }
+}

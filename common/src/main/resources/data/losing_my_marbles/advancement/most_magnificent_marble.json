@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "id": "losing_my_marbles:marble",
+      "components": {
+        "losing_my_marbles:marble": {
+          "type": "type",
+          "holder": "losing_my_marbles:most_magnificent_marble"
+        }
+      }
+    },
+    "title": {
+      "translate": "advancement.losing_my_marbles.most_magnificent_marble.title"
+    },
+    "description": {
+      "translate": "advancement.losing_my_marbles.most_magnificent_marble.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "parent": "losing_my_marbles:marble_maker",
+  "criteria": {
+    "the_funny": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:most_magnificent_marble"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

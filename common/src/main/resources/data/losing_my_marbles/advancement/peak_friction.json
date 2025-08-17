@@ -1,0 +1,44 @@
+{
+  "display": {
+    "icon": {
+      "id": "losing_my_marbles:marble",
+      "components": {
+        "losing_my_marbles:marble": {
+          "type": "type",
+          "holder": "losing_my_marbles:spherical_cow"
+        }
+      }
+    },
+    "title": {
+      "translate": "advancement.losing_my_marbles.peak_friction.title"
+    },
+    "description": {
+      "translate": "advancement.losing_my_marbles.peak_friction.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "losing_my_marbles:fish",
+  "criteria": {
+    "the_funny": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:spherical_cow_marble"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "the_funny2": {
+      "conditions": {
+        "recipe_id": "losing_my_marbles:spherical_cow_marble_alternate"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "requirements": [
+    [
+      "the_funny",
+      "the_funny2"
+    ]
+  ]
+}
