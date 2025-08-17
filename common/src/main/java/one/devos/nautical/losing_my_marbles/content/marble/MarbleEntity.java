@@ -237,15 +237,9 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 	@Override
 	public InteractionResult interact(Player player, InteractionHand hand) {
 		InteractionResult result = super.interact(player, hand);
-		if (result.consumesAction())
+		if (result.consumesAction()) {
 			return result;
-
-		LivingEntity owner = this.getOwner();
-		// disallow collection by non-owner, unless they're in creative
-		if (owner != null && owner != player && !player.isCreative())
-			return InteractionResult.FAIL;
-
-		if (this.level().isClientSide()) {
+		} else if (this.level().isClientSide()) {
 			return InteractionResult.SUCCESS;
 		}
 
