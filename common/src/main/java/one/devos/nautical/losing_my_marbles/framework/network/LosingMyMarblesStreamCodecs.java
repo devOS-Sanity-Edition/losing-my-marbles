@@ -8,9 +8,14 @@ import com.mojang.serialization.DataResult;
 import io.netty.buffer.ByteBuf;
 import io.netty.handler.codec.DecoderException;
 import io.netty.handler.codec.EncoderException;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryCodecs;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.VarInt;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.ResourceKey;
 
 public final class LosingMyMarblesStreamCodecs {
 	public static final StreamCodec<ByteBuf, float[]> FLOAT_ARRAY = new StreamCodec<>() {
@@ -42,6 +47,10 @@ public final class LosingMyMarblesStreamCodecs {
 			return DataResult.success(value);
 		}
 	});
+
+	public static <E> StreamCodec<RegistryFriendlyByteBuf, HolderSet<E>> homogeneousList(ResourceKey<? extends Registry<E>> registry) {
+		return ByteBufCodecs.fromCodecWithRegistries(RegistryCodecs.homogeneousList(registry));
+	}
 
 	public static <B extends ByteBuf, T extends Enum<T>> StreamCodec<B, T> ofEnum(Class<? extends T> clazz) {
 		T[] values = clazz.getEnumConstants();

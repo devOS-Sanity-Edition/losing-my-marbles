@@ -2,13 +2,17 @@ package one.devos.nautical.losing_my_marbles.content;
 
 import com.mojang.serialization.Codec;
 
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryCodecs;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageType;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.marble.StoredMarble;
 import one.devos.nautical.losing_my_marbles.content.marble.asset.MarbleAsset;
@@ -44,6 +48,9 @@ public final class LosingMyMarblesDataComponents {
 	);
 	public static final DataComponentType<ResourceKey<MarbleAsset>> ASSET = register(
 			"asset", ResourceKey.codec(MarbleAsset.REGISTRY_KEY), ResourceKey.streamCodec(MarbleAsset.REGISTRY_KEY)
+	);
+	public static final DataComponentType<HolderSet<DamageType>> DAMAGE_IMMUNE = register(
+			"damage_immune", RegistryCodecs.homogeneousList(Registries.DAMAGE_TYPE), LosingMyMarblesStreamCodecs.homogeneousList(Registries.DAMAGE_TYPE)
 	);
 	public static final DataComponentType<BounceEffect> BOUNCE_EFFECT = register(
 			"bounce_effect", BounceEffect.CODEC, BounceEffect.STREAM_CODEC

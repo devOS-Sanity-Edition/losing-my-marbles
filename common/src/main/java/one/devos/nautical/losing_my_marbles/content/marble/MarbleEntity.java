@@ -18,6 +18,8 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
@@ -31,7 +33,6 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
@@ -122,21 +123,21 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 			this.nextTickPos = null;
 		}
 
-		if (this.getY() > this.level().getMaxY() + HEIGHT_LIMIT_BUFFER) {
-			this.discard();
-			return;
+		if (!this.level().isClientSide()) {
+			this.applyEffectsFromBlocks();
+
+			if (this.getY() > this.level().getMaxY() + HEIGHT_LIMIT_BUFFER) {
+				this.discard();
+				return;
+			}
 		}
+
 
 		this.marble().getOptional(LosingMyMarblesDataComponents.ENTITY_CONTACT_EFFECT).ifPresent(effect -> {
 			for (Entity entity : this.level().getEntities(this, this.getBoundingBox(), EntitySelector.CAN_BE_PICKED)) {
 				effect.apply(this, entity);
 			}
 		});
-	}
-
-	@Override
-	protected void onInsideBlock(BlockState $$0) {
-		super.onInsideBlock($$0);
 	}
 
 	@Nullable
@@ -234,18 +235,40 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 	}
 
 	@Override
+	public InteractionResult interact(Player player, InteractionHand hand) {
+		InteractionResult result = super.interact(player, hand);
+		if (result.consumesAction())
+			return result;
+
+		LivingEntity owner = this.getOwner();
+		// disallow collection by non-owner, unless they're in creative
+		if (owner != null && owner != player && !player.isCreative())
+			return InteractionResult.FAIL;
+
+		if (this.level().isClientSide()) {
+			return InteractionResult.SUCCESS;
+		}
+
+		ItemStack held = player.getItemInHand(hand);
+		ItemStack asItem = this.getPickResult();
+		if (held.isEmpty()) {
+			player.setItemInHand(hand, asItem);
+		} else {
+			player.addItem(asItem);
+		}
+
+		this.discard();
+		return InteractionResult.SUCCESS_SERVER;
+	}
+
+	@Override
 	public boolean hurtServer(ServerLevel level, DamageSource source, float amount) {
-		if (source.getDirectEntity() instanceof Player player && player.isSecondaryUseActive()) {
-			LivingEntity owner = this.getOwner();
-			if (owner == null || player == owner) {
-				// TODO: drop item
-				this.discard();
-				return true;
-			}
+		if (!this.isImmuneTo(source)) {
+			this.discard();
+			return true;
 		}
 
 		// apply knockback
-
 		if (this.body == null)
 			return false;
 
@@ -263,6 +286,15 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 		Vec3Arg forceVec = JoltIntegration.convertF(pos.vectorTo(this.position()).normalize().scale(force));
 		this.body.getBody().addForce(forceVec);
 		return true;
+	}
+
+	private boolean isImmuneTo(DamageSource source) {
+		if (source.getDirectEntity() instanceof Player)
+			return true;
+
+		return this.marble().getOptional(LosingMyMarblesDataComponents.DAMAGE_IMMUNE)
+				.map(set -> set.contains(source.typeHolder()))
+				.orElse(false);
 	}
 
 	private MarbleShape.CreatedShape createShape() {
