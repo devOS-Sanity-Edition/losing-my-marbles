@@ -47,6 +47,8 @@ import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
 
 public final class MarbleEntity extends Entity implements PhysicsEntity, OwnableEntity {
+	public static final int HEIGHT_LIMIT_BUFFER = 64;
+
 	private final InterpolationHandler interpolator;
 
 	private MarbleInstance marble;
@@ -118,6 +120,11 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 		if (this.nextTickPos != null) {
 			this.setPos(this.nextTickPos);
 			this.nextTickPos = null;
+		}
+
+		if (this.getY() > this.level().getMaxY() + HEIGHT_LIMIT_BUFFER) {
+			this.discard();
+			return;
 		}
 
 		this.marble().getOptional(LosingMyMarblesDataComponents.ENTITY_CONTACT_EFFECT).ifPresent(effect -> {
