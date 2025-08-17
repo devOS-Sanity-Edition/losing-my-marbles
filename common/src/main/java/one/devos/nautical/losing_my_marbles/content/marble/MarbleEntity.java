@@ -178,11 +178,13 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 
 			this.marble().getOptional(LosingMyMarblesDataComponents.FRICTION).ifPresent(settings::setFriction);
 			this.marble().getOptional(LosingMyMarblesDataComponents.RESTITUTION).ifPresent(settings::setRestitution);
+			this.marble().getOptional(LosingMyMarblesDataComponents.GRAVITY_SCALE).ifPresent(settings::setGravityFactor);
 
 			this.marble().getOptional(LosingMyMarblesDataComponents.MASS).ifPresent(mass -> {
 				settings.getMassPropertiesOverride().setMass(mass);
 				settings.setOverrideMassProperties(EOverrideMassProperties.CalculateInertia);
 			});
+
 
 			this.body = factory.create(settings);
 		}
