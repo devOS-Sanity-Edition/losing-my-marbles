@@ -1,0 +1,20 @@
+{
+  "values": [
+    "minecraft:fall",
+    "minecraft:cramming",
+    "minecraft:drown",
+    "minecraft:freeze",
+    "minecraft:hot_floor",
+    "minecraft:campfire",
+    "minecraft:in_fire",
+    "minecraft:on_fire",
+    "minecraft:in_wall",
+    "minecraft:magic",
+    "minecraft:sweet_berry_bush",
+    "minecraft:thorns",
+    "#minecraft:is_projectile",
+    "minecraft:sonic_boom",
+    "minecraft:player_attack",
+    "minecraft:spit"
+  ]
+}

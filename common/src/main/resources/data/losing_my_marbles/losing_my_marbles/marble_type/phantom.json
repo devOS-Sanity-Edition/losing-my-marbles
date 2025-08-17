@@ -6,7 +6,7 @@
   "item_model": "losing_my_marbles:phantom_marble",
   "components": {
     "losing_my_marbles:mass": 5,
-    "losing_my_marbles:gravity_scale": 0.2,
+    "losing_my_marbles:gravity_scale": 0.05,
     "losing_my_marbles:friction": 0.2,
     "losing_my_marbles:restitution": 0.3,
     "losing_my_marbles:bounce_effect": {

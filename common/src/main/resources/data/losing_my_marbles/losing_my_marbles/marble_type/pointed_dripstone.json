@@ -1,0 +1,22 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.pointed_dripstone_marble",
+    "color": "#735450"
+  },
+  "item_model": "losing_my_marbles:pointed_dripstone_marble",
+  "components": {
+    "losing_my_marbles:friction": 0.2,
+    "losing_my_marbles:restitution": 0.25,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:play_sound",
+      "sound": "minecraft:block.dripstone_block.hit"
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:tapered_capsule",
+      "top_radius": 0.15,
+      "bottom_radius": 0.0625,
+      "height": 0.18
+    },
+    "losing_my_marbles:asset": "losing_my_marbles:pointed_dripstone"
+  }
+}
