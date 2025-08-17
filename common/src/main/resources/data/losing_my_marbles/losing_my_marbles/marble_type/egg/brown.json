@@ -1,9 +1,9 @@
 {
   "name": {
-    "translate": "marble_type.losing_my_marbles.blue_egg_marble",
-    "color": "#c7e5d4"
+    "translate": "marble_type.losing_my_marbles.brown_egg_marble",
+    "color": "#d67751"
   },
-  "item_model": "losing_my_marbles:blue_egg_marble",
+  "item_model": "losing_my_marbles:brown_egg_marble",
   "components": {
     "losing_my_marbles:friction": 0.2,
     "losing_my_marbles:restitution": 0.3,
@@ -12,7 +12,7 @@
       "effects": [
         {
           "type": "losing_my_marbles:break",
-          "threshold": 0.15,
+          "threshold": 0.25,
           "when_broken": {
               "type": "losing_my_marbles:compound",
               "effects": [
@@ -25,7 +25,7 @@
                   "data": {
                   "id": "chicken",
                   "Age": -24000,
-                  "variant": "cold"
+                  "variant": "warm"
                 }
               }
             ]
@@ -43,6 +43,6 @@
       "bottom_radius": 0.18,
       "height": 0.18
     },
-    "losing_my_marbles:asset": "losing_my_marbles:blue_egg"
+    "losing_my_marbles:asset": "losing_my_marbles:brown_egg"
   }
 }

@@ -1,0 +1,44 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.tnt_marble",
+    "color": "#ea4318"
+  },
+  "item_model": "losing_my_marbles:tnt_marble",
+  "components": {
+    "losing_my_marbles:friction": 0.2,
+    "losing_my_marbles:restitution": 0.2,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:compound",
+      "effects": [
+        {
+          "type": "losing_my_marbles:break",
+          "threshold": 0.6,
+          "when_broken": {
+     	    "type": "losing_my_marbles:explode",
+   	    "radius": 1,
+   	    "fire": false,
+   	    "interaction": "tnt",
+   	    "small_particles": { 
+              "type": "minecraft:dust",
+              "color": -1,
+              "scale": 0.5
+            },
+   	    "large_particles": { 
+              "type": "minecraft:explosion_emitter"
+            },
+   	    "sound": "minecraft:entity.generic.explode"
+  	  }
+        },
+        {
+          "type": "losing_my_marbles:play_sound",
+          "sound": "minecraft:entity.parrot.imitate.creeper"
+        }
+      ]
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:asset": "losing_my_marbles:tnt"
+  }
+}

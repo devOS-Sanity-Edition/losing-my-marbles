@@ -12,7 +12,7 @@
       "effects": [
         {
           "type": "losing_my_marbles:break",
-          "threshold": 0.15,
+          "threshold": 0.25,
           "when_broken": {
               "type": "losing_my_marbles:compound",
               "effects": [

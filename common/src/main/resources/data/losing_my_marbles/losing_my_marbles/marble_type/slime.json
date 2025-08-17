@@ -6,7 +6,7 @@
   "item_model": "losing_my_marbles:slime_marble",
   "components": {
     "losing_my_marbles:friction": 0.6,
-    "losing_my_marbles:restitution": 0.8,
+    "losing_my_marbles:restitution": 0.95,
     "losing_my_marbles:bounce_effect": {
       "type": "losing_my_marbles:play_sound",
       "sound": "block.slime_block.fall"
