@@ -4,9 +4,6 @@
     "color": "#eeac18"
   },
   "item_model": "losing_my_marbles:fire_charge_marble",
-  "damage_immune": [
-    "#losing_my_marbles:generic_marble_immune"
-  ],
   "components": {
     "losing_my_marbles:friction": 0.5,
     "losing_my_marbles:restitution": 0.25,
@@ -55,6 +52,7 @@
         }
       ]
     },
+    "losing_my_marbles:damage_immune": "#losing_my_marbles:generic_marble_immune",
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875
