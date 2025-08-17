@@ -1,11 +1,8 @@
 package one.devos.nautical.losing_my_marbles.content.marble.effect.contact.entity.impl;
 
-import java.util.function.BiConsumer;
-
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.component.DataComponentMap;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.TypedDataComponent;
 import net.minecraft.world.entity.Entity;
 import one.devos.nautical.losing_my_marbles.content.marble.MarbleEntity;
@@ -17,7 +14,7 @@ public record ApplyComponents(DataComponentMap components) implements EntityCont
 	@Override
 	public void apply(MarbleEntity entity, Entity target) {
 		for (TypedDataComponent<?> typed : this.components) {
-			apply(typed, target::setComponent);
+			apply(typed, target);
 		}
 	}
 
@@ -26,7 +23,7 @@ public record ApplyComponents(DataComponentMap components) implements EntityCont
 		return CODEC;
 	}
 
-	private static <T> void apply(TypedDataComponent<T> typed, BiConsumer<DataComponentType<T>, T> consumer) {
-		consumer.accept(typed.type(), typed.value());
+	private static <T> void apply(TypedDataComponent<T> typed, Entity entity) {
+		entity.setComponent(typed.type(), typed.value());
 	}
 }
