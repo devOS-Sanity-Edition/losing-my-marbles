@@ -50,6 +50,7 @@ public final class MarbleItem extends Item {
 		entity.setPos(Vec3.atCenterOf(pos));
 		level.addFreshEntity(entity);
 
+		stack.shrink(1);
 		return InteractionResult.SUCCESS_SERVER;
 	}
 
