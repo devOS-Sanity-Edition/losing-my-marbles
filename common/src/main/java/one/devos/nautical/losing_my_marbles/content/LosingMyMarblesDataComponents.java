@@ -37,7 +37,7 @@ public final class LosingMyMarblesDataComponents {
 			"scale", Codec.floatRange(1 / 16f, 2), LosingMyMarblesStreamCodecs.floatRange(1 / 16f, 2)
 	);
 	public static final DataComponentType<Float> GRAVITY_SCALE = register(
-			"gravity_scale", Codec.floatRange(0, 8), LosingMyMarblesStreamCodecs.floatRange(0, 8)
+			"gravity_scale", Codec.floatRange(-8, 8), LosingMyMarblesStreamCodecs.floatRange(-8, 8)
 	);
 	public static final DataComponentType<MarbleShape> SHAPE = register(
 			"shape", MarbleShape.CODEC, MarbleShape.STREAM_CODEC
