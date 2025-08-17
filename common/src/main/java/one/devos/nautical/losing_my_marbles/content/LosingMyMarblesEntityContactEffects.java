@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.Registry;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.contact.entity.EntityContactEffect;
+import one.devos.nautical.losing_my_marbles.content.marble.effect.contact.entity.impl.ApplyComponents;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.contact.entity.impl.Compound;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.contact.entity.impl.Damage;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.contact.entity.impl.Effect;
@@ -12,6 +13,7 @@ import one.devos.nautical.losing_my_marbles.content.marble.effect.contact.entity
 
 public final class LosingMyMarblesEntityContactEffects {
 	public static void init() {
+		register("apply_components", ApplyComponents.CODEC);
 		register("compound", Compound.MAP_CODEC);
 	    register("damage", Damage.CODEC);
 		register("effect", Effect.CODEC);
