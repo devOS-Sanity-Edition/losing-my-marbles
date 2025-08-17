@@ -8,6 +8,7 @@ import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.BounceE
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.impl.Break;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.impl.Chanced;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.impl.Compound;
+import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.impl.DropLoot;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.impl.Explode;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.impl.PatchComponents;
 import one.devos.nautical.losing_my_marbles.content.marble.effect.bounce.impl.PlaceBlock;
@@ -22,6 +23,7 @@ public final class LosingMyMarblesBounceEffects {
 		register("break", Break.CODEC);
 		register("chanced", Chanced.CODEC);
 		register("compound", Compound.MAP_CODEC);
+		register("drop_loot", DropLoot.CODEC);
 		register("explode", Explode.CODEC);
 		register("patch_components", PatchComponents.CODEC);
 		register("place_block", PlaceBlock.CODEC);
