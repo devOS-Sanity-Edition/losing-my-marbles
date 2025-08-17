@@ -1,7 +1,6 @@
 package one.devos.nautical.losing_my_marbles.content.marble.data.shape;
 
 import com.github.stephengold.joltjni.ShapeRefC;
-import com.github.stephengold.joltjni.Vec3;
 import com.github.stephengold.joltjni.readonly.ConstShape;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -9,6 +8,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
 
 public interface MarbleShape {

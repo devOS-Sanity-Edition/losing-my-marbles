@@ -1,12 +1,12 @@
 package one.devos.nautical.losing_my_marbles.content.marble.data.shape;
 
 import com.github.stephengold.joltjni.BoxShape;
-import com.github.stephengold.joltjni.Vec3;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.framework.network.LosingMyMarblesStreamCodecs;
 
 public record CubeMarbleShape(float sideLength) implements MarbleShape {

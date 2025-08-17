@@ -6,6 +6,8 @@ import org.jetbrains.annotations.Nullable;
 
 import com.github.stephengold.joltjni.AaBox;
 import com.github.stephengold.joltjni.BodyCreationSettings;
+import com.github.stephengold.joltjni.MassProperties;
+import com.github.stephengold.joltjni.enumerate.EAllowedDofs;
 import com.github.stephengold.joltjni.enumerate.EMotionQuality;
 import com.github.stephengold.joltjni.enumerate.EOverrideMassProperties;
 import com.github.stephengold.joltjni.readonly.Vec3Arg;
@@ -51,6 +53,8 @@ import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
 
 public final class MarbleEntity extends Entity implements PhysicsEntity, OwnableEntity {
 	public static final int HEIGHT_LIMIT_BUFFER = 64;
+	public static final float MAX_SCALE = 2;
+	public static final float MIN_SCALE = 1 / 4f;
 
 	private final InterpolationHandler interpolator;
 
@@ -89,6 +93,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 
 	public void setMarble(MarbleInstance marble) {
 		this.marble = marble;
+		this.updateBody();
 		this.refreshDimensions();
 
 		if (this.level() instanceof ServerLevel level) {
@@ -118,11 +123,27 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 	public void tick() {
 		super.tick();
 		this.interpolator.interpolate();
-		this.distanceTraveled += this.oldPosition().distanceTo(this.position());
 
 		if (this.nextTickPos != null) {
 			this.setPos(this.nextTickPos);
 			this.nextTickPos = null;
+		}
+
+		double distanceTraveled = this.oldPosition().distanceTo(this.position());
+		this.distanceTraveled += distanceTraveled;
+
+		if (this.body != null) {
+			this.marble().getOptional(LosingMyMarblesDataComponents.ACCUMULATES_MASS).ifPresent(set -> {
+				BlockState ground = this.level().getBlockState(this.getOnPos(0.1f));
+				int multiplier = set.contains(ground.getBlockHolder()) ? 1 : -1;
+
+				MarbleInstance newMarble = this.marble().copy();
+				float scale = newMarble.getOrDefault(LosingMyMarblesDataComponents.SCALE, 1f);
+				float change = multiplier * (float) (distanceTraveled / 20);
+				float newScale = Math.clamp(scale + change, MIN_SCALE, MAX_SCALE);
+				newMarble.set(LosingMyMarblesDataComponents.SCALE, newScale);
+				this.setMarble(newMarble);
+			});
 		}
 
 		if (!this.level().isClientSide()) {
@@ -185,11 +206,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 
 			try (MarbleShape.CreatedShape created = this.createShape()) {
 				settings.setShape(created.shape());
-				settings.setPosition(
-						this.getX() + created.offset().getX(),
-						this.getY() + created.offset().getY(),
-						this.getZ() + created.offset().getZ()
-				);
+				settings.setPosition(JoltIntegration.convert(this.position().add(created.offset())));
 			}
 
 			this.marble().getOptional(LosingMyMarblesDataComponents.FRICTION).ifPresent(settings::setFriction);
@@ -204,6 +221,27 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 
 			this.body = factory.create(settings);
 		}
+	}
+
+	private void updateBody() {
+		BodyAccess body = this.body;
+		if (body == null)
+			return;
+
+		try (MarbleShape.CreatedShape created = this.createShape()) {
+			this.body.setShape(created.shape());
+			this.body.setPos(this.position().add(created.offset()));
+		}
+
+		this.marble().getOptional(LosingMyMarblesDataComponents.FRICTION).ifPresent(body.getBody()::setFriction);
+		this.marble().getOptional(LosingMyMarblesDataComponents.RESTITUTION).ifPresent(body.getBody()::setRestitution);
+		this.marble().getOptional(LosingMyMarblesDataComponents.GRAVITY_SCALE).ifPresent(body::setGravityFactor);
+
+		this.marble().getOptional(LosingMyMarblesDataComponents.MASS).ifPresent(mass -> {
+			MassProperties properties = new MassProperties();
+			properties.setMass(mass);
+			body.getBody().getMotionProperties().setMassProperties(EAllowedDofs.All, properties);
+		});
 	}
 
 	@Override

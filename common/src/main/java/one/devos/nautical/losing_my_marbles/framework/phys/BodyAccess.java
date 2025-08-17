@@ -4,6 +4,7 @@ import com.github.stephengold.joltjni.Body;
 import com.github.stephengold.joltjni.BodyInterface;
 import com.github.stephengold.joltjni.enumerate.EActivation;
 import com.github.stephengold.joltjni.readonly.ConstBodyCreationSettings;
+import com.github.stephengold.joltjni.readonly.ConstShape;
 
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
@@ -16,6 +17,10 @@ public sealed interface BodyAccess {
 	void setPos(Vec3 pos);
 
 	void setVelocity(Vec3 velocity);
+
+	void setShape(ConstShape shape);
+
+	void setGravityFactor(float scale);
 
 	/**
 	 * Remove, destroy, and free this body.
@@ -50,6 +55,16 @@ public sealed interface BodyAccess {
 		@Override
 		public void setVelocity(Vec3 velocity) {
 			this.bodies.setLinearVelocity(this.id, JoltIntegration.convertF(velocity));
+		}
+
+		@Override
+		public void setShape(ConstShape shape) {
+			this.bodies.setShape(this.id, shape, true, EActivation.DontActivate);
+		}
+
+		@Override
+		public void setGravityFactor(float scale) {
+			this.bodies.setGravityFactor(this.id, scale);
 		}
 
 		@Override
