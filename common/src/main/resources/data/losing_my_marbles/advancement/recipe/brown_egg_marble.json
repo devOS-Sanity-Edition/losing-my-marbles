@@ -28,5 +28,6 @@
     "recipes": [
       "losing_my_marbles:brown_egg_marble"
     ]
-  }
+  },
+  "group": "egg"
 }
