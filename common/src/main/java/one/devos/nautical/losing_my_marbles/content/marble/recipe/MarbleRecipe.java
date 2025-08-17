@@ -3,6 +3,8 @@ package one.devos.nautical.losing_my_marbles.content.marble.recipe;
 import java.util.List;
 import java.util.Optional;
 
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlocks;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;
@@ -24,7 +26,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplay;
 import net.minecraft.world.level.Level;
-import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeSerializers;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeTypes;
 
@@ -85,8 +86,7 @@ public final class MarbleRecipe implements Recipe<MarbleRecipeInput> {
 				this.material.display(),
 				Ingredient.optionalIngredientToDisplay(this.addition),
 				new SlotDisplay.ItemStackSlotDisplay(this.result),
-				// TODO: change this to the press
-				new SlotDisplay.ItemSlotDisplay(LosingMyMarblesItems.MARBLE)
+				new SlotDisplay.ItemSlotDisplay(LosingMyMarblesBlocks.MARBLE_MAKER.asItem())
 		));
 	}
 

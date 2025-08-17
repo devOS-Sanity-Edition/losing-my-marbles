@@ -6,7 +6,7 @@
     "components": {
       "losing_my_marbles:marble": {
         "type": "type",
-        "holder": "losing_my_marbles:glass/tinted_glass"
+        "holder": "losing_my_marbles:glass/tinted"
       }
     },
     "count": 1

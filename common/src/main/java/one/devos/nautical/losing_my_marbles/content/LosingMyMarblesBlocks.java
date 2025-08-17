@@ -27,7 +27,7 @@ import one.devos.nautical.losing_my_marbles.framework.platform.PlatformClientHel
 import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 
 public class LosingMyMarblesBlocks {
-	public static final MarbleMakerBlock MARBLE_MAKER = register("marble_maker", MarbleMakerBlock::new, BlockBehaviour.Properties.of());
+	public static final MarbleMakerBlock MARBLE_MAKER = register("marble_maker", MarbleMakerBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK));
 
 	public static final StraightPieceBlock STRAIGHT_PIECE = register("straight_piece", StraightPieceBlock::new, pieceProperties());
 	public static final IntersectionPieceBlock INTERSECTION_PIECE = register("intersection_piece", IntersectionPieceBlock::new, pieceProperties());
