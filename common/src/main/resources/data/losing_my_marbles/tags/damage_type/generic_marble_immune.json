@@ -11,10 +11,14 @@
     "minecraft:in_wall",
     "minecraft:magic",
     "minecraft:sweet_berry_bush",
+    "minecraft:cactus",
     "minecraft:thorns",
     "#minecraft:is_projectile",
+    "minecraft:explosion",
+    "minecraft:player_explosion",
     "minecraft:sonic_boom",
     "minecraft:player_attack",
+    "minecraft:mob_attack",
     "minecraft:spit"
   ]
 }

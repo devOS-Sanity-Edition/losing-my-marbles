@@ -16,6 +16,7 @@
       "type": "losing_my_marbles:cube",
       "side_length": 0.3750
     },
+    "losing_my_marbles:damage_immune": "#losing_my_marbles:generic_marble_immune",
     "losing_my_marbles:asset": "losing_my_marbles:most_magnificent_marble"
   }
 }

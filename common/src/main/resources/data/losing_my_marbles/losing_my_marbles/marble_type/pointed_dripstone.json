@@ -17,6 +17,7 @@
       "bottom_radius": 0.0625,
       "height": 0.18
     },
+    "losing_my_marbles:damage_immune": "#losing_my_marbles:generic_marble_immune",
     "losing_my_marbles:asset": "losing_my_marbles:pointed_dripstone"
   }
 }
