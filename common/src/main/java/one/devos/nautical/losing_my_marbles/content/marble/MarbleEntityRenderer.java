@@ -49,6 +49,7 @@ public final class MarbleEntityRenderer extends EntityRenderer<MarbleEntity, Mar
 	public void extractRenderState(MarbleEntity marble, MarbleEntityRenderState state, float partialTicks) {
 		super.extractRenderState(marble, state, partialTicks);
 		state.distanceTraveled = marble.distanceTraveled();
+		state.scale = marble.marble().getOrDefault(LosingMyMarblesDataComponents.SCALE, 1f);
 		state.deltaMovement = marble.getDeltaMovement();
 		state.marbleAsset = marble.marble().get(LosingMyMarblesDataComponents.ASSET);
 
@@ -60,7 +61,8 @@ public final class MarbleEntityRenderer extends EntityRenderer<MarbleEntity, Mar
 		super.render(state, matrices, buffers, light);
 
 		MarbleAsset asset = state.marbleAsset != null ? MarbleAssetManager.INSTANCE.get(state.marbleAsset) : null;
-		float scale = asset != null ? asset.scale() * SCALE : 1;
+		float baseScale = asset != null ? asset.scale() * SCALE : 1;
+		float scale = baseScale * state.scale;
 		TextureAtlasSprite sprite = this.spriteLookup.apply(
 				asset != null ? asset.texture().get(this.createTextureContext(state)) : MissingTextureAtlasSprite.getLocation());
 

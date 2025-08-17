@@ -9,6 +9,7 @@ import one.devos.nautical.losing_my_marbles.content.marble.asset.MarbleAsset;
 
 public final class MarbleEntityRenderState extends EntityRenderState {
 	public double distanceTraveled;
+	public float scale;
 	public Vec3 deltaMovement;
 	@Nullable
 	public ResourceKey<MarbleAsset> marbleAsset;
