@@ -3,9 +3,9 @@
 	"credit": "Made by Cart3r using Blockbench.",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "block/lever",
+		"0": "minecraft:block/lever",
 		"1": "losing_my_marbles:block/marble_maker",
-		"particle": "block/blast_furnace_top"
+		"particle": "minecraft:block/blast_furnace_top"
 	},
 	"elements": [
 		{
