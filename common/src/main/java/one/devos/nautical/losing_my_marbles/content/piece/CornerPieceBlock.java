@@ -8,7 +8,6 @@ import java.util.function.Function;
 
 import com.github.stephengold.joltjni.Quat;
 import com.github.stephengold.joltjni.ShapeRefC;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
 import com.mojang.math.OctahedralGroup;
 import com.mojang.math.Quadrant;
@@ -29,6 +28,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.PhysicsCollision;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.PhysicsCollisionContext;
+import one.devos.nautical.losing_my_marbles.framework.phys.util.CurveGenerator;
 import one.devos.nautical.losing_my_marbles.framework.phys.util.TriStripBuilder;
 
 public class CornerPieceBlock extends PieceBlock {
@@ -87,21 +87,10 @@ public class CornerPieceBlock extends PieceBlock {
 		TriStripBuilder outerBottom = new TriStripBuilder(PieceBlock::pixelsToBlocks).flip();
 		TriStripBuilder outerTop = new TriStripBuilder(PieceBlock::pixelsToBlocks).flip();
 
-		final int steps = 4;
-		final int centerX = -4;
-		final int centerZ = -4;
-		final int outerRadius = 8;
-
-		for (int i = 0; i <= steps; i++) {
-			float progress = (1f / steps) * i;
-			float theta = Mth.lerp(progress, Mth.PI, Mth.HALF_PI);
-
-			float outerX = -Mth.cos(theta) * outerRadius + centerX;
-			float outerZ = Mth.sin(theta) * outerRadius + centerZ;
-
-			outerBottom.then(outerX, 0, outerZ).then(outerX, 4, outerZ);
-			outerTop.then(outerX, 4, outerZ).then(4, 8, 4);
-		}
+		new CurveGenerator(-4, -4, 8, Mth.PI, Mth.HALF_PI, 4).forEachPoint((x, z) -> {
+			outerBottom.then(x, 0, z).then(x, 4, z);
+			outerTop.then(x, 4, z).then(4, 8, 4);
+		});
 
 		float yRot = switch (state.getValue(FACING)) {
 			case NORTHWEST -> 0;
@@ -112,25 +101,23 @@ public class CornerPieceBlock extends PieceBlock {
 
 		Quat rotation = Quat.sEulerAngles(0, Mth.DEG_TO_RAD * yRot, 0);
 
-		try (ShapeRefC outerBottomShape = outerBottom.build(); ShapeRefC outerTopShape = outerTop.build()) {
-			output.accept(rotation, outerBottomShape);
-			output.accept(rotation, outerTopShape);
+		try (ShapeRefC bottom = outerBottom.build(); ShapeRefC top = outerTop.build()) {
+			output.accept(rotation, bottom);
+			output.accept(rotation, top);
 		}
 
-		TriStripBuilder inner = new TriStripBuilder(PieceBlock::pixelsToBlocks)
-				.then(-4, 0, -8)
-				.then(-8, 0, -4)
-				.then(-4, 8, -8)
-				.then(-8, 8, -4)
-				.then(-8, 8, -8);
+		TriStripBuilder innerBottom = new TriStripBuilder(PieceBlock::pixelsToBlocks);
+		TriStripBuilder innerTop = new TriStripBuilder(PieceBlock::pixelsToBlocks);
 
-		try (ShapeRefC innerShape = inner.build()) {
-			output.accept(rotation, innerShape);
+		new CurveGenerator(-8, -8, 4, Mth.PI, Mth.HALF_PI, 4).forEachPoint((x, z) -> {
+			innerBottom.then(x, 0, z).then(x, 8, z);
+			innerTop.then(x, 8, z).then(-8, 8, -8);
+		});
+
+		try (ShapeRefC bottom = innerBottom.build(); ShapeRefC top = innerTop.build()) {
+			output.accept(rotation, bottom);
+			output.accept(rotation, top);
 		}
-	}
-
-	private <T> Function<BlockState, T> forEachState(Function<BlockState, T> function) {
-		return (this.stateDefinition.getPossibleStates().stream().collect(ImmutableMap.toImmutableMap(Function.identity(), function)))::get;
 	}
 
 	public enum Facing implements StringRepresentable {

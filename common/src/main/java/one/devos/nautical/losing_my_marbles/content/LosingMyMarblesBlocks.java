@@ -30,7 +30,7 @@ public class LosingMyMarblesBlocks {
 	public static final MarbleMakerBlock MARBLE_MAKER = register("marble_maker", MarbleMakerBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK));
 
 	public static final StraightPieceBlock STRAIGHT_PIECE = register("straight_piece", StraightPieceBlock::new, pieceProperties());
-	public static final IntersectionPieceBlock INTERSECTION_PIECE = register("intersection_piece", IntersectionPieceBlock::new, pieceProperties());
+	public static final IntersectionPieceBlock INTERSECTION_PIECE = register("intersection_piece", IntersectionPieceBlock::new, pieceProperties().dynamicShape());
 	public static final CornerPieceBlock CORNER_PIECE = register("corner_piece", CornerPieceBlock::new, pieceProperties().dynamicShape());
 
 	private static BlockBehaviour.Properties pieceProperties() {
@@ -51,6 +51,7 @@ public class LosingMyMarblesBlocks {
 
 	public static void init() {
 		CustomPhysicsCollisionRegistry.register(CORNER_PIECE, DefaultCollisionSource.COLLISION_SHAPE, CornerPieceBlock::additionalCollision);
+		CustomPhysicsCollisionRegistry.register(INTERSECTION_PIECE, DefaultCollisionSource.COLLISION_SHAPE, IntersectionPieceBlock::additionalCollision);
 
 		if (PlatformHelper.INSTANCE.getEnvironment() == Env.CLIENT) {
 			PlatformClientHelper.INSTANCE.setBlockRenderLayer(ChunkSectionLayer.TRANSLUCENT,
