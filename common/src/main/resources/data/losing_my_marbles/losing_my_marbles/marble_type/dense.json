@@ -6,6 +6,7 @@
   "item_model": "losing_my_marbles:dense_marble",
   "components": {
     "losing_my_marbles:friction": 0.7,
+    "losing_my_marbles:gravity_scale": 3,
     "losing_my_marbles:mass": 40,
     "losing_my_marbles:restitution": 0.1,
     "losing_my_marbles:bounce_effect": {

@@ -6,6 +6,7 @@
   "item_model": "losing_my_marbles:wind_charge_marble",
   "components": {
     "losing_my_marbles:friction": 0.2,
+    "losing_my_marbles:gravity_scale": 0.8,
     "losing_my_marbles:restitution": 0.4,
     "losing_my_marbles:bounce_effect": {
       "type": "losing_my_marbles:compound",

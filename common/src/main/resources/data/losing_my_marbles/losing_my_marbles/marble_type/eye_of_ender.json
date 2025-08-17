@@ -6,6 +6,7 @@
   "item_model": "losing_my_marbles:eye_of_ender_marble",
   "components": {
     "losing_my_marbles:friction": 0.4,
+    "losing_my_marbles:gravity_scale": -0.5,
     "losing_my_marbles:restitution": 0.1,
     "losing_my_marbles:bounce_effect": {
       "type": "losing_my_marbles:play_sound",
