@@ -1,12 +1,12 @@
 {
   "type": "losing_my_marbles:marble",
-  "material": "minecraft:egg",
+  "material": "minecraft:tinted_glass",
   "result": {
     "id": "losing_my_marbles:marble",
     "components": {
       "losing_my_marbles:marble": {
         "type": "type",
-        "holder": "losing_my_marbles:egg/egg"
+        "holder": "losing_my_marbles:glass/tinted_glass"
       }
     },
     "count": 1

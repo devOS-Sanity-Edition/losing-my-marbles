@@ -6,7 +6,7 @@
     "components": {
       "losing_my_marbles:marble": {
         "type": "type",
-        "holder": "losing_my_marbles:sniffer_egg"
+        "holder": "losing_my_marbles:egg/sniffer"
       }
     },
     "count": 1
