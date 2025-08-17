@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "LevelMixin",
+    "RecipeManagerMixin",
     "ServerLevelMixin",
     "platform.MarbleAssetManagerMixin"
   ],
