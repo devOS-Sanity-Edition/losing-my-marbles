@@ -13,6 +13,13 @@
       "type": "losing_my_marbles:play_sound",
       "sound": "item.mace.smash_ground"
     },
+    "losing_my_marbles:contact_effect/entity": {
+      "type": "losing_my_marbles:damage",
+      "damage_type": "minecraft:mace_smash",
+      "amount": 10,
+      "velocity_scaled": true,
+      "minimum": 5
+    },
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875
