@@ -20,8 +20,8 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.stats.RecipeBookSettings;
 import net.minecraft.stats.RecipeBookSettings.TypeSettings;
 import net.minecraft.world.inventory.RecipeBookType;
-import one.devos.nautical.losing_my_marbles.content.marble.recipeBook.MarbleMakerRecipeBookHelper;
-import one.devos.nautical.losing_my_marbles.content.marble.recipeBook.MarbleRecipeBookSettings;
+import one.devos.nautical.losing_my_marbles.content.marble.recipe.book.MarbleMakerRecipeBookHelper;
+import one.devos.nautical.losing_my_marbles.content.marble.recipe.book.MarbleRecipeBookSettings;
 import one.devos.nautical.losing_my_marbles.framework.extension.RecipeBookSettingsExt;
 
 // Chosen by fair dice roll, guaranteed to be random

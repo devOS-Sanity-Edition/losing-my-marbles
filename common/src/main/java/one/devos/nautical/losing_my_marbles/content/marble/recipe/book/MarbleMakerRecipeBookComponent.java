@@ -1,4 +1,4 @@
-package one.devos.nautical.losing_my_marbles.content.marble.recipeBook;
+package one.devos.nautical.losing_my_marbles.content.marble.recipe.book;
 
 import java.util.List;
 
