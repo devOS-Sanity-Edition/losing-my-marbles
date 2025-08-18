@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:sponge"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "losing_my_marbles:paint_marble_red",
+      "losing_my_marbles:paint_marble_orange",
+      "losing_my_marbles:paint_marble_yellow",
+      "losing_my_marbles:paint_marble_lime",
+      "losing_my_marbles:paint_marble_green",
+      "losing_my_marbles:paint_marble_cyan",
+      "losing_my_marbles:paint_marble_blue",
+      "losing_my_marbles:paint_marble_light_blue",
+      "losing_my_marbles:paint_marble_purple",
+      "losing_my_marbles:paint_marble_magenta",
+      "losing_my_marbles:paint_marble_pink",
+      "losing_my_marbles:paint_marble_white",
+      "losing_my_marbles:paint_marble_light_gray",
+      "losing_my_marbles:paint_marble_gray",
+      "losing_my_marbles:paint_marble_black",
+      "losing_my_marbles:paint_marble_brown"
+    ]
+  }
+}

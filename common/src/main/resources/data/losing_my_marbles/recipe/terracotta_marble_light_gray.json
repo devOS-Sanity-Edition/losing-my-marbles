@@ -1,0 +1,17 @@
+{
+  "type": "losing_my_marbles:marble",
+  "material": "minecraft:terracotta",
+  "addition": "minecraft:light_gray_dye",
+  "result": {
+    "id": "losing_my_marbles:marble",
+    "components": {
+      "losing_my_marbles:marble": {
+        "type": "type",
+        "holder": "losing_my_marbles:terracotta"
+      },
+      "minecraft:dyed_color": 4287064930
+    },
+    "count": 1
+  },
+  "group": "terracotta"
+}

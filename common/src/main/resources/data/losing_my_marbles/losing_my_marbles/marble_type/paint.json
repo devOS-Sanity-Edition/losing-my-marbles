@@ -1,21 +1,21 @@
 {
   "name": {
-    "translate": "marble_type.losing_my_marbles.terracotta_marble",
-    "color": "#945b43"
+    "translate": "marble_type.losing_my_marbles.paint_marble",
+    "color": "#ffffff"
   },
-  "item_model": "losing_my_marbles:terracotta_marble",
+  "item_model": "losing_my_marbles:paint_marble",
   "components": {
-    "losing_my_marbles:friction": 0.5,
-    "losing_my_marbles:restitution": 0.25,
+    "losing_my_marbles:friction": 0.05,
+    "losing_my_marbles:restitution": 0.2,
     "losing_my_marbles:bounce_effect": {
       "type": "losing_my_marbles:play_sound",
-      "sound": "block.stone.fall"
+      "sound": "minecraft:block.sponge.absorb"
     },
     "losing_my_marbles:shape": {
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875
     },
     "losing_my_marbles:damage_immune": "#losing_my_marbles:generic_marble_immune",
-    "losing_my_marbles:asset": "losing_my_marbles:terracotta"
+    "losing_my_marbles:asset": "losing_my_marbles:paint"
   }
 }

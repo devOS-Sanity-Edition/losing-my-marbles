@@ -1,0 +1,52 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:terracotta"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "losing_my_marbles:terracotta_marble",
+      "losing_my_marbles:terracotta_marble_red",
+      "losing_my_marbles:terracotta_marble_orange",
+      "losing_my_marbles:terracotta_marble_yellow",
+      "losing_my_marbles:terracotta_marble_lime",
+      "losing_my_marbles:terracotta_marble_green",
+      "losing_my_marbles:terracotta_marble_cyan",
+      "losing_my_marbles:terracotta_marble_blue",
+      "losing_my_marbles:terracotta_marble_light_blue",
+      "losing_my_marbles:terracotta_marble_purple",
+      "losing_my_marbles:terracotta_marble_magenta",
+      "losing_my_marbles:terracotta_marble_pink",
+      "losing_my_marbles:terracotta_marble_white",
+      "losing_my_marbles:terracotta_marble_light_gray",
+      "losing_my_marbles:terracotta_marble_gray",
+      "losing_my_marbles:terracotta_marble_black",
+      "losing_my_marbles:terracotta_marble_brown",
+      "losing_my_marbles:terracotta_marble_red_alternate",
+      "losing_my_marbles:terracotta_marble_orange_alternate",
+      "losing_my_marbles:terracotta_marble_yellow_alternate",
+      "losing_my_marbles:terracotta_marble_lime_alternate",
+      "losing_my_marbles:terracotta_marble_green_alternate",
+      "losing_my_marbles:terracotta_marble_cyan_alternate",
+      "losing_my_marbles:terracotta_marble_blue_alternate",
+      "losing_my_marbles:terracotta_marble_light_blue_alternate",
+      "losing_my_marbles:terracotta_marble_purple_alternate",
+      "losing_my_marbles:terracotta_marble_magenta_alternate",
+      "losing_my_marbles:terracotta_marble_pink_alternate",
+      "losing_my_marbles:terracotta_marble_white_alternate",
+      "losing_my_marbles:terracotta_marble_light_gray_alternate",
+      "losing_my_marbles:terracotta_marble_gray_alternate",
+      "losing_my_marbles:terracotta_marble_black_alternate",
+      "losing_my_marbles:terracotta_marble_brown_alternate"
+    ]
+  }
+}

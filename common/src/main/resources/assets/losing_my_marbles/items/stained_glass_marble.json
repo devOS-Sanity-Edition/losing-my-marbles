@@ -1,6 +1,12 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "losing_my_marbles:item/stained_glass_marble"
+    "model": "losing_my_marbles:item/stained_glass_marble",
+    "tints": [
+      {
+        "type": "minecraft:dye",
+        "default": -1
+      }
+    ]
   }
 }

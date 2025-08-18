@@ -1,0 +1,17 @@
+{
+  "type": "losing_my_marbles:marble",
+  "material": "minecraft:glass",
+  "addition": "minecraft:cyan_dye",
+  "result": {
+    "id": "losing_my_marbles:marble",
+    "components": {
+      "losing_my_marbles:marble": {
+        "type": "type",
+        "holder": "losing_my_marbles:glass/stained"
+      },
+      "minecraft:dyed_color": 4283203481
+    },
+    "count": 1
+  },
+  "group": "glass"
+}

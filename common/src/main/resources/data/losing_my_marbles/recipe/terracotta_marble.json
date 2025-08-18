@@ -1,0 +1,15 @@
+{
+  "type": "losing_my_marbles:marble",
+  "material": "minecraft:terracotta",
+  "result": {
+    "id": "losing_my_marbles:marble",
+    "components": {
+      "losing_my_marbles:marble": {
+        "type": "type",
+        "holder": "losing_my_marbles:terracotta"
+      }
+    },
+    "count": 1
+  },
+  "group": "terracotta"
+}

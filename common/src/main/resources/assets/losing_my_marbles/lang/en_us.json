@@ -39,6 +39,7 @@
   "item.losing_my_marbles.stored_marble.invalid": "Invalid: %s",
 
   "marble_type.losing_my_marbles.terracotta_marble": "Terracotta Marble",
+  "marble_type.losing_my_marbles.paint_marble": "Paint Marble",
   "marble_type.losing_my_marbles.amethyst_marble": "Amethyst Marble",
   "marble_type.losing_my_marbles.cactus_marble": "Cactus Marble",
   "marble_type.losing_my_marbles.tnt_marble": "TNT Marble",

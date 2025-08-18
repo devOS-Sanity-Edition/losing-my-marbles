@@ -1,11 +1,11 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "losing_my_marbles:item/terracotta_marble",
+    "model": "losing_my_marbles:item/paint_marble",
     "tints": [
       {
         "type": "minecraft:dye",
-        "default": 4287912771
+        "default": -1
       }
     ]
   }

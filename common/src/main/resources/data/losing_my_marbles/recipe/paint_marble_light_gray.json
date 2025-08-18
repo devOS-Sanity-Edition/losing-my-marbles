@@ -1,0 +1,31 @@
+{
+  "type": "losing_my_marbles:marble",
+  "material": "minecraft:sponge",
+  "addition": "minecraft:light_gray_dye",
+  "result": {
+    "id": "losing_my_marbles:marble",
+    "components": {
+      "losing_my_marbles:marble": {
+        "type": "instance",
+          "instance": {
+          "type": "losing_my_marbles:paint",
+          "components": {
+            "losing_my_marbles:contact_effect/block": {
+              "type": "losing_my_marbles:set_properties",
+              "predicate": {
+                "type": "matching_block_tag",
+                "tag": "losing_my_marbles:track_pieces"
+              },
+              "properties": {
+                "color": "light_gray"
+              }
+            }
+          }
+        }
+      },
+      "minecraft:dyed_color": 10329495
+    },
+    "count": 1
+  },
+  "group": "paint"
+}
