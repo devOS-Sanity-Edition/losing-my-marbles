@@ -1,0 +1,83 @@
+{
+  "variants": {
+    "color=white,part=single":{"model":"losing_my_marbles:block/white_support_piece_single"},
+    "color=white,part=bottom":{"model":"losing_my_marbles:block/white_support_piece_bottom"},
+    "color=white,part=middle":{"model":"losing_my_marbles:block/white_support_piece_middle"},
+    "color=white,part=top":{"model":"losing_my_marbles:block/white_support_piece_top"},
+
+    "color=light_gray,part=single":{"model":"losing_my_marbles:block/light_gray_support_piece_single"},
+    "color=light_gray,part=bottom":{"model":"losing_my_marbles:block/light_gray_support_piece_bottom"},
+    "color=light_gray,part=middle":{"model":"losing_my_marbles:block/light_gray_support_piece_middle"},
+    "color=light_gray,part=top":{"model":"losing_my_marbles:block/light_gray_support_piece_top"},
+
+    "color=gray,part=single":{"model":"losing_my_marbles:block/gray_support_piece_single"},
+    "color=gray,part=bottom":{"model":"losing_my_marbles:block/gray_support_piece_bottom"},
+    "color=gray,part=middle":{"model":"losing_my_marbles:block/gray_support_piece_middle"},
+    "color=gray,part=top":{"model":"losing_my_marbles:block/gray_support_piece_top"},
+
+    "color=black,part=single":{"model":"losing_my_marbles:block/black_support_piece_single"},
+    "color=black,part=bottom":{"model":"losing_my_marbles:block/black_support_piece_bottom"},
+    "color=black,part=middle":{"model":"losing_my_marbles:block/black_support_piece_middle"},
+    "color=black,part=top":{"model":"losing_my_marbles:block/black_support_piece_top"},
+
+    "color=brown,part=single":{"model":"losing_my_marbles:block/brown_support_piece_single"},
+    "color=brown,part=bottom":{"model":"losing_my_marbles:block/brown_support_piece_bottom"},
+    "color=brown,part=middle":{"model":"losing_my_marbles:block/brown_support_piece_middle"},
+    "color=brown,part=top":{"model":"losing_my_marbles:block/brown_support_piece_top"},
+
+    "color=red,part=single":{"model":"losing_my_marbles:block/red_support_piece_single"},
+    "color=red,part=bottom":{"model":"losing_my_marbles:block/red_support_piece_bottom"},
+    "color=red,part=middle":{"model":"losing_my_marbles:block/red_support_piece_middle"},
+    "color=red,part=top":{"model":"losing_my_marbles:block/red_support_piece_top"},
+
+    "color=orange,part=single":{"model":"losing_my_marbles:block/orange_support_piece_single"},
+    "color=orange,part=bottom":{"model":"losing_my_marbles:block/orange_support_piece_bottom"},
+    "color=orange,part=middle":{"model":"losing_my_marbles:block/orange_support_piece_middle"},
+    "color=orange,part=top":{"model":"losing_my_marbles:block/orange_support_piece_top"},
+
+    "color=yellow,part=single":{"model":"losing_my_marbles:block/yellow_support_piece_single"},
+    "color=yellow,part=bottom":{"model":"losing_my_marbles:block/yellow_support_piece_bottom"},
+    "color=yellow,part=middle":{"model":"losing_my_marbles:block/yellow_support_piece_middle"},
+    "color=yellow,part=top":{"model":"losing_my_marbles:block/yellow_support_piece_top"},
+
+    "color=lime,part=single":{"model":"losing_my_marbles:block/lime_support_piece_single"},
+    "color=lime,part=bottom":{"model":"losing_my_marbles:block/lime_support_piece_bottom"},
+    "color=lime,part=middle":{"model":"losing_my_marbles:block/lime_support_piece_middle"},
+    "color=lime,part=top":{"model":"losing_my_marbles:block/lime_support_piece_top"},
+
+    "color=green,part=single":{"model":"losing_my_marbles:block/green_support_piece_single"},
+    "color=green,part=bottom":{"model":"losing_my_marbles:block/green_support_piece_bottom"},
+    "color=green,part=middle":{"model":"losing_my_marbles:block/green_support_piece_middle"},
+    "color=green,part=top":{"model":"losing_my_marbles:block/green_support_piece_top"},
+
+    "color=cyan,part=single":{"model":"losing_my_marbles:block/cyan_support_piece_single"},
+    "color=cyan,part=bottom":{"model":"losing_my_marbles:block/cyan_support_piece_bottom"},
+    "color=cyan,part=middle":{"model":"losing_my_marbles:block/cyan_support_piece_middle"},
+    "color=cyan,part=top":{"model":"losing_my_marbles:block/cyan_support_piece_top"},
+
+    "color=blue,part=single":{"model":"losing_my_marbles:block/blue_support_piece_single"},
+    "color=blue,part=bottom":{"model":"losing_my_marbles:block/blue_support_piece_bottom"},
+    "color=blue,part=middle":{"model":"losing_my_marbles:block/blue_support_piece_middle"},
+    "color=blue,part=top":{"model":"losing_my_marbles:block/blue_support_piece_top"},
+
+    "color=light_blue,part=single":{"model":"losing_my_marbles:block/light_blue_support_piece_single"},
+    "color=light_blue,part=bottom":{"model":"losing_my_marbles:block/light_blue_support_piece_bottom"},
+    "color=light_blue,part=middle":{"model":"losing_my_marbles:block/light_blue_support_piece_middle"},
+    "color=light_blue,part=top":{"model":"losing_my_marbles:block/light_blue_support_piece_top"},
+
+    "color=purple,part=single":{"model":"losing_my_marbles:block/purple_support_piece_single"},
+    "color=purple,part=bottom":{"model":"losing_my_marbles:block/purple_support_piece_bottom"},
+    "color=purple,part=middle":{"model":"losing_my_marbles:block/purple_support_piece_middle"},
+    "color=purple,part=top":{"model":"losing_my_marbles:block/purple_support_piece_top"},
+
+    "color=magenta,part=single":{"model":"losing_my_marbles:block/magenta_support_piece_single"},
+    "color=magenta,part=bottom":{"model":"losing_my_marbles:block/magenta_support_piece_bottom"},
+    "color=magenta,part=middle":{"model":"losing_my_marbles:block/magenta_support_piece_middle"},
+    "color=magenta,part=top":{"model":"losing_my_marbles:block/magenta_support_piece_top"},
+
+    "color=pink,part=single":{"model":"losing_my_marbles:block/pink_support_piece_single"},
+    "color=pink,part=bottom":{"model":"losing_my_marbles:block/pink_support_piece_bottom"},
+    "color=pink,part=middle":{"model":"losing_my_marbles:block/pink_support_piece_middle"},
+    "color=pink,part=top":{"model":"losing_my_marbles:block/pink_support_piece_top"}
+  }
+}

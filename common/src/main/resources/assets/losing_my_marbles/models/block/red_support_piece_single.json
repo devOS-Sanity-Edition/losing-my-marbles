@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_support_piece_single",
+  "textures": {
+    "intersection": "losing_my_marbles:block/red_track_pieces"
+  }
+}
