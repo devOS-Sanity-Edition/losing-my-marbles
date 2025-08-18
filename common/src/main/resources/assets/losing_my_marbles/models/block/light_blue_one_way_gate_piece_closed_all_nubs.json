@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_one_way_gate_piece_closed_all_nubs",
+  "textures": {
+    "gate": "losing_my_marbles:block/light_blue_track_pieces"
+  }
+}
