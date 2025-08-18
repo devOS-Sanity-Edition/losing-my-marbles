@@ -19,11 +19,11 @@
               "properties": {
                 "color": "pink"
               }
-            }
+            },
+            "minecraft:dyed_color": 15961002
           }
         }
-      },
-      "minecraft:dyed_color": 15961002
+      }
     },
     "count": 1
   },

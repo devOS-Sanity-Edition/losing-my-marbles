@@ -2,6 +2,7 @@ package one.devos.nautical.losing_my_marbles.framework.platform;
 
 import com.mojang.serialization.MapCodec;
 
+import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.gui.screens.recipebook.GhostSlots;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -26,6 +27,8 @@ public interface PlatformClientHelper {
 	<T extends CustomPacketPayload> void registerPlayPayloadHandler(CustomPacketPayload.Type<T> type, ClientPlayPayloadHandler<T> handler);
 
 	void registerItemModel(ResourceLocation id, MapCodec<? extends ItemModel.Unbaked> type);
+
+	void registerItemTintSource(ResourceLocation id, MapCodec<? extends ItemTintSource> codec);
 
 	void setGhostSlotsResult(GhostSlots ghostSlots, Slot slot, ContextMap contextMap, SlotDisplay slotDisplay);
 

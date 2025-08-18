@@ -5,6 +5,8 @@ import com.mojang.serialization.MapCodec;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.color.item.ItemTintSource;
+import net.minecraft.client.color.item.ItemTintSources;
 import net.minecraft.client.gui.screens.recipebook.GhostSlots;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -41,6 +43,11 @@ public class FabricPlatformClientHelper implements PlatformClientHelper {
 	@Override
 	public void registerItemModel(ResourceLocation id, MapCodec<? extends ItemModel.Unbaked> type) {
 		ItemModels.ID_MAPPER.put(id, type);
+	}
+
+	@Override
+	public void registerItemTintSource(ResourceLocation id, MapCodec<? extends ItemTintSource> codec) {
+		ItemTintSources.ID_MAPPER.put(id, codec);
 	}
 
 	@Override

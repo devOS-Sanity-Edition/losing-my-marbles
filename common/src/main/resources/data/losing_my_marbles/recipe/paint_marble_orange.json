@@ -19,11 +19,11 @@
               "properties": {
                 "color": "orange"
               }
-            }
+            },
+            "minecraft:dyed_color": 16351261
           }
         }
-      },
-      "minecraft:dyed_color": 16351261
+      }
     },
     "count": 1
   },
