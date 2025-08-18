@@ -20,6 +20,7 @@ import net.minecraft.world.level.material.PushReaction;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.marble.maker.MarbleMakerBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.CornerPieceBlock;
+import one.devos.nautical.losing_my_marbles.content.piece.HalfPipePieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.IntersectionPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.StraightPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.TubePieceBlock;
@@ -40,6 +41,7 @@ public class LosingMyMarblesBlocks {
 	public static final CornerPieceBlock CORNER_PIECE = register("corner_piece", CornerPieceBlock::new, pieceProperties().dynamicShape());
 	public static final SlopePieceBlock SLOPE_PIECE = register("slope_piece", SlopePieceBlock::new, SlopePieceBlockItem::new, pieceProperties().pushReaction(PushReaction.BLOCK));
 	public static final TubePieceBlock TUBE_PIECE = register("tube_piece", TubePieceBlock::new, pieceProperties());
+	public static final HalfPipePieceBlock HALF_PIPE_PIECE = register("half_pipe_piece", HalfPipePieceBlock::new, pieceProperties());
 	public static final SplitterPieceBlock SPLITTER_PIECE = register(
 			"splitter_piece", properties -> new SplitterPieceBlock(properties, CORNER_PIECE), pieceProperties().dynamicShape()
 	);
@@ -72,6 +74,7 @@ public class LosingMyMarblesBlocks {
 	public static void init() {
 		CustomPhysicsCollisionRegistry.register(CORNER_PIECE, DefaultCollisionSource.COLLISION_SHAPE, CornerPieceBlock::additionalCollision);
 		CustomPhysicsCollisionRegistry.register(INTERSECTION_PIECE, DefaultCollisionSource.COLLISION_SHAPE, IntersectionPieceBlock::additionalCollision);
+		CustomPhysicsCollisionRegistry.register(HALF_PIPE_PIECE, DefaultCollisionSource.COLLISION_SHAPE, HalfPipePieceBlock::additionalCollision);
 		CustomPhysicsCollisionRegistry.register(SPLITTER_PIECE, DefaultCollisionSource.COLLISION_SHAPE, SPLITTER_PIECE::additionalCollision);
 
 		if (PlatformHelper.INSTANCE.getEnvironment() == Env.CLIENT) {
@@ -81,6 +84,7 @@ public class LosingMyMarblesBlocks {
 					CORNER_PIECE,
 					SLOPE_PIECE,
 					TUBE_PIECE,
+					HALF_PIPE_PIECE,
 					SPLITTER_PIECE
 			);
 		}
