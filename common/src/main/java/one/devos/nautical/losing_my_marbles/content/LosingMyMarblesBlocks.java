@@ -23,6 +23,7 @@ import one.devos.nautical.losing_my_marbles.content.piece.CornerPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.HalfPipePieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.IntersectionPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.StraightPieceBlock;
+import one.devos.nautical.losing_my_marbles.content.piece.SupportPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.TubePieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.logic.DetectorPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.logic.SplitterPieceBlock;
@@ -39,6 +40,7 @@ import one.devos.nautical.losing_my_marbles.framework.platform.PlatformHelper;
 public class LosingMyMarblesBlocks {
 	public static final MarbleMakerBlock MARBLE_MAKER = register("marble_maker", MarbleMakerBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK));
 
+	public static final SupportPieceBlock SUPPORT_PIECE = register("support_piece", SupportPieceBlock::new, pieceProperties());
 	public static final StraightPieceBlock STRAIGHT_PIECE = register("straight_piece", StraightPieceBlock::new, pieceProperties());
 	public static final IntersectionPieceBlock INTERSECTION_PIECE = register("intersection_piece", IntersectionPieceBlock::new, pieceProperties().dynamicShape());
 	public static final CornerPieceBlock CORNER_PIECE = register("corner_piece", CornerPieceBlock::new, pieceProperties().dynamicShape());
@@ -86,6 +88,7 @@ public class LosingMyMarblesBlocks {
 
 		if (PlatformHelper.INSTANCE.getEnvironment() == Env.CLIENT) {
 			PlatformClientHelper.INSTANCE.setBlockRenderLayer(ChunkSectionLayer.TRANSLUCENT,
+					SUPPORT_PIECE,
 					STRAIGHT_PIECE,
 					INTERSECTION_PIECE,
 					CORNER_PIECE,

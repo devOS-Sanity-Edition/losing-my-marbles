@@ -19,6 +19,7 @@ public final class LosingMyMarblesCreativeTabs {
 	public static final CreativeModeTab MAIN = register("main", builder -> builder
 			.icon(() -> MarbleItem.of(StoredMarble.of(MarbleType.DEFAULT)))
 			.displayItems((parameters, output) -> {
+				output.accept(LosingMyMarblesBlocks.SUPPORT_PIECE);
 				output.accept(LosingMyMarblesBlocks.STRAIGHT_PIECE);
 				output.accept(LosingMyMarblesBlocks.CORNER_PIECE);
 				output.accept(LosingMyMarblesBlocks.INTERSECTION_PIECE);

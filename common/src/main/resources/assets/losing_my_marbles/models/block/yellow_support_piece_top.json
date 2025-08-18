@@ -1,6 +1,6 @@
 {
   "parent": "losing_my_marbles:block/template_support_piece_top",
   "textures": {
-    "intersection": "losing_my_marbles:block/yellow_track_pieces"
+    "support": "losing_my_marbles:block/yellow_track_pieces"
   }
 }
