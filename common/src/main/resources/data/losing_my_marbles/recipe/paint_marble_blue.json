@@ -10,16 +10,90 @@
           "instance": {
           "type": "losing_my_marbles:paint",
           "components": {
-            "losing_my_marbles:contact_effect/block": {
-              "type": "losing_my_marbles:set_properties",
-              "predicate": {
-                "type": "matching_block_tag",
-                "tag": "losing_my_marbles:track_pieces"
+            "losing_my_marbles:contact_effect/block": [
+              {
+                "type": "losing_my_marbles:set_properties",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:track_pieces"
+                },
+                "properties": {
+                  "color": "blue"
+                }
               },
-              "properties": {
-                "color": "blue"
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/wool"
+                },
+                "replacement": "minecraft:blue_wool"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/wool_carpets"
+                },
+                "replacement": "minecraft:blue_carpet"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/terracotta"
+                },
+                "replacement": "minecraft:blue_terracotta"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/glazed_terracotta"
+                },
+                "replacement": "minecraft:blue_glazed_terracotta"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/concrete"
+                },
+                "replacement": "minecraft:blue_concrete"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/concrete_powders"
+                },
+                "replacement": "minecraft:blue_concrete_powder"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/stained_glass"
+                },
+                "replacement": "minecraft:blue_stained_glass"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/stained_glass_panes"
+                },
+                "replacement": "minecraft:blue_stained_glass_pane"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/candles"
+                },
+                "replacement": "minecraft:blue_candle"
               }
-            },
+            ],
             "minecraft:dyed_color": 3949738
           }
         }

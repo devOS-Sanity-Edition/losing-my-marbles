@@ -166,7 +166,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 		}
 
 		this.marble().getOptional(LosingMyMarblesDataComponents.BLOCK_CONTACT_EFFECT).ifPresent(effect -> {
-			for (BlockPos pos : BlockPos.betweenClosed(this.getBoundingBox())) {
+			for (BlockPos pos : BlockPos.betweenClosed(this.getBoundingBox().inflate(1e-4))) {
 				BlockState state = this.level().getBlockState(pos);
 				effect.apply(this, state, pos);
 			}

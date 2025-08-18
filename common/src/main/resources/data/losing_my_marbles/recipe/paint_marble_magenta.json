@@ -10,16 +10,90 @@
           "instance": {
           "type": "losing_my_marbles:paint",
           "components": {
-            "losing_my_marbles:contact_effect/block": {
-              "type": "losing_my_marbles:set_properties",
-              "predicate": {
-                "type": "matching_block_tag",
-                "tag": "losing_my_marbles:track_pieces"
+            "losing_my_marbles:contact_effect/block": [
+              {
+                "type": "losing_my_marbles:set_properties",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:track_pieces"
+                },
+                "properties": {
+                  "color": "magenta"
+                }
               },
-              "properties": {
-                "color": "magenta"
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/wool"
+                },
+                "replacement": "minecraft:magenta_wool"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/wool_carpets"
+                },
+                "replacement": "minecraft:magenta_carpet"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/terracotta"
+                },
+                "replacement": "minecraft:magenta_terracotta"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/glazed_terracotta"
+                },
+                "replacement": "minecraft:magenta_glazed_terracotta"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/concrete"
+                },
+                "replacement": "minecraft:magenta_concrete"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/concrete_powders"
+                },
+                "replacement": "minecraft:magenta_concrete_powder"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/stained_glass"
+                },
+                "replacement": "minecraft:magenta_stained_glass"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/stained_glass_panes"
+                },
+                "replacement": "minecraft:magenta_stained_glass_pane"
+              },
+              {
+                "type": "losing_my_marbles:swap",
+                "predicate": {
+                  "type": "matching_block_tag",
+                  "tag": "losing_my_marbles:paintable/candles"
+                },
+                "replacement": "minecraft:magenta_candle"
               }
-            },
+            ],
             "minecraft:dyed_color": 13061821
           }
         }
