@@ -32,7 +32,7 @@ public class FaceBakeryMixin {
 		if (blockElementRotation != null) {
 			Vector3f angles = ((BlockElementRotationExt) (Object) blockElementRotation).lmm$angles();
 			if (angles != null) {
-				Matrix4f rotation = new Matrix4f().rotateXYZ(angles.mul((float) (Math.PI / 180F), new Vector3f()));
+				Matrix4f rotation = new Matrix4f().rotateZYX(angles.mul((float) (Math.PI / 180F), new Vector3f()));
 				rotateVertexBy(vector3f, blockElementRotation.origin(), rotation, NO_RESCALE);
 			} else {
 				original.call(vector3f, blockElementRotation);
