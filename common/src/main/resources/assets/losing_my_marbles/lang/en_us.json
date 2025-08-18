@@ -29,6 +29,7 @@
   "block.losing_my_marbles.slope_piece": "Slope Marble Track Piece",
   "block.losing_my_marbles.half_pipe_piece": "Half-Pipe Marble Track Piece",
   "block.losing_my_marbles.tube_piece": "Tube Marble Track Piece",
+  "block.losing_my_marbles.splitter_piece": "Splitter Marble Track Piece",
 
   "item.losing_my_marbles.marble": "Marble",
   "entity.losing_my_marbles.marble": "Marble",
