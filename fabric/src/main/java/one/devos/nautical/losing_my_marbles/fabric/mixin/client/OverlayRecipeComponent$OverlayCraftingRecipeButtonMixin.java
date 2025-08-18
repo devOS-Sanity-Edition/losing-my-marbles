@@ -46,9 +46,9 @@ public abstract class OverlayRecipeComponent$OverlayCraftingRecipeButtonMixin ex
 
 	@Inject(method = "calculateIngredientsPositions", at = @At("HEAD"), cancellable = true)
 	private static void lmm$modifyIngredientPositionsForMarbleMaker(RecipeDisplay recipeDisplay, ContextMap contextMap, CallbackInfoReturnable<List<Pos>> cir) {
-		List<Pos> list = new ArrayList<>();
-
 		if (recipeDisplay instanceof MarbleRecipeDisplay marbleRecipeDisplay) {
+			List<Pos> list = new ArrayList<>();
+
 			List<SlotDisplay> slotDisplays = List.of(marbleRecipeDisplay.material(), marbleRecipeDisplay.addition());
 
 			int i = 0;
@@ -60,9 +60,9 @@ public abstract class OverlayRecipeComponent$OverlayCraftingRecipeButtonMixin ex
 				}
 				i++;
 			}
-		}
 
-		cir.setReturnValue(list);
+			cir.setReturnValue(list);
+		}
 	}
 
 	@Inject(method = "getSprite", at = @At("HEAD"), cancellable = true)
