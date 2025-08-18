@@ -12,6 +12,7 @@
   },
   "license": "MIT",
   "icon": "assets/losing_my_marbles/icon.png",
+  "accessWidener": "losing_my_marbles.accesswidener",
   "environment": "*",
   "entrypoints": {
     "main": [

@@ -34,23 +34,27 @@ fun DependencyHandler.release(native: Provider<MinimalExternalModuleDependency>)
     }
 }
 
-loom.runs {
-    named("client") {
-        configName = "Fabric Client"
-    }
-    named("server") {
-        configName = "Fabric Server"
-    }
+loom {
+    accessWidenerPath.set(file("src/main/resources/losing_my_marbles.accesswidener"))
 
-    configureEach {
-        // this defaults to false for subprojects
-        isIdeConfigGenerated = true
-        // no need
-        appendProjectPathToConfigName = false
-        // enable assertions in Jolt
-        vmArg("-ea")
+    runs {
+        named("client") {
+            configName = "Fabric Client"
+        }
+        named("server") {
+            configName = "Fabric Server"
+        }
 
-        property("mixin.debug.export", "true")
+        configureEach {
+            // this defaults to false for subprojects
+            isIdeConfigGenerated = true
+            // no need
+            appendProjectPathToConfigName = false
+            // enable assertions in Jolt
+            vmArg("-ea")
+
+            property("mixin.debug.export", "true")
+        }
     }
 }
 

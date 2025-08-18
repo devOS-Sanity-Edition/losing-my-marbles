@@ -15,6 +15,7 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesMarbleShapeTypes;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesMenus;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesPayloads;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeBookCategories;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeDisplays;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipePropertySets;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeSerializers;
@@ -34,6 +35,7 @@ public final class LosingMyMarbles {
 	public static void init() {
 		JoltIntegration.setup();
 		LosingMyMarblesRegistries.init();
+		LosingMyMarblesRecipeBookCategories.init();
 		LosingMyMarblesItems.init();
 		LosingMyMarblesBlocks.init();
 		LosingMyMarblesEntities.init();

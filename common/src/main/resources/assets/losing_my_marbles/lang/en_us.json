@@ -22,6 +22,7 @@
 
   "block.losing_my_marbles.marble_maker": "Marble Maker",
   "container.losing_my_marbles.marble_maker": "Marble Maker",
+  "gui.losing_my_marbles.recipebook.toggleRecipes.marble_maker": "Showing Marble Makerable",
 
   "block.losing_my_marbles.straight_piece": "Straight Marble Track Piece",
   "block.losing_my_marbles.corner_piece": "Corner Marble Track Piece",

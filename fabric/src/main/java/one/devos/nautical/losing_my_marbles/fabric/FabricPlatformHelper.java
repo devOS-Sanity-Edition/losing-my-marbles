@@ -3,6 +3,17 @@ package one.devos.nautical.losing_my_marbles.fabric;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import com.mojang.serialization.MapCodec;
+
+import net.minecraft.client.gui.screens.recipebook.GhostSlots;
+import net.minecraft.stats.RecipeBookSettings.TypeSettings;
+
+import net.minecraft.util.context.ContextMap;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
+import one.devos.nautical.losing_my_marbles.fabric.mixin.accessors.GhostSlotsAccessor;
+import one.devos.nautical.losing_my_marbles.fabric.mixin.accessors.TypeSettingsAccessor;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;
@@ -91,5 +102,21 @@ public class FabricPlatformHelper implements PlatformHelper {
 	@Override
 	public CreativeModeTab.Builder newCreativeTab() {
 		return FabricItemGroup.builder();
+	}
+
+	// Accessors/Invokers
+	@Override
+	public MapCodec<TypeSettings> createTypeSettingsCodec(String open, String filtering) {
+		return TypeSettingsAccessor.lmm$codec(open, filtering);
+	}
+
+	@Override
+	public void setGhostSlotsResult(GhostSlots ghostSlots, Slot slot, ContextMap contextMap, SlotDisplay slotDisplay) {
+		((GhostSlotsAccessor) ghostSlots).lmm$setResult(slot, contextMap, slotDisplay);
+	}
+
+	@Override
+	public void setGhostSlotsInput(GhostSlots ghostSlots, Slot slot, ContextMap contextMap, SlotDisplay slotDisplay) {
+		((GhostSlotsAccessor) ghostSlots).lmm$setInput(slot, contextMap, slotDisplay);
 	}
 }

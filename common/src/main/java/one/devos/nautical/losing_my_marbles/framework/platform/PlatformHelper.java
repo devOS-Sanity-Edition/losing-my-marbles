@@ -3,6 +3,15 @@ package one.devos.nautical.losing_my_marbles.framework.platform;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import com.mojang.serialization.MapCodec;
+
+import net.minecraft.client.gui.screens.recipebook.GhostSlots;
+import net.minecraft.stats.RecipeBookSettings.TypeSettings;
+
+import net.minecraft.util.context.ContextMap;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.crafting.display.SlotDisplay;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;
@@ -52,4 +61,11 @@ public interface PlatformHelper {
 	MenuType<MarbleMakerMenu> createMarbleMakerMenuType();
 
 	CreativeModeTab.Builder newCreativeTab();
+
+	// Accessors/Invokers
+	MapCodec<TypeSettings> createTypeSettingsCodec(String open, String filtering);
+
+	void setGhostSlotsResult(GhostSlots ghostSlots, Slot slot, ContextMap contextMap, SlotDisplay slotDisplay);
+
+	void setGhostSlotsInput(GhostSlots ghostSlots, Slot slot, ContextMap contextMap, SlotDisplay slotDisplay);
 }

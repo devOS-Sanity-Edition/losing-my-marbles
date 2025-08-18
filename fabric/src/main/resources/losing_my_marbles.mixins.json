@@ -5,14 +5,22 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "LevelMixin",
+    "RecipeBookSettingsMixin",
+    "RecipeBookTypeMixin",
     "RecipeManagerMixin",
     "ServerLevelMixin",
+    "accessors.OverlayRecipeComponent$OverlayRecipeButtonAccessor",
+    "accessors.TypeSettingsAccessor",
     "platform.MarbleAssetManagerMixin"
   ],
   "client": [
+    "accessors.GhostSlotsAccessor",
     "client.BlockElement_DeserializerMixin",
     "client.BlockElementRotationMixin",
-    "client.FaceBakeryMixin"
+    "client.FaceBakeryMixin",
+    "client.OverlayRecipeComponent$OverlayCraftingRecipeButtonMixin",
+    "client.OverlayRecipeComponent$OverlayRecipeButtonMixin",
+    "client.SearchRecipeBookCategoryMixin"
   ],
   "injectors": {
     "defaultRequire": 1

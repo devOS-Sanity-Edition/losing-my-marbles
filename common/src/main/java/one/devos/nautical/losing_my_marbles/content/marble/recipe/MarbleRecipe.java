@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlocks;
 
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeBookCategories;
+
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;
@@ -92,8 +94,7 @@ public final class MarbleRecipe implements Recipe<MarbleRecipeInput> {
 
 	@Override
 	public RecipeBookCategory recipeBookCategory() {
-		// TODO thunder
-		return RecipeBookCategories.SMITHING;
+		return LosingMyMarblesRecipeBookCategories.MARBLE_MAKER;
 	}
 
 	public enum Serializer implements RecipeSerializer<MarbleRecipe> {
