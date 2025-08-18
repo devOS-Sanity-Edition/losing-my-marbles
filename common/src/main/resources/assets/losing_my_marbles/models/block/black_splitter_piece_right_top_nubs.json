@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_splitter_piece_right_top_nubs",
+  "textures": {
+    "splitter": "losing_my_marbles:block/black_track_pieces"
+  }
+}

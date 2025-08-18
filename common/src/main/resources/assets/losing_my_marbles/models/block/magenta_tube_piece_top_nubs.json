@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_tube_piece_top_nubs",
+  "textures": {
+    "tube": "losing_my_marbles:block/magenta_track_pieces"
+  }
+}

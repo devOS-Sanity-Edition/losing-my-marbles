@@ -1,14 +1,14 @@
 {
   "itemGroup.losing_my_marbles.main": "Losing My Marbles",
 
-  "entity.losing_my_marbles.marble": "Marble",
-
   "advancement.losing_my_marbles.marble_maker.title": "Losing My Marbles",
   "advancement.losing_my_marbles.marble_maker.description": "Craft a Marble Maker.  Now you're makin' marbles!",
   "advancement.losing_my_marbles.peak_friction.title": "Peak Friction",
   "advancement.losing_my_marbles.peak_friction.description": "Craft the Spherical Cow Marble.  Physicists rejoice.",
   "advancement.losing_my_marbles.fish.title": "You Know What That Means!",
   "advancement.losing_my_marbles.fish.description": "Craft the Pufferfish Marble.  Carrot feeding not included.",
+  "advancement.losing_my_marbles.bees.title": "NOT THE BEES!",
+  "advancement.losing_my_marbles.bees.description": "Craft the Bee Nest Marble.  I would be extremely careful with that one, if I were you.",
   "advancement.losing_my_marbles.egg.title": "All in One Basket",
   "advancement.losing_my_marbles.egg.description": "Craft every type of Egg Marble.  The Man behind the tree would be proud.",
   "advancement.losing_my_marbles.enhance.title": "ENHANCE!",
@@ -28,8 +28,12 @@
   "block.losing_my_marbles.corner_piece": "Corner Marble Track Piece",
   "block.losing_my_marbles.intersection_piece": "Intersection Marble Track Piece",
   "block.losing_my_marbles.slope_piece": "Slope Marble Track Piece",
+  "block.losing_my_marbles.half_pipe_piece": "Half-Pipe Marble Track Piece",
+  "block.losing_my_marbles.tube_piece": "Tube Marble Track Piece",
+  "block.losing_my_marbles.splitter_piece": "Splitter Marble Track Piece",
 
   "item.losing_my_marbles.marble": "Marble",
+  "entity.losing_my_marbles.marble": "Marble",
 
   "item.losing_my_marbles.stored_marble.tooltip": "Type: ",
   "item.losing_my_marbles.stored_marble.invalid": "Invalid: %s",
@@ -40,6 +44,7 @@
   "marble_type.losing_my_marbles.tnt_marble": "TNT Marble",
   "marble_type.losing_my_marbles.pointed_dripstone_marble": "Pointed Dripstone \"Marble\"",
   "marble_type.losing_my_marbles.melon_marble": "Melon Marble",
+  "marble_type.losing_my_marbles.bee_nest_marble": "Bee Nest Marble",
   "marble_type.losing_my_marbles.egg_marble": "Egg Marble",
   "marble_type.losing_my_marbles.blue_egg_marble": "Blue Egg Marble",
   "marble_type.losing_my_marbles.brown_egg_marble": "Brown Egg Marble",

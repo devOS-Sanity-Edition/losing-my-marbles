@@ -1,0 +1,61 @@
+{
+  "name": {
+    "translate": "marble_type.losing_my_marbles.bee_nest_marble",
+    "color": "#c88644"
+  },
+  "item_model": "losing_my_marbles:bee_nest_marble",
+  "components": {
+    "losing_my_marbles:friction": 0.2,
+    "losing_my_marbles:restitution": 0.1,
+    "losing_my_marbles:bounce_effect": {
+      "type": "losing_my_marbles:compound",
+      "effects": [
+        {
+          "type": "losing_my_marbles:chanced",
+          "chance": 0.1,
+          "effect": {
+            "type": "losing_my_marbles:break",
+            "threshold": 0.15,
+            "when_broken": {
+              "type": "losing_my_marbles:compound",
+              "effects": [
+    	          {
+     	          "type": "losing_my_marbles:play_sound",
+   	            "sound": "minecraft:block.beehive.exit"
+  	            },
+                {
+                  "type": "losing_my_marbles:spawn_entity",
+                  "data": {
+                    "id": "bee"
+                  }
+                },
+                {
+                  "type": "losing_my_marbles:spawn_entity",
+                  "data": {
+                    "id": "bee"
+                  }
+                },
+                {
+                  "type": "losing_my_marbles:spawn_entity",
+                  "data": {
+                    "id": "bee"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "losing_my_marbles:play_sound",
+          "sound": "minecraft:block.beehive.work"
+        }
+      ]
+    },
+    "losing_my_marbles:shape": {
+      "type": "losing_my_marbles:sphere",
+      "radius": 0.1875
+    },
+    "losing_my_marbles:damage_immune": "#losing_my_marbles:generic_marble_immune",
+    "losing_my_marbles:asset": "losing_my_marbles:bee_nest"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_half_pipe_piece_down_no_nubs",
+  "textures": {
+    "half_pipe": "losing_my_marbles:block/brown_track_pieces"
+  }
+}

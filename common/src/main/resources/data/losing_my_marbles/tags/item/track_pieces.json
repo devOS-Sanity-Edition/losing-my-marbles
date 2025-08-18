@@ -3,6 +3,9 @@
     "losing_my_marbles:straight_piece",
     "losing_my_marbles:corner_piece",
     "losing_my_marbles:intersection_piece",
-    "losing_my_marbles:slope_piece"
+    "losing_my_marbles:slope_piece",
+    "losing_my_marbles:half_pipe_piece",
+    "losing_my_marbles:tube_piece",
+    "losing_my_marbles:splitter_piece"
   ]
 }

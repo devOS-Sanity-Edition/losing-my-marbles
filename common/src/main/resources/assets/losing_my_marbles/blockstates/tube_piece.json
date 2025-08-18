@@ -1,0 +1,83 @@
+{
+  "variants": {
+    "color=white,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/white_tube_piece_all_nubs"},
+    "color=white,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/white_tube_piece_bottom_nubs"},
+    "color=white,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/white_tube_piece_no_nubs"},
+    "color=white,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/white_tube_piece_top_nubs"},
+
+    "color=light_gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_tube_piece_all_nubs"},
+    "color=light_gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_tube_piece_bottom_nubs"},
+    "color=light_gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_tube_piece_no_nubs"},
+    "color=light_gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_tube_piece_top_nubs"},
+
+    "color=gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/gray_tube_piece_all_nubs"},
+    "color=gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/gray_tube_piece_bottom_nubs"},
+    "color=gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/gray_tube_piece_no_nubs"},
+    "color=gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/gray_tube_piece_top_nubs"},
+
+    "color=black,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/black_tube_piece_all_nubs"},
+    "color=black,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/black_tube_piece_bottom_nubs"},
+    "color=black,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/black_tube_piece_no_nubs"},
+    "color=black,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/black_tube_piece_top_nubs"},
+
+    "color=brown,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/brown_tube_piece_all_nubs"},
+    "color=brown,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/brown_tube_piece_bottom_nubs"},
+    "color=brown,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/brown_tube_piece_no_nubs"},
+    "color=brown,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/brown_tube_piece_top_nubs"},
+
+    "color=red,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/red_tube_piece_all_nubs"},
+    "color=red,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/red_tube_piece_bottom_nubs"},
+    "color=red,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/red_tube_piece_no_nubs"},
+    "color=red,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/red_tube_piece_top_nubs"},
+
+    "color=orange,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/orange_tube_piece_all_nubs"},
+    "color=orange,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/orange_tube_piece_bottom_nubs"},
+    "color=orange,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/orange_tube_piece_no_nubs"},
+    "color=orange,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/orange_tube_piece_top_nubs"},
+
+    "color=yellow,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_tube_piece_all_nubs"},
+    "color=yellow,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_tube_piece_bottom_nubs"},
+    "color=yellow,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_tube_piece_no_nubs"},
+    "color=yellow,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_tube_piece_top_nubs"},
+
+    "color=lime,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/lime_tube_piece_all_nubs"},
+    "color=lime,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/lime_tube_piece_bottom_nubs"},
+    "color=lime,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/lime_tube_piece_no_nubs"},
+    "color=lime,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/lime_tube_piece_top_nubs"},
+
+    "color=green,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/green_tube_piece_all_nubs"},
+    "color=green,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/green_tube_piece_bottom_nubs"},
+    "color=green,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/green_tube_piece_no_nubs"},
+    "color=green,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/green_tube_piece_top_nubs"},
+
+    "color=cyan,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_tube_piece_all_nubs"},
+    "color=cyan,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_tube_piece_bottom_nubs"},
+    "color=cyan,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_tube_piece_no_nubs"},
+    "color=cyan,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_tube_piece_top_nubs"},
+
+    "color=blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/blue_tube_piece_all_nubs"},
+    "color=blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/blue_tube_piece_bottom_nubs"},
+    "color=blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/blue_tube_piece_no_nubs"},
+    "color=blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/blue_tube_piece_top_nubs"},
+
+    "color=light_blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_tube_piece_all_nubs"},
+    "color=light_blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_tube_piece_bottom_nubs"},
+    "color=light_blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_tube_piece_no_nubs"},
+    "color=light_blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_tube_piece_top_nubs"},
+
+    "color=purple,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/purple_tube_piece_all_nubs"},
+    "color=purple,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/purple_tube_piece_bottom_nubs"},
+    "color=purple,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/purple_tube_piece_no_nubs"},
+    "color=purple,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/purple_tube_piece_top_nubs"},
+
+    "color=magenta,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_tube_piece_all_nubs"},
+    "color=magenta,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_tube_piece_bottom_nubs"},
+    "color=magenta,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_tube_piece_no_nubs"},
+    "color=magenta,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_tube_piece_top_nubs"},
+
+    "color=pink,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/pink_tube_piece_all_nubs"},
+    "color=pink,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/pink_tube_piece_bottom_nubs"},
+    "color=pink,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/pink_tube_piece_no_nubs"},
+    "color=pink,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/pink_tube_piece_top_nubs"}
+  }
+}

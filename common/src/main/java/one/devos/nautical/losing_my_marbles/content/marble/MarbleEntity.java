@@ -54,7 +54,7 @@ import one.devos.nautical.losing_my_marbles.framework.phys.core.ObjectLayers;
 public final class MarbleEntity extends Entity implements PhysicsEntity, OwnableEntity {
 	public static final int HEIGHT_LIMIT_BUFFER = 64;
 	public static final float MAX_SCALE = 2;
-	public static final float MIN_SCALE = 1 / 4f;
+	public static final float MIN_SCALE = 1 / 2f;
 
 	private final InterpolationHandler interpolator;
 
