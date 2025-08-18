@@ -20,6 +20,7 @@ public final class DetectorPieceBlock extends StraightPieceBlock implements Marb
 
 	public DetectorPieceBlock(Properties properties) {
 		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(ACTIVE, false));
 	}
 
 	@Override
