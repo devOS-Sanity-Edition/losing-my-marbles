@@ -8,7 +8,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
-import one.devos.nautical.losing_my_marbles.content.marble.recipeBook.MarbleMakerRecipeBookComponent;
+import one.devos.nautical.losing_my_marbles.content.marble.recipe.book.MarbleMakerRecipeBookComponent;
 
 public final class MarbleMakerScreen extends AbstractRecipeBookScreen<MarbleMakerMenu> {
 	private static final ResourceLocation ERROR_SPRITE = LosingMyMarbles.id("marble_maker/error");

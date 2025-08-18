@@ -33,7 +33,7 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipePropert
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeTypes;
 import one.devos.nautical.losing_my_marbles.content.marble.recipe.MarbleRecipe;
 import one.devos.nautical.losing_my_marbles.content.marble.recipe.MarbleRecipeInput;
-import one.devos.nautical.losing_my_marbles.content.marble.recipeBook.MarbleMakerRecipeBookHelper;
+import one.devos.nautical.losing_my_marbles.content.marble.recipe.book.MarbleMakerRecipeBookHelper;
 
 public final class MarbleMakerMenu extends RecipeBookMenu {
 	private final Level level;
