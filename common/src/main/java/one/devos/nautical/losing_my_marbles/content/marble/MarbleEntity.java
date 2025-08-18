@@ -316,12 +316,9 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 			return InteractionResult.SUCCESS;
 		}
 
-		ItemStack held = player.getItemInHand(hand);
 		ItemStack asItem = this.getPickResult();
-		if (held.isEmpty()) {
-			player.setItemInHand(hand, asItem);
-		} else {
-			player.addItem(asItem);
+		if (!player.addItem(asItem)) {
+			player.drop(asItem, false);
 		}
 
 		this.discard();
