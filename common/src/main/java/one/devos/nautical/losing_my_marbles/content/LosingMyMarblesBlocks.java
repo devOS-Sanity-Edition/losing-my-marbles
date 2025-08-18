@@ -20,6 +20,7 @@ import one.devos.nautical.losing_my_marbles.content.marble.maker.MarbleMakerBloc
 import one.devos.nautical.losing_my_marbles.content.piece.CornerPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.IntersectionPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.StraightPieceBlock;
+import one.devos.nautical.losing_my_marbles.content.piece.logic.SplitterPieceBlock;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.CustomPhysicsCollisionRegistry;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.DefaultCollisionSource;
 import one.devos.nautical.losing_my_marbles.framework.platform.Env;
@@ -32,6 +33,9 @@ public class LosingMyMarblesBlocks {
 	public static final StraightPieceBlock STRAIGHT_PIECE = register("straight_piece", StraightPieceBlock::new, pieceProperties());
 	public static final IntersectionPieceBlock INTERSECTION_PIECE = register("intersection_piece", IntersectionPieceBlock::new, pieceProperties().dynamicShape());
 	public static final CornerPieceBlock CORNER_PIECE = register("corner_piece", CornerPieceBlock::new, pieceProperties().dynamicShape());
+	public static final SplitterPieceBlock SPLITTER_PIECE = register(
+			"splitter_piece", properties -> new SplitterPieceBlock(properties, CORNER_PIECE), pieceProperties().dynamicShape()
+	);
 
 	private static BlockBehaviour.Properties pieceProperties() {
 		return BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
@@ -52,12 +56,14 @@ public class LosingMyMarblesBlocks {
 	public static void init() {
 		CustomPhysicsCollisionRegistry.register(CORNER_PIECE, DefaultCollisionSource.COLLISION_SHAPE, CornerPieceBlock::additionalCollision);
 		CustomPhysicsCollisionRegistry.register(INTERSECTION_PIECE, DefaultCollisionSource.COLLISION_SHAPE, IntersectionPieceBlock::additionalCollision);
+		CustomPhysicsCollisionRegistry.register(SPLITTER_PIECE, DefaultCollisionSource.COLLISION_SHAPE, SPLITTER_PIECE::additionalCollision);
 
 		if (PlatformHelper.INSTANCE.getEnvironment() == Env.CLIENT) {
 			PlatformClientHelper.INSTANCE.setBlockRenderLayer(ChunkSectionLayer.TRANSLUCENT,
 					STRAIGHT_PIECE,
 					INTERSECTION_PIECE,
-					CORNER_PIECE
+					CORNER_PIECE,
+					SPLITTER_PIECE
 			);
 		}
 	}

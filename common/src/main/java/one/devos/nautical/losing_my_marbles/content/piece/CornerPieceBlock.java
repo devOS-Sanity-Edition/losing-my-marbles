@@ -68,12 +68,6 @@ public class CornerPieceBlock extends PieceBlock {
 	}
 
 	@Override
-	protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		// super method loses the context
-		return this.getShape(state, level, pos, context);
-	}
-
-	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		return super.getStateForPlacement(context).setValue(FACING, Facing.fromDirections(context.getNearestLookingDirections()));
 	}
@@ -136,7 +130,7 @@ public class CornerPieceBlock extends PieceBlock {
 			this.directions = Sets.immutableEnumSet(Arrays.asList(directions));
 		}
 
-		public static Facing fromDirections(Direction[] directions) {
+		public static Facing fromDirections(Direction... directions) {
 			Direction.AxisDirection zDir = null;
 			Direction.AxisDirection xDir = null;
 

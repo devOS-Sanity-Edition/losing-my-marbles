@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlockTags;
@@ -60,6 +61,12 @@ public abstract class PieceBlock extends TransparentBlock {
 	@Override
 	protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
 		return Shapes.block();
+	}
+
+	@Override
+	protected VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		// super method loses the context
+		return this.getShape(state, level, pos, context);
 	}
 
 	@Override

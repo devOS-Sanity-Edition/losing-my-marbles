@@ -46,6 +46,7 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItemTags;
 import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
 import one.devos.nautical.losing_my_marbles.content.marble.data.shape.MarbleShape;
 import one.devos.nautical.losing_my_marbles.content.marble.data.shape.SphereMarbleShape;
+import one.devos.nautical.losing_my_marbles.framework.block.MarbleListeningBlock;
 import one.devos.nautical.losing_my_marbles.framework.phys.BodyAccess;
 import one.devos.nautical.losing_my_marbles.framework.phys.PhysicsEntity;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
@@ -129,7 +130,8 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 			this.nextTickPos = null;
 		}
 
-		double distanceTraveled = this.oldPosition().distanceTo(this.position());
+		Vec3 oldPos = this.oldPosition();
+		double distanceTraveled = oldPos.distanceTo(this.position());
 		this.distanceTraveled += distanceTraveled;
 
 		if (this.body != null) {
@@ -146,10 +148,18 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 			});
 		}
 
-		if (!this.level().isClientSide()) {
+		if (this.level() instanceof ServerLevel level) {
 			this.applyEffectsFromBlocks();
 
-			if (this.getY() > this.level().getMaxY() + HEIGHT_LIMIT_BUFFER) {
+			BlockPos blockPos = this.blockPosition();
+			if (!BlockPos.containing(oldPos).equals(blockPos)) {
+				BlockState state = this.getInBlockState();
+				if (state.getBlock() instanceof MarbleListeningBlock listening) {
+					listening.marbleEntered(level, state, blockPos, this);
+				}
+			}
+
+			if (this.getY() > level.getMaxY() + HEIGHT_LIMIT_BUFFER) {
 				this.discard();
 				return;
 			}
