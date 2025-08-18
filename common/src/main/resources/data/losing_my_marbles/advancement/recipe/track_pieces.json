@@ -23,7 +23,8 @@
       "losing_my_marbles:splitter_piece",
       "losing_my_marbles:powered_gate_piece",
       "losing_my_marbles:one_way_gate_piece",
-      "losing_my_marbles:support_piece"
+      "losing_my_marbles:support_piece",
+      "losing_my_marbles:detector_piece"
     ]
   }
 }

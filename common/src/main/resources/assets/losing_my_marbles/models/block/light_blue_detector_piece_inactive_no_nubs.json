@@ -1,0 +1,6 @@
+{
+  "parent": "losing_my_marbles:block/template_detector_piece_inactive_no_nubs",
+  "textures": {
+    "detector": "losing_my_marbles:block/light_blue_track_pieces"
+  }
+}

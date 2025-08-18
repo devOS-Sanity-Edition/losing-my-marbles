@@ -33,6 +33,7 @@
   "block.losing_my_marbles.splitter_piece": "Splitter Marble Track Piece",
   "block.losing_my_marbles.powered_gate_piece": "Powered Gate Marble Track Piece",
   "block.losing_my_marbles.one_way_gate_piece": "One-Way Gate Marble Track Piece",
+  "block.losing_my_marbles.detector_piece": "Detector Marble Track Piece",
   "block.losing_my_marbles.support_piece": "Support Marble Track Piece",
 
   "item.losing_my_marbles.marble": "Marble",
