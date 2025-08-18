@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "ingredient": "minecraft:glass",
   "result": {
-    "count": 16,
+    "count": 8,
     "id": "losing_my_marbles:slope_piece"
   }
 }
