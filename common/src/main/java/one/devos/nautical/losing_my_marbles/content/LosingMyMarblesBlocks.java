@@ -74,6 +74,7 @@ public class LosingMyMarblesBlocks {
 	public static void init() {
 		CustomPhysicsCollisionRegistry.register(CORNER_PIECE, DefaultCollisionSource.COLLISION_SHAPE, CornerPieceBlock::additionalCollision);
 		CustomPhysicsCollisionRegistry.register(INTERSECTION_PIECE, DefaultCollisionSource.COLLISION_SHAPE, IntersectionPieceBlock::additionalCollision);
+		CustomPhysicsCollisionRegistry.register(SLOPE_PIECE, DefaultCollisionSource.COLLISION_SHAPE, SlopePieceBlock::additionalCollision);
 		CustomPhysicsCollisionRegistry.register(HALF_PIPE_PIECE, DefaultCollisionSource.COLLISION_SHAPE, HalfPipePieceBlock::additionalCollision);
 		CustomPhysicsCollisionRegistry.register(SPLITTER_PIECE, DefaultCollisionSource.COLLISION_SHAPE, SPLITTER_PIECE::additionalCollision);
 
