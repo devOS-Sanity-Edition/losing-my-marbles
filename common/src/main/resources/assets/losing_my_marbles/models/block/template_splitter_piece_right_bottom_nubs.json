@@ -3,8 +3,8 @@
 	"credit": "Made by Cart3r using Blockbench.",
 	"textures": {
 		"1": "losing_my_marbles:block/splitter_mechanics",
-		"particle": "#intersection",
-		"splitter": "#intersection"
+		"particle": "#splitter",
+		"splitter": "#splitter"
 	},
 	"elements": [
 		{
