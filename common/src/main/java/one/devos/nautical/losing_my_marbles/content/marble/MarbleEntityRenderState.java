@@ -11,6 +11,8 @@ public final class MarbleEntityRenderState extends EntityRenderState {
 	public double distanceTraveled;
 	public float scale;
 	public Vec3 deltaMovement;
+
+	public int color;
 	@Nullable
 	public ResourceKey<MarbleAsset> marbleAsset;
 }

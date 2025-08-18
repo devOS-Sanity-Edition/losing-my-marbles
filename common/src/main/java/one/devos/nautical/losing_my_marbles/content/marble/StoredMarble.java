@@ -12,6 +12,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -21,6 +22,7 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.EitherHolder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.TooltipProvider;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRegistries;
 import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
@@ -43,7 +45,13 @@ public sealed interface StoredMarble extends TooltipProvider {
 	@Override
 	default void addToTooltip(Item.TooltipContext context, Consumer<Component> output, TooltipFlag flag, DataComponentGetter components) {
 		output.accept(TOOLTIP_HEADER);
-		output.accept(CommonComponents.space().append(this.nameForTooltip(context.registries())));
+
+		Component name = this.nameForTooltip(context.registries());
+		DyedItemColor dyed = components.get(DataComponents.DYED_COLOR);
+		if (dyed != null) {
+			name = name.copy().withColor(dyed.rgb());
+		}
+		output.accept(CommonComponents.space().append(name));
 	}
 
 	static StoredMarble of(MarbleInstance marble) {

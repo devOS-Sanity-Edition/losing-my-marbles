@@ -22,9 +22,12 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.server.IntegratedServer;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
@@ -48,10 +51,15 @@ public final class MarbleEntityRenderer extends EntityRenderer<MarbleEntity, Mar
 	@Override
 	public void extractRenderState(MarbleEntity marble, MarbleEntityRenderState state, float partialTicks) {
 		super.extractRenderState(marble, state, partialTicks);
+
 		state.distanceTraveled = marble.distanceTraveled();
 		state.scale = marble.marble().getOrDefault(LosingMyMarblesDataComponents.SCALE, 1f);
 		state.deltaMovement = marble.getDeltaMovement();
+
+		DyedItemColor dyed = marble.marble().get(DataComponents.DYED_COLOR);
+		state.color = dyed != null ? ARGB.opaque(dyed.rgb()) : -1;
 		state.marbleAsset = marble.marble().get(LosingMyMarblesDataComponents.ASSET);
+
 
 		state.serverHitboxesRenderState = getServerHitboxes(marble);
 	}
@@ -60,6 +68,7 @@ public final class MarbleEntityRenderer extends EntityRenderer<MarbleEntity, Mar
 	public void render(MarbleEntityRenderState state, PoseStack matrices, MultiBufferSource buffers, int light) {
 		super.render(state, matrices, buffers, light);
 
+		int color = state.color;
 		MarbleAsset asset = state.marbleAsset != null ? MarbleAssetManager.INSTANCE.get(state.marbleAsset) : null;
 		float baseScale = asset != null ? asset.scale() * SCALE : 1;
 		float scale = baseScale * state.scale;
@@ -74,10 +83,10 @@ public final class MarbleEntityRenderer extends EntityRenderer<MarbleEntity, Mar
 		PoseStack.Pose pose = matrices.last();
 
 		VertexConsumer buffer = buffers.getBuffer(RENDER_TYPE);
-		renderVertex(buffer, pose, light, 0, 0, sprite.getU0(), sprite.getV1());
-		renderVertex(buffer, pose, light, 1, 0, sprite.getU1(), sprite.getV1());
-		renderVertex(buffer, pose, light, 1, 1, sprite.getU1(), sprite.getV0());
-		renderVertex(buffer, pose, light, 0, 1, sprite.getU0(), sprite.getV0());
+		renderVertex(buffer, pose, color, light, 0, 0, sprite.getU0(), sprite.getV1());
+		renderVertex(buffer, pose, color, light, 1, 0, sprite.getU1(), sprite.getV1());
+		renderVertex(buffer, pose, color, light, 1, 1, sprite.getU1(), sprite.getV0());
+		renderVertex(buffer, pose, color, light, 0, 1, sprite.getU0(), sprite.getV0());
 
 		matrices.popPose();
 	}
@@ -91,9 +100,9 @@ public final class MarbleEntityRenderer extends EntityRenderer<MarbleEntity, Mar
 		);
 	}
 
-	private static void renderVertex(VertexConsumer buffer, PoseStack.Pose pose, int light, float x, float y, float textureU, float textureV) {
+	private static void renderVertex(VertexConsumer buffer, PoseStack.Pose pose, int color, int light, float x, float y, float textureU, float textureV) {
 		buffer.addVertex(pose, x, y, 0)
-				.setColor(0xFFFFFFFF)
+				.setColor(color)
 				.setUv(textureU, textureV)
 				.setOverlay(OverlayTexture.NO_OVERLAY)
 				.setLight(light)
