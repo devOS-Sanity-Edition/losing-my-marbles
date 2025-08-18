@@ -3,6 +3,7 @@ package one.devos.nautical.losing_my_marbles.fabric.mixin;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
@@ -12,6 +13,7 @@ import net.minecraft.world.inventory.RecipeBookType;
 public class RecipeBookTypeMixin {
 	@Shadow
 	@Final
+	@Mutable
 	private static RecipeBookType[] $VALUES;
 
 	@SuppressWarnings("SameParameterValue")

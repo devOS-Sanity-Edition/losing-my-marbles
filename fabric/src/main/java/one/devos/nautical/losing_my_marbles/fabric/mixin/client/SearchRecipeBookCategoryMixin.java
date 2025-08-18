@@ -3,6 +3,7 @@ package one.devos.nautical.losing_my_marbles.fabric.mixin.client;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
@@ -14,6 +15,7 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeBookCat
 public class SearchRecipeBookCategoryMixin {
 	@Shadow
 	@Final
+	@Mutable
 	private static SearchRecipeBookCategory[] $VALUES;
 
 	@SuppressWarnings("SameParameterValue")
