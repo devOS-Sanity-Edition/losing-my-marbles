@@ -32,6 +32,8 @@ public abstract class PieceBlock extends DyeableTransparentBlock {
 	public static final VoxelShape BOTTOM_CUT = box(0, 0, 0, 16, 3, 16);
 	public static final VoxelShape BOTTOM_WITH_LEGS_CUT = Shapes.or(Block.column(16, 8, 0, 3), Block.column(8, 16, 0, 3));
 
+	public static final VoxelShape LEGLESS_INTERACTION_SHAPE = Shapes.join(Shapes.block(), BOTTOM_CUT, BooleanOp.ONLY_FIRST);
+
 	protected PieceBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(COLOR, DyeColor.WHITE));
@@ -49,7 +51,7 @@ public abstract class PieceBlock extends DyeableTransparentBlock {
 
 	@Override
 	protected VoxelShape getInteractionShape(BlockState state, BlockGetter level, BlockPos pos) {
-		return Shapes.block();
+		return state.getValue(BOTTOM_CONNECTIONS) ? Shapes.block() : LEGLESS_INTERACTION_SHAPE;
 	}
 
 	@Override
