@@ -13,6 +13,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.component.TypedDataComponent;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -52,6 +53,14 @@ public sealed interface StoredMarble extends TooltipProvider {
 			name = name.copy().withColor(dyed.rgb());
 		}
 		output.accept(CommonComponents.space().append(name));
+
+		this.get(context.registries()).ifPresent(instance -> {
+			for (TypedDataComponent<?> typed : instance.getComponents()) {
+				if (typed.value() instanceof TooltipProvider hasTooltip) {
+					hasTooltip.addToTooltip(context, output, flag, components);
+				}
+			}
+		});
 	}
 
 	static StoredMarble of(MarbleInstance marble) {
