@@ -25,8 +25,9 @@ import one.devos.nautical.losing_my_marbles.content.piece.IntersectionPieceBlock
 import one.devos.nautical.losing_my_marbles.content.piece.StraightPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.TubePieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.logic.DetectorPieceBlock;
-import one.devos.nautical.losing_my_marbles.content.piece.logic.OneWayGatePieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.logic.SplitterPieceBlock;
+import one.devos.nautical.losing_my_marbles.content.piece.logic.gate.OneWayGatePieceBlock;
+import one.devos.nautical.losing_my_marbles.content.piece.logic.gate.PoweredGatePieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.slope.SlopePieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.slope.SlopePieceBlockItem;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.CustomPhysicsCollisionRegistry;
@@ -49,6 +50,7 @@ public class LosingMyMarblesBlocks {
 	);
 	public static final DetectorPieceBlock DETECTOR_PIECE = register("detector_piece", DetectorPieceBlock::new, pieceProperties());
 	public static final OneWayGatePieceBlock ONE_WAY_GATE_PIECE = register("one_way_gate_piece", OneWayGatePieceBlock::new, pieceProperties());
+	public static final PoweredGatePieceBlock POWERED_GATE_PIECE = register("powered_gate_piece", PoweredGatePieceBlock::new, pieceProperties());
 
 	private static BlockBehaviour.Properties pieceProperties() {
 		return BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
@@ -92,7 +94,8 @@ public class LosingMyMarblesBlocks {
 					HALF_PIPE_PIECE,
 					SPLITTER_PIECE,
 					DETECTOR_PIECE,
-					ONE_WAY_GATE_PIECE
+					ONE_WAY_GATE_PIECE,
+					POWERED_GATE_PIECE
 			);
 		}
 	}

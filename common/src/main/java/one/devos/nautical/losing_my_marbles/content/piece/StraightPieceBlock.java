@@ -19,14 +19,19 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class StraightPieceBlock extends PieceBlock {
 	public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
-	private static final Map<Direction.Axis, VoxelShape> HOLES = Shapes.rotateHorizontalAxis(Block.column(8, 16, 8, 16));
+	public static final VoxelShape HOLE = box(4, 8, 0, 12, 16, 16);
+	private static final Map<Direction.Axis, VoxelShape> HOLES = Shapes.rotateHorizontalAxis(HOLE);
 
 	private final Function<BlockState, VoxelShape> shapes;
 
 	public StraightPieceBlock(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(AXIS, Direction.Axis.X));
-		this.shapes = this.getShapeForEachState(shapeFactory(state -> HOLES.get(state.getValue(AXIS))));
+		this.shapes = this.getShapeForEachState(shapeFactory(this::getHole));
+	}
+
+	protected VoxelShape getHole(BlockState state) {
+		return HOLES.get(state.getValue(AXIS));
 	}
 
 	@Override

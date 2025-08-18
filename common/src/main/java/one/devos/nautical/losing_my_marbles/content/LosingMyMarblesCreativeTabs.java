@@ -28,6 +28,7 @@ public final class LosingMyMarblesCreativeTabs {
 				output.accept(LosingMyMarblesBlocks.SPLITTER_PIECE);
 				output.accept(LosingMyMarblesBlocks.DETECTOR_PIECE);
 				output.accept(LosingMyMarblesBlocks.ONE_WAY_GATE_PIECE);
+				output.accept(LosingMyMarblesBlocks.POWERED_GATE_PIECE);
 
 				output.accept(LosingMyMarblesBlocks.MARBLE_MAKER);
 

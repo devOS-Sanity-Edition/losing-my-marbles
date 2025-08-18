@@ -1,4 +1,4 @@
-package one.devos.nautical.losing_my_marbles.content.piece.logic;
+package one.devos.nautical.losing_my_marbles.content.piece.logic.gate;
 
 import java.util.Map;
 import java.util.function.Function;
