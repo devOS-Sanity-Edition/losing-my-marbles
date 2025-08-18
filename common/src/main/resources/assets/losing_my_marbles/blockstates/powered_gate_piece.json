@@ -1,0 +1,323 @@
+{
+  "variants": {
+    "axis=z,powered=false,color=white,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/white_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=white,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/white_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=white,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/white_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=white,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/white_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=light_gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=light_gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=light_gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=light_gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/gray_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/gray_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/gray_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/gray_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=black,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/black_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=black,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/black_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=black,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/black_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=black,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/black_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=brown,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/brown_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=brown,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/brown_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=brown,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/brown_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=brown,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/brown_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=red,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/red_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=red,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/red_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=red,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/red_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=red,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/red_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=orange,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/orange_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=orange,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/orange_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=orange,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/orange_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=orange,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/orange_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=yellow,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=yellow,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=yellow,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=yellow,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=lime,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/lime_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=lime,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/lime_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=lime,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/lime_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=lime,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/lime_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=green,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/green_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=green,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/green_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=green,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/green_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=green,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/green_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=cyan,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=cyan,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=cyan,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=cyan,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/blue_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/blue_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/blue_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/blue_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=light_blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=light_blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=light_blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=light_blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=purple,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/purple_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=purple,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/purple_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=purple,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/purple_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=purple,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/purple_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=magenta,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=magenta,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=magenta,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=magenta,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_open_top_nubs"},
+
+    "axis=z,powered=false,color=pink,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/pink_powered_gate_piece_open_all_nubs"},
+    "axis=z,powered=false,color=pink,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/pink_powered_gate_piece_open_bottom_nubs"},
+    "axis=z,powered=false,color=pink,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/pink_powered_gate_piece_open_no_nubs"},
+    "axis=z,powered=false,color=pink,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/pink_powered_gate_piece_open_top_nubs"},
+
+    "axis=x,powered=false,color=white,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/white_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=white,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/white_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=white,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/white_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=white,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/white_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=light_gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=light_gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=light_gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=light_gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/gray_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/gray_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/gray_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/gray_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=black,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/black_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=black,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/black_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=black,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/black_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=black,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/black_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=brown,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/brown_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=brown,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/brown_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=brown,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/brown_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=brown,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/brown_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=red,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/red_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=red,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/red_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=red,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/red_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=red,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/red_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=orange,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/orange_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=orange,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/orange_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=orange,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/orange_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=orange,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/orange_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=yellow,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=yellow,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=yellow,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=yellow,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=lime,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/lime_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=lime,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/lime_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=lime,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/lime_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=lime,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/lime_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=green,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/green_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=green,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/green_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=green,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/green_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=green,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/green_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=cyan,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=cyan,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=cyan,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=cyan,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/blue_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/blue_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/blue_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/blue_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=light_blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=light_blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=light_blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=light_blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=purple,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/purple_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=purple,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/purple_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=purple,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/purple_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=purple,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/purple_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=magenta,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=magenta,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=magenta,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=magenta,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=x,powered=false,color=pink,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/pink_powered_gate_piece_open_all_nubs","y":90},
+    "axis=x,powered=false,color=pink,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/pink_powered_gate_piece_open_bottom_nubs","y":90},
+    "axis=x,powered=false,color=pink,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/pink_powered_gate_piece_open_no_nubs","y":90},
+    "axis=x,powered=false,color=pink,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/pink_powered_gate_piece_open_top_nubs","y":90},
+
+    "axis=z,powered=true,color=white,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/white_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=white,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/white_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=white,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/white_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=white,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/white_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=light_gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=light_gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=light_gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=light_gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/gray_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/gray_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/gray_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/gray_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=black,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/black_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=black,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/black_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=black,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/black_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=black,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/black_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=brown,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/brown_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=brown,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/brown_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=brown,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/brown_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=brown,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/brown_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=red,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/red_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=red,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/red_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=red,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/red_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=red,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/red_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=orange,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/orange_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=orange,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/orange_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=orange,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/orange_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=orange,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/orange_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=yellow,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=yellow,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=yellow,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=yellow,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=lime,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/lime_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=lime,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/lime_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=lime,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/lime_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=lime,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/lime_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=green,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/green_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=green,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/green_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=green,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/green_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=green,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/green_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=cyan,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=cyan,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=cyan,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=cyan,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/blue_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/blue_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/blue_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/blue_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=light_blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=light_blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=light_blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=light_blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=purple,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/purple_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=purple,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/purple_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=purple,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/purple_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=purple,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/purple_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=magenta,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=magenta,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=magenta,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=magenta,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_closed_top_nubs"},
+
+    "axis=z,powered=true,color=pink,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/pink_powered_gate_piece_closed_all_nubs"},
+    "axis=z,powered=true,color=pink,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/pink_powered_gate_piece_closed_bottom_nubs"},
+    "axis=z,powered=true,color=pink,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/pink_powered_gate_piece_closed_no_nubs"},
+    "axis=z,powered=true,color=pink,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/pink_powered_gate_piece_closed_top_nubs"},
+
+    "axis=x,powered=true,color=white,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/white_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=white,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/white_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=white,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/white_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=white,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/white_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=light_gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=light_gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=light_gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=light_gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_gray_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=gray,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/gray_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=gray,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/gray_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=gray,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/gray_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=gray,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/gray_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=black,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/black_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=black,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/black_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=black,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/black_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=black,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/black_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=brown,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/brown_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=brown,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/brown_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=brown,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/brown_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=brown,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/brown_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=red,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/red_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=red,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/red_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=red,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/red_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=red,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/red_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=orange,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/orange_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=orange,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/orange_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=orange,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/orange_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=orange,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/orange_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=yellow,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=yellow,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=yellow,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=yellow,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/yellow_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=lime,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/lime_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=lime,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/lime_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=lime,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/lime_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=lime,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/lime_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=green,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/green_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=green,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/green_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=green,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/green_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=green,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/green_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=cyan,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=cyan,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=cyan,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=cyan,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/cyan_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/blue_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/blue_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/blue_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/blue_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=light_blue,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=light_blue,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=light_blue,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=light_blue,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/light_blue_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=purple,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/purple_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=purple,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/purple_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=purple,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/purple_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=purple,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/purple_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=magenta,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=magenta,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=magenta,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=magenta,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/magenta_powered_gate_piece_closed_top_nubs","y":90},
+
+    "axis=x,powered=true,color=pink,top_connections=true,bottom_connections=true":{"model":"losing_my_marbles:block/pink_powered_gate_piece_closed_all_nubs","y":90},
+    "axis=x,powered=true,color=pink,top_connections=false,bottom_connections=true":{"model":"losing_my_marbles:block/pink_powered_gate_piece_closed_bottom_nubs","y":90},
+    "axis=x,powered=true,color=pink,top_connections=false,bottom_connections=false":{"model":"losing_my_marbles:block/pink_powered_gate_piece_closed_no_nubs","y":90},
+    "axis=x,powered=true,color=pink,top_connections=true,bottom_connections=false":{"model":"losing_my_marbles:block/pink_powered_gate_piece_closed_top_nubs","y":90}
+  }
+}
