@@ -21,31 +21,35 @@ import net.minecraft.world.item.crafting.display.RecipeDisplayId;
 import net.minecraft.world.item.crafting.display.SlotDisplay;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.marble.recipe.MarbleRecipeDisplay;
-import one.devos.nautical.losing_my_marbles.fabric.mixin.accessors.OverlayRecipeComponent$OverlayRecipeButtonAccessor;
 import one.devos.nautical.losing_my_marbles.framework.extension.OverlayCraftingRecipeButtonExt;
 
 @Mixin(targets = "net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayCraftingRecipeButton")
 public abstract class OverlayRecipeComponent$OverlayCraftingRecipeButtonMixin extends OverlayRecipeComponent$OverlayRecipeButtonMixin implements OverlayCraftingRecipeButtonExt {
-	@Unique private static final ResourceLocation ENABLED_SPRITE = LosingMyMarbles.id("recipe_book/marble_maker_overlay");
-	@Unique private static final ResourceLocation HIGHLIGHTED_ENABLED_SPRITE = LosingMyMarbles.id("recipe_book/marble_maker_overlay_highlighted");
-	@Unique private static final ResourceLocation DISABLED_SPRITE = LosingMyMarbles.id("recipe_book/marble_maker_overlay_disabled");
-	@Unique private static final ResourceLocation HIGHLIGHTED_DISABLED_SPRITE = LosingMyMarbles.id("recipe_book/marble_maker_overlay_disabled_highlighted");
+	@Unique
+	private static final ResourceLocation ENABLED_SPRITE = LosingMyMarbles.id("recipe_book/marble_maker_overlay");
+	@Unique
+	private static final ResourceLocation HIGHLIGHTED_ENABLED_SPRITE = LosingMyMarbles.id("recipe_book/marble_maker_overlay_highlighted");
+	@Unique
+	private static final ResourceLocation DISABLED_SPRITE = LosingMyMarbles.id("recipe_book/marble_maker_overlay_disabled");
+	@Unique
+	private static final ResourceLocation HIGHLIGHTED_DISABLED_SPRITE = LosingMyMarbles.id("recipe_book/marble_maker_overlay_disabled_highlighted");
 
-	@Unique private boolean lmm$isMarbleMaker;
+	@Unique
+	private boolean isMarbleMaker;
 
-	public OverlayRecipeComponent$OverlayCraftingRecipeButtonMixin(int i, int j, int k, int l, Component component) {
-		super(i, j, k, l, component);
+	protected OverlayRecipeComponent$OverlayCraftingRecipeButtonMixin(int x, int y, int width, int height, Component message) {
+		super(x, y, width, height, message);
 	}
 
 	@Inject(method = "<init>", at = @At("TAIL"))
-	private void lmm$saveInfoAboutIfThisIsMarbleMaker(OverlayRecipeComponent overlayRecipeComponent, int i, int j, RecipeDisplayId recipeDisplayId, RecipeDisplay recipeDisplay, ContextMap contextMap, boolean bl, CallbackInfo ci) {
+	private void saveInfoAboutIfThisIsMarbleMaker(OverlayRecipeComponent overlayRecipeComponent, int i, int j, RecipeDisplayId recipeDisplayId, RecipeDisplay recipeDisplay, ContextMap contextMap, boolean bl, CallbackInfo ci) {
 		if (recipeDisplay instanceof MarbleRecipeDisplay) {
-			lmm$isMarbleMaker = true;
+			this.isMarbleMaker = true;
 		}
 	}
 
 	@Inject(method = "calculateIngredientsPositions", at = @At("HEAD"), cancellable = true)
-	private static void lmm$modifyIngredientPositionsForMarbleMaker(RecipeDisplay recipeDisplay, ContextMap contextMap, CallbackInfoReturnable<List<Pos>> cir) {
+	private static void modifyIngredientPositionsForMarbleMaker(RecipeDisplay recipeDisplay, ContextMap contextMap, CallbackInfoReturnable<List<Pos>> cir) {
 		if (recipeDisplay instanceof MarbleRecipeDisplay marbleRecipeDisplay) {
 			List<Pos> list = new ArrayList<>();
 
@@ -56,7 +60,7 @@ public abstract class OverlayRecipeComponent$OverlayCraftingRecipeButtonMixin ex
 			for (SlotDisplay slotDisplay : slotDisplays) {
 				List<ItemStack> stacks = slotDisplay.resolveForStacks(contextMap);
 				if (!stacks.isEmpty()) {
-					list.add(OverlayRecipeComponent$OverlayRecipeButtonAccessor.lmm$createGridPos(positions[i], 1, stacks));
+					list.add(createGridPos(positions[i], 1, stacks));
 				}
 				i++;
 			}
@@ -66,8 +70,8 @@ public abstract class OverlayRecipeComponent$OverlayCraftingRecipeButtonMixin ex
 	}
 
 	@Inject(method = "getSprite", at = @At("HEAD"), cancellable = true)
-	private void lmm$changeTexturesForMarbleMaker(boolean enabled, CallbackInfoReturnable<ResourceLocation> cir) {
-		if (lmm$isMarbleMaker) {
+	private void changeTexturesForMarbleMaker(boolean enabled, CallbackInfoReturnable<ResourceLocation> cir) {
+		if (this.isMarbleMaker) {
 			ResourceLocation sprite;
 
 			if (enabled) {
@@ -82,6 +86,6 @@ public abstract class OverlayRecipeComponent$OverlayCraftingRecipeButtonMixin ex
 
 	@Override
 	public boolean lmm$isMarbleMaker() {
-		return lmm$isMarbleMaker;
+		return this.isMarbleMaker;
 	}
 }

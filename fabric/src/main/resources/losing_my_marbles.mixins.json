@@ -9,7 +9,6 @@
     "RecipeBookTypeMixin",
     "RecipeManagerMixin",
     "ServerLevelMixin",
-    "accessors.OverlayRecipeComponent$OverlayRecipeButtonAccessor",
     "accessors.TypeSettingsAccessor",
     "platform.MarbleAssetManagerMixin"
   ],

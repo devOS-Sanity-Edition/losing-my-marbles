@@ -3,6 +3,8 @@ package one.devos.nautical.losing_my_marbles.content.marble.maker;
 import java.util.List;
 import java.util.Optional;
 
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.recipebook.ServerPlaceRecipe;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -20,7 +22,6 @@ import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.ResultContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeAccess;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipePropertySet;
@@ -33,8 +34,6 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeTypes;
 import one.devos.nautical.losing_my_marbles.content.marble.recipe.MarbleRecipe;
 import one.devos.nautical.losing_my_marbles.content.marble.recipe.MarbleRecipeInput;
 import one.devos.nautical.losing_my_marbles.content.marble.recipeBook.MarbleMakerRecipeBookHelper;
-
-import org.jetbrains.annotations.NotNull;
 
 public final class MarbleMakerMenu extends RecipeBookMenu {
 	private final Level level;
@@ -98,7 +97,7 @@ public final class MarbleMakerMenu extends RecipeBookMenu {
 
 	public void finishPlacingRecipe() {
 		this.placingRecipe = false;
-		slotsChanged(inputSlots);
+		this.slotsChanged(this.inputSlots);
 	}
 
 	private void shrinkStackInSlot(int slot) {
@@ -142,7 +141,7 @@ public final class MarbleMakerMenu extends RecipeBookMenu {
 
 	@Override
 	public void slotsChanged(Container container) {
-		if (!placingRecipe) {
+		if (!this.placingRecipe) {
 			super.slotsChanged(container);
 			if (container == this.inputSlots) {
 				this.createResult();
@@ -165,10 +164,11 @@ public final class MarbleMakerMenu extends RecipeBookMenu {
 	// Recipe Book stuff
 	@Override
 	public PostPlaceAction handlePlacement(boolean craftAll, boolean creative, RecipeHolder<?> recipeHolder, ServerLevel serverLevel, Inventory inventory) {
-		final List<Slot> slots = List.of(getSlot(0), getSlot(1));
-		beginPlacingRecipe();
+		this.beginPlacingRecipe();
 
 		try {
+			List<Slot> slots = List.of(this.getSlot(0), this.getSlot(1));
+			//noinspection unchecked
 			return ServerPlaceRecipe.placeRecipe(new ServerPlaceRecipe.CraftingMenuAccess<>() {
 				@Override
 				public void fillCraftSlotsStackedContents(StackedItemContents stackedItemContents) {
@@ -177,8 +177,8 @@ public final class MarbleMakerMenu extends RecipeBookMenu {
 
 				@Override
 				public void clearCraftingContent() {
-					inputSlots.clearContent();
-					resultSlots.clearContent();
+					MarbleMakerMenu.this.inputSlots.clearContent();
+					MarbleMakerMenu.this.resultSlots.clearContent();
 				}
 
 				@Override
@@ -190,7 +190,7 @@ public final class MarbleMakerMenu extends RecipeBookMenu {
 				}
 			}, 1, 2, slots, slots, inventory, (RecipeHolder<MarbleRecipe>) recipeHolder, craftAll, creative);
 		} finally {
-			finishPlacingRecipe();
+			this.finishPlacingRecipe();
 		}
 	}
 
@@ -204,12 +204,12 @@ public final class MarbleMakerMenu extends RecipeBookMenu {
 	@NotNull
 	@Override
 	public RecipeBookType getRecipeBookType() {
-		return MarbleMakerRecipeBookHelper.MARBLE_MAKER;
+		return MarbleMakerRecipeBookHelper.TYPE;
 	}
 
 	// ItemCombinerMenu - Copied from there for Recipe Book support
 	private void createInputSlots(ItemCombinerMenuSlotDefinition definition) {
-		for (final ItemCombinerMenuSlotDefinition.SlotDefinition slotDefinition : definition.getSlots()) {
+		for (ItemCombinerMenuSlotDefinition.SlotDefinition slotDefinition : definition.getSlots()) {
 			this.addSlot(new Slot(this.inputSlots, slotDefinition.slotIndex(), slotDefinition.x(), slotDefinition.y()) {
 				@Override
 				public boolean mayPlace(ItemStack stack) {
@@ -258,7 +258,8 @@ public final class MarbleMakerMenu extends RecipeBookMenu {
 	@Override
 	public ItemStack quickMoveStack(Player player, int index) {
 		ItemStack stack = ItemStack.EMPTY;
-		Slot slot = getSlot(index);
+		Slot slot = this.getSlot(index);
+		//noinspection ConstantValue
 		if (slot != null && slot.hasItem()) {
 			ItemStack slotItem = slot.getItem();
 			stack = slotItem.copy();

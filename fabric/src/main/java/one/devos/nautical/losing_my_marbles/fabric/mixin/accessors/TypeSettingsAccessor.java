@@ -9,8 +9,8 @@ import net.minecraft.stats.RecipeBookSettings.TypeSettings;
 
 @Mixin(TypeSettings.class)
 public interface TypeSettingsAccessor {
-	@Invoker("codec")
-	static MapCodec<TypeSettings> lmm$codec(String open, String filtering) {
+	@Invoker
+	static MapCodec<TypeSettings> callCodec(String open, String filtering) {
 		throw new AssertionError();
 	}
 }

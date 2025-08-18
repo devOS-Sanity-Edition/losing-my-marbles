@@ -11,6 +11,7 @@ import net.minecraft.world.inventory.RecipeBookType;
 
 @Mixin(RecipeBookType.class)
 public class RecipeBookTypeMixin {
+	@SuppressWarnings("NonConstantFieldWithUpperCaseName")
 	@Shadow
 	@Final
 	@Mutable

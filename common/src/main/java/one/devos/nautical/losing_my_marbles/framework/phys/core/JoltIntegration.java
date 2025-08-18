@@ -1,12 +1,9 @@
 package one.devos.nautical.losing_my_marbles.framework.phys.core;
 
 import com.github.stephengold.joltjni.Jolt;
-import com.github.stephengold.joltjni.JoltPhysicsObject;
 import com.github.stephengold.joltjni.PhysicsSystem;
 import com.github.stephengold.joltjni.RVec3;
-
 import com.github.stephengold.joltjni.readonly.RVec3Arg;
-
 import com.github.stephengold.joltjni.readonly.Vec3Arg;
 
 import net.minecraft.world.phys.Vec3;

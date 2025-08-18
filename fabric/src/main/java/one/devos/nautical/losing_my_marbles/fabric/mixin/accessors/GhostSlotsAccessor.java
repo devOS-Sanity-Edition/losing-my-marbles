@@ -10,9 +10,9 @@ import net.minecraft.world.item.crafting.display.SlotDisplay;
 
 @Mixin(GhostSlots.class)
 public interface GhostSlotsAccessor {
-	@Invoker("setInput")
-	void lmm$setInput(Slot slot, ContextMap contextMap, SlotDisplay slotDisplay);
+	@Invoker
+	void callSetInput(Slot slot, ContextMap contextMap, SlotDisplay slotDisplay);
 
-	@Invoker("setResult")
-	void lmm$setResult(Slot slot, ContextMap contextMap, SlotDisplay slotDisplay);
+	@Invoker
+	void callSetResult(Slot slot, ContextMap contextMap, SlotDisplay slotDisplay);
 }

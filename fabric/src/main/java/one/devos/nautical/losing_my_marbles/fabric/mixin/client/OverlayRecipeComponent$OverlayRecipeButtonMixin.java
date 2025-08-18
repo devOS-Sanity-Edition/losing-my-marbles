@@ -1,6 +1,9 @@
 package one.devos.nautical.losing_my_marbles.fabric.mixin.client;
 
+import java.util.List;
+
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -11,18 +14,24 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent.OverlayRecipeButton.Pos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import one.devos.nautical.losing_my_marbles.framework.extension.OverlayCraftingRecipeButtonExt;
 
 @Mixin(targets = "net.minecraft.client.gui.screens.recipebook.OverlayRecipeComponent$OverlayRecipeButton")
 public abstract class OverlayRecipeComponent$OverlayRecipeButtonMixin extends AbstractWidget {
-	public OverlayRecipeComponent$OverlayRecipeButtonMixin(int i, int j, int k, int l, Component component) {
-		super(i, j, k, l, component);
+	@Shadow
+	protected static Pos createGridPos(int x, int y, List<ItemStack> possibleItems) {
+		throw new AbstractMethodError();
+	}
+
+	protected OverlayRecipeComponent$OverlayRecipeButtonMixin(int x, int y, int width, int height, Component message) {
+		super(x, y, width, height, message);
 	}
 
 	@Inject(method = "renderWidget", at = @At(value = "INVOKE", target = "Lorg/joml/Matrix3x2fStack;translate(FF)Lorg/joml/Matrix3x2f;", ordinal = 0))
-	private void lmm$modifyIngredientSpacingForRender(GuiGraphics $$0, int $$1, int $$2, float $$3, CallbackInfo ci, @Local Pos pos) {
+	private void modifyIngredientSpacingForRender(GuiGraphics graphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci, @Local Pos pos) {
 		if (this instanceof OverlayCraftingRecipeButtonExt ext && ext.lmm$isMarbleMaker()) {
-			$$0.pose().translate(pos.x() == 3 ? 2f : -2f, 0);
+			graphics.pose().translate(pos.x() == 3 ? 2f : -2f, 0);
 		}
 	}
 }

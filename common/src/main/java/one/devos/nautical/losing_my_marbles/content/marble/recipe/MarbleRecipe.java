@@ -3,10 +3,6 @@ package one.devos.nautical.losing_my_marbles.content.marble.recipe;
 import java.util.List;
 import java.util.Optional;
 
-import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlocks;
-
-import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeBookCategories;
-
 import org.jetbrains.annotations.Nullable;
 
 import com.mojang.serialization.Codec;
@@ -21,13 +17,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.PlacementInfo;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeBookCategories;
 import net.minecraft.world.item.crafting.RecipeBookCategory;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import net.minecraft.world.item.crafting.display.SlotDisplay;
 import net.minecraft.world.level.Level;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesBlocks;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeBookCategories;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeSerializers;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeTypes;
 

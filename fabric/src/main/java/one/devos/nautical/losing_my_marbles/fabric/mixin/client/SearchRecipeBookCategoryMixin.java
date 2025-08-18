@@ -13,6 +13,7 @@ import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesRecipeBookCat
 
 @Mixin(SearchRecipeBookCategory.class)
 public class SearchRecipeBookCategoryMixin {
+	@SuppressWarnings("NonConstantFieldWithUpperCaseName")
 	@Shadow
 	@Final
 	@Mutable
@@ -20,7 +21,7 @@ public class SearchRecipeBookCategoryMixin {
 
 	@SuppressWarnings("SameParameterValue")
 	@Invoker("<init>")
-	private static SearchRecipeBookCategory create(String name, int ordinal, final RecipeBookCategory... recipeBookCategories) {
+	private static SearchRecipeBookCategory create(String name, int ordinal, RecipeBookCategory... recipeBookCategories) {
 		throw new AssertionError();
 	}
 

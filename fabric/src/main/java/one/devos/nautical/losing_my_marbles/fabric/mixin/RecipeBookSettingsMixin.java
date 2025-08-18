@@ -28,11 +28,13 @@ import one.devos.nautical.losing_my_marbles.framework.extension.RecipeBookSettin
 @Mixin(value = RecipeBookSettings.class, priority = 544)
 public class RecipeBookSettingsMixin implements RecipeBookSettingsExt {
 	@Unique
-	private TypeSettings lmm$marbleMaker = TypeSettings.DEFAULT;
+	private TypeSettings marbleMaker = TypeSettings.DEFAULT;
 
 	@ModifyReturnValue(method = "method_71331", at = @At("RETURN"))
-	private static App<RecordCodecBuilder.Mu<RecipeBookSettings>, RecipeBookSettings> lmm$addFieldForMarbleMakerInCodec(App<RecordCodecBuilder.Mu<RecipeBookSettings>, RecipeBookSettings> original,
-																														RecordCodecBuilder.Instance<RecipeBookSettings> instance) {
+	private static App<RecordCodecBuilder.Mu<RecipeBookSettings>, RecipeBookSettings> addFieldForMarbleMakerInCodec(
+			App<RecordCodecBuilder.Mu<RecipeBookSettings>, RecipeBookSettings> original,
+			RecordCodecBuilder.Instance<RecipeBookSettings> instance
+	) {
 		return instance.group(
 				original,
 				MarbleRecipeBookSettings.MARBLE_MAKER_MAP_CODEC.forGetter(s -> ((RecipeBookSettingsExt) (Object) s).lmm$getMarbleMakerTypeSettings())
@@ -43,7 +45,7 @@ public class RecipeBookSettingsMixin implements RecipeBookSettingsExt {
 	}
 
 	@ModifyExpressionValue(method = "<clinit>", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/codec/StreamCodec;composite(Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lnet/minecraft/network/codec/StreamCodec;Ljava/util/function/Function;Lcom/mojang/datafixers/util/Function4;)Lnet/minecraft/network/codec/StreamCodec;"))
-	private static StreamCodec<FriendlyByteBuf, RecipeBookSettings> lmm$addFieldForMarbleMakerInStreamCodec(StreamCodec<FriendlyByteBuf, RecipeBookSettings> original) {
+	private static StreamCodec<FriendlyByteBuf, RecipeBookSettings> addFieldForMarbleMakerInStreamCodec(StreamCodec<FriendlyByteBuf, RecipeBookSettings> original) {
 		return StreamCodec.composite(
 				original, Function.identity(),
 				TypeSettings.STREAM_CODEC, s -> ((RecipeBookSettingsExt) (Object) s).lmm$getMarbleMakerTypeSettings(),
@@ -55,38 +57,38 @@ public class RecipeBookSettingsMixin implements RecipeBookSettingsExt {
 	}
 
 	@Inject(method = "getSettings", at = @At("HEAD"), cancellable = true)
-	private void lmm$getSettingsForMarbleMaker(RecipeBookType recipeBookType, CallbackInfoReturnable<TypeSettings> cir) {
-		if (recipeBookType == MarbleMakerRecipeBookHelper.MARBLE_MAKER) {
-			cir.setReturnValue(this.lmm$marbleMaker);
+	private void getSettingsForMarbleMaker(RecipeBookType recipeBookType, CallbackInfoReturnable<TypeSettings> cir) {
+		if (recipeBookType == MarbleMakerRecipeBookHelper.TYPE) {
+			cir.setReturnValue(this.marbleMaker);
 		}
 	}
 
 	@Inject(method = "updateSettings", at = @At("HEAD"), cancellable = true)
-	private void lmm$updateSettingsForMarbleMaker(RecipeBookType recipeBookType, UnaryOperator<TypeSettings> unaryOperator, CallbackInfo ci) {
-		if (recipeBookType == MarbleMakerRecipeBookHelper.MARBLE_MAKER) {
-			this.lmm$marbleMaker = unaryOperator.apply(this.lmm$marbleMaker);
+	private void updateSettingsForMarbleMaker(RecipeBookType recipeBookType, UnaryOperator<TypeSettings> unaryOperator, CallbackInfo ci) {
+		if (recipeBookType == MarbleMakerRecipeBookHelper.TYPE) {
+			this.marbleMaker = unaryOperator.apply(this.marbleMaker);
 			ci.cancel();
 		}
 	}
 
 	@ModifyReturnValue(method = "copy", at = @At("RETURN"))
-	private RecipeBookSettings lmm$copyForMarbleMaker(RecipeBookSettings original) {
-		((RecipeBookSettingsExt) (Object) original).lmm$setMarbleMakerTypeSettings(this.lmm$marbleMaker);
+	private RecipeBookSettings copyForMarbleMaker(RecipeBookSettings original) {
+		((RecipeBookSettingsExt) (Object) original).lmm$setMarbleMakerTypeSettings(this.marbleMaker);
 		return original;
 	}
 
 	@Inject(method = "replaceFrom", at = @At("HEAD"))
-	private void lmm$replaceFromForMarbleMaker(RecipeBookSettings recipeBookSettings, CallbackInfo ci) {
-		this.lmm$marbleMaker = ((RecipeBookSettingsExt) (Object) recipeBookSettings).lmm$getMarbleMakerTypeSettings();
+	private void replaceFromForMarbleMaker(RecipeBookSettings recipeBookSettings, CallbackInfo ci) {
+		this.marbleMaker = ((RecipeBookSettingsExt) (Object) recipeBookSettings).lmm$getMarbleMakerTypeSettings();
 	}
 
 	@Override
 	public TypeSettings lmm$getMarbleMakerTypeSettings() {
-		return this.lmm$marbleMaker;
+		return this.marbleMaker;
 	}
 
 	@Override
 	public void lmm$setMarbleMakerTypeSettings(TypeSettings marbleMaker) {
-		this.lmm$marbleMaker = marbleMaker;
+		this.marbleMaker = marbleMaker;
 	}
 }

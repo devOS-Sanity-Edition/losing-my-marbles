@@ -25,9 +25,9 @@ public final class MarbleMakerScreen extends AbstractRecipeBookScreen<MarbleMake
 
 	@Override
 	protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, menuResource, leftPos, topPos, 0.0F, 0.0F, imageWidth, imageHeight, 256, 256);
+		guiGraphics.blit(RenderPipelines.GUI_TEXTURED, this.menuResource, this.leftPos, this.topPos, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
 		if (this.menu.hasRecipeError()) {
-			guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, ERROR_SPRITE, leftPos + ERROR_ICON_X, topPos + ERROR_ICON_Y, ERROR_ICON_WIDTH, ERROR_ICON_HEIGHT);
+			guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, ERROR_SPRITE, this.leftPos + ERROR_ICON_X, this.topPos + ERROR_ICON_Y, ERROR_ICON_WIDTH, ERROR_ICON_HEIGHT);
 		}
 	}
 
