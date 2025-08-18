@@ -26,7 +26,10 @@ public final class LosingMyMarblesCreativeTabs {
 				output.accept(LosingMyMarblesBlocks.TUBE_PIECE);
 				output.accept(LosingMyMarblesBlocks.HALF_PIPE_PIECE);
 				output.accept(LosingMyMarblesBlocks.SPLITTER_PIECE);
+				output.accept(LosingMyMarblesBlocks.DETECTOR_PIECE);
+
 				output.accept(LosingMyMarblesBlocks.MARBLE_MAKER);
+
 				HolderLookup.RegistryLookup<MarbleType> typeRegistry = parameters.holders().lookupOrThrow(LosingMyMarblesRegistries.MARBLE_TYPE);
 				typeRegistry.listElements().forEach(holder -> {
 					ItemStack stack = MarbleItem.of(StoredMarble.of(holder));

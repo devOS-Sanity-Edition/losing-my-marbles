@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "losing_my_marbles:block/white_detector_piece_all_nubs"
+    "model": "losing_my_marbles:block/white_detector_piece_inactive_all_nubs"
   }
 }
