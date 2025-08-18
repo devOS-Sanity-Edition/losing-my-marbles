@@ -1,5 +1,6 @@
 package one.devos.nautical.losing_my_marbles.content;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.PushReaction;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.marble.maker.MarbleMakerBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.CornerPieceBlock;
@@ -22,6 +24,8 @@ import one.devos.nautical.losing_my_marbles.content.piece.IntersectionPieceBlock
 import one.devos.nautical.losing_my_marbles.content.piece.StraightPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.TubePieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.logic.SplitterPieceBlock;
+import one.devos.nautical.losing_my_marbles.content.piece.slope.SlopePieceBlock;
+import one.devos.nautical.losing_my_marbles.content.piece.slope.SlopePieceBlockItem;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.CustomPhysicsCollisionRegistry;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.DefaultCollisionSource;
 import one.devos.nautical.losing_my_marbles.framework.platform.Env;
@@ -34,6 +38,7 @@ public class LosingMyMarblesBlocks {
 	public static final StraightPieceBlock STRAIGHT_PIECE = register("straight_piece", StraightPieceBlock::new, pieceProperties());
 	public static final IntersectionPieceBlock INTERSECTION_PIECE = register("intersection_piece", IntersectionPieceBlock::new, pieceProperties().dynamicShape());
 	public static final CornerPieceBlock CORNER_PIECE = register("corner_piece", CornerPieceBlock::new, pieceProperties().dynamicShape());
+	public static final SlopePieceBlock SLOPE_PIECE = register("slope_piece", SlopePieceBlock::new, SlopePieceBlockItem::new, pieceProperties().pushReaction(PushReaction.BLOCK));
 	public static final TubePieceBlock TUBE_PIECE = register("tube_piece", TubePieceBlock::new, pieceProperties());
 	public static final SplitterPieceBlock SPLITTER_PIECE = register(
 			"splitter_piece", properties -> new SplitterPieceBlock(properties, CORNER_PIECE), pieceProperties().dynamicShape()
@@ -46,11 +51,20 @@ public class LosingMyMarblesBlocks {
 	}
 
 	static <T extends Block> T register(String name, Function<BlockBehaviour.Properties, T> factory, BlockBehaviour.Properties properties) {
+		return register(name, factory, BlockItem::new, properties);
+	}
+
+	static <T extends Block> T register(
+			String name,
+			Function<BlockBehaviour.Properties, T> factory,
+			BiFunction<Block, Item.Properties, ? extends BlockItem> itemFactory,
+			BlockBehaviour.Properties properties
+	) {
 		ResourceLocation id = LosingMyMarbles.id(name);
 		ResourceKey<Block> key = ResourceKey.create(Registries.BLOCK, id);
 		T block = Registry.register(BuiltInRegistries.BLOCK, id, factory.apply(properties.setId(key)));
 
-		LosingMyMarblesItems.register(name, itemProperties -> new BlockItem(block, itemProperties), new Item.Properties().useBlockDescriptionPrefix());
+		LosingMyMarblesItems.register(name, itemProperties -> itemFactory.apply(block, itemProperties), new Item.Properties().useBlockDescriptionPrefix());
 
 		return block;
 	}
@@ -65,6 +79,7 @@ public class LosingMyMarblesBlocks {
 					STRAIGHT_PIECE,
 					INTERSECTION_PIECE,
 					CORNER_PIECE,
+					SLOPE_PIECE,
 					TUBE_PIECE,
 					SPLITTER_PIECE
 			);
