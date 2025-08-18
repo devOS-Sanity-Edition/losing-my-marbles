@@ -20,6 +20,7 @@ import one.devos.nautical.losing_my_marbles.content.marble.maker.MarbleMakerBloc
 import one.devos.nautical.losing_my_marbles.content.piece.CornerPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.IntersectionPieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.StraightPieceBlock;
+import one.devos.nautical.losing_my_marbles.content.piece.TubePieceBlock;
 import one.devos.nautical.losing_my_marbles.content.piece.logic.SplitterPieceBlock;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.CustomPhysicsCollisionRegistry;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.collision.DefaultCollisionSource;
@@ -33,6 +34,7 @@ public class LosingMyMarblesBlocks {
 	public static final StraightPieceBlock STRAIGHT_PIECE = register("straight_piece", StraightPieceBlock::new, pieceProperties());
 	public static final IntersectionPieceBlock INTERSECTION_PIECE = register("intersection_piece", IntersectionPieceBlock::new, pieceProperties().dynamicShape());
 	public static final CornerPieceBlock CORNER_PIECE = register("corner_piece", CornerPieceBlock::new, pieceProperties().dynamicShape());
+	public static final TubePieceBlock TUBE_PIECE = register("tube_piece", TubePieceBlock::new, pieceProperties());
 	public static final SplitterPieceBlock SPLITTER_PIECE = register(
 			"splitter_piece", properties -> new SplitterPieceBlock(properties, CORNER_PIECE), pieceProperties().dynamicShape()
 	);
@@ -63,6 +65,7 @@ public class LosingMyMarblesBlocks {
 					STRAIGHT_PIECE,
 					INTERSECTION_PIECE,
 					CORNER_PIECE,
+					TUBE_PIECE,
 					SPLITTER_PIECE
 			);
 		}
