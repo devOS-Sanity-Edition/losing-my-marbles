@@ -7,7 +7,7 @@
   "components": {
     "losing_my_marbles:friction": 0.7,
     "losing_my_marbles:gravity_scale": 3,
-    "losing_my_marbles:mass": 40,
+    "losing_my_marbles:mass": 20,
     "losing_my_marbles:restitution": 0.1,
     "losing_my_marbles:bounce_effect": {
       "type": "losing_my_marbles:play_sound",
