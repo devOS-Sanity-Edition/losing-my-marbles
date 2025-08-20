@@ -17,7 +17,7 @@
       "radius": 0.1875
     },
     "losing_my_marbles:asset": "losing_my_marbles:snowball",
-    "losing_my_marbles:damage_immune": "#losing_my_marbles:generic_marble_immune",
+    "losing_my_marbles:damage_immune": "#losing_my_marbles:temperature_sensitive_marble_immune",
     "losing_my_marbles:accumulates_mass": [
       "minecraft:snow",
       "minecraft:powder_snow",

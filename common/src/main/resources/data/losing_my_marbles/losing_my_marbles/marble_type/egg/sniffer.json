@@ -42,6 +42,7 @@
       "bottom_radius": 0.18,
       "height": 0.18
     },
+    "losing_my_marbles:damage_immune": "#losing_my_marbles:fragile_marble_immune",
     "losing_my_marbles:asset": "losing_my_marbles:sniffer_egg"
   }
 }

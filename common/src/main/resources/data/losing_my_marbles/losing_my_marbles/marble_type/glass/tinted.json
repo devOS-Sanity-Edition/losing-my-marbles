@@ -28,6 +28,7 @@
       "type": "losing_my_marbles:sphere",
       "radius": 0.1875
     },
+    "losing_my_marbles:damage_immune": "#losing_my_marbles:fragile_marble_immune",
     "losing_my_marbles:asset": "losing_my_marbles:tinted_glass"
   }
 }
