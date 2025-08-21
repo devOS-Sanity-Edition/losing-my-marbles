@@ -6,10 +6,14 @@
     "id": "losing_my_marbles:marble",
     "components": {
       "losing_my_marbles:marble": {
-        "type": "type",
-        "holder": "losing_my_marbles:terracotta"
-      },
-      "minecraft:dyed_color": 4288826959
+        "type": "instance",
+          "instance": {
+          "type": "losing_my_marbles:terracotta",
+          "components": {
+            "minecraft:dyed_color": 4288826959
+          }
+        }
+      }
     },
     "count": 1
   },

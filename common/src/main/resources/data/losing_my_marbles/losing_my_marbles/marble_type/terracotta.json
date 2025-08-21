@@ -5,6 +5,7 @@
   },
   "item_model": "losing_my_marbles:terracotta_marble",
   "components": {
+    "minecraft:dyed_color": 4287912771,
     "losing_my_marbles:friction": 0.5,
     "losing_my_marbles:restitution": 0.25,
     "losing_my_marbles:bounce_effect": {

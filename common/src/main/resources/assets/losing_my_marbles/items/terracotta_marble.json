@@ -4,7 +4,7 @@
     "model": "losing_my_marbles:item/terracotta_marble",
     "tints": [
       {
-        "type": "minecraft:dye",
+        "type": "losing_my_marbles:dyed_marble",
         "default": 4287912771
       }
     ]

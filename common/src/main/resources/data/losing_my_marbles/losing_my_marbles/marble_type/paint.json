@@ -5,6 +5,7 @@
   },
   "item_model": "losing_my_marbles:paint_marble",
   "components": {
+    "minecraft:dyed_color": 4292993873,
     "losing_my_marbles:friction": 0.05,
     "losing_my_marbles:restitution": 0.2,
     "losing_my_marbles:bounce_effect": {
