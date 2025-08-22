@@ -21,6 +21,13 @@ public record Compound(List<BounceEffect> effects) implements BounceEffect {
 	}
 
 	@Override
+	public void whenKilled(MarbleEntity entity) {
+		for (BounceEffect effect : this.effects) {
+			effect.whenKilled(entity);
+		}
+	}
+
+	@Override
 	public MapCodec<? extends BounceEffect> codec() {
 		return MAP_CODEC;
 	}

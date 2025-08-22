@@ -275,6 +275,15 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 	}
 
 	@Override
+	public void onRemoval(RemovalReason reason) {
+		if (reason == RemovalReason.KILLED) {
+			this.marble().getOptional(LosingMyMarblesDataComponents.BOUNCE_EFFECT).ifPresent(
+					effect -> effect.whenKilled(this)
+			);
+		}
+	}
+
+	@Override
 	public boolean isPickable() {
 		return !this.isRemoved();
 	}

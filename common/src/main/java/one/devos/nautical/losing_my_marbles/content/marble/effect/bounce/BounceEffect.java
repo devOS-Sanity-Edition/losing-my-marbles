@@ -26,5 +26,8 @@ public interface BounceEffect {
 
 	void apply(MarbleEntity entity, Vec3 oldVel, Vec3 newVel);
 
+	default void whenKilled(MarbleEntity entity) {
+	}
+
 	MapCodec<? extends BounceEffect> codec();
 }
