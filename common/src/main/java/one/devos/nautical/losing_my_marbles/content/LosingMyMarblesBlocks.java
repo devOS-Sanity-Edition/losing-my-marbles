@@ -85,6 +85,7 @@ public class LosingMyMarblesBlocks {
 		CustomPhysicsCollisionRegistry.register(SLOPE_PIECE, DefaultCollisionSource.COLLISION_SHAPE, SlopePieceBlock::additionalCollision);
 		CustomPhysicsCollisionRegistry.register(HALF_PIPE_PIECE, DefaultCollisionSource.COLLISION_SHAPE, HalfPipePieceBlock::additionalCollision);
 		CustomPhysicsCollisionRegistry.register(SPLITTER_PIECE, DefaultCollisionSource.COLLISION_SHAPE, SPLITTER_PIECE::additionalCollision);
+		CustomPhysicsCollisionRegistry.register(ONE_WAY_GATE_PIECE, DefaultCollisionSource.COLLISION_SHAPE, OneWayGatePieceBlock::additionalCollision);
 
 		if (PlatformHelper.INSTANCE.getEnvironment() == Env.CLIENT) {
 			PlatformClientHelper.INSTANCE.setBlockRenderLayer(ChunkSectionLayer.TRANSLUCENT,
