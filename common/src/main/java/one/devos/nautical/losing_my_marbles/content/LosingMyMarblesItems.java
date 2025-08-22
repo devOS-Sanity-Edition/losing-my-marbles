@@ -8,6 +8,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.DispenserBlock;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.marble.MarbleItem;
 import one.devos.nautical.losing_my_marbles.content.marble.StoredMarble;
@@ -27,5 +28,6 @@ public class LosingMyMarblesItems {
 	}
 
 	public static void init() {
+		DispenserBlock.registerBehavior(MARBLE, MarbleItem.DISPENSE_BEHAVIOR);
 	}
 }
