@@ -41,6 +41,7 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesGameRules;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItemTags;
 import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
 import one.devos.nautical.losing_my_marbles.content.marble.data.shape.MarbleShape;
@@ -59,6 +60,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 	private final InterpolationHandler interpolator;
 
 	private MarbleInstance marble;
+	private int ticksIdle;
 
 	@Nullable
 	private EntityReference<LivingEntity> owner;
@@ -132,6 +134,8 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 		double distanceTraveled = oldPos.distanceTo(this.position());
 		this.distanceTraveled += distanceTraveled;
 
+		this.ticksIdle = distanceTraveled < 1e-4 ? this.ticksIdle + 1 : 0;
+
 		if (this.body != null) {
 			this.marble().getOptional(LosingMyMarblesDataComponents.ACCUMULATES_MASS).ifPresent(set -> {
 				BlockState ground = this.level().getBlockState(this.getOnPos(0.1f));
@@ -158,6 +162,12 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 			}
 
 			if (this.getY() > level.getMaxY() + HEIGHT_LIMIT_BUFFER) {
+				this.discard();
+				return;
+			}
+
+			int maxIdleTicks = level.getGameRules().getInt(LosingMyMarblesGameRules.STATIONARY_MARBLE_DESPAWN_TIMER);
+			if (maxIdleTicks > 0 && this.ticksIdle > maxIdleTicks) {
 				this.discard();
 				return;
 			}

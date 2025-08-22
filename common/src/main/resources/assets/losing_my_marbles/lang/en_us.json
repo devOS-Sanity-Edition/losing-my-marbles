@@ -39,6 +39,9 @@
   "item.losing_my_marbles.marble": "Marble",
   "entity.losing_my_marbles.marble": "Marble",
 
+  "gamerule.stationaryMarbleDespawnTimer": "Stationary marble despawn timer",
+  "gamerule.stationaryMarbleDespawnTimer.description": "Maximum number of ticks a marble can be stationary for before disappearing.",
+
   "item.losing_my_marbles.stored_marble.tooltip": "Type: ",
   "item.losing_my_marbles.stored_marble.invalid": "Invalid: %s",
 

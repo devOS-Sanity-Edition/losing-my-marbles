@@ -12,6 +12,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
 import net.fabricmc.fabric.api.event.registry.RegistryAttribute;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -27,6 +29,7 @@ import net.minecraft.stats.RecipeBookSettings.TypeSettings;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.GameRules;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.content.marble.maker.MarbleMakerMenu;
 import one.devos.nautical.losing_my_marbles.fabric.mixin.accessors.TypeSettingsAccessor;
@@ -99,5 +102,15 @@ public class FabricPlatformHelper implements PlatformHelper {
 	@Override
 	public MapCodec<TypeSettings> createTypeSettingsCodec(String open, String filtering) {
 		return TypeSettingsAccessor.callCodec(open, filtering);
+	}
+
+	@Override
+	public <T extends GameRules.Value<T>> GameRules.Key<T> registerGameRule(String name, GameRules.Category category, GameRules.Type<T> type) {
+		return GameRuleRegistry.register(name, category, type);
+	}
+
+	@Override
+	public GameRules.Type<GameRules.IntegerValue> createIntegerRule(int defaultValue, int minValue) {
+		return GameRuleFactory.createIntRule(defaultValue, minValue);
 	}
 }

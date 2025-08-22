@@ -18,6 +18,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.RecipeBookSettings.TypeSettings;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.GameRules;
 import one.devos.nautical.losing_my_marbles.content.marble.maker.MarbleMakerMenu;
 import one.devos.nautical.losing_my_marbles.framework.network.ClientPlayPayloadHandler;
 import one.devos.nautical.losing_my_marbles.framework.network.ServerPlayPayloadHandler;
@@ -56,4 +57,8 @@ public interface PlatformHelper {
 	CreativeModeTab.Builder newCreativeTab();
 
 	MapCodec<TypeSettings> createTypeSettingsCodec(String open, String filtering);
+
+	<T extends GameRules.Value<T>> GameRules.Key<T> registerGameRule(String name, GameRules.Category category, GameRules.Type<T> type);
+
+	GameRules.Type<GameRules.IntegerValue> createIntegerRule(int defaultValue, int minValue);
 }
