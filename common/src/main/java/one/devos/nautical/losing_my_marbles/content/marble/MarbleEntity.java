@@ -260,6 +260,14 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 	}
 
 	@Override
+	public void onPhysicsError() {
+		ItemStack item = this.getPickResult();
+		// will only be called on the server thread
+		this.spawnAtLocation((ServerLevel) this.level(), item);
+		this.discard();
+	}
+
+	@Override
 	public void onBounce(Vec3 oldVel, Vec3 newVel) {
 		this.marble().getOptional(LosingMyMarblesDataComponents.BOUNCE_EFFECT).ifPresent(
 				effect -> effect.apply(this, oldVel, newVel)

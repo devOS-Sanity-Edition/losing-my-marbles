@@ -22,6 +22,13 @@ public interface PhysicsEntity {
 	void setNextTickPos(Vec3 pos);
 
 	/**
+	 * Called when an error occurs while stepping physics.
+	 * This should remove this entity in a non-destructive way.
+	 * This entity's body will be discarded automatically.
+	 */
+	void onPhysicsError();
+
+	/**
 	 * Called when this entity's body bounces, which is defined as a significant change in velocity.
 	 */
 	default void onBounce(Vec3 oldVel, Vec3 newVel) {

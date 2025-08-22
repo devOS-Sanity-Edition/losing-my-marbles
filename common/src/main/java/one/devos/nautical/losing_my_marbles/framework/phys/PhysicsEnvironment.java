@@ -30,6 +30,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 import one.devos.nautical.losing_my_marbles.framework.phys.debug.DebugGeometryOutput;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.TerrainCollisionManager;
@@ -152,7 +153,8 @@ public final class PhysicsEnvironment {
 
 		int errors = this.system.update(TIME_STEP, 1, this.tempAllocator, this.jobSystem);
 		if (errors != 0) {
-			throw new RuntimeException("Error(s) occurred while updating physics: " + Error.setOf(errors));
+			LosingMyMarbles.LOGGER.error("Error(s) occurred while updating physics: {}", Error.setOf(errors));
+			this.onError();
 		}
 
 		// sync updated bodies back to their entities
@@ -181,6 +183,11 @@ public final class PhysicsEnvironment {
 		for (EntityEntry<?> entry : this.entities.values()) {
 			output.accept(entry.body().getBody());
 		}
+	}
+
+	private void onError() {
+		// removal will modify the entities map
+		Set.copyOf(this.entities.keySet()).forEach(PhysicsEntity::onPhysicsError);
 	}
 
 	private enum Error {
