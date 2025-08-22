@@ -41,7 +41,6 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
-import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntities;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItemTags;
 import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
 import one.devos.nautical.losing_my_marbles.content.marble.data.shape.MarbleShape;
@@ -83,11 +82,6 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 		this.refreshDimensions();
 	}
 
-	public MarbleEntity(Level level, MarbleInstance marble, @Nullable LivingEntity owner) {
-		this(LosingMyMarblesEntities.MARBLE, level, marble);
-		this.owner = owner == null ? null : new EntityReference<>(owner);
-	}
-
 	public MarbleInstance marble() {
 		return Objects.requireNonNull(this.marble, "marble() called too early");
 	}
@@ -102,6 +96,10 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 			Packet<?> packet = new ClientboundCustomPayloadPacket(payload);
 			level.getChunkSource().chunkMap.broadcast(this, packet);
 		}
+	}
+
+	public void setOwner(@Nullable LivingEntity entity) {
+		this.owner = entity == null ? null : new EntityReference<>(entity);
 	}
 
 	public double distanceTraveled() {

@@ -1,5 +1,6 @@
 package one.devos.nautical.losing_my_marbles.content.marble;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -9,9 +10,11 @@ import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -19,16 +22,15 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntities;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
 import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
 
+// placement and dispense logic based on spawn eggs
 public final class MarbleItem extends Item {
-	// based on spawn eggs
 	public static final DispenseItemBehavior DISPENSE_BEHAVIOR = new DefaultDispenseItemBehavior() {
 		@Override
 		public ItemStack execute(BlockSource source, ItemStack stack) {
@@ -68,26 +70,39 @@ public final class MarbleItem extends Item {
 			return InteractionResult.FAIL;
 		}
 
-		BlockPos pos = context.getClickedPos().relative(context.getClickedFace());
 		Level level = context.getLevel();
-
-		if (!level.noCollision(new AABB(pos)))
-			return InteractionResult.FAIL;
 
 		Optional<MarbleInstance> instance = marble.get(level.registryAccess());
 		if (instance.isEmpty()) {
 			return InteractionResult.FAIL;
 		}
 
-		if (level.isClientSide()) {
+		if (!(level instanceof ServerLevel serverLevel)) {
 			return InteractionResult.SUCCESS;
 		}
 
-		MarbleEntity entity = new MarbleEntity(level, instance.get(), context.getPlayer());
-		entity.setPos(Vec3.atCenterOf(pos));
-		level.addFreshEntity(entity);
+		Direction face = context.getClickedFace();
+		BlockPos pos = context.getClickedPos();
+		BlockState state = level.getBlockState(pos);
+		Player player = context.getPlayer();
 
-		stack.shrink(1);
+		BlockPos actualPos = state.getCollisionShape(level, pos).isEmpty() ? pos : pos.relative(face);
+		boolean offset = !Objects.equals(pos, actualPos) && face == Direction.UP;
+
+		Consumer<MarbleEntity> config = EntityType.appendDefaultStackConfig(entity -> {
+			entity.setMarble(instance.get());
+			entity.setOwner(player);
+		}, level, stack, player);
+
+		MarbleEntity spawned = LosingMyMarblesEntities.MARBLE.spawn(
+				serverLevel, config, actualPos, EntitySpawnReason.SPAWN_ITEM_USE, true, offset
+		);
+
+		if (spawned != null) {
+			stack.shrink(1);
+			level.gameEvent(player, GameEvent.ENTITY_PLACE, pos);
+		}
+
 		return InteractionResult.SUCCESS_SERVER;
 	}
 
