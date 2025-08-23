@@ -39,6 +39,9 @@
   "item.losing_my_marbles.marble": "Marble",
   "entity.losing_my_marbles.marble": "Marble",
 
+  "gamerule.physicsStepsPerTick": "Physics steps per tick",
+  "gamerule.physicsStepsPerTick.description": "Number of physics steps to perform each tick. Higher values increase quality, but reduce performance.",
+
   "gamerule.marbleDespawnTimer": "Marble despawn timer",
   "gamerule.marbleDespawnTimer.description": "Maximum number of ticks a marble can exist for before disappearing.",
 

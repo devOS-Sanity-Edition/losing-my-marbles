@@ -31,6 +31,7 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
+import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesGameRules;
 import one.devos.nautical.losing_my_marbles.framework.phys.core.JoltIntegration;
 import one.devos.nautical.losing_my_marbles.framework.phys.debug.DebugGeometryOutput;
 import one.devos.nautical.losing_my_marbles.framework.phys.terrain.TerrainCollisionManager;
@@ -149,7 +150,8 @@ public final class PhysicsEnvironment {
 		if (this.entities.isEmpty() || !this.level.tickRateManager().runsNormally())
 			return;
 
-		int errors = this.system.update(TIME_STEP, 1, this.tempAllocator, this.jobSystem);
+		int steps = this.level.getGameRules().getInt(LosingMyMarblesGameRules.PHYSICS_STEPS_PER_TICK);
+		int errors = this.system.update(TIME_STEP, steps, this.tempAllocator, this.jobSystem);
 		if (errors != 0) {
 			LosingMyMarbles.LOGGER.error("Error(s) occurred while updating physics: {}", Error.setOf(errors));
 			this.onError();
