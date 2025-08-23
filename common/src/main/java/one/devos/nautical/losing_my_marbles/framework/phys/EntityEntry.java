@@ -30,7 +30,8 @@ public record EntityEntry<T extends Entity & PhysicsEntity>(T entity, BodyAccess
 	}
 
 	public void updateEntity() {
-		if (this.entity.getVehicle() != null)
+		// check for removal since it's possible this entity was removed by another entry's update (onBounce)
+		if (this.entity.getVehicle() != null || this.entity.isRemoved())
 			return;
 
 		RVec3 pos = this.body.getBody().getPosition();
