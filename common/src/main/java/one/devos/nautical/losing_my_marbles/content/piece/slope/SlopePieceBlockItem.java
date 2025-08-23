@@ -1,6 +1,7 @@
 package one.devos.nautical.losing_my_marbles.content.piece.slope;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -19,9 +20,16 @@ public final class SlopePieceBlockItem extends BlockItem {
 		BlockPos pos = context.getClickedPos();
 		BlockPos upperPos = SlopePieceBlock.getOtherHalfPos(state, pos);
 		boolean placedUpper = false;
+
 		if (upperPos.getY() <= level.getMaxY() && level.getBlockState(upperPos).canBeReplaced(context)) {
-			placedUpper = level.setBlock(upperPos, state.setValue(SlopePieceBlock.HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL_IMMEDIATE);
+			BlockPlaceContext upperContext = BlockPlaceContext.at(context, upperPos, Direction.UP);
+			BlockState upperState = state.getBlock().getStateForPlacement(upperContext);
+			if (upperState != null) {
+				upperState = upperState.setValue(SlopePieceBlock.HALF, DoubleBlockHalf.UPPER);
+				placedUpper = level.setBlock(upperPos, upperState, Block.UPDATE_ALL_IMMEDIATE);
+			}
 		}
+
 		return placedUpper && super.placeBlock(context, state);
 	}
 }
