@@ -14,20 +14,18 @@
           "type": "losing_my_marbles:break",
           "threshold": 0.6,
           "when_broken": {
-     	    "type": "losing_my_marbles:explode",
-   	    "radius": 1,
-   	    "fire": false,
-   	    "interaction": "tnt",
-   	    "small_particles": { 
-              "type": "minecraft:dust",
-              "color": -1,
-              "scale": 0.5
-            },
-   	    "large_particles": { 
+            "type": "losing_my_marbles:explode",
+            "radius": 3,
+            "fire": false,
+            "interaction": "tnt",
+            "small_particles": {
               "type": "minecraft:explosion_emitter"
             },
-   	    "sound": "minecraft:entity.generic.explode"
-  	  }
+            "large_particles": {
+              "type": "minecraft:explosion_emitter"
+            },
+            "sound": "minecraft:entity.generic.explode"
+          }
         },
         {
           "type": "losing_my_marbles:play_sound",
