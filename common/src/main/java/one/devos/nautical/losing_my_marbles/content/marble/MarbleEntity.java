@@ -343,6 +343,8 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 		InteractionResult result = super.interact(player, hand);
 		if (result.consumesAction()) {
 			return result;
+		} else if (this.marble().has(LosingMyMarblesDataComponents.NO_PICKUP)) {
+			return InteractionResult.FAIL;
 		} else if (this.level().isClientSide()) {
 			return InteractionResult.SUCCESS;
 		}

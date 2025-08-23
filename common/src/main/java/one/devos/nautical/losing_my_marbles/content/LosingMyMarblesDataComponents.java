@@ -12,6 +12,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Unit;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.level.block.Block;
 import one.devos.nautical.losing_my_marbles.LosingMyMarbles;
@@ -57,6 +58,9 @@ public final class LosingMyMarblesDataComponents {
 	);
 	public static final DataComponentType<HolderSet<Block>> ACCUMULATES_MASS = register(
 			"accumulates_mass", RegistryCodecs.homogeneousList(Registries.BLOCK), LosingMyMarblesStreamCodecs.homogeneousList(Registries.BLOCK)
+	);
+	public static final DataComponentType<Unit> NO_PICKUP = register(
+			"no_pickup", Unit.CODEC, Unit.STREAM_CODEC
 	);
 	public static final DataComponentType<BounceEffect> BOUNCE_EFFECT = register(
 			"bounce_effect", BounceEffect.CODEC, BounceEffect.STREAM_CODEC
