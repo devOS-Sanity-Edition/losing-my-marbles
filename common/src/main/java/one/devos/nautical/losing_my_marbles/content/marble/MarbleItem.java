@@ -11,6 +11,7 @@ import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesDataComponents;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesEntities;
 import one.devos.nautical.losing_my_marbles.content.LosingMyMarblesItems;
@@ -31,6 +33,8 @@ import one.devos.nautical.losing_my_marbles.content.marble.data.MarbleInstance;
 
 // placement and dispense logic based on spawn eggs
 public final class MarbleItem extends Item {
+	public static final double DISPENSED_VELOCITY = 0.4;
+
 	public static final DispenseItemBehavior DISPENSE_BEHAVIOR = new DefaultDispenseItemBehavior() {
 		@Override
 		public ItemStack execute(BlockSource source, ItemStack stack) {
@@ -40,6 +44,13 @@ public final class MarbleItem extends Item {
 				StoredMarble marble = stack.get(LosingMyMarblesDataComponents.MARBLE);
 				if (marble != null) {
 					marble.get(entity.registryAccess()).ifPresent(entity::setMarble);
+				}
+
+				nudge(entity);
+
+				if (facing.getAxis().isHorizontal()) {
+					Vec3 vel = facing.getUnitVec3().scale(DISPENSED_VELOCITY);
+					entity.setDeltaMovement(vel);
 				}
 			}, source.level(), stack, null);
 
@@ -92,6 +103,7 @@ public final class MarbleItem extends Item {
 		Consumer<MarbleEntity> config = EntityType.appendDefaultStackConfig(entity -> {
 			entity.setMarble(instance.get());
 			entity.setOwner(player);
+			nudge(entity);
 		}, level, stack, player);
 
 		MarbleEntity spawned = LosingMyMarblesEntities.MARBLE.spawn(
@@ -116,5 +128,14 @@ public final class MarbleItem extends Item {
 		ItemStack stack = new ItemStack(LosingMyMarblesItems.MARBLE);
 		stack.set(LosingMyMarblesDataComponents.MARBLE, marble);
 		return stack;
+	}
+
+	private static void nudge(MarbleEntity entity) {
+		RandomSource random = entity.getRandom();
+		entity.setPos(entity.position().add(
+				(random.nextDouble() - 0.5) / 10,
+				0,
+				(random.nextDouble() - 0.5) / 10
+		));
 	}
 }
