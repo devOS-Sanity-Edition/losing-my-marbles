@@ -161,13 +161,7 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 				}
 			}
 
-			if (this.getY() > level.getMaxY() + HEIGHT_LIMIT_BUFFER) {
-				this.discard();
-				return;
-			}
-
-			int maxIdleTicks = level.getGameRules().getInt(LosingMyMarblesGameRules.STATIONARY_MARBLE_DESPAWN_TIMER);
-			if (maxIdleTicks > 0 && this.ticksIdle > maxIdleTicks) {
+			if (this.shouldDespawn(level)) {
 				this.discard();
 				return;
 			}
@@ -185,6 +179,18 @@ public final class MarbleEntity extends Entity implements PhysicsEntity, Ownable
 				effect.apply(this, entity);
 			}
 		});
+	}
+
+	private boolean shouldDespawn(ServerLevel level) {
+		if (this.getY() > level.getMaxY() + HEIGHT_LIMIT_BUFFER)
+			return true;
+
+		int maxAge = level.getGameRules().getInt(LosingMyMarblesGameRules.MARBLE_DESPAWN_TIMER);
+		if (maxAge > 0 && this.tickCount > maxAge)
+			return true;
+
+		int maxIdleTicks = level.getGameRules().getInt(LosingMyMarblesGameRules.STATIONARY_MARBLE_DESPAWN_TIMER);
+		return maxIdleTicks > 0 && this.ticksIdle > maxIdleTicks;
 	}
 
 	@Nullable
