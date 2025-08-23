@@ -146,10 +146,8 @@ public final class PhysicsEnvironment {
 		// terrain must tick even when no bodies are present
 		this.terrain.tick();
 
-		if (this.entities.isEmpty()) {
-			// nothing else to do.
+		if (this.entities.isEmpty() || !this.level.tickRateManager().runsNormally())
 			return;
-		}
 
 		int errors = this.system.update(TIME_STEP, 1, this.tempAllocator, this.jobSystem);
 		if (errors != 0) {
