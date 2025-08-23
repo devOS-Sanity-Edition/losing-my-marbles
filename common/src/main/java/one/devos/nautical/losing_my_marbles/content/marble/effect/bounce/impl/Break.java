@@ -36,6 +36,7 @@ public record Break(double threshold, Optional<BounceEffect> whenBroken, boolean
 		if (!this.triggerOnKill)
 			return;
 
+		// treat death as a bounce that caused a break
 		this.whenBroken.ifPresent(effect -> effect.apply(entity, Vec3.ZERO, Vec3.ZERO));
 
 		if (entity.level().isClientSide())

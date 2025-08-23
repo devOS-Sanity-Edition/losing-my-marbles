@@ -13,6 +13,7 @@
         {
           "type": "losing_my_marbles:chanced",
           "chance": 0.1,
+          "chance_on_kill": 1,
           "effect": {
             "type": "losing_my_marbles:break",
             "threshold": 0.15,
