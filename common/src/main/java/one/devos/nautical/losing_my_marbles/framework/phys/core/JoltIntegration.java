@@ -1,5 +1,7 @@
 package one.devos.nautical.losing_my_marbles.framework.phys.core;
 
+import com.github.stephengold.joltjni.JobSystem;
+import com.github.stephengold.joltjni.JobSystemThreadPool;
 import com.github.stephengold.joltjni.Jolt;
 import com.github.stephengold.joltjni.PhysicsSystem;
 import com.github.stephengold.joltjni.RVec3;
@@ -35,6 +37,11 @@ public final class JoltIntegration {
 		);
 
 		return system;
+	}
+
+	public static JobSystem createJobSystem() {
+		// number of threads to use will be automatically determined
+		return new JobSystemThreadPool(Jolt.cMaxPhysicsJobs, Jolt.cMaxPhysicsBarriers);
 	}
 
 	public static RVec3 convert(Vec3 vec) {

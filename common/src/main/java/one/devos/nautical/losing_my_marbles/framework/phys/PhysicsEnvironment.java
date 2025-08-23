@@ -13,7 +13,6 @@ import com.github.stephengold.joltjni.Body;
 import com.github.stephengold.joltjni.BodyInterface;
 import com.github.stephengold.joltjni.BroadPhaseLayerFilter;
 import com.github.stephengold.joltjni.JobSystem;
-import com.github.stephengold.joltjni.JobSystemSingleThreaded;
 import com.github.stephengold.joltjni.ObjectLayerFilter;
 import com.github.stephengold.joltjni.PhysicsSystem;
 import com.github.stephengold.joltjni.RVec3;
@@ -64,7 +63,7 @@ public final class PhysicsEnvironment {
 		this.level = level;
 
 		this.tempAllocator = new TempAllocatorMalloc();
-		this.jobSystem = new JobSystemSingleThreaded(2048);
+		this.jobSystem = JoltIntegration.createJobSystem();
 
 		this.system = JoltIntegration.createSystem();
 		this.system.setGravity(0, GRAVITY, 0);
