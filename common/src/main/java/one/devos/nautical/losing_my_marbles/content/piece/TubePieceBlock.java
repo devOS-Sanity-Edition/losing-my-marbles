@@ -3,6 +3,7 @@ package one.devos.nautical.losing_my_marbles.content.piece;
 import java.util.function.Function;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -21,5 +22,10 @@ public final class TubePieceBlock extends PieceBlock {
 	@Override
 	protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
 		return this.shapes.apply(state);
+	}
+
+	@Override
+	protected boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+		return super.skipRendering(state, adjacentBlockState, side) && side.getAxis() == Direction.Axis.Y;
 	}
 }

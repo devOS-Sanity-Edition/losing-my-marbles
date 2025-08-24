@@ -65,6 +65,11 @@ public final class HalfPipePieceBlock extends PieceBlock {
 		return this.shapes.apply(state);
 	}
 
+	@Override
+	protected boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+		return super.skipRendering(state, adjacentBlockState, side) && side == state.getValue(FACING);
+	}
+
 	public static void additionalCollision(BlockState state, PhysicsCollision.Provider.Output output) {
 		TriStripBuilder builder = new TriStripBuilder(PieceBlock::pixelsToBlocks).flip();
 

@@ -62,6 +62,11 @@ public final class OneWayGatePieceBlock extends PieceBlock implements MarbleList
 	}
 
 	@Override
+	protected boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+		return super.skipRendering(state, adjacentBlockState, side) && side.getAxis() == state.getValue(FACING).getAxis();
+	}
+
+	@Override
 	protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		if (state.getValue(OPEN)) {
 			toggle(level, state, pos);

@@ -65,6 +65,16 @@ public final class SplitterPieceBlock extends PieceBlock implements MarbleListen
 	}
 
 	@Override
+	protected boolean skipRendering(BlockState state, BlockState adjacentBlockState, Direction side) {
+		if (super.skipRendering(state, adjacentBlockState, side)) {
+			Direction facing = state.getValue(FACING);
+			return side == facing || side == facing.getClockWise() || side == facing.getCounterClockWise();
+		} else {
+			return false;
+		}
+	}
+
+	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
