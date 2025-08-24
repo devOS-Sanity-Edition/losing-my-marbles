@@ -15,7 +15,7 @@
           "threshold": 0.6,
           "when_broken": {
             "type": "losing_my_marbles:explode",
-            "radius": 3,
+            "radius": 1,
             "fire": false,
             "interaction": "tnt",
             "small_particles": {
